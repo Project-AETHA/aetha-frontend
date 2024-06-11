@@ -4,14 +4,14 @@ import Button from '@mui/material/Button'
 function Navbar() {
     return (
         <>
-            <header>
-                <Stack spacing={2} direction="row">
-                    <div className="logo">Logo</div>
+            <header className='container bg-gray-800 p-3 m-auto'>
+                <Stack spacing={2} direction="row" className='flex justify-between items-center'>
+                    <div className="logo text-white">Logo</div>
 
                     <nav>
                         <Stack spacing={2} direction="row">
-                            <Button variant="text">Read</Button>
-                            <Button variant="text">Write</Button>
+                            <Button variant="outlined">Read</Button>
+                            <Button variant="outlined">Write</Button>
                         </Stack>
                     </nav>
 
