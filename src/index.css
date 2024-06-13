@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  height: 100%;
+}
+
 body {
   @apply font-sans;
+  height: 100%;
+
+  #root {
+    height: 100%;
+  }
 }

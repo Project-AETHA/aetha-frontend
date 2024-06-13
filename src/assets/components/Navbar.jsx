@@ -1,31 +1,49 @@
-import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+
+//? Importing icons
+import HomeIcon from "@mui/icons-material/Home";
 
 function Navbar() {
-    return (
-        <>
-            <header className='container bg-gray-800 p-3 m-auto'>
-                <Stack spacing={2} direction="row" className='flex justify-between items-center'>
-                    <div className="logo text-white">Logo</div>
+  return (
+    <header className="bg-white p-3 w-full shadow-lg">
+      <Stack spacing={2} direction="row" className="flex justify-between items-center">
+        <Link to="/">
+          <Button className="logo text-white font-bold text-xl">Logo</Button>
+        </Link>
 
-                    <nav>
-                        <Stack spacing={2} direction="row">
-                            <Button variant="outlined">Read</Button>
-                            <Button variant="outlined">Write</Button>
-                        </Stack>
-                    </nav>
+        <nav>
+          <Stack spacing={2} direction="row">
+            <Link to="/home">
+              <Button variant="outlined" startIcon={<HomeIcon />}>
+                Home
+              </Button>
+            </Link>
 
-                    <div className="user">
-                        <Stack spacing={2} direction="row">
-                            <Button variant="contained">Login</Button>
-                            <Button variant="contained">Signup</Button>
-                        </Stack>
-                    </div>
-                </Stack>
+            <Button variant="outlined">Read</Button>
+            <Button variant="outlined">Write</Button>
+          </Stack>
+        </nav>
 
-            </header>
-        </>
-    )
+        <div className="user">
+          <Stack spacing={2} direction="row">
+            <Link to="/login">
+              <Button variant="contained" color="primary">
+                Login
+              </Button>
+            </Link>
+
+            <Link to="/signup">
+              <Button variant="contained" color="secondary">
+                Signup
+              </Button>
+            </Link>
+          </Stack>
+        </div>
+      </Stack>
+    </header>
+  );
 }
 
-export default Navbar
+export default Navbar;
