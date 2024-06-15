@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 //? Importing icons
 import HomeIcon from "@mui/icons-material/Home";
+import DarkMode from "./DarkMode";
 
 function Navbar() {
   return (
@@ -21,13 +22,24 @@ function Navbar() {
               </Button>
             </Link>
 
-            <Button variant="outlined">Read</Button>
+            <Link to="/reading">
+              <Button variant="outlined">
+                Read
+              </Button>
+            </Link>
+
             <Button variant="outlined">Write</Button>
           </Stack>
         </nav>
+     
 
         <div className="user">
           <Stack spacing={2} direction="row">
+            
+          <div>
+             <DarkMode />
+          </div>
+
             <Link to="/login">
               <Button variant="contained" color="primary">
                 Login

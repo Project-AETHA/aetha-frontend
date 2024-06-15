@@ -6,6 +6,7 @@ import Navbar from "./assets/components/Navbar";
 import Home from "./assets/pages/Home";
 import LoginPage from "./assets/pages/LoginPage";
 import SignupPage from "./assets/pages/SignupPage";
+import Reading from "./assets/pages/Reading";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<div> Landing Page </div>} />
               <Route exact path="/home" element={<Home />} />
+              <Route exact path="/reading" element={<Reading />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
             </Routes>
