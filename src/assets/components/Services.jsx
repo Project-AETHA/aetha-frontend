@@ -1,8 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Img1 from "../../../public/books/book2.jpg";
 import Img2 from "../../../public/books/book1.jpg";
 import Img3 from "../../../public/books/book3.jpg";
 import { FaStar } from "react-icons/fa";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+
 
 const ServicesData = [
   {
@@ -29,32 +34,37 @@ const ServicesData = [
 ];
 
 const Services = ({ handleOrderPopup }) => {
+
+  useEffect(() => {
+    AOS.init( {
+      duration : 600
+    }
+    );
+  }, [])
+
   return (
     <>
       <span id="services"></span>
-      <div className="py-10 px-20">
-        <div className="container">
+      <div className="py-20 px-20 mt-10"  data-aos="fade-out">
+        <div className="container m-auto">
           <div className="text-center mb-20 max-w-[400px] mx-auto">
-            <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary ">
-              Trending Books
-            </p>
+
             <h1 className="text-3xl font-bold"> Most Popular Books </h1>
             <p className="text-xs text-gray-400">
-             These are the books that was written by the top authors
+              These are the books that was written by the top authors
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 md:gap-5 place-items-center">
             {ServicesData.map((service) => (
               <div
                 data-aos="zoom-in"
-                className="rounded-2xl bg-white light:bg-gray-800 hover:bg-blue-600 dark:hover:bg-primary hover:text-white relative shadow-xl duration-high group max-w-[300px]"
+                className="rounded-2xl bg-white light:bg-gray-800 hover:bg-blue-600 dark:hover:bg-primary hover:text-white shadow-xl duration-high group max-w-[300px]"
               >
-                <div className="h-[100px]">
+                <div className="h-[100px] relative">
                   <img
                     src={service.img}
                     alt=""
-                    className="max-w-[100px] h-[150px] block mx-auto transform -translate-y-14
-                  group-hover:scale-105  duration-300 shadow-md"
+                    className="max-w-[100px] h-[150px] mx-auto transform -translate-y-14 group-hover:scale-110 duration-300 shadow-md z-10"
                   />
                 </div>
                 <div className="p-4 text-center">
@@ -73,7 +83,7 @@ const Services = ({ handleOrderPopup }) => {
                     className="bg-blue-600 hover:scale-120 duration-300 text-white py-1 px-7 rounded mt-4 group-hover:bg-white group-hover:text-blue-600"
                     onClick={handleOrderPopup}
                   >
-                    Read 
+                    Read
                   </button>
                 </div>
               </div>

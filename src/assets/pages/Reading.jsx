@@ -1,7 +1,7 @@
 import React from "react";
 import Services from "../components/Services.jsx";
 import Books from "../components/Books.jsx";
-import Testimonial from "../components/Testimonial.jsx";
+import Advertistment from "../components/Advertistment.jsx";
 
 
 const Reading = () => {
@@ -10,7 +10,7 @@ const Reading = () => {
     <div>
       <Services />
       <Books />
-      <Testimonial />
+      <Advertistment />
 
     </div>
 

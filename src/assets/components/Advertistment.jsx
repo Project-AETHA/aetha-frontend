@@ -30,7 +30,7 @@ const testimonialData = [
   },
 ];
 
-const Testimonial = () => {
+const Advertistment = () => {
   var settings = {
     dots: true,
     arrows: false,
@@ -71,8 +71,8 @@ const Testimonial = () => {
   };
   return (
     <>
-      <div data-aos="fade-up" data-aos-duration="300" className="py-10 mx-10 bg-slate-200 rounded-xl shadow-lg">
-        <div className="container">
+      <div data-aos="fade-up" data-aos-duration="900" className="py-10 bg-slate-100  shadow-lg">
+        <div className="container m-auto">
           <div className="text-center m-auto">
             <h1 className="text-3xl font-bold"> Advertistment </h1>
           </div>
@@ -130,4 +130,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default Advertistment;

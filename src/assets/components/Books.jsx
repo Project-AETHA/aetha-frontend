@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Book1 from "../../../public/books/book1.jpg";
 import Book2 from "../../../public/books/book2.jpg";
 import Book3 from "../../../public/books/book3.jpg";
 import { FaStar } from "react-icons/fa6";
+
 
 const booksData = [
   {
@@ -43,13 +44,17 @@ const booksData = [
 ];
 
 const Books = () => {
+
+
+
+
   return (
     <>
-      <div className="mt-14 mb-40 mx-20">
-        <div className="container">
+      <div className="mt-14 mb-20 mx-20 " data-aos="zoom-in">
+        <div className="container m-auto">
           {/* header */}
           <div className="text-center mb-10 max-w-[600px] mx-auto">
-            <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+            <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary ">
               Top Books for you
             </p>
             <h1 className="text-3xl font-bold"> Recomended Books for you </h1>
