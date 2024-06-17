@@ -58,7 +58,7 @@ const Services = ({ handleOrderPopup }) => {
             {ServicesData.map((service) => (
               <div
                 data-aos="zoom-in"
-                className="rounded-2xl bg-white light:bg-gray-800 hover:bg-blue-600 dark:hover:bg-primary hover:text-white shadow-xl duration-high group max-w-[300px]"
+                className="rounded-2xl bg-white light:bg-gray-800 hover:bg-gradient-to-tl from-cyan-300 to-indigo-600 dark:hover:bg-primary hover:text-white shadow-xl duration-high group max-w-[300px]"
               >
                 <div className="h-[100px] relative">
                   <img
@@ -76,12 +76,11 @@ const Services = ({ handleOrderPopup }) => {
                     <FaStar className="text-yellow-500" />
                   </div>
                   <h1 className="text-xl font-bold">{service.title}</h1>
-                  <p className="text-gray-500 group-hover:text-slate-300 duration-high text-sm line-clamp-2">
+                  <p className="text-gray-500 group-hover:text-slate-200 duration-high text-sm line-clamp-2">
                     {service.description}
                   </p>
                   <button
-                    className="bg-blue-600 hover:scale-120 duration-300 text-white py-1 px-7 rounded mt-4 group-hover:bg-white group-hover:text-blue-600"
-                    onClick={handleOrderPopup}
+                    className="bg-blue-600 hover:scale-110 hover:font-bold duration-300 text-white py-1 px-7 rounded mt-4 group-hover:bg-white group-hover:text-blue-600"
                   >
                     Read
                   </button>

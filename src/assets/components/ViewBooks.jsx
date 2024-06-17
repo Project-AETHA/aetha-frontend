@@ -41,6 +41,69 @@ const booksData = [
     rating: 4.5,
     author: "Someone",
   },
+  {
+    id: 6,
+    img: Book1,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book1,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book3,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book3,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book2,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book2,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book3,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book2,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
+  {
+    id: 7,
+    img: Book1,
+    title: "Who's There",
+    rating: 4.5,
+    author: "Someone",
+  },
 ];
 
 const Books = () => {
@@ -51,15 +114,7 @@ const Books = () => {
       <div className="mt-14 mb-20 mx-20 " data-aos="zoom-in">
         <div className="container m-auto">
           {/* header */}
-          <div className="text-center mb-10 max-w-[600px] mx-auto">
-            <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary ">
-              Top Books for you
-            </p>
-            <h1 className="text-3xl font-bold"> Recomended Books for you </h1>
-            <p className="text-xs text-gray-400">
-              User wadiyenma kiyawana poth types Recomend wenne menna methenta
-            </p>
-          </div>
+         
 
           {/* Body section */}
           <div>
@@ -83,13 +138,7 @@ const Books = () => {
                 </div>
               ))}
             </div>
-            <div className="flex justify-center">
-              <a href="../viewallbooks">
-              <button className="text-center mt-10 cursor-pointer bg-blue-600 text-white py-1 px-5 rounded-md">
-                View All Books
-              </button>
-              </a>
-            </div>
+
           </div>
         </div>
       </div>

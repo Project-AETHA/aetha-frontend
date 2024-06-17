@@ -1,22 +1,24 @@
 import React from "react";
-import Services from "../components/Services.jsx";
-import Books from "../components/Books.jsx";
+import ViewBooks from "../components/ViewBooks.jsx";
 import Advertistment from "../components/Advertistment.jsx";
 import Footer from "../components/Footer.jsx";
+import SearchBar from "../components/SearchBar.jsx"
 
 
-const Reading = () => {
+
+const ViewAllBooks = () => {
 
   return (
     <div>
-      <Services />
-      <Books />
+      <SearchBar />
+       <ViewBooks />
       <Advertistment />
       <Footer />
+      
 
     </div>
 
   );
 };
 
-export default Reading;
+export default ViewAllBooks;

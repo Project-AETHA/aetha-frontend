@@ -1,7 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Slider from "react-slick";
 import click from "../../../public/images/click.gif";
 import { FaStar } from "react-icons/fa6";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const testimonialData = [
   {
@@ -31,6 +34,10 @@ const testimonialData = [
 ];
 
 const Advertistment = () => {
+  
+
+
+  
   var settings = {
     dots: true,
     arrows: false,
@@ -69,9 +76,19 @@ const Advertistment = () => {
       },
     ],
   };
+
+  useEffect(() => {
+    AOS.init( {
+      duration : 600
+    }
+    );
+  }, [])
+
+ 
+
   return (
     <>
-      <div data-aos="fade-up" data-aos-duration="900" className="py-10 bg-slate-100  shadow-lg">
+      <div data-aos="fade-up" data-aos-duration="900" className="py-10 bg-slate-50  shadow-lg mb-10">
         <div className="container m-auto">
           <div className="text-center m-auto">
             <h1 className="text-3xl font-bold"> Advertistment </h1>
@@ -84,7 +101,9 @@ const Advertistment = () => {
             <Slider {...settings}>
               {testimonialData.map((data) => {
                 return (
+                  
                   <div className="my-6">
+                   
                     <div
                       key={data.id}
                       className="flex flex-col gap-4 py-8 w-[260px] mx-auto h-[350px] rounded-xl dark:bg-white bg-primary/10 relative shadow-xl"
@@ -106,11 +125,13 @@ const Advertistment = () => {
                           <span>{data.rating}</span>
                          </div>
 
+                         <a href="#">
                           <img
                           className="rounded-full h-35 m-auto w-[260px]"
                           src={click}
                           alt=""
                         />
+                        </a>
                          
                         </div>
                       </div>
@@ -119,9 +140,12 @@ const Advertistment = () => {
                         ,,
                       </p>
                     </div>
+                    
                   </div>
+                  
                 );
               })}
+             
             </Slider>
           </div>
         </div>

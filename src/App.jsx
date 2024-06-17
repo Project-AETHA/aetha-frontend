@@ -7,6 +7,7 @@ import Home from "./assets/pages/Home";
 import LoginPage from "./assets/pages/LoginPage";
 import SignupPage from "./assets/pages/SignupPage";
 import Reading from "./assets/pages/Reading";
+import ViewAllBooks from "./assets/pages/ViewAllBooks";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route exact path="/" element={<div> Landing Page </div>} />
               <Route exact path="/home" element={<Home />} />
               <Route exact path="/reading" element={<Reading />} />
+              <Route exact path="/viewallbooks" element={<ViewAllBooks />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
             </Routes>
