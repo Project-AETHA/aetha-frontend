@@ -1,9 +1,22 @@
+import "../../styles/signup.css";
+
+
 function SignupPage() {
     return (
         <>
-            <h1>Signup Page</h1>
+
+            <div className="h-screen w-full bg">
+               <h2> hi</h2>
+            </div>
+
+            
+
+    
+
+
+
         </>
     )
 }
 
-export default SignupPage
+export default SignupPage;
