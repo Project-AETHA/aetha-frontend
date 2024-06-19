@@ -47,9 +47,9 @@ const Services = ({ handleOrderPopup }) => {
       <span id="services"></span>
       <div className="py-20 px-20 mt-10"  data-aos="fade-out">
         <div className="container m-auto">
-          <div className="text-center mb-20 max-w-[400px] mx-auto">
+          <div className="text-center mb-20 max-w-[600px] mx-auto">
 
-            <h1 className="text-3xl font-bold"> Most Popular Books </h1>
+            <h1 className="text-5xl mb-5 font-bold"> Most Popular Books </h1>
             <p className="text-xs text-gray-400">
               These are the books that was written by the top authors
             </p>
@@ -58,7 +58,7 @@ const Services = ({ handleOrderPopup }) => {
             {ServicesData.map((service) => (
               <div
                 data-aos="zoom-in"
-                className="rounded-2xl bg-white light:bg-gray-800 hover:bg-gradient-to-tl from-cyan-300 to-indigo-600 dark:hover:bg-primary hover:text-white shadow-xl duration-high group max-w-[300px]"
+                className="rounded-2xl bg-white light:bg-gray-800 hover:bg-gradient-to-tl from-cyan-300 to-indigo-600 dark:hover:bg-primary hover:text-white shadow-xl duration-high group max-w-[300px] h-[300px]"
               >
                 <div className="h-[100px] relative">
                   <img
@@ -75,7 +75,7 @@ const Services = ({ handleOrderPopup }) => {
                     <FaStar className="text-yellow-500" />
                     <FaStar className="text-yellow-500" />
                   </div>
-                  <h1 className="text-xl font-bold">{service.title}</h1>
+                  <h1 className="text-xl font-bold h-[60px]">{service.title}</h1>
                   <p className="text-gray-500 group-hover:text-slate-200 duration-high text-sm line-clamp-2">
                     {service.description}
                   </p>

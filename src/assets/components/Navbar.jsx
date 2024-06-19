@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 const Navbar = () => {
     let Links = [
@@ -34,6 +34,9 @@ const Navbar = () => {
                     }
                     <a href="./login">
                     <button className='btn bg-blue-600 hover:bg-gradient-to-tl from-cyan-300 to-indigo-600 text-white md:ml-8 font-semibold px-5 py-2 rounded duration-500 md:static'> Login </button>
+                    </a>
+                    <a href="./signup">
+                    <button className='btn border-sky-600 hover:text-blue-600 font-semibold mx-2 px-2 py-2 rounded duration-500 md:static hover:text-white'> Sign Up </button>
                     </a>
                 </ul>
                 {/* button */}

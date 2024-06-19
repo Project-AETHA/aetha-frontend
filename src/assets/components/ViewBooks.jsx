@@ -113,7 +113,6 @@ const Books = () => {
     <>
       <div className="mt-14 mb-20 mx-20 " data-aos="zoom-in">
         <div className="container m-auto">
-          {/* header */}
          
 
           {/* Body section */}
