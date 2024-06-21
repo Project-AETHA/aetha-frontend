@@ -1,29 +1,11 @@
-import BookImg from '../../assets/Images/books.jpg';
-import Checkbox from '@mui/material/Checkbox';
-
+import BookImg from '/images/books.jpg';
+import {Checkbox} from "@nextui-org/checkbox";
 
 
 function SignupPage() {
-
-    function BpCheckbox(props) {
-  return (
-    <Checkbox
-      sx={{
-        '&:hover': { bgcolor: 'transparent' },
-      }}
-      disableRipple
-      color="default"
-      checkedIcon={<BpCheckedIcon />}
-      icon={<BpIcon />}
-      inputProps={{ 'aria-label': 'Checkbox demo' }}
-      {...props}
-    />
-  );
-}
     return (
         <>
-
-            <div className=" min-h-screen flex items-center justify-center">
+           <div className=" min-h-screen flex items-center justify-center">
                 <div className="bg-[#d4e0e7] flex rounded-lg  max-w-3xl p-5 items-center">
 
                     <div className="w-1/2 md:block hidden">
@@ -57,7 +39,7 @@ function SignupPage() {
 
                         <div className='mt-6 text-xs flex justify-between items-center'>
                             <div className='flex items-center'>
-                                <Checkbox />
+                                <Checkbox color="primary" className='opacity-500'/>
                                 <p>I agree to the terms & conditions</p>
                             </div>
                         </div>
@@ -81,10 +63,8 @@ function SignupPage() {
 
 
 
-
-
         </>
     )
 }
 
-export default SignupPage;
+export default SignupPage

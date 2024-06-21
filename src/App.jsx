@@ -1,34 +1,31 @@
-import "./App.css";
+import Navigation from "./components/Navigation";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginContext from './assets/contexts/LoginContext.jsx'
 
-//* Importing components
-import Navbar from "./assets/components/Navbar";
-import Home from "./assets/pages/Home";
-import LoginPage from "./assets/pages/LoginPage";
-import SignupPage from "./assets/pages/SignupPage";
-import UserList from "./assets/pages/UserList";
-import LoginPageNew from "./assets/pages/LoginPage2.jsx";
-import LoginPage3 from "./assets/pages/LoginPage3.jsx";
-
+import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import Reading from "./pages/Reading";
+import ViewAllBooks from "./pages/ViewAllBooks"
+import Novels from "./pages/Novels";
+import Footer from "./components/Footer";
 
 function App() {
-  
   return (
       <Router>
-        <div className="app w-full bg-white h-full">
-          <Navbar />
-          <LoginContext />
-          <div className="content flex flex-col w-full h-full justify-center items-center">
+        <Navigation />
+
+        <div className="content">
             <Routes>
               <Route exact path="/" element={<div> Landing Page </div>} />
               <Route exact path="/home" element={<Home />} />
-              <Route path="/login" element={<LoginPage3/>} />
+              <Route exact path="/reading" element={<Reading />} />
+              <Route exact path="/novels" element={<Novels />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
-              <Route path="/all-users" element={<UserList />} />
             </Routes>
           </div>
-        </div>
+
+          <Footer />
       </Router>
   );
 }
