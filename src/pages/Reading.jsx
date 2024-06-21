@@ -4,8 +4,7 @@ const Reading = () => {
 
   return (
     <div>
-      <ViewBooks />
-
+      Reading Page
     </div>
 
   );
