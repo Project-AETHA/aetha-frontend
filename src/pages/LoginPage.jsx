@@ -7,7 +7,7 @@ function LoginPage() {
 
             <div className=" min-h-screen flex items-center justify-center">
                 <div className="bg-[#d4e0e7] flex rounded-lg  max-w-3xl p-5 items-center">
-                    <div className="md:w-1/2 px-16">
+                    <div className="lg:w-full px-8">
                         <h2 className='font-bold text-2xl text-[#34627F]'>Login</h2>
                         <p className='text-sm mt-4 text-[#34627F]'>If you already a member, easily log in</p>
                         <form action="" className='flex flex-col gap-4'>
