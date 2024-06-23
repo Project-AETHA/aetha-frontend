@@ -88,7 +88,7 @@ export default function Navigation() {
                 Novels
               </DropdownItem>
               <DropdownItem key="shorts">Short Stories</DropdownItem>
-              <DropdownItem key="poems">Poems</DropdownItem>
+              <DropdownItem key="poems" href="/poems">Poems</DropdownItem>
               <DropdownItem key="nisades">Nisades</DropdownItem>
             </DropdownMenu>
           </Dropdown>
