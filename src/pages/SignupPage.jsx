@@ -1,4 +1,4 @@
-import BookImg from "/images/books.jpg";
+
 import { Checkbox } from "@nextui-org/checkbox";
 import { Button } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
@@ -89,8 +89,8 @@ function SignupPage() {
                     y2="40.615"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop offset="0" stop-color="#2aa4f4"></stop>
-                    <stop offset="1" stop-color="#007ad9"></stop>
+                    <stop offset="0" stopColor="#2aa4f4"></stop>
+                    <stop offset="1" stopColor="#007ad9"></stop>
                   </linearGradient>
                   <path
                     fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)"
@@ -218,8 +218,8 @@ function SignupPage() {
                 </RadioGroup>
               </div>
 
-              <div className="mt-6 text-xs flex justify-between items-center">
-                <div className="flex items-center">
+              <div className="mt-6 text-xs flex justify-center items-center">
+                <div className="flex items-center space-x-2">
                   <Checkbox color="primary" radius="sm" sixe="md" />
                   <p>I agree to the terms & conditions</p>
                 </div>
