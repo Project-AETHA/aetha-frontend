@@ -14,7 +14,11 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-import {ThemeSwitcher} from "./common/ThemeSwitcher";
+import { ThemeSwitcher } from "./common/ThemeSwitcher";
+
+import { useAuthContext } from "../hooks/useAuthContext";
+
+import { useLogout } from "../hooks/useLogout";
 
 import { Link } from "react-router-dom";
 
@@ -49,6 +53,10 @@ export default function Navigation() {
     { name: "SHOP", route: "/shop" },
   ];
 
+  const { user } = useAuthContext()
+
+  const { handleLogout } = useLogout()
+
   return (
     <Navbar isBordered>
       <NavbarContent className="sm:hidden" justify="start">
@@ -82,7 +90,7 @@ export default function Navigation() {
               aria-label="Example with disabled actions"
               variant="flat"
               color="primary"
-              // disabledKeys={["edit", "delete"]}
+            // disabledKeys={["edit", "delete"]}
             >
               <DropdownItem key="novels" href="/novels">
                 Novels
@@ -107,22 +115,36 @@ export default function Navigation() {
 
       <ThemeSwitcher />
 
-      <NavbarContent justify="end">
-        <NavbarItem className="lg:flex">
-          <Link to="/login">
-            <Button color="primary" className="font-bold" variant="flat">
-              Login
+      {
+        !user &&
+        (<NavbarContent justify="end">
+          <NavbarItem className="lg:flex">
+            <Link to="/login">
+              <Button color="primary" className="font-bold" variant="flat">
+                Login
+              </Button>
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link to="/signup">
+              <Button color="secondary" variant="solid">
+                Sign Up
+              </Button>
+            </Link>
+          </NavbarItem>
+        </NavbarContent>)
+      }
+
+      {
+        user &&
+        (<NavbarContent justify="end">
+          <NavbarItem className="lg:flex">
+            <Button color="warning" className="font-bold" variant="flat" onClick={handleLogout}>
+              Logout
             </Button>
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link to="/signup">
-            <Button color="secondary" variant="solid">
-              Sign Up
-            </Button>
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
+          </NavbarItem>
+        </NavbarContent>)
+      }
 
       <NavbarMenu>
         {menuItems.map((item) => (

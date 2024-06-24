@@ -1,12 +1,27 @@
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Checkbox } from "@nextui-org/checkbox";
+import axios from 'axios'
+import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
+
 
 function LoginPage() {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const { error, loading, handleLogin } = useLogin()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        await handleLogin(email, password)
+    }
+
     return (
         <>
 
-            <div className=" mt-10 flex items-center justify-center">
+            <form className=" mt-10 flex items-center justify-center" onSubmit={handleSubmit}>
                 <div className="bg-gray-200 dark:bg-gray-800 flex rounded-lg  max-w-3xl p-5 items-center">
                     <div className="px-8 lg:w-full">
                         <h2 className="font-bold text-3xl text-blue-500 text-center">
@@ -107,6 +122,8 @@ function LoginPage() {
                                 placeholder="Enter your email"
                                 color="primary"
                                 className=""
+                                onChange={e => setEmail(e.target.value)}
+                                // value={email}
 
                             />
 
@@ -117,6 +134,8 @@ function LoginPage() {
                                 placeholder="Enter your password"
                                 color="primary"
                                 className="mt-2"
+                                onChange={e => setPassword(e.target.value)}
+                                // value={password}
                             />
                         </div>
 
@@ -127,7 +146,7 @@ function LoginPage() {
                             </div>
                         </div>
 
-                        <Button color="primary" variant="solid" radius="sm" className="w-full mt-6">
+                        <Button type="submit" color="primary" variant="solid" radius="sm" className="w-full mt-6">
                             Login
                         </Button>
 
@@ -143,7 +162,7 @@ function LoginPage() {
 
                     </div>
                 </div>
-            </div>
+            </form>
 
         </>
     )
