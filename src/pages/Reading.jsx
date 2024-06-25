@@ -1,11 +1,9 @@
-import ViewBooks from '../components/ViewBooks'
 
 const Reading = () => {
 
   return (
     <div>
-      <ViewBooks />
-
+        Reading page
     </div>
 
   );

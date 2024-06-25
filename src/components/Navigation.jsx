@@ -14,7 +14,11 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 
-import {ThemeSwitcher} from "./common/ThemeSwitcher";
+import { ThemeSwitcher } from "./common/ThemeSwitcher";
+
+import { useAuthContext } from "../hooks/useAuthContext";
+
+import { useLogout } from "../hooks/useLogout";
 
 import { Link } from "react-router-dom";
 
@@ -49,6 +53,10 @@ export default function Navigation() {
     { name: "SHOP", route: "/shop" },
   ];
 
+  const { user } = useAuthContext()
+
+  const { handleLogout } = useLogout()
+
   return (
     <Navbar isBordered>
       <NavbarContent className="sm:hidden" justify="start">
@@ -58,7 +66,7 @@ export default function Navigation() {
       <NavbarContent className="sm:hidden flex pr-3" justify="center">
         <NavbarBrand className="flex gap-1">
           <img src={logo} alt="aetha-ogo" className="w-7" />
-          <Link className="text-black font-bold">AETHA</Link>
+          <Link className="text-black dark:text-white font-bold">AETHA</Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -82,13 +90,13 @@ export default function Navigation() {
               aria-label="Example with disabled actions"
               variant="flat"
               color="primary"
-              // disabledKeys={["edit", "delete"]}
+            // disabledKeys={["edit", "delete"]}
             >
               <DropdownItem key="novels" href="/novels">
                 Novels
               </DropdownItem>
               <DropdownItem key="shorts">Short Stories</DropdownItem>
-              <DropdownItem key="poems">Poems</DropdownItem>
+              <DropdownItem key="poems" href="/poems">Poems</DropdownItem>
               <DropdownItem key="nisades">Nisades</DropdownItem>
             </DropdownMenu>
           </Dropdown>
@@ -107,22 +115,36 @@ export default function Navigation() {
 
       <ThemeSwitcher />
 
-      <NavbarContent justify="end">
-        <NavbarItem className="lg:flex">
-          <Link to="/login">
-            <Button color="primary" className="font-bold" variant="flat">
-              Login
+      {
+        !user &&
+        (<NavbarContent justify="end">
+          <NavbarItem className="lg:flex">
+            <Link to="/login">
+              <Button color="primary" className="font-bold" variant="flat">
+                Login
+              </Button>
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link to="/signup">
+              <Button color="secondary" variant="solid">
+                Sign Up
+              </Button>
+            </Link>
+          </NavbarItem>
+        </NavbarContent>)
+      }
+
+      {
+        user &&
+        (<NavbarContent justify="end">
+          <NavbarItem className="lg:flex">
+            <Button color="warning" className="font-bold" variant="flat" onClick={handleLogout}>
+              Logout
             </Button>
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link to="/signup">
-            <Button color="secondary" variant="solid">
-              Sign Up
-            </Button>
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
+          </NavbarItem>
+        </NavbarContent>)
+      }
 
       <NavbarMenu>
         {menuItems.map((item) => (
