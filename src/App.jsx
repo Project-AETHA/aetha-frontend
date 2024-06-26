@@ -8,6 +8,8 @@ import Reading from "./pages/Reading";
 import ViewAllBooks from "./pages/ViewAllBooks"
 import Novels from "./pages/Novels";
 import Footer from "./components/Footer";
+import AuthorDashboard from "./pages/AuthorDashboard";
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
               <Route exact path="/home" element={<Home />} />
               <Route exact path="/reading" element={<Reading />} />
               <Route exact path="/novels" element={<Novels />} />
+              <Route exact path="/authordashboard" element={<AuthorDashboard />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
             </Routes>
