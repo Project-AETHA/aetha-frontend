@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar-small-item {
+    @apply px-2 py-1;
+
+    button {
+        @apply py-0;
+    }
+
+    .navbar-small-subitem {
+        @apply px-4 py-1;
+    }
+}
