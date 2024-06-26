@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -8,54 +7,26 @@ import {
   NavbarContent,
   NavbarItem,
   Button,
+  Avatar,
+  Accordion,
+  AccordionItem,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  User,
 } from "@nextui-org/react";
 
 import { ThemeSwitcher } from "./common/ThemeSwitcher";
-
 import { useAuthContext } from "../hooks/useAuthContext";
-
 import { useLogout } from "../hooks/useLogout";
-
 import { Link } from "react-router-dom";
-
 import logo from "/images/logo.png";
 
 export default function Navigation() {
-  // const menuItems = [
-  //   "Profile",
-  //   "Dashboard",
-  //   "Activity",
-  //   "Analytics",
-  //   "System",
-  //   "Deployments",
-  //   "My Settings",
-  //   "Team Settings",
-  //   "Help & Feedback",
-  //   "Log Out",
-  // ];
 
-  const menuItems = [
-    { name: "HOME", route: "/" },
-    {
-      name: "READ",
-      route: "/reading",
-      // name: "READ", link: "", submenu: [
-      //     { name: "Blog Posts", link: "/blog-posts" },
-      //     { name: "Novels", link: "/novels" },
-      //     { name: "Poems", link: "/poems" },
-      //     { name: "Short Stories", link: "/short-stories" },
-      // ]
-    },
-    { name: "SHOP", route: "/shop" },
-  ];
-
-  const { user } = useAuthContext()
-
-  const { handleLogout } = useLogout()
+  const { user } = useAuthContext();
+  const { handleLogout } = useLogout();
 
   return (
     <Navbar isBordered>
@@ -66,48 +37,43 @@ export default function Navigation() {
       <NavbarContent className="sm:hidden flex pr-3" justify="center">
         <NavbarBrand className="flex gap-1">
           <img src={logo} alt="aetha-ogo" className="w-7" />
-          <Link className="text-black dark:text-white font-bold">AETHA</Link>
+          <Link to="/" className="text-black dark:text-white font-bold">AETHA</Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarBrand className="hidden sm:flex gap-1">
         <img src={logo} alt="aetha-ogo" className="w-7" />
-        <Link className="text-black font-bold">AETHA</Link>
+        <Link className="text-black font-bold" to="/">AETHA</Link>
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
           <Dropdown>
             <DropdownTrigger>
-              <Button
-                variant="light"
-                className="text-xl hover:font-bold hover:text-blue-500"
-              >
+              <div className="text-foreground hover:cursor-pointer">
                 Read
-              </Button>
+              </div>
             </DropdownTrigger>
             <DropdownMenu
               aria-label="Example with disabled actions"
               variant="flat"
               color="primary"
-            // disabledKeys={["edit", "delete"]}
+              // disabledKeys={["edit", "delete"]}
             >
-              <DropdownItem key="novels" href="/novels">
-                Novels
-              </DropdownItem>
-              <DropdownItem key="shorts">Short Stories</DropdownItem>
-              <DropdownItem key="poems" href="/poems">Poems</DropdownItem>
-              <DropdownItem key="nisades">Nisades</DropdownItem>
+              <DropdownItem key="lg_novels" href="/novels">Novels</DropdownItem>
+              <DropdownItem key="ls_shortstories" href="#shortstories">Short Stories</DropdownItem>
+              <DropdownItem key="lg_poems" href="/poems">Poems</DropdownItem>
+              <DropdownItem key="lg_nisades" href="#nisades">Nisades</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </NavbarItem>
         <NavbarItem>
-          <Link href="#" aria-current="page" color="foreground">
+          <Link to="#" color="foreground">
             Write
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" to="#shop">
             Shop
           </Link>
         </NavbarItem>
@@ -115,9 +81,8 @@ export default function Navigation() {
 
       <ThemeSwitcher />
 
-      {
-        !user &&
-        (<NavbarContent justify="end">
+      {!user && (
+        <NavbarContent justify="end">
           <NavbarItem className="lg:flex">
             <Link to="/login">
               <Button color="primary" className="font-bold" variant="flat">
@@ -132,33 +97,77 @@ export default function Navigation() {
               </Button>
             </Link>
           </NavbarItem>
-        </NavbarContent>)
-      }
+        </NavbarContent>
+      )}
 
-      {
-        user &&
-        (<NavbarContent justify="end">
-          <NavbarItem className="lg:flex">
-            <Button color="warning" className="font-bold" variant="flat" onClick={handleLogout}>
-              Logout
-            </Button>
-          </NavbarItem>
-        </NavbarContent>)
-      }
+      {user && (
+        <Dropdown placement="bottom-start">
+
+          {/* Visible in large screens */}
+          <DropdownTrigger>
+
+            <div>
+              <div className="sm:flex hidden">
+                <User
+                    as="button"
+                    avatarProps={{
+                      isBordered: true,
+                      src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                    }}
+                    className="transition-transform"
+                    description={"@" + user.displayName}
+                    name={user.firstname + " " + user.lastname}
+                />
+              </div>
+
+              <div className="flex sm:hidden hover:cursor-pointer">
+                <Avatar isBordered src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+              </div>
+            </div>
+
+          </DropdownTrigger>
+
+          <DropdownMenu aria-label="User Actions" variant="flat" disableAnimation={true}>
+            <DropdownItem key="profile">
+              <Link to="/profile">Profile</Link>
+            </DropdownItem>
+            <DropdownItem key="settings">
+              <Link to="#settings">Settings</Link>
+            </DropdownItem>
+            <DropdownItem key="support">
+              <Link to="/support">Support</Link>
+            </DropdownItem>
+            <DropdownItem key="logout" color="danger" onClick={handleLogout}>Log Out</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      )}
 
       <NavbarMenu>
-        {menuItems.map((item) => (
-          <NavbarMenuItem key={`${item.name}-${item.route}`}>
-            <Link
-              className="w-full"
-              color={"foreground"}
-              href={item.route}
-              size="lg"
-            >
-              {item.name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <NavbarMenuItem key="home" className="navbar-small-item">
+          <Link className="w-full" color={"foreground"} to="/" size="lg"> Home </Link>
+        </NavbarMenuItem>
+          <Accordion className="navbar-small-item">
+            <AccordionItem key="read" aria-label="ReadAccordian" title="Read">
+              <NavbarMenuItem key="novels" className="navbar-small-subitem">
+                <Link className="w-full" color={"foreground"} to="/novels" size="lg"> Novels </Link>
+              </NavbarMenuItem>
+              <NavbarMenuItem key="shortstories" className="navbar-small-subitem">
+                <Link className="w-full" color={"foreground"} to="#shortstories" size="lg"> Short Stories </Link>
+              </NavbarMenuItem>
+              <NavbarMenuItem key="poems" className="navbar-small-subitem">
+                <Link className="w-full" color={"foreground"} to="/poems" size="lg"> Poems </Link>
+              </NavbarMenuItem>
+              <NavbarMenuItem key="nisades" className="navbar-small-subitem">
+                <Link className="w-full" color={"foreground"} to="#nisades" size="lg"> Nisades </Link>
+              </NavbarMenuItem>
+            </AccordionItem>
+          </Accordion>
+        <NavbarMenuItem key="write" className="navbar-small-item">
+          <Link className="w-full" color={"foreground"} to="#writingPage" size="lg"> Write </Link>
+        </NavbarMenuItem>
+        <NavbarMenuItem key="shop" className="navbar-small-item">
+          <Link className="w-full" color={"foreground"} to="#shopPage" size="lg"> Shop </Link>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
