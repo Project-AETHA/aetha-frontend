@@ -1,4 +1,4 @@
-import AuthorDashboard from '../components/AuthorDashboard'
+import AuthorDashboard from '../components/Writer-dashboard/AuthorDashboard'
 
 const Writing = () => {
 
