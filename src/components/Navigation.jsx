@@ -68,7 +68,7 @@ export default function Navigation() {
           </Dropdown>
         </NavbarItem>
         <NavbarItem>
-          <Link to="#" color="foreground">
+          <Link to="/authordashboard" color="foreground">
             Write
           </Link>
         </NavbarItem>

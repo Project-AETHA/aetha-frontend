@@ -3,25 +3,28 @@ import Sidebar, { SidebarItem } from "./Sidebar";
 import { Book, BarChart2, ThumbsUp, Users, Star } from "lucide-react";
 import DashboardHeader from "./DashboardHeader";
 import { Card } from "@nextui-org/react";
+import Book1 from "/images/books/book1.jpg";
+import Book2 from "/images/books/book2.jpg";
+import Book3 from "/images/books/book3.jpg";
 
 const booksData = [
   {
     id: 1,
-    img: "https://via.placeholder.com/150",
+    img: Book1,
     title: "Who's there",
     rating: 5.0,
     author: "Someone",
   },
   {
     id: 2,
-    img: "https://via.placeholder.com/150",
+    img: Book2,
     title: "His Life",
     rating: 4.5,
     author: "John",
   },
   {
     id: 3,
-    img: "https://via.placeholder.com/150",
+    img: Book3,
     title: "Lost boys",
     rating: 4.7,
     author: "Lost Girl",
