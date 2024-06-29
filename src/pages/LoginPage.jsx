@@ -22,7 +22,7 @@ function LoginPage() {
         <>
 
             <form className=" mt-10 flex items-center justify-center" onSubmit={handleSubmit}>
-                <div className="bg-gray-200 dark:bg-gray-800 flex rounded-lg  max-w-3xl p-5 items-center">
+                <div className="bg-blue-100 dark:bg-gray-800 flex rounded-lg  max-w-3xl p-5 items-center">
                     <div className="px-8 lg:w-full">
                         <h2 className="font-bold text-3xl text-blue-500 text-center">
                             Login
