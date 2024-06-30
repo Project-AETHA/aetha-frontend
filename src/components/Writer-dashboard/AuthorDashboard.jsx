@@ -28,6 +28,14 @@ const booksData = [
     rating: 4.7,
     author: "Lost Girl",
   },
+
+  {
+    id: 3,
+    img: Book3,
+    title: "Lost boys",
+    rating: 4.7,
+    author: "Lost Girl",
+  },
   // Add more book objects as needed...
 ];
 
@@ -70,7 +78,7 @@ const AuthorDashboard = () => {
         <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-md mb-5">
           <h2 className="text-xl font-semibold mb-3 dark:text-white">Most Recent Publishes</h2>
           <div className="flex gap-10">
-            {booksData.slice(0, 3).map(({ id, img, title }) => (
+            {booksData.slice(0, 4).map(({ id, img, title }) => (
               <Card shadow="sm" key={id} isPressable>
                 <CardBody className="overflow-visible p-0">
                   <Image
@@ -82,7 +90,7 @@ const AuthorDashboard = () => {
                     src={img}
                   />
                 </CardBody>
-                <CardFooter className="text-small justify-center bg-gray-100 p-1"> 
+                <CardFooter className="text-small justify-center bg-gray-100 p-1 dark:bg-gray-800 dark:text-white"> 
                   <b>{title}</b>
                 </CardFooter>
               </Card>
