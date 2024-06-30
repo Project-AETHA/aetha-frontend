@@ -12,14 +12,10 @@ import SupportPage from "./pages/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 
 function AppContent() {
-  const location = useLocation();
-
-  const noNavBarRoutes = ['/authordashboard'];
-  const shouldShowNavBar = !noNavBarRoutes.includes(location.pathname);
 
   return (
     <div>
-      {shouldShowNavBar && <Navigation />}
+      <Navigation />
       <div className="content">
         <Routes>
           <Route exact path="/" element={<div>Landing Page</div>} />
