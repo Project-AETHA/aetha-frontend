@@ -30,7 +30,7 @@ const booksData = [
   },
 
   {
-    id: 3,
+    id: 4,
     img: Book3,
     title: "Lost boys",
     rating: 4.7,
