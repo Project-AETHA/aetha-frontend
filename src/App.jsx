@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
@@ -11,10 +10,9 @@ import Poems from "./pages/Poems";
 import SupportPage from "./pages/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 
-function AppContent() {
-
+function App() {
   return (
-    <div>
+    <Router>
       <Navigation />
       <div className="content">
         <Routes>
@@ -30,14 +28,6 @@ function AppContent() {
         </Routes>
       </div>
       <Footer />
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <Router>
-      <AppContent />
     </Router>
   );
 }
