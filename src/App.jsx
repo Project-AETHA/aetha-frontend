@@ -7,7 +7,7 @@ import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Footer from "./components/Footer";
 import Poems from "./pages/Poems";
-import SupportPage from "./pages/SupportPage.jsx";
+import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 
 function App() {

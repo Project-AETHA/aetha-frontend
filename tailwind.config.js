@@ -8,7 +8,11 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'], // Set Poppins as the default sans-serif font
+      },
+    },
   },
   darkMode: "class",
   plugins: [

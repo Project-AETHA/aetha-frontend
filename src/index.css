@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+main {
+    @apply !bg-foreground-200;
+}
+
+.content {
+    @apply bg-foreground-200;
+}
+
+.navbar_dropdown ul li span {
+    @apply flex;
+
+    a {
+        width: 100%;
+    }
+
+}
+
 .navbar-small-item {
     @apply px-2 py-1;
 
