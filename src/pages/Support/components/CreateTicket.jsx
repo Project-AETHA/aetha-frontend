@@ -13,7 +13,7 @@ function CreateTicket({
                           images
                       }) {
     return (
-        <form onSubmit={createTicket} className="bg-foreground-50 text-black rounded-lg px-2 py-6 flex flex-col gap-4">
+        <form onSubmit={createTicket} className="sub-container flex flex-col gap-4">
             <div className="flex items-center justify-evenly flex-wrap gap-4">
                 <Input
                     isRequired
@@ -51,7 +51,7 @@ function CreateTicket({
                     label="Description"
                     labelPlacement="outside"
                     placeholder="Enter your description"
-                    className="max-w-[652px]"
+                    className="max-w-[300px] sm:max-w-[652px]"
                     onChange={e => setDescription(e.target.value)}
                     value={description}
                 />

@@ -1,7 +1,4 @@
-import { Input } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { Checkbox } from "@nextui-org/checkbox";
-import axios from "axios";
+import { Button, Checkbox, Input } from "@nextui-org/react";
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 

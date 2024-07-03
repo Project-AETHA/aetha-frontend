@@ -44,23 +44,25 @@ const SupportPage = () => {
     }
 
     return (
-        <div className="container">
+        <div className="alt-container">
             <div className="p-2">
                 <h2 className="font-bold text-black dark:text-white mb-2">
                     Suggest to create a support ticket
                 </h2>
-                <CreateTicket
-                    createTicket={createTicket}
-                    setTitle={setTitle}
-                    setCategory={setCategory}
-                    setDescription={setDescription}
-                    setImages={setImages}
-                    title={title}
-                    category={category}
-                    description={description}
-                    images={images}
-                    clearAll={clearAll}
-                />
+                <div className="bg-foreground-50 text-black rounded-lg px-2 py-6 flex justify-center">
+                    <CreateTicket
+                        createTicket={createTicket}
+                        setTitle={setTitle}
+                        setCategory={setCategory}
+                        setDescription={setDescription}
+                        setImages={setImages}
+                        title={title}
+                        category={category}
+                        description={description}
+                        images={images}
+                        clearAll={clearAll}
+                    />
+                </div>
             </div>
             <div className="">
                 <div className="text-black dark:text-white text-lg font-bold mb-2">

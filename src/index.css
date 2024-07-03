@@ -31,7 +31,9 @@ main {
     }
 }
 
-.container {
+.alt-container {
+    width: 100%;
+
     @apply
         my-2
         mx-auto
@@ -46,5 +48,78 @@ main {
             p-4
             rounded-md
         ;
+    }
+}
+
+@media (min-width: 640px) {
+    .alt-container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .alt-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .alt-container {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .alt-container {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .alt-container {
+        max-width: 1024px !important;
+    }
+}
+
+@media (min-width: 1536px) {
+    .alt-container {
+        max-width: 1024px !important;
+    }
+}
+
+/* Sub Container Styles */
+@media (min-width: 640px) {
+    .sub-container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .sub-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sub-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sub-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .sub-container {
+        max-width: 768px !important;
+    }
+}
+
+@media (min-width: 1536px) {
+    .sub-container {
+        max-width: 768px !important;
     }
 }

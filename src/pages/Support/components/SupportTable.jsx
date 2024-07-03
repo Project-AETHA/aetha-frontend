@@ -13,11 +13,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { parseISO, format } from "date-fns";
 
-const formatDate = (dateString) => {
+const formatDate = (dateString, default_style = true) => {
     // Parse the given date string
     const date = parseISO(dateString);
     // Format the date to the desired format
-    return format(date, "yyyy MMM dd");
+    return default_style ? format(date, "yyyy MMM dd") : format(date, "do MMM");
   };
 
 function SupportTable({ createTicket }) {
@@ -28,8 +28,9 @@ function SupportTable({ createTicket }) {
   const getData = async () => {
     setIsLoading(true);
 
+    const token = localStorage.getItem('token')
     const response = await axios.get(
-      "http://localhost:8080/api/support/get_all_tickets"
+      "http://localhost:8080/api/support/get_my_tickets"
     );
 
     if (response.status === 200) {
@@ -57,7 +58,7 @@ function SupportTable({ createTicket }) {
       selectionMode="single"
     >
       <TableHeader>
-        <TableColumn>NAME</TableColumn>
+        <TableColumn className="hidden sm:block">NAME</TableColumn>
         <TableColumn>TITLE</TableColumn>
         <TableColumn>CREATED AT</TableColumn>
         <TableColumn>STATUS</TableColumn>
@@ -70,7 +71,7 @@ function SupportTable({ createTicket }) {
       >
         {(item) => (
           <TableRow key={item.id}>
-            <TableCell className="flex items-center gap-2">
+            <TableCell className="hidden sm:flex items-center gap-2">
               <Avatar
                 src={
                   item.author.image
@@ -81,8 +82,11 @@ function SupportTable({ createTicket }) {
               />
               {item.author.displayName}
             </TableCell>
-            <TableCell>{item.title}</TableCell>
-            <TableCell>{formatDate(item.createdAt)}</TableCell>
+            <TableCell className="truncate text-pretty">{item.title}</TableCell>
+            <TableCell className="text-nowrap">
+              <span className="hidden sm:block">{formatDate(item.createdAt)}</span>
+              <span className="block sm:hidden">{formatDate(item.createdAt, false)}</span>
+            </TableCell>
             <TableCell>
               {item.status === "PENDING" ? (
                 <Chip radius="sm" variant="flat" size="sm" color="primary">
