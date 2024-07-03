@@ -58,7 +58,7 @@ function SupportTable({ createTicket }) {
     >
       <TableHeader>
         <TableColumn>NAME</TableColumn>
-        <TableColumn>ROLE</TableColumn>
+        <TableColumn>TITLE</TableColumn>
         <TableColumn>CREATED AT</TableColumn>
         <TableColumn>STATUS</TableColumn>
       </TableHeader>
@@ -81,7 +81,7 @@ function SupportTable({ createTicket }) {
               />
               {item.author.displayName}
             </TableCell>
-            <TableCell>{item.author.role}</TableCell>
+            <TableCell>{item.title}</TableCell>
             <TableCell>{formatDate(item.createdAt)}</TableCell>
             <TableCell>
               {item.status === "PENDING" ? (

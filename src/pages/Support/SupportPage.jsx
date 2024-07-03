@@ -29,6 +29,11 @@ const SupportPage = () => {
             })
 
         console.log(response)
+
+        if(response.data.code === "00") {
+            alert('Ticket created successfully')
+            clearAll()
+        }
     }
 
     const clearAll = () => {
