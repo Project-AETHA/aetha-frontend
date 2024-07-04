@@ -6,10 +6,8 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Divider,
-  Link,
-  Image
+
 } from "@nextui-org/react";
 import Poem from '../components/Poems/Poem';
 import { Button } from "@nextui-org/react";
