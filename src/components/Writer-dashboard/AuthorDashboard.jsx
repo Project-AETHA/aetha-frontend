@@ -61,7 +61,7 @@ const AuthorDashboard = () => {
         <SidebarItem icon={<Book />} text="Publishes" />
         <SidebarItem icon={<Star />} text="Notes" />
         <SidebarItem icon={<Users />} text="Advertising" />
-        <SidebarItem icon={<BookOpenCheck />} text="E - Book Selling" />
+        <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
       </Sidebar>
       <div className="flex-grow p-5 bg-gray-50 dark:bg-gray-900">
         <div className="flex justify-between items-center mb-5">
