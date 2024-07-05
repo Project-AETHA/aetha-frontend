@@ -49,11 +49,68 @@ const ServicesData = [
     description:
       "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 6,
+    img: Img3,
+    title: "Brave New World",
+    description:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+
 ];
 
 const Services = ({ handleOrderPopup }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const servicesPerPage = 4;
+  const servicesPerPage = 12;
 
   // Get current services
   const indexOfLastService = currentPage * servicesPerPage;
@@ -75,7 +132,7 @@ const Services = ({ handleOrderPopup }) => {
     <>
       <span id="services"></span>
       <div className=" mt-10 px-4 sm:px-10 md:px-20" data-aos="fade-out">
-        <div className="container mx-auto border-2 shadow-md p-4 sm:p-20">
+        <div className="container mx-auto border-2 shadow-md rounded-xl p-4 sm:p-20">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-5 place-items-center pt-20">
             {currentServices.map((service) => (
               <div

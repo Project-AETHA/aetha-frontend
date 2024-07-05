@@ -3,6 +3,8 @@ import Book1 from "../../public/images/books/book1.jpg";
 import Book2 from "../../public/images/books/book2.jpg";
 import Book3 from "../../public/images/books/book3.jpg";
 import { FaStar } from "react-icons/fa6";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 const booksData = [
@@ -44,11 +46,15 @@ const booksData = [
 ];
 
 const Books = () => {
-
+  useEffect(() => {
+    AOS.init({
+      duration: 600
+    });
+  }, []);
 
   return (
     <>
-      <div className="mt-14 mb-20 mx-20 " data-aos="zoom-in">
+      <div className="mt-14 mb-20 mx-20" data-aos="zoom-in">
         <div className="container m-auto">
           {/* header */}
           <div className="text-center mb-10 max-w-[600px] mx-auto">

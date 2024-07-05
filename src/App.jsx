@@ -9,6 +9,8 @@ import ViewAllBooks from "./pages/ViewAllBooks"
 import Novels from "./pages/Novels";
 import Footer from "./components/Footer";
 import Poems from "./pages/Poems";
+import Chapters from "./pages/Chapter";
+import Shop from "./pages/Shop";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
               <Route path="/poems" element={<Poems />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/chapters" element={<Chapters />} />
+              <Route path="/shop" element={<Shop />} />
             </Routes>
           </div>
 

@@ -134,7 +134,7 @@ const ViewBooks = () => {
                
                <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out">
 
-                   <a href="#">
+                   <a href="/chapters">
                   <img
                     src={img}
                     alt=""
