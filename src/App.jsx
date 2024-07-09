@@ -9,10 +9,10 @@ import Footer from "./components/Footer";
 import Poems from "./pages/Poems";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
+import FristChapter from './pages/FirstChapter.jsx';
 import LandingPage from "./pages/LandingPage/LandingPage.jsx"
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
-
 
 function App() {
     const {user} = useAuthContext();
@@ -42,6 +42,7 @@ function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/support" element={<SupportPage />} />
           <Route path="/authordashboard" element={<AuthorDashboard />} />
+          <Route path="/create" element={<FristChapter/>} />
         </Routes>
       </div>
       <Footer />
