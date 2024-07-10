@@ -43,7 +43,7 @@ export default function Navigation() {
 
       <NavbarBrand className="hidden sm:flex gap-1">
         <img src={logo} alt="aetha-ogo" className="w-7" />
-        <Link className="text-black font-bold" to="/">AETHA</Link>
+        <Link className="text-black font-bold dark:text-white" to="/">AETHA</Link>
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
@@ -127,7 +127,7 @@ export default function Navigation() {
 
           </DropdownTrigger>
 
-          <DropdownMenu aria-label="User Actions" variant="flat" disableAnimation={true}>
+          <DropdownMenu aria-label="User Actions" variant="flat" disableAnimation={true} className="navbar_dropdown">
             <DropdownItem key="profile">
               <Link to="/profile">Profile</Link>
             </DropdownItem>
