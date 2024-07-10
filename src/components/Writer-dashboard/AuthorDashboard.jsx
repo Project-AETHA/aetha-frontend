@@ -41,7 +41,7 @@ const booksData = [
 
 const StatsCard = ({ title, value, Icon }) => {
   return (
-    <Card isHoverable variant="bordered" className="stats-card p-4">
+    <Card isHoverable variant="bordered" className="stats-card p-4 shadow-none">
       <div className="flex items-center">
         {Icon && <Icon size={34} />}
         <div className="pl-4">
@@ -75,11 +75,11 @@ const AuthorDashboard = () => {
           <StatsCard title="Total Words" value="0" Icon={BarChart2} />
           <StatsCard title="Reviews Received" value="0" Icon={Star} />
         </div>
-        <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-md mb-5">
+        <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
           <h2 className="text-xl font-semibold mb-3 dark:text-white">Most Recent Publishes</h2>
           <div className="flex gap-10">
             {booksData.slice(0, 4).map(({ id, img, title }) => (
-              <Card shadow="sm" key={id} isPressable>
+              <Card shadow="none" key={id} isPressable>
                 <CardBody className="overflow-visible p-0">
                   <Image
                     shadow="sm"
@@ -107,7 +107,7 @@ const AuthorDashboard = () => {
               </div>
             }
           >
-            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-md mb-5">
+            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-sm mb-5">
               <h2 className="text-xl font-semibold mb-3 dark:text-white">Recent Comments</h2>
               <p className="text-gray-500 dark:text-gray-400 mb-1">Commenter's Name</p>
               <p className="text-gray-500 dark:text-gray-400 mb-1">Comment Content</p>
@@ -125,7 +125,7 @@ const AuthorDashboard = () => {
               </div>
             }
           >
-            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-md mb-5">
+            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-sm mb-5">
               <h2 className="text-xl font-semibold mb-3 dark:text-white">Recent Reviews</h2>
               <p className="text-gray-500 dark:text-gray-400">No Reviews Yet</p>
             </div>

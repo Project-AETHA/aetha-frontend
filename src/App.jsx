@@ -10,6 +10,7 @@ import Poems from "./pages/Poems";
 import SupportPage from "./pages/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FristChapter from './pages/FirstChapter.jsx';
+import Submissions from './pages/Submitions.jsx';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/support" element={<SupportPage />} />
           <Route path="/authordashboard" element={<AuthorDashboard />} />
           <Route path="/create" element={<FristChapter/>} />
+          <Route path="/submition" element={<Submissions/>} />
         </Routes>
       </div>
       <Footer />
