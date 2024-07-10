@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Input, Textarea, Checkbox, Button, Spacer } from '@nextui-org/react';
+import { Breadcrumbs, BreadcrumbItem, Card, Input, Textarea, Checkbox, Button, Spacer, Link } from '@nextui-org/react';
 import { Book, BarChart2, BookOpenCheck, Users, Star, MessageCircleMore } from "lucide-react";
 import Sidebar, { SidebarItem } from "../components/Writer-dashboard/Sidebar";
 import FileUpload from "../components/FileUpload";
@@ -15,12 +15,22 @@ const FirstChapter = () => {
     <div className="flex h-screen">
       <Sidebar className="w-1/4 bg-gray-100 p-4">
         <SidebarItem icon={<BarChart2 />} text="Overview"/>
-        <SidebarItem icon={<Book />} text="Publishes" />
+        <SidebarItem icon={<Book />} text="Submissions" active/>
         <SidebarItem icon={<Star />} text="Notes" />
         <SidebarItem icon={<Users />} text="Advertising" />
         <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
       </Sidebar>
-      <div className="p-4 flex-1">
+      <div className="flex-1">
+      <Card className="p-5 mb-4 shadow-none flex-auto" radius="none">
+      <div className="flex justify-between items-center">
+        <Breadcrumbs>
+          <BreadcrumbItem>
+            <Link to="/submition">Submissions</Link>
+          </BreadcrumbItem>
+          <BreadcrumbItem>New Fiction Submission</BreadcrumbItem>
+        </Breadcrumbs>
+      </div>
+      </Card>
         <Card className="p-4" shadow='none'>
           <h2 className="text-2xl font-bold mb-4">New Fiction Submission</h2>
           <div className="mb-4">
