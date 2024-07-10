@@ -9,8 +9,9 @@ import Footer from "./components/Footer";
 import Poems from "./pages/Poems";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
-import Fristchapter from "./pages/FirstChapter.jsx";
+import FirstChapter from "./pages/FirstChapter.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx"
+import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
@@ -45,7 +46,8 @@ function App() {
           <Route path="/support" element={<SupportPage />} />
           <Route path="/authordashboard" element={<AuthorDashboard />} />
             <Route path="/pro-subscriptions" element={<ProSubscription />} />
-            <Route path="/create" element={<Fristchapter />} />
+            <Route path="/create" element={<FirstChapter />} />
+            <Route path="/create/poem" element={<PoemCreationPage />} />
         </Routes>
       </div>
       <Footer />
