@@ -7,8 +7,7 @@ import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Footer from "./components/Footer";
 import Poems from "./pages/Poems";
-import UserManagement from "./pages/UserManagement";
-import UserM from "./pages/UserM";
+import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FristChapter from './pages/FirstChapter.jsx';
@@ -33,7 +32,7 @@ function App() {
     return (
     <Router>
       <Navigation />
-      <div className="content">
+      <div className="content bg-red-500">
         <Routes>
             <Route exact path="/" element={<LandingPage/>}/>
           <Route exact path="/home" element={<Home />} />
@@ -43,13 +42,12 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/usermanagement" element={<UserManagement/>}/>
-          <Route path="/userm" element={<UserM/>}/>
           <Route path="/support" element={<SupportPage />} />
           <Route path="/authordashboard" element={<AuthorDashboard />} />
           <Route path="/create" element={<FristChapter/>} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
