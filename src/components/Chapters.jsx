@@ -55,7 +55,7 @@ const Chapters = () => {
         <div className="w-full my-5 m-auto block md:flex px-5">
 
             <div className="w-full md:w-2/12 flex md:inline-block">
-                <Card className=" mx-2  w-1/2 md:w-full h-[300px]">
+                <Card className=" mx-2 w-1/2 md:w-full h-[300px]">
                     <CardHeader className="pb-0 pt-2 px-4 flex-col items-center text-center">
                         <p className="text-lg uppercase font-bold"> Novel </p>
                         <h4 className="text-large leading-tight"> The Great Gasby </h4>
@@ -139,7 +139,7 @@ const Chapters = () => {
             </div>
 
             <div className="w-full md:w-10/12 inline-block md:mt-0 mt-10 md:px-5">
-            <h1 className="text-2xl font-semibold mb-2 ml-2"> Chapters </h1>
+                <h1 className="text-2xl font-semibold mb-2 ml-2"> Chapters </h1>
                 <Table aria-label="Example table with dynamic content" className="">
                     <TableHeader>
                         {columns.map((column) => (

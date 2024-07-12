@@ -110,36 +110,36 @@ const booksData = [
 const ViewBooks = () => {
 
   useEffect(() => {
-    AOS.init( {
-    
+    AOS.init({
+
     }
     );
   }, [])
 
 
   return (
-    
+
     <>
       <div className="mt-14 mb-20 mx-10 " data-aos="zoom-in">
         <div className="container m-auto">
-         
+
 
           {/* Body section */}
           <div>
-           
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-3">
               {/* Card */}
-              
-              {booksData.map(({ id, img, title, rating, author }) => (
-               
-               <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out">
 
-                   <a href="/chapters">
-                  <img
-                    src={img}
-                    alt=""
-                    className="h-[220px] w-[150px] object-cover rounded-md "
-                  />
+              {booksData.map(({ id, img, title, rating, author }) => (
+
+                <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out">
+
+                  <a href="/chapters">
+                    <img
+                      src={img}
+                      alt=""
+                      className="h-[220px] w-[150px] object-cover rounded-md "
+                    />
                   </a>
                   <div>
                     <h3 className="font-semibold">{title}</h3>
@@ -150,11 +150,11 @@ const ViewBooks = () => {
                     </div>
                   </div>
                 </div>
-                
+
               ))}
-              
+
             </div>
-            
+
           </div>
         </div>
       </div>

@@ -7,11 +7,11 @@ const Novels = () => {
 
   return (
     <>
-    <SearchBar />
-    <ViewBooks />
+      <SearchBar />
+      <ViewBooks />
 
-  
-    
+
+
     </>
   );
 };
