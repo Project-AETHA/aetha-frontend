@@ -7,14 +7,14 @@ import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Footer from "./components/Footer";
 import Poems from "./pages/Poems";
-import UserManagement from "./pages/UserManagement";
-import UserM from "./pages/UserM";
+import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FristChapter from './pages/FirstChapter.jsx';
 import LandingPage from "./pages/LandingPage/LandingPage.jsx"
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
+import ContactUser from './pages/Admin/UserManagement/ContactUser.jsx';
 
 function App() {
     const {user} = useAuthContext();
@@ -43,13 +43,13 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/usermanagement" element={<UserManagement/>}/>
-          <Route path="/userm" element={<UserM/>}/>
           <Route path="/support" element={<SupportPage />} />
           <Route path="/authordashboard" element={<AuthorDashboard />} />
           <Route path="/create" element={<FristChapter/>} />
+          <Route path="/contactuser" element={<ContactUser/>} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
