@@ -1,6 +1,4 @@
-import React from "react";
-import Sidebar, { SidebarItem } from "./Sidebar";
-import { Book, BarChart2, BookOpenCheck, Users, Star, MessageCircleMore } from "lucide-react";
+import { Book, BarChart2, Star, MessageCircleMore } from "lucide-react";
 import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab } from "@nextui-org/react";
 import Book1 from "/images/books/book1.jpg";
 import Book2 from "/images/books/book2.jpg";
@@ -46,7 +44,7 @@ const StatsCard = ({ title, value, Icon }) => {
         {Icon && <Icon size={34} />}
         <div className="pl-4">
           <h4 className="text-xl font-semibold">{title}</h4>
-          <h2 className="text-3xl font-bold">{value}</h2>
+          <h2 className="text-3xl">{value}</h2>
         </div>
       </div>
     </Card>
@@ -56,14 +54,7 @@ const StatsCard = ({ title, value, Icon }) => {
 const AuthorDashboard = () => {
   return (
     <div className="flex h-screen">
-      <Sidebar className="w-1/4 bg-gray-100 p-4">
-        <SidebarItem icon={<BarChart2 />} text="Overview" active />
-        <SidebarItem icon={<Book />} text="Publishes" />
-        <SidebarItem icon={<Star />} text="Notes" />
-        <SidebarItem icon={<Users />} text="Advertising" />
-        <SidebarItem icon={<BookOpenCheck />} text="E - Book Selling" />
-      </Sidebar>
-      <div className="flex-grow p-5 bg-gray-50 dark:bg-gray-900">
+      <div className="flex-grow p-5 authbackground">
         <div className="flex justify-between items-center mb-5">
           <h1 className="text-2xl font-bold dark:text-white">Author Dashboard - Overview</h1>
           <Button color="secondary" auto>

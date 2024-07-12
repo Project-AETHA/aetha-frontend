@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import click from "../../../public/images/click.gif";
 import { FaStar } from "react-icons/fa6";
@@ -34,10 +34,10 @@ const testimonialData = [
 ];
 
 const Advertistment = () => {
-  
 
 
-  
+
+
   var settings = {
     dots: true,
     arrows: false,
@@ -78,13 +78,13 @@ const Advertistment = () => {
   };
 
   useEffect(() => {
-    AOS.init( {
-      duration : 600
+    AOS.init({
+      duration: 600
     }
     );
   }, [])
 
- 
+
 
   return (
     <>
@@ -101,9 +101,9 @@ const Advertistment = () => {
             <Slider {...settings}>
               {testimonialData.map((data) => {
                 return (
-                  
+
                   <div className="my-6">
-                   
+
                     <div
                       key={data.id}
                       className="flex flex-col gap-4 py-8 w-[260px] mx-auto h-[350px] rounded-xl dark:bg-white bg-primary/10 relative shadow-xl"
@@ -121,18 +121,18 @@ const Advertistment = () => {
                           <p className="text-black  text-sm text-center"> - {data.author} - </p>
 
                           <div className="w-9 flex items-center gap-1 m-auto content-center">
-                           <FaStar className="text-yellow-500" />
-                          <span>{data.rating}</span>
-                         </div>
+                            <FaStar className="text-yellow-500" />
+                            <span>{data.rating}</span>
+                          </div>
 
-                         <a href="#">
-                          <img
-                          className="rounded-full h-35 m-auto w-[260px]"
-                          src={click}
-                          alt=""
-                        />
-                        </a>
-                         
+                          <a href="#">
+                            <img
+                              className="rounded-full h-35 m-auto w-[260px]"
+                              src={click}
+                              alt=""
+                            />
+                          </a>
+
                         </div>
                       </div>
 
@@ -140,12 +140,12 @@ const Advertistment = () => {
                         ,,
                       </p>
                     </div>
-                    
+
                   </div>
-                  
+
                 );
               })}
-             
+
             </Slider>
           </div>
         </div>

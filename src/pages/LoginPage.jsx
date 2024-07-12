@@ -1,36 +1,32 @@
-import { Input } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { Checkbox } from "@nextui-org/checkbox";
-import axios from "axios";
+import { Button, Checkbox, Input } from "@nextui-org/react";
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { error, loading, handleLogin } = useLogin();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const { error, loading, handleLogin } = useLogin()
 
-    await handleLogin(email, password);
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault()
 
-  return (
-    <>
-      <form
-        className=" mt-10 flex items-center justify-center"
-        onSubmit={handleSubmit}
-      >
-        <div className="bg-gray-200 dark:bg-gray-800 flex rounded-lg  max-w-3xl p-5 items-center">
-          <div className="px-8 lg:w-full">
-            <h2 className="font-bold text-3xl text-blue-500 text-center">
-              Login
-            </h2>
+        await handleLogin(email, password)
+    }
 
-            <div className="mt-4 flex flex-col gap-2">
-              <button
-                className="
+    return (
+        <>
+
+            <form className=" mt-10 flex items-center justify-center" onSubmit={handleSubmit}>
+                <div className="bg-blue-100 dark:bg-gray-800 flex rounded-lg  max-w-3xl p-5 items-center">
+                    <div className="px-8 lg:w-full">
+                        <h2 className="font-bold text-3xl text-blue-500 text-center">
+                            Login
+                        </h2>
+
+                        <div className="mt-4 flex flex-col gap-2">
+                            <button
+                                className="
                     bg-blue-200
                     dark:bg-gray-600 
                     border-none 
