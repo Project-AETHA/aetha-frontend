@@ -33,7 +33,7 @@ function App() {
     return (
     <Router>
       <Navigation />
-      <div className="content bg-red-500">
+      <div className="content">
         <Routes>
             <Route exact path="/" element={<LandingPage/>}/>
           <Route exact path="/home" element={<Home />} />
