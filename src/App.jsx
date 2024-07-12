@@ -20,7 +20,8 @@ import {useAuthContext} from "./hooks/useAuthContext.jsx";
 import ContactUser from './pages/Admin/UserManagement/ContactUser.jsx';
 
 //? Importing Layouts
-import DashboardLayout from "./layouts/DashboardLayout.jsx";
+import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
+import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
 
 
@@ -33,14 +34,14 @@ const routes = [
     { path: '/login', element: <LoginPage />, layout: "default" },
     { path: '/signup', element: <SignupPage />, layout: "default" },
     { path: '/support', element: <SupportPage />, layout: "default" },
-    { path: '/author', element: <AuthorDashboard />, layout: "dashboard" },
+    { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
-    { path: '/create/poem', element: <PoemCreationPage />, layout: "default" },
-    { path: '/dash', element: <div className="bg-blue-200">Custom Content</div>, layout: "dashboard" },
+    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
+    { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
+    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "default" },
     { path: '/shop', element: <Shop />, layout: "default" },
-    { path: '/chapters', element: <Chapters />, layout: "default" },
-
+    { path: '/chapters', element: <Chapters />, layout: "default" }
 ];
 
 function App() {
@@ -63,8 +64,10 @@ function App() {
             <div className="content">
                 <Routes>
                     {routes.map((route, index) => (
-                        <Route key={index} path={route.path} element={route.layout === "dashboard" ? (
-                            <DashboardLayout className={route.class}>{route.element}</DashboardLayout>
+                        <Route key={index} path={route.path} element={route.layout === "admin_dashboard" ? (
+                            <AdminDashboardLayout className={route.class}>{route.element}</AdminDashboardLayout>
+                        ) : route.layout === "author_dashboard" ? (
+                            <AuthorDashboardLayout className={route.class}>{route.element}</AuthorDashboardLayout>
                         ) : (
                             <DefaultLayout>{route.element}</DefaultLayout>
                         )} />
