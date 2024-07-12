@@ -31,7 +31,7 @@ export default function Sidebar () {
             <div className="py-3 flex justify-end">
                 <HiMenuAlt3
                     size={26}
-                    className="cursor-pointer"
+                    className="cursor-pointer text-foreground-900"
                     onClick={() => setOpen(!open)}
                 />
             </div>
@@ -42,7 +42,7 @@ export default function Sidebar () {
                         key={i}
                         className={` ${
                             menu?.margin && "mt-5"
-                        } hover:text-white group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
+                        } text-foreground-900 hover:text-foreground-50 group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-gray-800 rounded-md`}
                     >
                         <div>{React.createElement(menu?.icon, {size: "20", className: "hover:text-white"})}</div>
                         <h2

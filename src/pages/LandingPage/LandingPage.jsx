@@ -67,20 +67,6 @@ function LandingPage() {
         />
       </div>
 
-      {/* Advertisements */}
-      <div className="ad-container">
-        {ads &&
-          ads.map((ad, index) => (
-            <div className="" key={ad.id}>
-              <Image width="300px" alt="NextUI hero Image" src={ad.image} />
-              <h2>
-                {ad.title} {index}
-              </h2>
-              <p>{ad.content}</p>
-            </div>
-          ))}
-      </div>
-
       {/* Personalized Recommendations */}
       <div className="bg-gray-300">
         <p className="flex gap-2 items-center font-bold text-lg text-green-700 mb-4">
@@ -110,6 +96,20 @@ function LandingPage() {
               </Link>
             ))}
         </div>
+      </div>
+
+      {/* Advertisements */}
+      <div className="ad-container">
+        {ads &&
+            ads.map((ad, index) => (
+                <div className="" key={ad.id}>
+                  <Image width="300px" alt="NextUI hero Image" src={ad.image} />
+                  <h2>
+                    {ad.title} {index}
+                  </h2>
+                  <p>{ad.content}</p>
+                </div>
+            ))}
       </div>
 
       <div className="flex gap-4 !p-0">
