@@ -14,6 +14,7 @@ import FristChapter from './pages/FirstChapter.jsx';
 import LandingPage from "./pages/LandingPage/LandingPage.jsx"
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
+import ContactUser from './pages/Admin/UserManagement/ContactUser.jsx';
 
 function App() {
     const {user} = useAuthContext();
@@ -45,6 +46,7 @@ function App() {
           <Route path="/support" element={<SupportPage />} />
           <Route path="/authordashboard" element={<AuthorDashboard />} />
           <Route path="/create" element={<FristChapter/>} />
+          <Route path="/contactuser" element={<ContactUser/>} />
         </Routes>
       </div>
       {/* <Footer /> */}

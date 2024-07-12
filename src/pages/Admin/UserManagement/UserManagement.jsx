@@ -1,4 +1,6 @@
 import {
+    Tabs,
+    Tab,
     Table,
     TableHeader,
     TableColumn,
@@ -14,6 +16,7 @@ import {
     Chip,
     User,
     Pagination,
+    Tooltip
 } from "@nextui-org/react";
 import { PlusIcon } from "../../../components/common/icons/PlusIcon";
 import { VerticalDotsIcon } from "../../../components/common/icons/VerticalDotsIcon";
@@ -21,27 +24,31 @@ import { SearchIcon } from "../../../components/common/icons/SearchIcon";
 import { ChevronDownIcon } from "../../../components/common/icons/ChevronDownIcon";
 import React from "react";
 import { columns, users, statusOptions } from "./data";
+import { EditIcon } from "../../../components/common/icons/EditIcon";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserTimes } from '@fortawesome/free-solid-svg-icons';
+import { DeleteIcon } from "../../../components/common/icons/DeleteIcon";
 
 
 const statusColorMap = {
     active: "success",
-    paused: "danger",
-    vacation: "warning",
+    disabled: "danger",
+    deleted: "warning",
 };
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-  
+}
+
 
 function UserManagement() {
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
     const [statusFilter, setStatusFilter] = React.useState("all");
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(6);
     const [sortDescriptor, setSortDescriptor] = React.useState({
         column: "age",
         direction: "ascending",
@@ -121,19 +128,22 @@ function UserManagement() {
                 );
             case "actions":
                 return (
-                    <div className="relative flex justify-end items-center gap-2">
-                        <Dropdown>
-                            <DropdownTrigger>
-                                <Button isIconOnly size="sm" variant="light">
-                                    <VerticalDotsIcon className="text-default-300" />
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu>
-                                <DropdownItem>View</DropdownItem>
-                                <DropdownItem>Edit</DropdownItem>
-                                <DropdownItem>Delete</DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
+                    <div className="relative flex justify-center items-center gap-2">
+                        <Tooltip key="edit" color="success" content="edit" >
+                            <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm">
+                                <EditIcon />
+                            </Button>
+                        </Tooltip>
+                        <Tooltip key="disable" color="danger" content="disable" >
+                            <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm">
+                                <FontAwesomeIcon icon={faUserTimes} />
+                            </Button>
+                        </Tooltip>
+                        <Tooltip key="delete" color="warning" content="delete" >
+                            <Button isIconOnly variant="flat" color="warning" className="capitalize" size="sm">
+                                <DeleteIcon />
+                            </Button>
+                        </Tooltip>
                     </div>
                 );
             default:
@@ -185,6 +195,37 @@ function UserManagement() {
                         onClear={() => onClear()}
                         onValueChange={onSearchChange}
                     />
+                    <div>
+                        <Tabs aria-label="Options" color="danger" variant="bordered">
+                            <Tab
+                                key="photos"
+                                title={
+                                    <div className="flex items-center space-x-2">
+                                        {/* <GalleryIcon /> */}
+                                        <span>Readers</span>
+                                    </div>
+                                }
+                            />
+                            <Tab
+                                key="music"
+                                title={
+                                    <div className="flex items-center space-x-2">
+                                        {/* <MusicIcon /> */}
+                                        <span>Writers</span>
+                                    </div>
+                                }
+                            />
+                            <Tab
+                                key="videos"
+                                title={
+                                    <div className="flex items-center space-x-2">
+                                        {/* <VideoIcon /> */}
+                                        <span>Admin</span>
+                                    </div>
+                                }
+                            />
+                        </Tabs>
+                    </div>
                     <div className="flex gap-3">
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
@@ -241,9 +282,9 @@ function UserManagement() {
                             className="bg-transparent outline-none text-default-400 text-small"
                             onChange={onRowsPerPageChange}
                         >
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
+                            <option value="6">6</option>
+                            <option value="12">12</option>
+                            <option value="18">18</option>
                         </select>
                     </label>
                 </div>
@@ -261,25 +302,24 @@ function UserManagement() {
 
     const bottomContent = React.useMemo(() => {
         return (
-            <div className="py-2 px-2 flex justify-between items-center">
-                <span className="w-[30%] text-small text-default-400">
-                    {selectedKeys === "all"
-                        ? "All items selected"
-                        : `${selectedKeys.size} of ${filteredItems.length} selected`}
-                </span>
-                <Pagination
-                    isCompact
-                    showControls
-                    showShadow
-                    color="primary"
-                    page={page}
-                    total={pages}
-                    onChange={setPage}
-                />
-                <div className="hidden sm:flex w-[30%] justify-end gap-2">
+            <div className="py-2 px-2 flex justify-center items-center">
+
+
+                <div className="hidden sm:flex w-[30%] justify-end gap-12">
                     <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
                         Previous
                     </Button>
+
+                    <Pagination
+                        isCompact
+                        showControls
+                        showShadow
+                        color="primary"
+                        page={page}
+                        total={pages}
+                        onChange={setPage}
+                    />
+
                     <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
                         Next
                     </Button>
