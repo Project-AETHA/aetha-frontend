@@ -330,50 +330,46 @@ function UserManagement() {
 
     return (
         <>
-            <div className='bg-slate-500 min-h-[calc(100dvh-65px)] grid grid-cols-12 overflow-hidden'>
-                <div className='col-span-2'>
-                    sidebar
+            <div className='min-h-[calc(100dvh-65px)]  overflow-hidden bg-slate-100 px-3 pt-6'>
 
-                </div>
-                <div className='col-span-10 bg-slate-100 px-3 pt-6'>
-                    <Table
-                        aria-label="Example table with custom cells, pagination and sorting"
-                        isHeaderSticky
-                        bottomContent={bottomContent}
-                        bottomContentPlacement="outside"
-                        classNames={{
-                            wrapper: "max-h-screen-minus-200",
-                        }}
-                        selectedKeys={selectedKeys}
-                        selectionMode="single"
-                        color="primary"
-                        sortDescriptor={sortDescriptor}
-                        topContent={topContent}
-                        topContentPlacement="outside"
-                        onSelectionChange={setSelectedKeys}
-                        onSortChange={setSortDescriptor}
-                    >
-                        <TableHeader columns={headerColumns}>
-                            {(column) => (
-                                <TableColumn
-                                    key={column.uid}
-                                    align={column.uid === "actions" ? "center" : "start"}
-                                    allowsSorting={column.sortable}
-                                >
-                                    {column.name}
-                                </TableColumn>
-                            )}
-                        </TableHeader>
-                        <TableBody emptyContent={"No users found"} items={sortedItems}>
-                            {(item) => (
-                                <TableRow key={item.id}>
-                                    {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
+                <Table
+                    aria-label="Example table with custom cells, pagination and sorting"
+                    isHeaderSticky
+                    bottomContent={bottomContent}
+                    bottomContentPlacement="outside"
+                    classNames={{
+                        wrapper: "max-h-screen-minus-200",
+                    }}
+                    selectedKeys={selectedKeys}
+                    selectionMode="single"
+                    color="primary"
+                    sortDescriptor={sortDescriptor}
+                    topContent={topContent}
+                    topContentPlacement="outside"
+                    onSelectionChange={setSelectedKeys}
+                    onSortChange={setSortDescriptor}
+                >
+                    <TableHeader columns={headerColumns}>
+                        {(column) => (
+                            <TableColumn
+                                key={column.uid}
+                                align={column.uid === "actions" ? "center" : "start"}
+                                allowsSorting={column.sortable}
+                            >
+                                {column.name}
+                            </TableColumn>
+                        )}
+                    </TableHeader>
+                    <TableBody emptyContent={"No users found"} items={sortedItems}>
+                        {(item) => (
+                            <TableRow key={item.id}>
+                                {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
             </div>
+
         </>
 
     )
