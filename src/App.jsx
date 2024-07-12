@@ -6,8 +6,9 @@ import SignupPage from "./pages/SignupPage";
 import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Poems from "./pages/Poems";
-// import Chapters from "./pages/Chapter";
-// import Shop from "./pages/Shop";
+import Chapters from "./pages/Chapter";
+import Shop from "./pages/Shop";
+import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FirstChapter from "./pages/FirstChapter.jsx";
@@ -16,6 +17,7 @@ import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
+import ContactUser from './pages/Admin/UserManagement/ContactUser.jsx';
 
 //? Importing Layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
@@ -35,12 +37,11 @@ const routes = [
     { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
-    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
-    { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
-    { path: '/create/poem', element: <PoemCreationPage />, layout: "default"},
-    { path: '/dash', element: <div className="bg-blue-200">Custom Content</div>, layout: "dashboard"},
-    // { path: '/shop', element: <Shop/>, layout: "default"},
-    // { path: '/chapters', element: <Chapters/>, layout: "default"},
+    { path: '/create/poem', element: <PoemCreationPage />, layout: "default" },
+    { path: '/dash', element: <div className="bg-blue-200">Custom Content</div>, layout: "dashboard" },
+    { path: '/shop', element: <Shop />, layout: "default" },
+    { path: '/chapters', element: <Chapters />, layout: "default" },
+
 ];
 
 function App() {
