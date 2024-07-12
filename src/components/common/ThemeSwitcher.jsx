@@ -1,26 +1,32 @@
-// app/components/ThemeSwitcher.tsx
-"use client";
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import { useSwitch } from '@nextui-org/react';
+import { SunIcon } from './icons/SunIcon';
+import { MoonIcon } from './icons/MoonIcon';
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { Tabs, Tab } from "@nextui-org/tabs";
+export function ThemeSwitcher(props) {
+    const { setTheme } = useTheme();
+    const [isChecked, setIsChecked] = useState(false);
 
-export function ThemeSwitcher() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+    useEffect(() => {
+        setTheme(isChecked ? 'dark' : 'light');
+    }, [isChecked]);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    const {Component} = useSwitch(props);
 
-  if (!mounted) return null;
-
-  return (
-    <div>
-      <Tabs aria-label="Options" onSelectionChange={(key) => setTheme(key)}>
-        <Tab key="light" title="Light" />
-        <Tab key="dark" title="Dark" />
-      </Tabs>
-    </div>
-  );
+    return (
+        <div className="flex flex-col gap-2">
+            <Component className="hover:cursor-pointer">
+                <input
+                    type="checkbox"
+                    className="hidden"
+                    checked={isChecked}
+                    onChange={() => setIsChecked(!isChecked)}
+                />
+                <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-default-100 hover:bg-default-200">
+                    {isChecked ? <SunIcon/> : <MoonIcon/>}
+                </div>
+            </Component>
+        </div>
+    );
 }

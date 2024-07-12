@@ -1,3 +1,150 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+main {
+    @apply !bg-foreground-200;
+}
+
+.content {
+    @apply bg-foreground-200;
+}
+
+.navbar_dropdown ul li span {
+    @apply flex;
+
+    a {
+        width: 100%;
+    }
+
+}
+
+.navbar-small-item {
+    @apply px-2 py-1;
+
+    button {
+        @apply py-0;
+    }
+
+    .navbar-small-subitem {
+        @apply px-4 py-1;
+    }
+}
+
+.alt-container {
+    width: 100%;
+
+    @apply
+        my-2
+        mx-auto
+        flex
+        flex-col
+        gap-4
+    ;
+
+    & > div {
+        @apply
+            text-white
+            p-4
+            rounded-md
+        ;
+    }
+}
+
+@media (min-width: 640px) {
+    .alt-container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .alt-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .alt-container {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .alt-container {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .alt-container {
+        max-width: 1024px !important;
+    }
+}
+
+@media (min-width: 1536px) {
+    .alt-container {
+        max-width: 1024px !important;
+    }
+}
+
+/* Sub Container Styles */
+@media (min-width: 640px) {
+    .sub-container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .sub-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sub-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sub-container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .sub-container {
+        max-width: 768px !important;
+    }
+}
+
+@media (min-width: 1536px) {
+    .sub-container {
+        max-width: 768px !important;
+    }
+}
+
+/* ? Style for the advertisements */
+.ad-container {
+    @apply
+    bg-gray-300
+    flex
+    md:flex-wrap
+    justify-evenly
+    gap-2;
+
+    & > div {
+        @apply
+        flex flex-col
+        text-foreground-800
+        text-sm;
+    }
+
+    & > div:nth-child(2) {
+        @apply
+        hidden
+        sm:flex;
+    }
+
+    
+}
