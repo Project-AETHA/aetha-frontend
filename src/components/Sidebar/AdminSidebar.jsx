@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { MdOutlineDashboard } from "react-icons/md";
-import { RiSettings4Line } from "react-icons/ri";
+import { BsPen } from "react-icons/bs";
+import { MdAttachMoney, MdOutlineReportProblem, MdOutlineDashboard } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
-import { AiOutlineUser, AiOutlineHeart } from "react-icons/ai";
-import { FiMessageSquare, FiFolder, FiShoppingCart } from "react-icons/fi";
+import { AiOutlineUser } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-export default function Sidebar () {
+export default function AdminSidebar () {
 
     const menus = [
-        { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-        { name: "user", link: "/", icon: AiOutlineUser },
-        { name: "messages", link: "/", icon: FiMessageSquare },
-        { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
-        { name: "File Manager", link: "/", icon: FiFolder },
-        { name: "Cart", link: "/", icon: FiShoppingCart },
-        { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },
-        { name: "Setting", link: "/", icon: RiSettings4Line },
+        { name: "Overview", link: "/admin", icon: MdOutlineDashboard },
+        { name: "User Management", link: "/admin/user", icon: AiOutlineUser },
+        { name: "Content Management", link: "/admin", icon: BsPen },
+        { name: "Complaints", link: "/admin", icon: TbReportAnalytics },
+        { name: "Payments", link: "/admin", icon: MdAttachMoney },
+        { name: "Reported Content", link: "/admin", icon: MdOutlineReportProblem },
+        { name: "Report Generation", link: "/admin", icon: TbReportAnalytics },
     ];
 
     const [open, setOpen] = useState(true);
