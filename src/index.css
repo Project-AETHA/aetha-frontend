@@ -123,3 +123,28 @@ main {
         max-width: 768px !important;
     }
 }
+
+/* ? Style for the advertisements */
+.ad-container {
+    @apply
+    bg-gray-300
+    flex
+    md:flex-wrap
+    justify-evenly
+    gap-2;
+
+    & > div {
+        @apply
+        flex flex-col
+        text-foreground-800
+        text-sm;
+    }
+
+    & > div:nth-child(2) {
+        @apply
+        hidden
+        sm:flex;
+    }
+
+    
+}

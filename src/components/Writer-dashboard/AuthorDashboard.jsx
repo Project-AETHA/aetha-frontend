@@ -46,7 +46,7 @@ const StatsCard = ({ title, value, Icon }) => {
         {Icon && <Icon size={34} />}
         <div className="pl-4">
           <h4 className="text-xl font-semibold">{title}</h4>
-          <h2 className="text-3xl font-bold">{value}</h2>
+          <h2 className="text-3xl">{value}</h2>
         </div>
       </div>
     </Card>
@@ -57,8 +57,8 @@ const AuthorDashboard = () => {
   return (
     <div className="flex h-screen">
       <Sidebar className="w-1/4 bg-gray-100 p-4">
-        <SidebarItem icon={<BarChart2 />} text="Overview" active />
-        <SidebarItem icon={<Book />} text="Publishes" />
+        <SidebarItem icon={<BarChart2 />} text="Overview" linkTo="/authordashboard" active />
+        <SidebarItem icon={<Book />} text="Publishes" linkTo="/create" />
         <SidebarItem icon={<Star />} text="Notes" />
         <SidebarItem icon={<Users />} text="Advertising" />
         <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
