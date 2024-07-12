@@ -6,6 +6,8 @@ import SignupPage from "./pages/SignupPage";
 import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Poems from "./pages/Poems";
+import Chapters from "./pages/Chapter";
+import Shop from "./pages/Shop";
 import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
@@ -36,7 +38,10 @@ const routes = [
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
     { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
-    {path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"}
+    { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
+    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "default" },
+    { path: '/shop', element: <Shop />, layout: "default" },
+    { path: '/chapters', element: <Chapters />, layout: "default" }
 ];
 
 function App() {
