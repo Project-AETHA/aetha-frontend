@@ -33,13 +33,13 @@ const routes = [
     { path: '/login', element: <LoginPage />, layout: "default" },
     { path: '/signup', element: <SignupPage />, layout: "default" },
     { path: '/support', element: <SupportPage />, layout: "default" },
-    { path: '/authordashboard', element: <AuthorDashboard />, layout: "dashboard" },
+    { path: '/author', element: <AuthorDashboard />, layout: "dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
     { path: '/create/poem', element: <PoemCreationPage />, layout: "default" },
-    {path: '/dash', element: <div className="bg-blue-200">Custom Content</div>, layout: "dashboard"},
-     {path: '/shop' element: <Shop /> layout: "default"},
-  {path: '/chapters', element: <Chapters />, layout: "default"},
+    { path: '/dash', element: <div className="bg-blue-200">Custom Content</div>, layout: "dashboard" },
+    { path: '/shop', element: <Shop />, layout: "default" },
+    { path: '/chapters', element: <Chapters />, layout: "default" },
 
 ];
 
