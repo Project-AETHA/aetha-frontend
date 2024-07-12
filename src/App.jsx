@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Poems from "./pages/Poems";
+import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FirstChapter from "./pages/FirstChapter.jsx";
@@ -14,6 +15,7 @@ import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
+import ContactUser from './pages/Admin/UserManagement/ContactUser.jsx';
 
 //? Importing Layouts
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
@@ -45,10 +47,12 @@ function App() {
         if (localStorage.getItem('token') !== null) {
             request.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
         }
+
         return request
     })
 
     return (
+
         <Router>
             <Navigation/>
             <div className="content">
