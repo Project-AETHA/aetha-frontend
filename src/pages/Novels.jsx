@@ -1,11 +1,18 @@
 
+import ViewBooks from "../components/ViewBooks";
+import SearchBar from "../components/SearchBar";
+
 const Novels = () => {
 
 
   return (
-    <div>
-      Novels Page
-    </div>
+    <>
+      <SearchBar />
+      <ViewBooks />
+
+
+
+    </>
   );
 };
 
