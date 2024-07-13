@@ -17,12 +17,12 @@ import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
-import ContactUser from './pages/Admin/UserManagement/ContactUser.jsx';
 
 //? Importing Layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
 import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
+import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
 
 
 const routes = [
@@ -37,9 +37,10 @@ const routes = [
     { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
-    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
-    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "default" },
+    { path: '/admin/users', element: <UserManagement/>, layout:"admin_dashboard"},
+    { path: '/admin/singleuser', element: <SingleUser/>, layout:"admin_dashboard"},
+    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
     { path: '/chapters', element: <Chapters />, layout: "default" }
 ];
