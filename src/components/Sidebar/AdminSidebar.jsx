@@ -10,12 +10,12 @@ export default function AdminSidebar () {
 
     const menus = [
         { name: "Overview", link: "/admin", icon: MdOutlineDashboard },
-        { name: "User Management", link: "/admin/user", icon: AiOutlineUser },
-        { name: "Content Management", link: "/admin", icon: BsPen },
-        { name: "Complaints", link: "/admin", icon: TbReportAnalytics },
-        { name: "Payments", link: "/admin", icon: MdAttachMoney },
-        { name: "Reported Content", link: "/admin", icon: MdOutlineReportProblem },
-        { name: "Report Generation", link: "/admin", icon: TbReportAnalytics },
+        { name: "User Management", link: "/admin/users", icon: AiOutlineUser },
+        { name: "Content Management", link: "/admin/contents", icon: BsPen },
+        { name: "Complaints", link: "/admin/complaints", icon: TbReportAnalytics },
+        { name: "Payments", link: "/admin/payments", icon: MdAttachMoney },
+        { name: "Reported Content", link: "/admin/reported-content", icon: MdOutlineReportProblem },
+        { name: "Report Generation", link: "/admin/report-generation", icon: TbReportAnalytics },
     ];
 
     const [open, setOpen] = useState(true);
