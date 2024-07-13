@@ -18,6 +18,7 @@ import {
     Pagination,
     Tooltip
 } from "@nextui-org/react";
+import { LiaUserSlashSolid } from "react-icons/lia";
 import { PlusIcon } from "../../../components/common/icons/PlusIcon";
 import { VerticalDotsIcon } from "../../../components/common/icons/VerticalDotsIcon";
 import { SearchIcon } from "../../../components/common/icons/SearchIcon";
@@ -136,7 +137,7 @@ function UserManagement() {
                         </Tooltip>
                         <Tooltip key="disable" color="danger" content="disable" >
                             <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm">
-                                <FontAwesomeIcon icon={faUserTimes} />
+                            <LiaUserSlashSolid size="18px" />
                             </Button>
                         </Tooltip>
                         <Tooltip key="delete" color="warning" content="delete" >
@@ -338,7 +339,7 @@ function UserManagement() {
                     bottomContent={bottomContent}
                     bottomContentPlacement="outside"
                     classNames={{
-                        wrapper: "max-h-screen-minus-200",
+                        wrapper: "max-h-[450px]",
                     }}
                     selectedKeys={selectedKeys}
                     selectionMode="single"
@@ -360,7 +361,7 @@ function UserManagement() {
                             </TableColumn>
                         )}
                     </TableHeader>
-                    <TableBody emptyContent={"No users found"} items={sortedItems}>
+                    <TableBody emptyContent={"No users found"} className="" items={sortedItems}>
                         {(item) => (
                             <TableRow key={item.id}>
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

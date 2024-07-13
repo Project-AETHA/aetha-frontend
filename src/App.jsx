@@ -15,11 +15,11 @@ import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
-import ContactUser from './pages/Admin/UserManagement/ContactUser.jsx';
 
 //? Importing Layouts
 import DashboardLayout from "./layouts/DashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
+import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
 
 
 const routes = [
@@ -35,7 +35,9 @@ const routes = [
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
     { path: '/create/poem', element: <PoemCreationPage />, layout: "default" },
-    {path: '/dash', element: <div className="bg-blue-200">Custom Content</div>, layout: "dashboard"}
+    {path: '/dash', element: <div className="bg-blue-200">Custom Content</div>, layout: "dashboard"},
+    {path:'/admin/users', element: <UserManagement/>, layout:"dashboard"},
+    {path:'/admin/singleuser', element: <SingleUser/>, layout:"dashboard"}
 ];
 
 function App() {
