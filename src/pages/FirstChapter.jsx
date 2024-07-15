@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 
 const FirstChapter = () => {
 
-    const [chapterContent, setChapterContent] = useState('');
+    const [chapterContent, setChapterContent, Synopsis,setSynopsis] = useState('');
 
   return (
     <div className="flex h-screen">
@@ -31,7 +31,7 @@ const FirstChapter = () => {
         </Breadcrumbs>
       </div>
       </Card>
-        <Card className="p-4" shadow='none'>
+        <Card className="p-4" shadow='none' radius="none">
           <h2 className="text-2xl font-bold mb-4">New Fiction Submission</h2>
           <div className="mb-4">
             <h3 className="text-xl font-semibold">Submit your fiction</h3>
@@ -51,7 +51,13 @@ const FirstChapter = () => {
           </div>
           <div className="mb-4">
             <h3 className="text-xl font-semibold">Synopsis</h3>
-            <Textarea placeholder="Synopsis" fullWidth />
+            <ReactQuill
+              value={Synopsis}
+              onChange={setSynopsis}
+              theme="snow"
+              placeholder="Write your Synopsis here..."
+              className="h-32 mb-10"
+            />
           </div>
           <div className="mb-4">
             <h3 className="text-xl font-semibold">Genres</h3>
