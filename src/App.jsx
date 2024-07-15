@@ -80,24 +80,6 @@ function App() {
       <Footer />
     </Router>
   );
-
-        <Router>
-            <Navigation/>
-            <div className="content">
-                <Routes>
-                    {routes.map((route, index) => (
-                        <Route key={index} path={route.path} element={route.layout === "admin_dashboard" ? (
-                            <AdminDashboardLayout className={route.class}>{route.element}</AdminDashboardLayout>
-                        ) : route.layout === "author_dashboard" ? (
-                            <AuthorDashboardLayout className={route.class}>{route.element}</AuthorDashboardLayout>
-                        ) : (
-                            <DefaultLayout>{route.element}</DefaultLayout>
-                        )} />
-                    ))}
-                </Routes>
-            </div>
-        </Router>
-    );
 }
 
 export default App;
