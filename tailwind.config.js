@@ -40,7 +40,7 @@ themes: {
           successText: '#28A745',
           infoText: '#17A2B8',
           inputLabel:'#333333',
-          authbackground:'bg-gray-50',
+          authbackground:'#F9FAFB',
           indigo: {
             500: "#6172F3",
             700: "#3538CD",
@@ -103,7 +103,7 @@ themes: {
           successText: '#58D68D', // Light green for success text
           infoText: '#33CFFF', // Light teal for info text
           inputLabel:'#CCCCCC',
-          authbackground:'bg-gray-900',
+          authbackground:'#111827',
           indigo: {
             500: "#6172F3",
             700: "#3538CD",

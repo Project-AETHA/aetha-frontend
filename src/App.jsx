@@ -12,6 +12,7 @@ import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FirstChapter from "./pages/FirstChapter.jsx";
+import Submitions from "./pages/Submitions.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx"
 import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
@@ -42,7 +43,8 @@ const routes = [
     { path: '/admin/users/single', element: <SingleUser/>, layout:"admin_dashboard"},
     { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
-    { path: '/chapters', element: <Chapters />, layout: "default" }
+    { path: '/chapters', element: <Chapters />, layout: "default" },
+    { path: '/submitions', element: <Submitions />, layout: "author_dashboard" }
 ];
 
 function App() {
