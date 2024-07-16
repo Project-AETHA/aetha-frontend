@@ -17,12 +17,15 @@ import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
+import PublishesPage from "./components/Writer-dashboard/PublishesPage.jsx";
+import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
 
 //? Importing Layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
 import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
-import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
+
+
 
 
 const routes = [
@@ -35,6 +38,7 @@ const routes = [
     { path: '/signup', element: <SignupPage />, layout: "default" },
     { path: '/support', element: <SupportPage />, layout: "default" },
     { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
+    { path: '/author/publishes', element: <PublishesPage />, layout: "author_dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
     { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
