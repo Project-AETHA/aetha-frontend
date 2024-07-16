@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumbs, BreadcrumbItem, Card, Button, Tab, Tabs, CardBody, CardFooter, Image } from '@nextui-org/react';
 import { Book, BarChart2, BookOpenCheck, Users, Star, BookHeadphones, LibraryBig, Castle } from "lucide-react";
 import { Link } from 'react-router-dom';
-import Sidebar, { SidebarItem } from "../components/Writer-dashboard/Sidebar";
+// import Sidebar, { SidebarItem } from "../components/Writer-dashboard/Sidebar";
 import Book1 from "/images/books/book1.jpg";
 import Book2 from "/images/books/book2.jpg";
 import Book3 from "/images/books/book3.jpg";
@@ -43,13 +43,13 @@ const booksData = [
 const Submissions = () => {
   return (
     <div className="flex h-screen">
-    <Sidebar className="w-1/4 bg-gray-100 p-4">
+    {/* <Sidebar className="w-1/4 bg-gray-100 p-4">
       <SidebarItem icon={<BarChart2 />} text="Overview"/>
       <SidebarItem icon={<Book />} text="Submissions" active/>
       <SidebarItem icon={<Star />} text="Notes" />
       <SidebarItem icon={<Users />} text="Advertising" />
       <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
-    </Sidebar>
+    </Sidebar> */}
     <div className="flex-1">
     <Card className="p-5 mb-4 shadow-none flex-auto" radius="none">
       <div className="flex justify-between items-center">

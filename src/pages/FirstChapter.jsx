@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Breadcrumbs, BreadcrumbItem, Card, Input, Textarea, Checkbox, Button, Spacer, Link } from '@nextui-org/react';
 import { Book, BarChart2, BookOpenCheck, Users, Star, MessageCircleMore } from "lucide-react";
-import Sidebar, { SidebarItem } from "../components/Writer-dashboard/Sidebar";
+// import Sidebar, { SidebarItem } from "../components/Writer-dashboard/Sidebar";
 import FileUpload from "../components/FileUpload";
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
@@ -13,13 +13,13 @@ const FirstChapter = () => {
 
   return (
     <div className="flex h-screen">
-      <Sidebar className="w-1/4 bg-gray-100 p-4">
+      {/* <Sidebar className="w-1/4 bg-gray-100 p-4">
         <SidebarItem icon={<BarChart2 />} text="Overview"/>
         <SidebarItem icon={<Book />} text="Submissions" active/>
         <SidebarItem icon={<Star />} text="Notes" />
         <SidebarItem icon={<Users />} text="Advertising" />
         <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
-      </Sidebar>
+      </Sidebar> */}
       <div className="flex-1">
       <Card className="p-5 mb-4 shadow-none flex-auto" radius="none">
       <div className="flex justify-between items-center">

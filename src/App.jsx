@@ -12,12 +12,12 @@ import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FirstChapter from "./pages/FirstChapter.jsx";
+import Submitions from "./pages/Submitions.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx"
 import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
-import Submissions from './pages/Submitions.jsx';
 
 //? Importing Layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
@@ -43,7 +43,8 @@ const routes = [
     { path: '/admin/users/single', element: <SingleUser/>, layout:"admin_dashboard"},
     { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
-    { path: '/chapters', element: <Chapters />, layout: "default" }
+    { path: '/chapters', element: <Chapters />, layout: "default" },
+    { path: '/submitions', element: <Submitions />, layout: "author_dashboard" }
 ];
 
 function App() {
@@ -60,26 +61,24 @@ function App() {
     })
 
     return (
-    <Router>
-      <Navigation />
-      <div className="content">
-        <Routes>
-            <Route exact path="/" element={<LandingPage/>}/>
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/reading" element={<Reading />} />
-          <Route exact path="/novels" element={<Novels />} />
-          <Route path="/poems" element={<Poems />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/support" element={<SupportPage />} />
-          <Route path="/authordashboard" element={<AuthorDashboard />} />
-          <Route path="/create" element={<FristChapter/>} />
-          <Route path="/submition" element={<Submissions/>} />
-        </Routes>
-      </div>
-      <Footer />
-    </Router>
-  );
+
+        <Router>
+            <Navigation/>
+            <div className="content">
+                <Routes>
+                    {routes.map((route, index) => (
+                        <Route key={index} path={route.path} element={route.layout === "admin_dashboard" ? (
+                            <AdminDashboardLayout className={route.class}>{route.element}</AdminDashboardLayout>
+                        ) : route.layout === "author_dashboard" ? (
+                            <AuthorDashboardLayout className={route.class}>{route.element}</AuthorDashboardLayout>
+                        ) : (
+                            <DefaultLayout>{route.element}</DefaultLayout>
+                        )} />
+                    ))}
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
