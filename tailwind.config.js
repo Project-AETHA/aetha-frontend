@@ -1,4 +1,5 @@
-const { nextui } = require("@nextui-org/react");
+import {nextui} from "@nextui-org/react";
+import tailwind_scrollbar from "tailwind-scrollbar";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -29,6 +30,9 @@ themes: {
           fill: {
             1: "rgba(255, 255, 255, 0.10)",
           },
+          scrollbarNormal: 'rgba(73,73,73,0.5)',
+          scrollbarActive: 'rgb(0,110,237)',
+          scrollbarTrack: 'rgb(197,197,197)',
           recruitBlue: "#0179FE", //main blue
           whiteText:'#FFFFFF',
           primaryText: '#000000',
@@ -92,6 +96,9 @@ themes: {
           fill: {
             1: "rgba(255, 255, 255, 0.10)",
           },
+          scrollbarNormal: 'rgba(244,244,244,0.5)',
+          scrollbarActive: 'rgb(0,110,237)',
+          scrollbarTrack: 'rgb(39,39,39)',
           recruitBlue: "#0179FE", //main blue
           whiteText:'#000000',
           primaryText: '#FFFFFF', // White for primary text
@@ -152,5 +159,6 @@ themes: {
       // ... custom themes
     },
     }),
+    tailwind_scrollbar({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
   ],
 };

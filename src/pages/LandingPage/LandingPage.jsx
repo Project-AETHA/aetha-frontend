@@ -152,8 +152,8 @@ function LandingPage() {
           </p>
 
           <div className="flex justify-evenly items-center flex-wrap gap-2">
-            {latest_updates &&
-              latest_updates.map((latest_update, index) => (
+            {rising_stars &&
+                rising_stars.map((rising_star, index) => (
                 <Link to="#" key={index}>
                   <div className="max-w-[350px] w-[150px] flex flex-col">
                     <Image
@@ -161,13 +161,13 @@ function LandingPage() {
                       height="300px"
                       className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer"
                       alt="NextUI hero Image"
-                      src={latest_update.image}
+                      src={rising_star.image}
                     />
                     <p className="text-sm text-foreground-700">
-                      {latest_update.title}
+                      {rising_star.title}
                     </p>
                     <p className="truncate text-xs text-foreground-500">
-                      {latest_update.description}
+                      {rising_star.description}
                     </p>
                   </div>
                 </Link>
