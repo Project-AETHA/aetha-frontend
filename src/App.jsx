@@ -39,7 +39,7 @@ const routes = [
     { path: '/create', element: <FirstChapter />, layout: "default" },
     { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
     { path: '/admin/users', element: <UserManagement/>, layout:"admin_dashboard"},
-    { path: '/admin/users/single', element: <SingleUser/>, layout:"admin_dashboard"},
+    { path: '/admin/users/single', element: <SingleUser/>, layout:"deafult"},
     { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
     { path: '/chapters', element: <Chapters />, layout: "default" }
