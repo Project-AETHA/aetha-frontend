@@ -167,31 +167,31 @@ export default function Navigation() {
         )}
 
         <NavbarMenu>
-          <NavbarMenuItem key="home" className="navbar-small-item">
-            <Link className="w-full" color={"foreground"} to="/" size="lg"> Home </Link>
-          </NavbarMenuItem>
-          <Accordion className="navbar-small-item">
-            <AccordionItem key="read" aria-label="ReadAccordian" title="Read">
-              <NavbarMenuItem key="novels" className="navbar-small-subitem">
-                <Link className="w-full" color={"foreground"} to="/novels" size="lg"> Novels </Link>
-              </NavbarMenuItem>
-              <NavbarMenuItem key="shortstories" className="navbar-small-subitem">
-                <Link className="w-full" color={"foreground"} to="#shortstories" size="lg"> Short Stories </Link>
-              </NavbarMenuItem>
-              <NavbarMenuItem key="poems" className="navbar-small-subitem">
-                <Link className="w-full" color={"foreground"} to="/poems" size="lg"> Poems </Link>
-              </NavbarMenuItem>
-              <NavbarMenuItem key="nisades" className="navbar-small-subitem">
-                <Link className="w-full" color={"foreground"} to="#nisades" size="lg"> Nisades </Link>
-              </NavbarMenuItem>
-            </AccordionItem>
-          </Accordion>
-          <NavbarMenuItem key="write" className="navbar-small-item">
-            <Link className="w-full" color={"foreground"} to="#writingPage" size="lg"> Write </Link>
-          </NavbarMenuItem>
-          <NavbarMenuItem key="shop" className="navbar-small-item">
-            <Link className="w-full" color={"foreground"} to="#shopPage" size="lg"> Shop </Link>
-          </NavbarMenuItem>
+          {items && items.map((item, itemIndex) => {
+            if(item.subItems) {
+              return (
+                  <Accordion key={itemIndex} className="navbar-small-item">
+                    <AccordionItem key={itemIndex} aria-label={`${item.title}-accordion`} title={item.title}>
+                      {
+                        item.subItems.map((subItem, subIndex) => {
+                          return (
+                              <NavbarMenuItem key={subItem.key} className="navbar-small-subitem">
+                                <Link className="w-full" color={"foreground"} to={subItem.link} size="lg"> {subItem.title} </Link>
+                              </NavbarMenuItem>
+                          )
+                        })
+                      }
+                    </AccordionItem>
+                  </Accordion>
+              )
+            } else {
+              return (
+                  <NavbarMenuItem key={itemIndex} className="navbar-small-item">
+                    <Link className="w-full" color={"foreground"} to={item.link} size="lg"> {item.title} </Link>
+                  </NavbarMenuItem>
+              )
+            }
+          })}
         </NavbarMenu>
       </Navbar>
   );
