@@ -1,0 +1,81 @@
+.sidebar-inner {
+    @apply mt-4 flex flex-col gap-4 relative;
+
+    a {
+        @apply
+        text-foreground-900
+        hover:text-foreground-50
+        dark:hover:text-foreground-900
+        flex
+        items-center
+        text-sm
+        gap-3.5
+        font-medium
+        p-2
+        hover:bg-gray-800
+        rounded-md;
+
+        & > h2.hovering-content {
+            @apply
+            absolute
+            z-50
+            left-48
+            bg-white
+            font-semibold
+            whitespace-pre
+            text-black
+            rounded-md
+            drop-shadow-lg
+            px-0
+            py-0
+            w-0
+            overflow-hidden;
+        }
+    }
+
+    & > div {
+        @apply
+        !p-0
+        rounded-md;
+
+        & > div {
+            @apply
+            !p-0
+            text-foreground-900
+            text-sm
+            font-medium;
+
+            & > h2 > button {
+                @apply
+                p-2 rounded hover:bg-gray-800 hover:text-foreground-50 dark:hover:text-foreground-900;
+
+                & > div:nth-child(2) > span {
+                    @apply text-sm dark:hover:text-foreground-900;
+                }
+
+                & > span svg path {
+                    stroke-width: 3;
+                }
+            }
+        }
+
+        & > div > h2 > button > div:nth-child(2), 
+        & > div > h2 > button > span {
+            @apply duration-500;
+        }
+
+        & > div:not(.opened) > h2 > button > div:nth-child(2), 
+        & > div:not(.opened) > h2 > button > span {
+            @apply hidden translate-x-28 overflow-hidden whitespace-pre opacity-0;
+        }
+
+        & > div.opened > h2 > button > div:nth-child(2), 
+        & > div.opened > h2 > button > div:nth-child(2) > span {
+            @apply flex translate-x-0;
+        }
+    }
+
+    & > div > div > h2 > button:hover > div:nth-child(2) > span {
+        @apply text-sm duration-500 text-foreground-50;
+    }
+}
