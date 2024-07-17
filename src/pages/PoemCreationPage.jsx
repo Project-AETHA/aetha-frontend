@@ -9,7 +9,7 @@ function PoemCreationPage () {
 
     return (
         <div className="alt-container px-2 pb-4 h-full">
-            <div className="h-full rounded overflow-auto p-4 flex flex-col gap-4 items-center justify-start bg-foreground-50">
+            <div className="rounded p-4 flex flex-col gap-4 items-center justify-start bg-foreground-50">
                 <h1 className="text-3xl font-bold text-foreground-900">Create a Poem</h1>
                 <p className="text-foreground-900">Write your poem here</p>
 
@@ -20,7 +20,7 @@ function PoemCreationPage () {
                         type="text"
                         description="Enter the title of your poem"
                         variant="faded"
-                        className="text-foreground-900"
+                        className="text-foreground-900 z-1"
                         isInvalid={false}
                         errorMessage="Please enter a valid email"
                     />
