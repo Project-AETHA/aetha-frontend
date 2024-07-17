@@ -1,42 +1,160 @@
-import React, { useState, useEffect } from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Button } from "@nextui-org/react";
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import React, { useState } from "react";
+import { Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
+import { FcBiomass, FcGallery } from "react-icons/fc";
+import { FaHeart, FaAddressBook, FaDonate, FaUserEdit, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { MdOutlineReport, MdAddAlert } from "react-icons/md";
+import { Button } from "@nextui-org/react";
 
-const rows = [
-    { key: "1", chapter: "Chapter 1: Tony Reichert", released_date: "2020-05-04", link: "/chapter1" },
-    { key: "2", chapter: "Chapter 2: Zoey Lang", released_date: "2020-05-07", link: "/chapter2" },
-    { key: "3", chapter: "Chapter 3: Jane Fisher", released_date: "2020-05-10", link: "/chapter3" },
-    { key: "4", chapter: "Chapter 4: William Howard", released_date: "2020-06-01", link: "/chapter4" },
-    { key: "5", chapter: "Chapter 5: William Howard", released_date: "2020-06-01", link: "/chapter5" },
-    { key: "6", chapter: "Chapter 6: William Howard", released_date: "2020-06-01", link: "/chapter6" },
-    { key: "7", chapter: "Chapter 7: William Howard", released_date: "2020-06-01", link: "/chapter7" },
-    { key: "8", chapter: "Chapter 8: William Howard", released_date: "2020-06-01", link: "/chapter8" },
-    { key: "9", chapter: "Chapter 9: William Howard", released_date: "2020-06-01", link: "/chapter9" },
-    { key: "10", chapter: "Chapter 10: William Howard", released_date: "2020-06-01", link: "/chapter10" },
-    { key: "11", chapter: "Chapter 11: William Howard", released_date: "2020-06-01", link: "/chapter11" },
-    { key: "12", chapter: "Chapter 12: William Howard", released_date: "2020-06-01", link: "/chapter12" },
-    { key: "13", chapter: "Chapter 13: William Howard", released_date: "2020-06-01", link: "/chapter12" },
-    { key: "14", chapter: "Chapter 14: William Howard", released_date: "2020-06-01", link: "/chapter12" },
-    { key: "15", chapter: "Chapter 15: William Howard", released_date: "2020-06-01", link: "/chapter12" },
-    { key: "16", chapter: "Chapter 16: William Howard", released_date: "2020-06-01", link: "/chapter12" },
-    { key: "17", chapter: "Chapter 17: William Howard", released_date: "2020-06-01", link: "/chapter12" },
-];
+function LandingPage() {
+    let recommendations = [
+        {
+            title: "THE GREAT GASBY",
+            description: "Recommendation description",
+            image: "../../public/images/books/book1.jpg",
+            author: "James Wan",
+            badge1: "../../public/images/badge.png"
+        },
+    ];
 
-const columns = [
-    { key: "chapter", label: "CHAPTER" },
-    { key: "released_date", label: "RELEASED DATE" },
-];
+    let latest_updates = recommendations.slice(0, 3);
 
-const Chapters = () => {
+    const people = [
+        {
+            key: 1,
+            chapter: 'Jane Cooper',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 2,
+            chapter: 'John Doe',
+            releaseday: '20 day ago',
+
+        },
+        {
+            key: 3,
+            chapter: 'Veronica Lodge',
+            releaseday: '10 day ago',
+
+        },
+        {
+            key: 4,
+            chapter: 'Veronica Lodge',
+            releaseday: '8 day ago',
+
+        },
+        {
+            key: 5,
+            chapter: 'Veronica Lodge',
+            releaseday: '7 day ago',
+
+        },
+        {
+            key: 6,
+            chapter: 'Veronica Lodge',
+            releaseday: '5 day ago',
+
+        },
+        {
+            key: 7,
+            chapter: 'Veronica Lodge',
+            releaseday: '4 day ago',
+
+        },
+        {
+            key: 8,
+            chapter: 'Veronica Lodge',
+            releaseday: '3 day ago',
+
+        },
+        {
+            key: 9,
+            chapter: 'Veronica Lodge',
+            releaseday: '2 day ago',
+
+        },
+        {
+            key: 10,
+            chapter: 'Veronica Lodge',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 11,
+            chapter: 'Veronica Lodge',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 12,
+            chapter: 'Veronica Lodge',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 13,
+            chapter: 'Veronica Lodge',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 14,
+            chapter: 'Veronica Lodge',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 15,
+            chapter: 'Veronica Lodge',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 16,
+            chapter: 'Veronica Lodge',
+            releaseday: '1 day ago',
+
+        },
+        {
+            key: 17,
+            chapter: 'Veronica Lodge',
+            releaseday: 'today',
+
+        }
+
+
+    ];
+
+    let ads = [
+        {
+            id: 1,
+            title: "Advertisement 1",
+            content: "Advertise your product here!",
+            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+        },
+        {
+            id: 2,
+            title: "Advertisement 2",
+            content: "Advertise your product here!",
+            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+        },
+        {
+            id: 3,
+            title: "Advertisement 3",
+            content: "Advertise your product here!",
+            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+        },
+    ];
+
     const [currentPage, setCurrentPage] = useState(1);
-    const rowsPerPage = 14;
+    const itemsPerPage = 10;
 
-    const indexOfLastRow = currentPage * rowsPerPage;
-    const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-    const currentRows = rows.slice(indexOfFirstRow, indexOfLastRow);
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = people.slice(indexOfFirstItem, indexOfLastItem);
 
-    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    const totalPages = Math.ceil(people.length / itemsPerPage);
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -44,157 +162,165 @@ const Chapters = () => {
         }
     };
 
-    const handlePrevPage = () => {
+    const handlePreviousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
         }
     };
 
-
     return (
-        <div className="w-full my-5 m-auto block md:flex px-5">
+        <div className="alt-container p-4">
+            <div className="flex flex-col md:flex-row gap-4 !p-0">
+                {/* Latest Updates */}
+                <div className="bg-gray-300 w-full md:w-9/12 rounded-md p-2">
+                    <p className="flex gap-2 items-center font-bold text-lg text-orange-700 mb-4">
+                        <FcGallery size="25px" />
+                        Novel
+                    </p>
+                    <div className="w-full md:w-3/12 inline-block">
+                        <div className="flex mx-5 items-center flex-wrap gap-2">
+                            {latest_updates &&
+                                latest_updates.map((latest_update, index) => (
+                                    <Link to="#" key={index}>
+                                        <div className="max-w-[350px] w-[150px] flex flex-col">
+                                            <Image
+                                                width="150px"
+                                                height="300px"
+                                                className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer h-[200px]"
+                                                alt="NextUI hero Image"
+                                                src={latest_update.image}
+                                            />
+                                            <p className="text-md text-foreground-700 font-bold text-center">
+                                                {latest_update.title}
+                                            </p>
 
-            <div className="w-full md:w-2/12 flex md:inline-block">
-                <Card className=" mx-2 w-1/2 md:w-full h-[300px]">
-                    <CardHeader className="pb-0 pt-2 px-4 flex-col items-center text-center">
-                        <p className="text-lg uppercase font-bold"> Novel </p>
-                        <h4 className="text-large leading-tight"> The Great Gasby </h4>
-                    </CardHeader>
-                    <CardBody className="overflow-visible py-2 items-center">
-                        <Image
-                            alt="Card background"
-                            className="object-cover rounded-xl max-h-[200px] w-[140px]"
-                            src="../../../public/images/books/book1.jpg"
-
-                        />
-                    </CardBody>
-                </Card>
-
-
-                <Card className="mx-2 md:mt-4 w-1/2 md:w-full h-[300px]">
-                    <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
-                        <p className="text-lg uppercase font-bold">Author</p>
-                        <small className="text-default-500 mb-3"> Martin Perera </small>
-                        <h4 className="font-bold text-large">Achievements</h4>
-                    </CardHeader>
-                    <CardBody className="py-2 flex flex-wrap">
-                        {/* Badge 1 */}
-                        <div className="w-1/2 md:w-1/3 p-2">
-                            <Image
-                                alt="Badge 1"
-                                className="object-cover rounded-xl w-20"
-                                src="https://www.sitepoint.com/wp-content/uploads/2014/11/1415490092badge.png"
-                            />
+                                        </div>
+                                    </Link>
+                                ))}
                         </div>
-
-                        {/* Badge 2 */}
-                        <div className="w-1/2 md:w-1/3 p-2">
-                            <Image
-                                alt="Badge 2"
-                                className="object-cover rounded-xl w-20"
-                                src="https://www.sitepoint.com/wp-content/uploads/2014/11/1415490092badge.png"
-                            />
-                        </div>
-
-                        {/* Badge 3 */}
-                        <div className="w-1/2 md:w-1/3 p-2">
-                            <Image
-                                alt="Badge 3"
-                                className="object-cover rounded-xl w-20"
-                                src="https://www.sitepoint.com/wp-content/uploads/2014/11/1415490092badge.png"
-                            />
-                        </div>
-
-                        {/* Badge 4 */}
-                        <div className="w-1/2 md:w-1/3 p-2">
-                            <Image
-                                alt="Badge 4"
-                                className="object-cover rounded-xl w-20"
-                                src="https://www.sitepoint.com/wp-content/uploads/2014/11/1415490092badge.png"
-                            />
-                        </div>
-
-                        {/* Badge 5 */}
-                        <div className="w-1/2 md:w-1/3 p-2">
-                            <Image
-                                alt="Badge 5"
-                                className="object-cover rounded-xl w-full w-20"
-                                src="https://www.sitepoint.com/wp-content/uploads/2014/11/1415490092badge.png"
-                            />
-                        </div>
-
-                        {/* Badge 6 */}
-                        <div className="w-1/2 md:w-1/3 p-2">
-                            <Image
-                                alt="Badge 6"
-                                className="object-cover rounded-xl w-full w-20"
-                                src="https://www.sitepoint.com/wp-content/uploads/2014/11/1415490092badge.png"
-                            />
-                        </div>
-                    </CardBody>
-                </Card>
-
-
-
-            </div>
-
-            <div className="w-full md:w-10/12 inline-block md:mt-0 mt-10 md:px-5">
-                <h1 className="text-2xl font-semibold mb-2 ml-2"> Chapters </h1>
-                <Table aria-label="Example table with dynamic content" className="">
-                    <TableHeader>
-                        {columns.map((column) => (
-                            <TableColumn key={column.key} className={column.key === "released_date" ? "text-right" : ""}>
-                                {column.label}
-                            </TableColumn>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {currentRows.map((row) => (
-                            <TableRow key={row.key}>
-                                {(columnKey) => (
-                                    <TableCell className={columnKey === "released_date" ? "text-right" : ""}>
-                                        {columnKey === "chapter" ? (
-                                            <Link to={row.link} className="text-blue-500 hover:underline">
-                                                {getKeyValue(row, columnKey)}
-                                            </Link>
-                                        ) : (
-                                            getKeyValue(row, columnKey)
-                                        )}
-                                    </TableCell>
-                                )}
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-                <div className="flex justify-center items-center m-4 gap-3">
-                    <Button
-                        onClick={handlePrevPage}
-                        disabled={currentPage === 1}
-                        variant="flat"
-                        color="primary"
-                        auto
-                        className={`pagination-button ${currentPage === 1 ? 'disabled' : ''}`}
-                    >
-                        Previous
-                    </Button>
-                    <span className="pagination-text">Page {currentPage} of {totalPages}</span>
-                    <Button
-                        onClick={handleNextPage}
-                        disabled={currentPage === totalPages}
-                        variant="flat"
-                        color="primary"
-                        auto
-                        className={`pagination-button ${currentPage === totalPages ? 'disabled' : ''}`}
-                    >
-                        Next
-                    </Button>
+                    </div>
+                    <div className="w-full md:w-9/12 inline-block align-top text-justify px-5 text-primaryText">
+                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda quaerat, eos tenetur explicabo nam in facere aspernatur fuga accusantium magni saepe, ex nesciunt consectetur, eum sit reiciendis mollitia. Excepturi, magni. Repudiandae, doloribus veritatis doloremque, odio delectus repellat saepe facilis adipisci ullam ratione illo iste! Voluptatum facere fugiat error. Incidunt!
+                        </p>
+                    </div>
                 </div>
 
+
+                <div className="bg-gray-300 w-full md:w-3/12 rounded-md p-2 h-[300px] flex justify-center items-center">
+                    <div className="flex flex-col gap-2">
+
+                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2">
+                            <FaHeart />
+                            <p>Favourite</p>
+                        </Button>
+
+                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2">
+                            <FaDonate />
+                            <p> Donate </p>
+                        </Button>
+                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2">
+                            <MdOutlineReport />
+                            <p> Complaint </p>
+                        </Button>
+                        <Button className="bg-red-300 text-black border border-red-800 w-40 flex items-center justify-start space-x-2">
+                            <MdOutlineReport />
+                            <p> Report </p>
+                        </Button>
+
+                    </div>
+                </div>
             </div>
 
+            <div className="flex flex-col md:flex-row gap-4 !p-0">
+                {/* Latest Updates */}
+                <div className="bg-gray-300 w-full md:w-9/12 rounded-md p-2">
+                    <p className="flex gap-2 items-center font-bold text-lg text-green-700 mb-4">
+                        <FcBiomass size="25px" />
+                        Chapters
+                    </p>
+                    <div className="flex justify-evenly items-center flex-wrap gap-2">
+                        {currentItems.map(person => (
+                            <div key={person.key} className="bg-chapterbutton rounded-xl my-1 p-3 w-full mx-2 flex hover:shadow-md hover:bg-gray-400">
+                                <div className="inline-block w-8/12">
+                                    <p className="text-primaryText text-sm">Chapter {person.key} : {person.chapter}</p>
+                                </div>
+                                <div className="inline-block w-4/12">
+                                    <p className="text-gray-200 text-right text-xs hidden md:block">{person.releaseday}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="flex justify-between items-center mt-4">
+                        <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                            Previous
+                        </Button>
+                        <p>Page {currentPage} of {totalPages}</p>
+                        <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                            Next
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Rising Stars */}
+                <div className="bg-gray-300 w-full md:w-3/12 rounded-md p-2 h-[500px] flex justify-center items-center">
+                    <div className="flex flex-col gap-2">
+                        <p className="flex gap-2 items-center font-bold text-lg text-gray-500 mb-1 justify-center">
+                            <FaUserEdit size="25px" />
+                            Author Details
+                        </p>
+                        <div>
+                            {recommendations.map((recommendation, index) => (
+                                <div key={index}>
+                                    <div className="p-4 border border-gray-300 rounded-md flex">
+                                        <div className=" font-bold inline-block"> Name : </div> <div className="inline-block ml-2"> {recommendation.author}</div>
+                                    </div>
+
+                                    <div className="flex items-center justify-center">
+                                        <Button className="bg-white text-black border border-black items-center justify-start">
+                                            <MdAddAlert />
+                                            <p> Subscribe </p>
+                                        </Button>
+                                    </div>
+
+                                    <p className="flex gap-2 items-center font-bold text-lg text-gray-500 mb-1 mt-5 justify-center">
+                                        Achievements
+                                    </p>
+
+                                    <div className="grid grid-cols-3 gap-4">
+                                        <img src={recommendation.badge1} alt="badge" className="w-full inline-block" />
+                                        <img src={recommendation.badge1} alt="badge" className="w-full inline-block" />
+                                        <img src={recommendation.badge1} alt="badge" className="w-full inline-block" />
+                                        <img src={recommendation.badge1} alt="badge" className="w-full inline-block" />
+                                        <img src={recommendation.badge1} alt="badge" className="w-full inline-block" />
+                                    </div>
+
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="flex">
+                            <div className="w-1/3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="ad-container">
+                {ads &&
+                    ads.map((ad, index) => (
+                        <div className="" key={ad.id}>
+                            <Image width="300px" alt="NextUI hero Image" src={ad.image} />
+                            <h2>
+                                {ad.title} {index}
+                            </h2>
+                            <p>{ad.content}</p>
+                        </div>
+                    ))}
+            </div>
 
         </div>
     );
-};
+}
 
-export default Chapters;
+export default LandingPage;

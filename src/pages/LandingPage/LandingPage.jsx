@@ -56,7 +56,7 @@ function LandingPage() {
 
   return (
     <div className="alt-container">
-      <h1>Welcome to the Landing Page!</h1>
+      <h1>Welcome to the Landing Page</h1>
 
       {/* Carousel with images of the latest content */}
       <div className="!p-0">
@@ -119,7 +119,6 @@ function LandingPage() {
             <FcGallery size="25px" />
             Latest Updates
           </p>
-
           <div className="flex justify-evenly items-center flex-wrap gap-2">
             {latest_updates &&
               latest_updates.map((latest_update, index) => (
