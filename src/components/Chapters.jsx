@@ -209,16 +209,16 @@ function LandingPage() {
                 <div className="bg-gray-300 w-full md:w-3/12 rounded-md p-2 h-[300px] flex justify-center items-center">
                     <div className="flex flex-col gap-2">
 
-                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2">
+                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2 hover:bg-green-300">
                             <FaHeart />
                             <p>Favourite</p>
                         </Button>
 
-                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2">
+                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2 hover:bg-green-300">
                             <FaDonate />
                             <p> Donate </p>
                         </Button>
-                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2">
+                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2 hover:bg-red-300">
                             <MdOutlineReport />
                             <p> Complaint </p>
                         </Button>
@@ -276,7 +276,7 @@ function LandingPage() {
                                     </div>
 
                                     <div className="flex items-center justify-center">
-                                        <Button className="bg-white text-black border border-black items-center justify-start">
+                                        <Button className="bg-white text-black border border-black items-center justify-start hover:scale-105 hover:bg-green-200">
                                             <MdAddAlert />
                                             <p> Subscribe </p>
                                         </Button>
