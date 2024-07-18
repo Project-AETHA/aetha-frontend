@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
@@ -12,18 +12,20 @@ import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
 import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FirstChapter from "./pages/FirstChapter.jsx";
-import LandingPage from "./pages/LandingPage/LandingPage.jsx"
+import Submitions from "./pages/Submitions.jsx";
+import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 import axios from "axios";
-import {useAuthContext} from "./hooks/useAuthContext.jsx";
+import { useAuthContext } from "./hooks/useAuthContext.jsx";
+import PublishesPage from "./components/Writer-dashboard/PublishesPage.jsx";
+import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
 
-//? Importing Layouts
+// Importing Layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
 import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
-import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
-
+import SimpleLayout from "./layouts/SimpleLayout.jsx";
 
 const routes = [
     { path: '/', element: <LandingPage />, layout: "default" },
@@ -31,48 +33,60 @@ const routes = [
     { path: '/reading', element: <Reading />, layout: "default" },
     { path: '/novels', element: <Novels />, layout: "default" },
     { path: '/poems', element: <Poems />, layout: "default" },
-    { path: '/login', element: <LoginPage />, layout: "default" },
-    { path: '/signup', element: <SignupPage />, layout: "default" },
+    { path: '/login', element: <LoginPage />, layout: "simple" },
+    { path: '/signup', element: <SignupPage />, layout: "simple" },
     { path: '/support', element: <SupportPage />, layout: "default" },
     { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
+    { path: '/author/publishes', element: <PublishesPage />, layout: "author_dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
-    { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
-    { path: '/admin/users', element: <UserManagement/>, layout:"admin_dashboard"},
-    { path: '/admin/users/single', element: <SingleUser/>, layout:"deafult"},
-    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
+    { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard" },
+    { path: '/admin/users', element: <UserManagement />, layout: "admin_dashboard" },
+    { path: '/admin/users/single', element: <SingleUser />, layout: "admin_dashboard" },
+    { path: '/author/publishes/poem/create', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
-    { path: '/chapters', element: <Chapters />, layout: "default" }
+    { path: '/chapters', element: <Chapters />, layout: "default" },
+    { path: '/submitions', element: <Submitions />, layout: "author_dashboard" }
 ];
 
+const layoutComponents = {
+    default: DefaultLayout,
+    admin_dashboard: AdminDashboardLayout,
+    author_dashboard: AuthorDashboardLayout,
+    simple: SimpleLayout
+};
+
+const generateRoutes = () => {
+    return routes.map((route, index) => {
+        const Layout = layoutComponents[route.layout];
+        return (
+            <Route key={index} path={route.path} element={<Layout>{route.element}</Layout>} />
+        );
+    });
+};
+
 function App() {
-    const {user} = useAuthContext();
-    console.log(user)
+
+    //* Debugging codes
+    const { user } = useAuthContext();
+    console.log(user);
+
     axios.interceptors.request.use(request => {
-        console.log(request)
+        console.log(request);
 
         if (localStorage.getItem('token') !== null) {
-            request.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+            request.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
         }
 
-        return request
-    })
+        return request;
+    });
 
     return (
-
         <Router>
-            <Navigation/>
+            <Navigation />
             <div className="content">
                 <Routes>
-                    {routes.map((route, index) => (
-                        <Route key={index} path={route.path} element={route.layout === "admin_dashboard" ? (
-                            <AdminDashboardLayout className={route.class}>{route.element}</AdminDashboardLayout>
-                        ) : route.layout === "author_dashboard" ? (
-                            <AuthorDashboardLayout className={route.class}>{route.element}</AuthorDashboardLayout>
-                        ) : (
-                            <DefaultLayout>{route.element}</DefaultLayout>
-                        )} />
-                    ))}
+                    {generateRoutes()}
                 </Routes>
             </div>
         </Router>

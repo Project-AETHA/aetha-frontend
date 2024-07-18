@@ -6,6 +6,12 @@ main {
     @apply !bg-foreground-200;
 }
 
+/* Overriding the navbar max width */
+header {
+    @apply
+    !max-w-full;
+}
+
 .content {
     @apply bg-foreground-200;
 }
@@ -77,13 +83,13 @@ main {
 
 @media (min-width: 1280px) {
     .alt-container {
-        max-width: 1024px !important;
+        max-width: 1280px !important;
     }
 }
 
 @media (min-width: 1536px) {
     .alt-container {
-        max-width: 1024px !important;
+        max-width: 100% !important;
     }
 }
 
@@ -159,9 +165,31 @@ main {
     overflow-y-auto
     resize-none
     w-full
+    h-full
     focus:outline-none
     focus:ring-2
     focus:ring-primary-500
     focus:border-transparent
+    flex
+    flex-col
     ;
+
+    .ql-toolbar {
+        @apply rounded-t-md dark:bg-foreground-600;
+    }
+
+    & > .ql-container {
+        @apply h-full rounded-b-md text-foreground-900;
+    }
+}
+
+.default-scrollbar {
+    @apply
+    w-full
+    scrollbar-thin
+    scrollbar-thumb-rounded-full
+    scrollbar-track-rounded-full
+    scrollbar-thumb-scrollbarNormal
+    active:scrollbar-thumb-scrollbarActive
+    scrollbar-track-scrollbarTrack;
 }
