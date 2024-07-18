@@ -7,17 +7,18 @@ import { MdAttachMoney, MdOutlineDashboard } from "react-icons/md";
 import { LuPenTool } from "react-icons/lu";
 import { RiAdvertisementLine } from "react-icons/ri";
 import { LiaBookSolid } from "react-icons/lia";
+import { BiParagraph } from "react-icons/bi";
 
 export default function AuthorDashboardLayout (props) {
 
     const menus = [
         { name: "Overview", link: "/author", icon: MdOutlineDashboard },
-        { name: "Publishes", link: "/author/publishes", icon: LiaBookSolid,
+        { name: "Publishes", icon: LiaBookSolid,
             subMenus: [
-                { name: "Poems", link: "/author/publishes/poems", icon: LiaBookSolid },
-                { name: "Short Stories", link: "/author/publishes/short-stories", icon: LiaBookSolid },
-                { name: "Novels", link: "/author/publishes/novels", icon: LiaBookSolid },
-                { name: "Nisades", link: "/author/publishes/nisades", icon: LiaBookSolid },
+                { name: "Poems", link: "/author/poems", icon: BiParagraph },
+                { name: "Short Stories", link: "/author/short-stories", icon: LiaBookSolid },
+                { name: "Novels", link: "/author/novels", icon: LiaBookSolid },
+                { name: "Nisades", link: "/author/nisades", icon: LiaBookSolid },
             ]
         },
         { name: "Notes", link: "/author/notes", icon: LuPenTool },

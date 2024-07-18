@@ -56,7 +56,6 @@ function LandingPage() {
 
   return (
     <div className="alt-container">
-      <h1 className="text-recruitBlue font-bold">Welcome to the Landing Page!</h1>
 
       {/* Carousel with images of the latest content */}
       <div className="!p-0">
