@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Book1 from "../../public/images/books/book1.jpg";
 import Book2 from "../../public/images/books/book2.jpg";
 import Book3 from "../../public/images/books/book3.jpg";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { FaStar } from "react-icons/fa";
 
 
 const booksData = [
@@ -109,44 +110,37 @@ const booksData = [
 
 const ViewBooks = () => {
 
-  useEffect(() => {
-    AOS.init({
-
-    }
-    );
-  }, [])
+ 
 
 
   return (
 
     <>
-      <div className="mt-14 mb-20 mx-10 " data-aos="zoom-in">
-        <div className="container m-auto">
-
-
+    <div className="alt-container">
+      <div className="bg-gray-300 transform -translate-y-12">
           {/* Body section */}
-          <div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-3 py-5">
               {/* Card */}
 
               {booksData.map(({ id, img, title, rating, author }) => (
 
-                <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out mb-4">
 
                   <a href="/chapters">
                     <img
                       src={img}
                       alt=""
-                      className="h-[220px] w-[150px] object-cover rounded-md "
+                      className="h-[220px] w-[150px] object-cover rounded-sm"
                     />
                   </a>
                   <div>
-                    <h3 className="font-semibold">{title}</h3>
-                    <p className="text-sm text-gray-700">{author}</p>
+                    <h3 className="font-semibold text-primaryText">{title}</h3>
+                    <p className="text-sm text-secondaryText">{author}</p>
                     <div className="flex items-center gap-1">
                       {/* <FaStar className="text-yellow-500" /> */}
-                      <span>{rating}</span>
+                      <span className="text-tertiaryText text-xs">
+                      <FaStar className="text-yellow-500 mr-1 inline-block" />
+                      {rating}</span>
                     </div>
                   </div>
                 </div>
@@ -157,7 +151,8 @@ const ViewBooks = () => {
 
           </div>
         </div>
-      </div>
+        
+      
     </>
   );
 };

@@ -44,6 +44,9 @@ themes: {
           successText: '#28A745',
           infoText: '#17A2B8',
           inputLabel:'#333333',
+          authbackground:'bg-gray-50',
+          chapters:'#DDDDDD',
+          chapterbutton:'#FFFFFF',
           authbackground:'#F9FAFB',
           indigo: {
             500: "#6172F3",
@@ -122,6 +125,9 @@ themes: {
           successText: '#58D68D', // Light green for success text
           infoText: '#33CFFF', // Light teal for info text
           inputLabel:'#CCCCCC',
+          authbackground:'bg-gray-900',
+          chapters:'#5B5B5B',
+          chapterbutton:'#999999',
           authbackground:'#111827',
           indigo: {
             500: "#6172F3",
