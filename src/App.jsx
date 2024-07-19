@@ -14,6 +14,7 @@ import SupportPage from "./pages/Support/SupportPage.jsx";
 import AuthorDashboard from "./pages/AuthorDashboard";
 import FirstChapter from "./pages/FirstChapter.jsx";
 import Submitions from "./pages/Submitions.jsx";
+import Advertising from "./pages/Advertising.jsx";
 import LandingPage from "./pages/LandingPage/LandingPage.jsx";
 import PoemCreationPage from "./pages/PoemCreationPage.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
@@ -41,13 +42,14 @@ const routes = [
     { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
     { path: '/author/publishes', element: <PublishesPage />, layout: "author_dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
-    { path: '/create', element: <FirstChapter />, layout: "default" },
+    { path: '/create', element: <FirstChapter />, layout: "author_dashboard" },
     { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard" },
     { path: '/admin/users', element: <UserManagement />, layout: "admin_dashboard" },
     { path: '/admin/users/single', element: <SingleUser />, layout: "admin_dashboard" },
     { path: '/author/publishes/poem/create', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
     { path: '/chapters', element: <Chapters />, layout: "default" },
+    { path: '/author/advertising', element: <Advertising />, layout: "author_dashboard" },
     {path: '/chapterreading', element: <Chapterreading />, layout: "default"},
     { path: '/submitions', element: <Submitions />, layout: "author_dashboard" }
 ];

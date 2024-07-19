@@ -1,5 +1,5 @@
 import Sidebar from "../components/Sidebar/Sidebar.jsx"
-import BreadCrumbs from "../components/common/BreadCrumb.jsx";
+// import BreadCrumbs from "../components/common/BreadCrumb.jsx";
 
 
 // Importing icons
@@ -30,7 +30,7 @@ export default function AuthorDashboardLayout (props) {
         <div className="flex overflow-hidden max-h-[calc(100vh-65px)]">
             <Sidebar menus={menus} />
             <div className={`${props.class} w-full overflow-y-scroll default-scrollbar`}>
-                <BreadCrumbs />
+                {/* <BreadCrumbs /> */}
                 {props.children}
             </div>
         </div>
