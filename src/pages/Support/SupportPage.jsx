@@ -1,47 +1,53 @@
 import SupportTable from "./components/SupportTable";
 import CreateTicket from "./components/CreateTicket";
-import {useState} from "react";
-import axios from 'axios'
+import { useState } from "react";
+import axios from 'axios';
 
 const SupportPage = () => {
-
-    const [title, setTitle] = useState()
-    const [category, setCategory] = useState()
-    const [description, setDescription] = useState()
-    const [images, setImages] = useState(null)
-
-    const token = localStorage.getItem('token')
+    const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
+    const [description, setDescription] = useState('');
+    const [files, setFiles] = useState([]);
 
     const createTicket = async (e) => {
-        e.preventDefault()
-        console.log(title, category, description, images)
+        e.preventDefault();
 
-        const response = await axios.post('http://localhost:8080/api/support/create_ticket', {
-            title,
-            category,
-            description,
-            images
-        },
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('description', description);
 
-        console.log(response)
-
-        if(response.data.code === "00") {
-            alert('Ticket created successfully')
-            clearAll()
+        // Append each file in the files array
+        if (files !== null && files.length > 0) {
+            for (const file of files) {
+                formData.append('files', file);
+            }
         }
-    }
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/support/create_ticket', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            console.log(response);
+
+            if (response.data.code === "00") {
+                alert('Ticket created successfully');
+                clearAll();
+            }
+        } catch (error) {
+            console.error('Error creating ticket:', error);
+        }
+    };
 
     const clearAll = () => {
-        setTitle('')
-        setCategory('')
-        setDescription('')
-        setImages(null)
-    }
+        setTitle('');
+        setCategory('');
+        setDescription('');
+        setFiles([]);
+    };
 
     return (
         <div className="alt-container">
@@ -55,11 +61,11 @@ const SupportPage = () => {
                         setTitle={setTitle}
                         setCategory={setCategory}
                         setDescription={setDescription}
-                        setImages={setImages}
+                        setFiles={setFiles}
                         title={title}
                         category={category}
                         description={description}
-                        images={images}
+                        files={files}
                         clearAll={clearAll}
                     />
                 </div>
@@ -69,7 +75,7 @@ const SupportPage = () => {
                     Active Tickets
                 </div>
                 <div>
-                    <SupportTable createTicket={createTicket} />
+                    <SupportTable />
                 </div>
             </div>
         </div>

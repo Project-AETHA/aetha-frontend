@@ -1,31 +1,22 @@
-import { Image, Input, Button } from '@nextui-org/react'
-import { useState, useRef } from "react";
+import { Image, Input, Button } from '@nextui-org/react';
+import { useState } from 'react';
 
-export default function ImageUpload () {
-
+export default function ImageUpload({ files, setFiles }) {
     const [imagePreview, setImagePreview] = useState(null);
-    const [imageData, setImageData] = useState(null);
-    const [imageName, setImageName] = useState("");
-    const [image, setImage] = useState();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    const fileInputRef = useRef(null);
 
     function handleUploadClick(e) {
-        fileInputRef.current.click();
-        setImage(e.target.files[0]);
-        console.log("Image: ", e.target.files[0]);
+        const selectedFiles = e.target.files;
+        if (selectedFiles.length > 0) {
+            setFiles(selectedFiles); // Handle multiple files if needed
+            setImagePreview(URL.createObjectURL(selectedFiles[0]));
+        }
     }
 
-    function handleChange () {
-        console.log("Image Name: ", imageName);
-        console.log("Image Data: ", imageData);
-    }
-
-    function uploadImageWithAdditionalData () {
-        console.log("Image Name: ", imageName);
-        console.log("Image Data: ", imageData);
+    function handleClearClick() {
+        setFiles(null);
+        setImagePreview(null);
+        // Clear file input value
+        document.getElementById('complaint_image_upload').value = '';
     }
 
     return (
@@ -33,48 +24,34 @@ export default function ImageUpload () {
             <Image
                 width={200}
                 height={160}
-                alt="NextUI hero Image with delay"
-                src={imagePreview !== null ? imagePreview : "https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"}
+                alt="Image preview"
+                src={imagePreview || "http://localhost:8080/images/complaints/669aa497a1e4c96348da9c51_1.png"}
             />
 
-            <input
-                accept="image/*"
-                type="file"
-                className=""
-                ref={fileInputRef}
-                onChange={handleUploadClick}
-            />
-            <Button
-                variant="flat"
-                color="secondary"
-                component="span"
+            <div className="flex gap-2">
+                <label>
+                    <div className="bg-purple-100 text-purple-700 text-medium py-2 px-4 rounded-xl hover:cursor-pointer active:scale-95">
+                        Select Image
+                    </div>
+                    <input
+                        type="file"
+                        name="files"
+                        className="hidden"
+                        id="complaint_image_upload"
+                        onChange={handleUploadClick}
+                    />
 
-            >
-                Change Image
-            </Button>
-
-            <Input
-                key="imageName"
-                type="text"
-                name="image-name"
-                label="Image Name"
-                size="md"
-                labelPlacement="outside"
-                className="max-w-[300px]"
-                onChange={handleChange}
-                value={imageName}
-                variant="outlined"
-            />
-
-            <Button
-                variant="flat"
-                color="secondary"
-                className=""
-                onClick={() => uploadImageWithAdditionalData()}
-            >
-                Upload Image
-            </Button>
-
+                </label>
+                {imagePreview && (
+                    <Button
+                        variant="flat"
+                        color="error"
+                        onClick={handleClearClick}
+                    >
+                        Clear Image
+                    </Button>
+                )}
+            </div>
         </div>
     );
 }
