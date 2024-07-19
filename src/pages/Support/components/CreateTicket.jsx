@@ -1,4 +1,7 @@
 import {Button, Image, Input, Select, SelectItem, Textarea} from "@nextui-org/react";
+import ImageUpload from "../../../components/common/ImageUpload";
+
+
 
 function CreateTicket({
                           createTicket,
@@ -58,24 +61,7 @@ function CreateTicket({
             </div>
 
             <div className="flex items-center justify-evenly flex-wrap gap-4">
-                <Image
-                    width={200}
-                    height={160}
-                    alt="NextUI hero Image with delay"
-                    src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                />
-                <Image
-                    width={200}
-                    height={160}
-                    alt="NextUI hero Image with delay"
-                    src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                />
-                <Image
-                    width={200}
-                    height={160}
-                    alt="NextUI hero Image with delay"
-                    src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                />
+                <ImageUpload />
             </div>
 
             <div className="flex items-center justify-evenly flex-wrap gap-4">
