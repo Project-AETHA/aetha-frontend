@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Poems from "./pages/Poems";
+import Chapterreading from "./pages/Chapterreading.jsx";
 import Chapters from "./pages/Chapter";
 import Shop from "./pages/Shop";
 import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
@@ -27,6 +28,7 @@ import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import SimpleLayout from "./layouts/SimpleLayout.jsx";
 
+
 const routes = [
     { path: '/', element: <LandingPage />, layout: "default" },
     { path: '/home', element: <Home />, layout: "default" },
@@ -46,6 +48,7 @@ const routes = [
     { path: '/author/publishes/poem/create', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
     { path: '/chapters', element: <Chapters />, layout: "default" },
+    {path: '/chapterreading', element: <Chapterreading />, layout: "default"}
     { path: '/submitions', element: <Submitions />, layout: "author_dashboard" }
 ];
 

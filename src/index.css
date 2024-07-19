@@ -138,6 +138,7 @@ header {
     md:flex-wrap
     justify-evenly
     gap-2;
+    
 
     & > div {
         @apply

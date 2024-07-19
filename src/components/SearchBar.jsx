@@ -3,16 +3,13 @@ import { TERipple } from 'tw-elements-react';
 
 export default function SearchBar() {
     return (
-        <div className="bg-gradient-to-r from-purple-400 to-blue-500 pt-20 pb-20 relative">
-            <div
-                className="absolute inset-0 bg-cover bg-center opacity-30"
-                style={{ backgroundImage: "url('https://example.com/ebook-background.jpg')" }}
-            ></div>
+        <div className="alt-container px-4">
+        <div className="bg-gray-300 to-blue-500 relative">
+            
             <div className="max-w-2xl px-4 m-auto relative z-10">
-                <h1 className="text-3xl font-semibold mb-4 text-center bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-purple- to-blue-100">
+                <h1 className="text-2xl font-semibold mb-4 text-center text-primaryText">
                     Discover Your Next Read
                 </h1>
-
                 <form className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                     <div className="relative flex-grow">
                         <TERipple
@@ -36,12 +33,12 @@ export default function SearchBar() {
                             <input
                                 type="text"
                                 placeholder="Search"
-                                className="w-full py-3 pl-12 pr-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-50 focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 transition duration-300 ease-in-out transform hover:scale-105"
+                                className="w-full py-3 pl-12 pr-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-50 focus:bg-white focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out transform hover:scale-105"
                             />
                         </TERipple>
                     </div>
                     <div className="relative flex-shrink-0">
-                        <select className="w-full py-3 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-50 focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 transition duration-300 ease-in-out">
+                        <select className="w-full py-3 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-50 focus:bg-white focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out">
                             <option value=""> All </option>
                             <optgroup label="Book Type">
                                 <option value="thriller">Thriller</option>
@@ -57,6 +54,7 @@ export default function SearchBar() {
                     </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 }

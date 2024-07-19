@@ -54,14 +54,12 @@ const Books = () => {
 
   return (
     <>
-      <div className="mt-14 mb-20 mx-20" data-aos="zoom-in">
+      <div className="mt-14 mb-20 " data-aos="zoom-in">
         <div className="container m-auto">
           {/* header */}
           <div className="text-center mb-10 max-w-[600px] mx-auto">
-            <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary ">
-              Top Books for you
-            </p>
-            <h1 className="text-3xl font-bold"> Recomended Books for you </h1>
+          
+            <h1 className="text-2xl font-bold text-primaryText"> Recomended Books for you </h1>
             <p className="text-xs text-gray-400">
               User wadiyenma kiyawana poth types Recomend wenne menna methenta
             </p>
@@ -79,11 +77,11 @@ const Books = () => {
                     className="h-[220px] w-[150px] object-cover rounded-md "
                   />
                   <div>
-                    <h3 className="font-semibold">{title}</h3>
-                    <p className="text-sm text-gray-700">{author}</p>
+                    <h3 className="font-semibold text-primaryText">{title}</h3>
+                    <p className="text-sm text-secondaryText">{author}</p>
                     <div className="flex items-center gap-1">
                       <FaStar className="text-yellow-500" />
-                      <span>{rating}</span>
+                      <span className="text-primaryText">{rating}</span>
                     </div>
                   </div>
                 </div>
