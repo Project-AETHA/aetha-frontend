@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Img1 from "../../public/images/books/book2.jpg";
 import Img2 from "../../public/images/books/book1.jpg";
 import Img3 from "../../public/images/books/book3.jpg";
@@ -108,7 +108,7 @@ const ServicesData = [
 
 ];
 
-const Services = ({ handleOrderPopup }) => {
+const Services = ({}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const servicesPerPage = 12;
 
@@ -120,47 +120,42 @@ const Services = ({ handleOrderPopup }) => {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  useEffect(() => {
-    AOS.init({
-      duration: 600
-    });
-  }, []);
+ 
 
   const totalPages = Math.ceil(ServicesData.length / servicesPerPage);
 
   return (
     <>
-      <span id="services"></span>
-      <div className=" mt-10 px-4 sm:px-10 md:px-20" data-aos="fade-out">
-        <div className="container mx-auto border-2 shadow-md rounded-xl p-4 sm:p-20">
+
+<div className="alt-container">
+      <div>
+        <div className="container rounded-md bg-gray-300 p-3 sm:px-5">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-5 place-items-center pt-20">
             {currentServices.map((service) => (
               <div
                 key={service.id}
-                data-aos="zoom-in"
-                className="rounded-2xl bg-white light:bg-gray-800 hover:bg-gradient-to-tl from-cyan-300 to-indigo-600 dark:hover:bg-primary hover:text-white shadow-xl duration-high group max-w-[300px] h-[300px] mb-20"
+                
+                className="rounded-md border border-primaryText text-primaryText light:bg-gray-800 shadow-xl duration-high group w-[95%] h-[250px] mb-20"
               >
                 <div className="h-[100px] relative">
                   <img
                     src={service.img}
                     alt=""
-                    className="max-w-[100px] h-[150px] mx-auto transform -translate-y-14 group-hover:scale-110 duration-300 shadow-md z-10"
+                    className="w-[100px] h-[150px] mx-auto transform -translate-y-14 group-hover:scale-110 duration-300 shadow-md z-10"
                   />
                 </div>
-                <div className="p-4 text-center">
-                  <div className="w-full flex items-center justify-center gap-1">
+                <div className="text-center">
+                  <div className="pt-2 w-full flex items-center justify-center gap-1">
                     <FaStar className="text-yellow-500" />
                     <FaStar className="text-yellow-500" />
                     <FaStar className="text-yellow-500" />
                     <FaStar className="text-yellow-500" />
                     <FaStar className="text-yellow-500" />
                   </div>
-                  <h1 className="text-xl font-bold h-[60px]">{service.title}</h1>
-                  <p className="text-gray-500 group-hover:text-slate-200 duration-high text-sm line-clamp-2">
-                    {service.description}
-                  </p>
+                  <h1 className="text-md md:text-xl font-semibold h-[60px]">{service.title}</h1>
+                 
                   <button
-                    className="bg-blue-600 hover:scale-110 hover:font-bold duration-300 text-white py-1 px-7 rounded mt-4 group-hover:bg-white group-hover:text-blue-600"
+                    className="bg-blue-600 hover:scale-110 hover:font-bold duration-300 text-white py-1 px-7 rounded group-hover:bg-white group-hover:text-blue-600"
                   >
                     Buy Now
                   </button>
@@ -170,6 +165,7 @@ const Services = ({ handleOrderPopup }) => {
           </div>
           <Pagination totalPages={totalPages} paginate={paginate} currentPage={currentPage} />
         </div>
+      </div>
       </div>
     </>
   );

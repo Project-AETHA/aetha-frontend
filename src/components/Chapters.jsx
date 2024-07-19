@@ -126,26 +126,7 @@ function LandingPage() {
 
     ];
 
-    let ads = [
-        {
-            id: 1,
-            title: "Advertisement 1",
-            content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
-        },
-        {
-            id: 2,
-            title: "Advertisement 2",
-            content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
-        },
-        {
-            id: 3,
-            title: "Advertisement 3",
-            content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
-        },
-    ];
+   
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
@@ -173,7 +154,7 @@ function LandingPage() {
             <div className="flex flex-col md:flex-row gap-4 !p-0">
                 {/* Latest Updates */}
                 <div className="bg-gray-300 w-full md:w-9/12 rounded-md p-2">
-                    <p className="flex gap-2 items-center font-bold text-lg text-orange-700 mb-4">
+                    <p className="flex gap-2 items-center font-bold text-lg text-primaryText mb-4">
                         <FcGallery size="25px" />
                         Novel
                     </p>
@@ -234,22 +215,27 @@ function LandingPage() {
             <div className="flex flex-col md:flex-row gap-4 !p-0">
                 {/* Latest Updates */}
                 <div className="bg-gray-300 w-full md:w-9/12 rounded-md p-2">
-                    <p className="flex gap-2 items-center font-bold text-lg text-green-700 mb-4">
+                    <p className="flex gap-2 items-center font-bold text-lg text-primaryText mb-4">
                         <FcBiomass size="25px" />
                         Chapters
                     </p>
+                    <a href="./chapterreading" className="">
                     <div className="flex justify-evenly items-center flex-wrap gap-2">
                         {currentItems.map(person => (
-                            <div key={person.key} className="bg-chapterbutton rounded-xl my-1 p-3 w-full mx-2 flex hover:shadow-md hover:bg-gray-400">
-                                <div className="inline-block w-8/12">
+                            <div key={person.key} className="bg-chapters rounded-xl p-3 w-full mx-2 flex hover:shadow-md hover:bg-gray-400">
+                                <div className="inline-block w-full md:w-8/12">
                                     <p className="text-primaryText text-sm">Chapter {person.key} : {person.chapter}</p>
                                 </div>
-                                <div className="inline-block w-4/12">
-                                    <p className="text-gray-200 text-right text-xs hidden md:block">{person.releaseday}</p>
+                              
+                                <div className="inline-block w-0 md:w-4/12">
+                                    <p className="text-secondaryText text-right text-xs italic hidden md:block">{person.releaseday}</p>
                                 </div>
+                                
+
                             </div>
                         ))}
                     </div>
+                    </a>
                     <div className="flex justify-between items-center mt-4">
                         <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
                             Previous
@@ -306,18 +292,6 @@ function LandingPage() {
                 </div>
             </div>
 
-            <div className="ad-container">
-                {ads &&
-                    ads.map((ad, index) => (
-                        <div className="" key={ad.id}>
-                            <Image width="300px" alt="NextUI hero Image" src={ad.image} />
-                            <h2>
-                                {ad.title} {index}
-                            </h2>
-                            <p>{ad.content}</p>
-                        </div>
-                    ))}
-            </div>
 
         </div>
     );

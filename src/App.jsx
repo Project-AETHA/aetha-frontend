@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Poems from "./pages/Poems";
+import Chapterreading from "./pages/Chapterreading.jsx";
 import Chapters from "./pages/Chapter";
 import Shop from "./pages/Shop";
 import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
@@ -25,6 +26,7 @@ import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
 
 
+
 const routes = [
     { path: '/', element: <LandingPage />, layout: "default" },
     { path: '/home', element: <Home />, layout: "default" },
@@ -42,7 +44,8 @@ const routes = [
     { path: '/admin/users/single', element: <SingleUser/>, layout:"admin_dashboard"},
     { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
-    { path: '/chapters', element: <Chapters />, layout: "default" }
+    { path: '/chapters', element: <Chapters />, layout: "default" },
+    {path: '/chapterreading', element: <Chapterreading />, layout: "default"}
 ];
 
 function App() {

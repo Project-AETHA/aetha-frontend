@@ -41,6 +41,7 @@ themes: {
           infoText: '#17A2B8',
           inputLabel:'#333333',
           authbackground:'bg-gray-50',
+          chapters:'#DDDDDD',
           chapterbutton:'#FFFFFF',
           indigo: {
             500: "#6172F3",
@@ -105,6 +106,7 @@ themes: {
           infoText: '#33CFFF', // Light teal for info text
           inputLabel:'#CCCCCC',
           authbackground:'bg-gray-900',
+          chapters:'#5B5B5B',
           chapterbutton:'#999999',
           indigo: {
             500: "#6172F3",
