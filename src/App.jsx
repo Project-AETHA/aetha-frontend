@@ -48,7 +48,7 @@ const routes = [
     { path: '/author/publishes/poem/create', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
     { path: '/chapters', element: <Chapters />, layout: "default" },
-    {path: '/chapterreading', element: <Chapterreading />, layout: "default"}
+    {path: '/chapterreading', element: <Chapterreading />, layout: "default"},
     { path: '/submitions', element: <Submitions />, layout: "author_dashboard" }
 ];
 
