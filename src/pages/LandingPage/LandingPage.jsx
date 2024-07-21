@@ -66,7 +66,7 @@ function LandingPage() {
     <div className="alt-container !m-0 !p-0">
 
       {/* Carousel with images of the latest content */}
-      <Carousel autoSlide={false} slideDetails={slides}>
+      <Carousel autoSlide={true} slideDetails={slides}>
         {slides.map((slide, index) => (
             <img key={index} src={slide.image} className="max-h-[calc(100vh-80px)] min-w-full object-fill" alt={index}/>
         ))}
