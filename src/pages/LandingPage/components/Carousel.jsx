@@ -1,30 +1,29 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Rating from "../../../components/common/Rating";
 import OverallReview from "../../../components/common/OverallReview.jsx";
 
-
-export default function Carousel ({ children: slides, autoSlide=false, autoSlideInterval=3000, slideDetails }) {
-
+export default function Carousel({ children: slides, autoSlide = false, autoSlideInterval = 3000, slideDetails }) {
     const [current, setCurrent] = useState(0);
-    const [details, setDetails] = useState(slideDetails[current]);
-
+    const [details, setDetails] = useState(slideDetails[0]);
 
     const prev = () => {
         setCurrent(current => current === 0 ? slides.length - 1 : current - 1);
-        setDetails(slideDetails[current === 0 ? slides.length - 1 : current - 1]);
-    }
+    };
 
     const next = () => {
         setCurrent(current => current === slides.length - 1 ? 0 : current + 1);
-        setDetails(slideDetails[(current+1) % slides.length]);
-    }
+    };
 
     useEffect(() => {
-        if(!autoSlide) return;
-        const slideInterval = setInterval(next, autoSlideInterval)
-        return () => clearInterval(slideInterval)
-    }, []);
+        setDetails(slideDetails[current]);
+    }, [current, slideDetails]);
+
+    useEffect(() => {
+        if (!autoSlide) return;
+        const slideInterval = setInterval(next, autoSlideInterval);
+        return () => clearInterval(slideInterval);
+    }, [autoSlide, autoSlideInterval]);
 
     return (
         <div className="alt-container !p-0 !m-0">
@@ -77,5 +76,5 @@ export default function Carousel ({ children: slides, autoSlide=false, autoSlide
                 </div>
             </div>
         </div>
-    )
+    );
 }
