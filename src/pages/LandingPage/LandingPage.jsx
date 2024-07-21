@@ -1,6 +1,7 @@
 import { Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { FcBiomass, FcGallery, FcRating } from "react-icons/fc";
+import Carousel from "./components/Carousel";
 
 function LandingPage() {
   let recommendations = [
@@ -54,17 +55,29 @@ function LandingPage() {
   let latest_updates = recommendations.slice(0, 3);
   let rising_stars = recommendations.slice(0, 3);
 
+  const slides = [
+    {title: "slide-01", review_score: 4.8, rating: 4.5, description: "Something-01", image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"},
+    {title: "slide-02", review_score: 1.2, rating: 2.0, description: "Something-02", image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"},
+    {title: "slide-03", review_score: 5.0, rating: 3.5, description: "Something-03", image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"},
+    {title: "slide-04", review_score: 3.2, rating: 1.5, description: "Something-04", image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"},
+  ]
+
   return (
-    <div className="alt-container">
+    <div className="alt-container !m-0 !p-0">
 
       {/* Carousel with images of the latest content */}
-      <div className="!p-0">
-        <Image
-          width="100%"
-          alt="NextUI hero Image"
-          src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-        />
-      </div>
+      <Carousel autoSlide={false} slideDetails={slides}>
+        {slides.map((slide, index) => (
+            <img key={index} src={slide.image} className="max-h-[calc(100vh-80px)] min-w-full object-fill" alt={index}/>
+        ))}
+      </Carousel>
+      {/*<div className="!p-0">*/}
+      {/*  <Image*/}
+      {/*    width="100%"*/}
+      {/*    alt="NextUI hero Image"*/}
+      {/*    src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"*/}
+      {/*  />*/}
+      {/*</div>*/}
 
       {/* Personalized Recommendations */}
       <div className="bg-gray-300">
