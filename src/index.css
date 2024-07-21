@@ -194,3 +194,25 @@ header {
     active:scrollbar-thumb-scrollbarActive
     scrollbar-track-scrollbarTrack;
 }
+
+/* File uploader styles */
+label.sc-aXZVg {
+    width: 200px;
+    height: 160px;
+    box-sizing: border-box;
+
+    @apply flex  flex-col;
+
+    & > svg {
+        width: 100px;
+        height: 100px;
+    }
+
+    & > div {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 0;
+        justify-content: center;
+        align-items: center;
+    }
+}
