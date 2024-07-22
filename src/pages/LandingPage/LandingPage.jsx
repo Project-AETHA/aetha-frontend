@@ -2,31 +2,47 @@ import { Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { FcBiomass, FcGallery, FcRating } from "react-icons/fc";
 import Carousel from "./components/Carousel";
+import Item from "../../components/common/Item.jsx"
 
 function LandingPage() {
   let recommendations = [
     {
+      id: 1,
       title: "Recommendation 1",
+      type: "novel",
+      rating: 4.6,
       description: "Recommendation description",
       image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
     },
     {
+      id: 1,
       title: "Recommendation 1",
+      type: "novel",
+      rating: 4.6,
       description: "Recommendation description",
       image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
     },
     {
+      id: 1,
       title: "Recommendation 1",
+      type: "novel",
+      rating: 4.6,
       description: "Recommendation description",
       image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
     },
     {
+      id: 1,
       title: "Recommendation 1",
+      type: "novel",
+      rating: 4.6,
       description: "Recommendation description",
       image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
     },
     {
+      id: 1,
       title: "Recommendation 1",
+      type: "novel",
+      rating: 4.6,
       description: "Recommendation description",
       image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
     },
@@ -71,47 +87,24 @@ function LandingPage() {
             <img key={index} src={slide.image} className="max-h-[calc(100vh-80px)] min-w-full object-fill" alt={index}/>
         ))}
       </Carousel>
-      {/*<div className="!p-0">*/}
-      {/*  <Image*/}
-      {/*    width="100%"*/}
-      {/*    alt="NextUI hero Image"*/}
-      {/*    src="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"*/}
-      {/*  />*/}
-      {/*</div>*/}
 
       {/* Personalized Recommendations */}
-      <div className="bg-gray-300">
+      <div className="bg-foreground-100/75">
         <p className="flex gap-2 items-center font-bold text-lg text-green-700 mb-4">
           <FcBiomass size="25px" />
           Personalized Recommendations
         </p>
 
-        <div className="flex justify-evenly items-center flex-wrap gap-2">
+        <div className="flex items-center flex-wrap gap-3">
           {recommendations &&
             recommendations.map((recommendation, index) => (
-              <Link to="#" key={index}>
-                <div className="max-w-[350px] w-[150px] flex flex-col">
-                  <Image
-                    width="150px"
-                    height="300px"
-                    className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer"
-                    alt="NextUI hero Image"
-                    src={recommendation.image}
-                  />
-                  <p className="text-sm text-foreground-700">
-                    {recommendation.title}
-                  </p>
-                  <p className="truncate text-xs text-foreground-500">
-                    {recommendation.description}
-                  </p>
-                </div>
-              </Link>
+                <Item key={index} content={recommendation} />
             ))}
         </div>
       </div>
 
       {/* Advertisements */}
-      <div className="ad-container">
+      <div className="ad-container !bg-foreground-100/75">
         {ads &&
             ads.map((ad, index) => (
                 <div className="" key={ad.id}>
@@ -126,62 +119,31 @@ function LandingPage() {
 
       <div className="flex gap-4 !p-0">
         {/* Latest Updates */}
-        <div className="bg-gray-300 w-[50%] rounded-md p-2">
+        <div className="bg-foreground-100/75 w-[50%] rounded-md p-2">
           <p className="flex gap-2 items-center font-bold text-lg text-orange-700 mb-4">
             <FcGallery size="25px" />
             Latest Updates
           </p>
-          <div className="flex justify-evenly items-center flex-wrap gap-2">
+
+          <div className="flex items-center flex-wrap gap-3">
             {latest_updates &&
               latest_updates.map((latest_update, index) => (
-                <Link to="#" key={index}>
-                  <div className="max-w-[350px] w-[150px] flex flex-col">
-                    <Image
-                      width="150px"
-                      height="300px"
-                      className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer"
-                      alt="NextUI hero Image"
-                      src={latest_update.image}
-                    />
-                    <p className="text-sm text-foreground-700">
-                      {latest_update.title}
-                    </p>
-                    <p className="truncate text-xs text-foreground-500">
-                      {latest_update.description}
-                    </p>
-                  </div>
-                </Link>
+                  <Item key={index} content={latest_update} />
               ))}
           </div>
         </div>
 
         {/* Rising Stars */}
-        <div className="bg-gray-300 w-[50%] rounded-md p-2">
+        <div className="bg-foreground-100/75 w-[50%] rounded-md p-2">
           <p className="flex gap-2 items-center font-bold text-lg text-amber-500 mb-4">
             <FcRating size="25px" />
             Rising Stars
           </p>
 
-          <div className="flex justify-evenly items-center flex-wrap gap-2">
+          <div className="flex items-center flex-wrap gap-3">
             {rising_stars &&
                 rising_stars.map((rising_star, index) => (
-                <Link to="#" key={index}>
-                  <div className="max-w-[350px] w-[150px] flex flex-col">
-                    <Image
-                      width="150px"
-                      height="300px"
-                      className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer"
-                      alt="NextUI hero Image"
-                      src={rising_star.image}
-                    />
-                    <p className="text-sm text-foreground-700">
-                      {rising_star.title}
-                    </p>
-                    <p className="truncate text-xs text-foreground-500">
-                      {rising_star.description}
-                    </p>
-                  </div>
-                </Link>
+                    <Item key={index} content={rising_star} />
               ))}
           </div>
         </div>

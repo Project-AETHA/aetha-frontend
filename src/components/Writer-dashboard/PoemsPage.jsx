@@ -16,7 +16,7 @@ export default function PublishesPage() {
         <div className="border-2 rounded-lg flex justify-between items-center p-2">
           <p>Interested in creating content ?</p>
           <Link to="/author/poems/create">
-            <Button variant="flat" color="secondary" className="">
+            <Button type={"button"} variant="flat" color="secondary" className="">
                 Start Writing
             </Button>
           </Link>

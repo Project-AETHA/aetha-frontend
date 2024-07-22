@@ -22,13 +22,15 @@ export default function OverallReview({ review_score, font_size = "text-medium" 
     return (
         <div className={`
             ${font_size} 
-            flex items-center gap-2
-            bg-foreground-100/25 text-white
+            flex items-center
+            text-white
             rounded 
-            py-1 px-2
         `}>
-            <span>{icon}</span>
-            <span>{message}</span>
+            <span className="bg-gray-700/50 px-2 py-1 rounded-tl text-small rounded-bl">Reviews </span>
+            <div className="bg-foreground-100/25 px-2 py-1 flex gap-2 rounded-tr rounded-br">
+                <span>{icon}</span>
+                <span>{message}</span>
+            </div>
         </div>
     );
 }
