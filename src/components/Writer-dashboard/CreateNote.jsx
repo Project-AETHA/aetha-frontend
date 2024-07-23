@@ -40,10 +40,10 @@ export default function CreateNote() {
     }
 
     return (
-        <form className="alt-container px-2 pb-4 h-full" onSubmit={handleSubmit}>
+        <form className="alt-container px-2 pb-4 h-[calc(100vh-110px)]" onSubmit={handleSubmit}>
             <div className="rounded p-4 flex flex-col gap-4 items-center justify-start bg-foreground-50">
                 <h1 className="text-3xl font-bold text-foreground-900">Create a Note</h1>
-                <p className="text-foreground-900">Write your poem here</p>
+                <p className="text-foreground-900">Write your notes here</p>
 
                 <div className="w-full flex flex-col justify-center gap-2">
                     <p className="text-sm text-foreground-900">Title</p>
@@ -60,7 +60,7 @@ export default function CreateNote() {
                     />
                 </div>
 
-                <div className="w-full min-h-[400px] flex flex-col justify-center grow gap-2">
+                <div className="w-full min-h-[300px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
                     <ReactQuill className="text-editor" theme="snow" value={content} onChange={setContent} />
                 </div>

@@ -1,32 +1,36 @@
-import { Link } from "react-router-dom";
-import BasicTableWithLinks from "../common/Tables/BasicTableWithLinks.jsx";
+import { Link, useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner} from "@nextui-org/react";
+import {format, parseISO} from "date-fns";
 
-const columns = ["name", "date", "status"];
 
-function formatLink(item) {
-  return `/author/notes/${item.key ?? item.name}`;
-}
-
-async function getData() {
-  const response = await axios.get("http://localhost:8080/api/notes/get-my-notes");
-
-  if(response.status === 200) {
-    if(response.data.code === "00") {
-      return response.data.content
-    }
-  } else {
-    return []
-  }
+function formatDate(dateString) {
+  const date = parseISO(dateString);
+  return format(date, "yyyy MMM dd");
 }
 
 export default function NotesPage() {
 
+  const navigate = useNavigate()
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function getData() {
+    setIsLoading(true);
+    const response = await axios.get("http://localhost:8080/api/notes/get-my-notes");
+
+    if(response.status === 200) {
+      if(response.data.code === "00") {
+        setData(response.data.content)
+      }
+    }
+
+    setIsLoading(false)
+  }
 
   useEffect(() => {
-    setData(getData())
+    getData()
   }, []);
 
   return (
@@ -50,9 +54,26 @@ export default function NotesPage() {
         </div>
 
         <div className="flex w-full flex-col h-full">
-          <div>
-            <BasicTableWithLinks data={data} formatLink={formatLink} columns={columns} rowsPerPage={5} />
-          </div>
+          <Table aria-label="Example static collection table" selectionMode={"single"}>
+            <TableHeader>
+              <TableColumn>TITLE</TableColumn>
+              <TableColumn>CREATED DATE</TableColumn>
+              <TableColumn>LAST MODIFIED AT</TableColumn>
+            </TableHeader>
+            <TableBody
+                items={data}
+                isLoading={isLoading}
+                loadingContent={<Spinner />}
+            >
+                {data.map((item) => (
+                    <TableRow key={item.id} className="hover:cursor-pointer" onClick={() => navigate(`/author/notes/${item.id}`)}>
+                      <TableCell>{item.title}</TableCell>
+                      <TableCell>{formatDate(item.createdAt)}</TableCell>
+                      <TableCell>{formatDate(item.lastModified)}</TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+          </Table>
       </div>
     </div>
 </div>
