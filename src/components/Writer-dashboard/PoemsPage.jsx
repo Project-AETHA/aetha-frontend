@@ -1,4 +1,4 @@
-import { Tabs, Tab, Button } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 
 export default function PublishesPage() {
