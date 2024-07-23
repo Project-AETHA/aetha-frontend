@@ -6,8 +6,8 @@ const NewCampaign = () => {
   const headingClasses = "flex w-full sticky top-1 z-20 py-1.5 px-2 bg-default-100 shadow-small rounded-small";
 
   return (
-    <div className="min-h-screen  flex flex-col items-center py-10 px-10">
-      <Card className="w-full p-6  shadow-md">
+    <div className="min-h-screen  flex flex-col items-center p-2">
+      <Card className="w-full p-6  shadow-md" radius='sm'>
         <h2 className="text-2xl font-bold mb-4">New Campaign</h2>
         <form className="space-y-4">
           <div>
@@ -36,7 +36,7 @@ const NewCampaign = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Background Upload</label>
-            <input className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-foreground file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="picture" name="picture" type="file">
+            <input className="flex h-9 w-full max-w-xl min-h-10 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-foreground file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" id="picture" name="picture" type="file">
             </input>
           </div>
           <Input
@@ -44,7 +44,7 @@ const NewCampaign = () => {
             label="Link"
             defaultValue="www.aetha.com/fiction/90062"
             description="The URL to redirect the users to when clicking the ad; or optionally the link of a custom button on the ad."
-            className="max-w-xs"
+            className="max-w-xl"
           />
           <div className="w-full max-w-xl flex flex-row gap-4">
             <DatePicker

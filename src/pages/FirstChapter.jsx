@@ -21,7 +21,7 @@ const FirstChapter = () => {
         <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
       </Sidebar> */}
       <div className="flex-1">
-      <Card className="p-5 mb-10 shadow-none flex-auto" radius="none">
+      <Card className="p-5 shadow-none flex-auto" radius="none">
       <div className="flex justify-between items-center">
         <Breadcrumbs>
           <BreadcrumbItem>
@@ -31,8 +31,8 @@ const FirstChapter = () => {
         </Breadcrumbs>
       </div>
       </Card>
-      <div className="px-10">
-        <Card className="p-8" shadow='none'>
+      <div className="p-2">
+        <Card className="p-8" shadow='none' radius='sm'>
           <h2 className="text-2xl font-semibold mb-4">New Fiction Submission</h2>
           <div className="mb-4">
             <h3 className="text-xl font-medium">Submit your fiction</h3>
