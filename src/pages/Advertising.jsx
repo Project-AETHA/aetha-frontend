@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Dropdown, Spacer, DropdownTrigger, DropdownMenu, Button, DropdownItem} from '@nextui-org/react';
+import { Card, Dropdown, Link, DropdownTrigger, DropdownMenu, Button, DropdownItem} from '@nextui-org/react';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { CirclePlus } from 'lucide-react';
 
@@ -20,10 +20,12 @@ const Advertising = () => {
     <div className="p-6 min-h-screen">
     <div className="flex justify-between items-center">
       <h1 className="text-3xl font-semibold mb-4">Marketing Dashboard</h1>
-      <Button auto className="bg-infoText text-white">
+      <Link href="/author/advertising/newcampaign">
+        <Button auto className="bg-infoText text-white">
       <CirclePlus />
             New Campaign
           </Button>
+          </Link>
       </div>
       <div className="flex gap-4 mb-6">
         <Dropdown>
@@ -112,10 +114,12 @@ const Advertising = () => {
         <h2 className="text-xl font-semibold mb-4">Your Campaigns</h2>
         <div className="text-gray-500">- You have no campaigns -</div>
         <div className="flex justify-end mt-4">
+        <Link href="/author/advertising/newcampaign">
         <Button auto className="bg-infoText text-white">
       <CirclePlus />
             New Campaign
           </Button>
+          </Link>
         </div>
       </Card>
     </div>

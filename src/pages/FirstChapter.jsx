@@ -21,7 +21,7 @@ const FirstChapter = () => {
         <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
       </Sidebar> */}
       <div className="flex-1">
-      <Card className="p-5 mb-4 shadow-none flex-auto" radius="none">
+      <Card className="p-5 mb-10 shadow-none flex-auto" radius="none">
       <div className="flex justify-between items-center">
         <Breadcrumbs>
           <BreadcrumbItem>
@@ -31,7 +31,8 @@ const FirstChapter = () => {
         </Breadcrumbs>
       </div>
       </Card>
-        <Card className="p-4" shadow='none' radius="none">
+      <div className="px-10">
+        <Card className="p-8" shadow='none'>
           <h2 className="text-2xl font-semibold mb-4">New Fiction Submission</h2>
           <div className="mb-4">
             <h3 className="text-xl font-medium">Submit your fiction</h3>
@@ -56,10 +57,10 @@ const FirstChapter = () => {
               onChange={setSynopsis}
               theme="snow"
               placeholder="Write your Synopsis here..."
-              className="h-32 mb-10"
+              className="text-editor"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 ">
             <h3 className="text-xl font-medium mb-2">Genres</h3>
             <div className="flex flex-wrap gap-2">
               <Checkbox>Action</Checkbox>
@@ -109,13 +110,14 @@ const FirstChapter = () => {
               onChange={setChapterContent}
               theme="snow"
               placeholder="Write your chapter content here..."
-              className="h-32 mb-10"
+              className="text-editor "
             />
           </div>
           <div className="mb-4 mt-4">
             <Button>Submit</Button>
           </div>
         </Card>
+        </div>
       </div>
     </div>
   );
