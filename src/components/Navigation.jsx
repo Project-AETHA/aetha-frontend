@@ -20,10 +20,12 @@ import {
 import { ThemeSwitcher } from "./common/ThemeSwitcher";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "/images/logo.png";
 
 export default function Navigation() {
+
+  const navigate = useNavigate()
 
   const { user } = useAuthContext();
   const { handleLogout } = useLogout();
@@ -83,7 +85,7 @@ export default function Navigation() {
                     >
                       {item.subItems.map((subItem, subIndex) => {
                         return (
-                            <DropdownItem key={subItem.key} href={subItem.link}>
+                            <DropdownItem key={subItem.key} onClick={() => navigate(subItem.link)}>
                               {subItem.title}
                             </DropdownItem>
                         )
@@ -93,10 +95,8 @@ export default function Navigation() {
               )
             } else {
               return (
-                  <NavbarItem key={itemIndex}>
-                    <Link to={item.link} color="foreground">
+                  <NavbarItem key={itemIndex} onClick={() => navigate(item.link)} className="hover:cursor-pointer">
                       {item.title}
-                    </Link>
                   </NavbarItem>
               )
             }

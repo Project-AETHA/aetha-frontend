@@ -16,16 +16,16 @@ export default function PublishesPage() {
         <div className="border-2 rounded-lg flex justify-between items-center p-2">
           <p>Interested in creating content ?</p>
           <Link to="/author/poems/create">
-            <Button type={"button"} variant="flat" color="secondary" className="">
-                Start Writing
-            </Button>
+              <button className="rounded-lg text-small bg-blue-300 font-semibold text-blue-700 px-4 py-2 hover:text-blue-100 hover:bg-blue-400 transition-color duration-300">
+                  Start Writing +
+              </button>
           </Link>
         </div>
 
-        <div className="flex w-full flex-col h-full">
-          <Tabs aria-label="Options">
-            <Tab key="listed" title="Listed">
-              <div className="bg-foreground-50 p-2 rounded h-full flex flex-col gap-4">
+          <div className="flex w-full flex-col h-full">
+              <Tabs aria-label="Options">
+                  <Tab key="listed" title="Listed">
+                      <div className="bg-foreground-50 p-2 rounded h-full flex flex-col gap-4">
                 <div className="border-2 rounded-lg flex justify-between items-center p-2">
                   <p>All Publishes</p>
                 </div>

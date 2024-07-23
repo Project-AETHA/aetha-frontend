@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-function PoemCreationPage () {
+function CreatePoem () {
 
     const [value, setValue] = useState('');
 
@@ -32,13 +32,13 @@ function PoemCreationPage () {
                 </div>
 
                 <div className="w-full  flex justify-center gap-2">
-                    <Button variant="solid" color="primary" className="text-sm text-white">Save as a Draft</Button>
-                    <Button variant="solid" color="danger" className="text-sm text-white">Discard</Button>
-                    <Button variant="solid" color="success" className="text-sm text-white">Publish</Button>
+                    <Button variant="flat" color="primary" className="text-sm">Save as a Draft</Button>
+                    <Button variant="flat" color="danger" className="text-sm">Discard</Button>
+                    <Button variant="flat" color="success" className="text-sm">Publish</Button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default PoemCreationPage
+export default CreatePoem

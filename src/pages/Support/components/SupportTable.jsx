@@ -28,19 +28,26 @@ function SupportTable({ createTicket }) {
   const getData = async () => {
     setIsLoading(true);
 
-    const token = localStorage.getItem('token')
-    const response = await axios.get(
-      "http://localhost:8080/api/support/get_my_tickets"
-    );
+    try {
+      const response = await axios.get("http://localhost:8080/api/support/get_my_tickets", {
+        timeout: 3000, // Set timeout to 3 seconds
+      });
 
-    if (response.status === 200) {
-      if (response.data.code === "00") {
-        setTickets(response.data.content);
+      if (response.status === 200) {
+        if (response.data.code === "00") {
+          setTickets(response.data.content);
+        } else {
+          console.log("Error reported from server");
+        }
       } else {
-        console.log("Error reported from server");
+        console.log("Error while fetching data");
       }
-    } else {
-      console.log("Error while fetching data");
+    } catch (error) {
+      if (error.code === 'ECONNABORTED') {
+        console.log("Request timed out");
+      } else {
+        console.log("Error while fetching data:", error.message);
+      }
     }
 
     setIsLoading(false);
@@ -58,7 +65,7 @@ function SupportTable({ createTicket }) {
       selectionMode="single"
     >
       <TableHeader>
-        <TableColumn className="hidden sm:block">NAME</TableColumn>
+        <TableColumn className="hidden sm:flex items-center">NAME</TableColumn>
         <TableColumn>TITLE</TableColumn>
         <TableColumn>CREATED AT</TableColumn>
         <TableColumn>STATUS</TableColumn>

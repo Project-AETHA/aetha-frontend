@@ -24,7 +24,7 @@ export default function AuthorDashboardLayout (props) {
         { name: "Notes", link: "/author/notes", icon: LuPenTool },
         { name: "Advertising", link: "/author/advertising", icon: RiAdvertisementLine },
         { name: "E-Book Selling", link: "/author/ebooks", icon: MdAttachMoney },
-        { name: "Create Poem", link: "/author/publishes/poem/create", icon: MdAttachMoney, margin: true },
+        // { name: "Create Poem", link: "/author/publishes/poem/create", icon: MdAttachMoney, margin: true },
     ];
 
     return (

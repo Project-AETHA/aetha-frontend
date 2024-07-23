@@ -14,8 +14,8 @@ function CreateTicket({
                           files
                       }) {
     return (
-        <form onSubmit={createTicket} className="sub-container flex flex-col gap-4">
-            <div className="flex items-center justify-evenly flex-wrap md:flex-nowrap gap-4">
+        <form onSubmit={createTicket} className="flex flex-col gap-4 w-full items-center">
+            <div className="flex items-center flex-wrap md:flex-nowrap gap-4">
                 <Input
                     isRequired
                     key="title"
@@ -24,7 +24,7 @@ function CreateTicket({
                     size="md"
                     labelPlacement="outside"
                     placeholder="Short Title"
-                    className="max-w-[400px]"
+                    className="min-w-[200px] max-w-[400px] lg:min-w-[400px]"
                     onChange={e => setTitle(e.target.value)}
                     value={title}
                 />
@@ -35,7 +35,7 @@ function CreateTicket({
                     label="Category"
                     placeholder="Select a category"
                     labelPlacement="outside"
-                    className="max-w-[400px]"
+                    className="min-w-[200px] max-w-[400px] lg:min-w-[400px]"
                     onChange={e => setCategory(e.target.value)}
                     value={category}
                 >
@@ -46,13 +46,13 @@ function CreateTicket({
                 </Select>
             </div>
 
-            <div className="flex items-center justify-evenly flex-wrap gap-4">
+            <div className="flex items-center justify-evenly flex-wrap gap-4 w-full">
                 <Textarea
                     isRequired
                     label="Description"
                     labelPlacement="outside"
                     placeholder="Enter your description"
-                    className="max-w-[300px] sm:max-w-[652px]"
+                    className="min-w-[290px] w-full max-w-[420px] lg:min-w-[820px]"
                     onChange={e => setDescription(e.target.value)}
                     value={description}
                 />
