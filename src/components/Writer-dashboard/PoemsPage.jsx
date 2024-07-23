@@ -13,7 +13,7 @@ export default function PublishesPage() {
             Pen your verses and let your soul speak, for poetry is the heart's language, waiting to be heard.
           </p>
         </div>
-        <div className="border-2 rounded-lg flex justify-between items-center p-2">
+        <div className="bg-foreground-100 rounded-lg flex justify-between items-center p-2">
           <p>Interested in creating content ?</p>
           <Link to="/author/poems/create">
               <button className="rounded-lg text-small bg-blue-300 font-semibold text-blue-700 px-4 py-2 hover:text-blue-100 hover:bg-blue-400 transition-color duration-300">

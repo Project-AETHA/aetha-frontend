@@ -40,7 +40,7 @@ export default function NotesPage() {
             Capture your thoughts in notes, for a forgotten idea is like a dream lost to the dawn.
           </p>
         </div>
-        <div className="border-2 rounded-lg flex justify-between items-center p-2">
+        <div className="rounded-lg bg-foreground-100 flex justify-between items-center p-2">
           <p>Keep note of your brilliant ideas</p>
           <Link to="/author/notes/create">
             <button className="rounded-lg text-small bg-blue-300 font-semibold text-blue-700 px-4 py-2 hover:text-blue-100 hover:bg-blue-400 transition-color duration-300">
