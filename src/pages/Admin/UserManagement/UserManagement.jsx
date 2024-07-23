@@ -16,25 +16,49 @@ import {
     Chip,
     User,
     Pagination,
-    Tooltip
+    Tooltip,
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    useDisclosure,
+    Textarea
 } from "@nextui-org/react";
 import { LiaUserSlashSolid } from "react-icons/lia";
 import { PlusIcon } from "../../../components/common/icons/PlusIcon";
-import { VerticalDotsIcon } from "../../../components/common/icons/VerticalDotsIcon";
 import { SearchIcon } from "../../../components/common/icons/SearchIcon";
 import { ChevronDownIcon } from "../../../components/common/icons/ChevronDownIcon";
-import React from "react";
-import { columns, users, statusOptions } from "./data";
+import React, { useEffect, useState } from "react";
 import { EditIcon } from "../../../components/common/icons/EditIcon";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserTimes } from '@fortawesome/free-solid-svg-icons';
 import { DeleteIcon } from "../../../components/common/icons/DeleteIcon";
 
 
+
+import axios from 'axios'
+
+const columns = [
+    { name: "ID", uid: "id", sortable: false },
+    { name: "EMAIL", uid: "email", sortable: true },
+    { name: "NAME", uid: "name", sortable: true },
+    { name: "DISPLAY NAME", uid: "displayname", sortable: true },
+    { name: "GENDER", uid: "gender", sortable: true },
+    { name: "BIRTHDATE", uid: "birthday", sortable: false },
+    { name: "ROLE", uid: "role", sortable: true },
+    { name: "STATUS", uid: "status", sortable: true },
+    { name: "ACTIONS", uid: "actions" },
+];
+
+const statusOptions = [
+    { name: "Active", uid: "active" },
+    { name: "Disabled", uid: "disabled" },
+    { name: "Deleted", uid: "deleted" },
+];
+
 const statusColorMap = {
-    active: "success",
-    disabled: "danger",
-    deleted: "warning",
+    ACTIVE: "success",
+    DISABLED: "warning",
+    DELETED: "danger",
 };
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
@@ -45,6 +69,31 @@ function capitalize(str) {
 
 
 function UserManagement() {
+
+
+    const { isOpen: isEditOpen, onOpen: onEditOpen, onOpenChange: onEditOpenChange } = useDisclosure();
+    const { isOpen: isDisableOpen, onOpen: onDisableOpen, onOpenChange: onDisableOpenChange } = useDisclosure();
+    const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onOpenChange: onDeleteOpenChange } = useDisclosure();
+
+    async function getAllUsers() {
+
+        const response = await axios.get("http://localhost:8080/api/user/all-users")
+
+        if (response.status === 200) {
+            //? DEBUG console.log(response);
+
+            if (response.data.code === "00") {
+                // Saving content to the users variable
+                setUsers(response.data.content)
+            }
+        }
+
+    }
+
+
+
+
+    const [users, setUsers] = useState([])
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
@@ -55,6 +104,10 @@ function UserManagement() {
         direction: "ascending",
     });
     const [page, setPage] = React.useState(1);
+
+    useEffect(() => {
+        getAllUsers()
+    }, [])
 
     const hasSearchFilter = Boolean(filterValue);
 
@@ -101,13 +154,14 @@ function UserManagement() {
     }, [sortDescriptor, items]);
 
     const renderCell = React.useCallback((user, columnKey) => {
+        user.name = `${capitalize(user.firstname)} ${capitalize(user.lastname)}`
         const cellValue = user[columnKey];
 
         switch (columnKey) {
             case "name":
                 return (
                     <User
-                        avatarProps={{ radius: "lg", src: user.avatar }}
+                        avatarProps={{ radius: "lg", src: user.image }}
                         description={user.email}
                         name={cellValue}
                     >
@@ -118,7 +172,6 @@ function UserManagement() {
                 return (
                     <div className="flex flex-col">
                         <p className="text-bold text-small capitalize">{cellValue}</p>
-                        <p className="text-bold text-tiny capitalize text-default-400">{user.team}</p>
                     </div>
                 );
             case "status":
@@ -131,17 +184,17 @@ function UserManagement() {
                 return (
                     <div className="relative flex justify-center items-center gap-2">
                         <Tooltip key="edit" color="success" content="edit" >
-                            <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm">
+                            <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm" onPress={onEditOpen}>
                                 <EditIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip key="disable" color="danger" content="disable" >
-                            <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm">
-                            <LiaUserSlashSolid size="18px" />
+                        <Tooltip key="disable" color="danger" content="disable">
+                            <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm" onPress={onDisableOpen}>
+                                <LiaUserSlashSolid size="18px" />
                             </Button>
                         </Tooltip>
                         <Tooltip key="delete" color="warning" content="delete" >
-                            <Button isIconOnly variant="flat" color="warning" className="capitalize" size="sm">
+                            <Button isIconOnly variant="flat" color="warning" className="capitalize" size="sm" onPress={onDeleteOpen}>
                                 <DeleteIcon />
                             </Button>
                         </Tooltip>
@@ -185,6 +238,8 @@ function UserManagement() {
 
     const topContent = React.useMemo(() => {
         return (
+
+
             <div className="flex flex-col gap-4">
                 <div className="flex justify-between gap-3 items-end">
                     <Input
@@ -331,6 +386,7 @@ function UserManagement() {
 
     return (
         <>
+
             <div className='min-h-[calc(100dvh-65px)]  overflow-hidden bg-slate-100 px-3 pt-6'>
 
                 <Table
@@ -363,12 +419,147 @@ function UserManagement() {
                     </TableHeader>
                     <TableBody emptyContent={"No users found"} className="" items={sortedItems}>
                         {(item) => (
-                            <TableRow key={item.id}>
+                            <TableRow key={item.id} >
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                             </TableRow>
                         )}
                     </TableBody>
                 </Table>
+
+                {/* Edit modal */}
+                <Modal
+                    isOpen={isEditOpen}
+                    onOpenChange={onEditOpenChange}
+                    backdrop="blur"
+                    classNames={{
+                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
+                    }}
+                >
+                    <ModalContent>
+                        {(onClose) => (
+                            <>
+                                <ModalHeader className="flex flex-col gap-4 items-center">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="text-lg font-semibold">Edit User Details</div>
+                                        <img
+                                            className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
+                                            src="https://randomuser.me/api/portraits/women/21.jpg"
+                                            alt="User Avatar"
+                                        />
+                                    </div>
+                                </ModalHeader>
+                                <ModalBody>
+                                <Input type="text" variant="faded" label="Username" placeholder="MadhuHansi"  labelPlacement="outside"/>
+                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" />
+                                    <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" />
+                                    <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" />
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onPress={onClose}>
+                                        Save
+                                    </Button>
+                                    <Button color="secondary" onPress={onClose}>
+                                        Discard
+                                    </Button>
+                                </ModalFooter>
+                            </>
+                        )}
+                    </ModalContent>
+                </Modal>
+
+                {/* Disable Modal */}
+                <Modal
+                    isOpen={isDisableOpen}
+                    onOpenChange={onDisableOpenChange}
+                    backdrop="blur"
+                    classNames={{
+                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
+                    }}
+                >
+                    <ModalContent>
+                        {(onClose) => (
+                            <>
+                                <ModalHeader className="flex flex-col gap-4 items-center">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="text-lg font-semibold">Disable User</div>
+                                        <img
+                                            className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
+                                            src="https://randomuser.me/api/portraits/women/21.jpg"
+                                            alt="User Avatar"
+                                        />
+                                        <div className="text-base font-medium">hansi@gmail.com</div>
+                                    </div>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <Textarea
+                                        key="faded"
+                                        variant="faded"
+                                        label="What is the reason for disable this user?"
+                                        labelPlacement="outside"
+                                        placeholder="Enter your reason"
+                                        className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
+                                    />
+                                    <p className="p-2">Are you sure you want to disable this user?</p>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onPress={onClose}>
+                                        Disable
+                                    </Button>
+                                    <Button color="secondary" onPress={onClose}>
+                                        Cancel
+                                    </Button>
+                                </ModalFooter>
+                            </>
+                        )}
+                    </ModalContent>
+                </Modal>
+
+                {/* Delete Modal */}
+                <Modal
+                    isOpen={isDeleteOpen}
+                    onOpenChange={onDeleteOpenChange}
+                    backdrop="blur"
+                    classNames={{
+                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
+                    }}
+                >
+                    <ModalContent>
+                        {(onClose) => (
+                            <>
+                                <ModalHeader className="flex flex-col gap-4 items-center">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="text-lg font-semibold">Delete User</div>
+                                        <img
+                                            className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
+                                            src="https://randomuser.me/api/portraits/women/21.jpg"
+                                            alt="User Avatar"
+                                        />
+                                        <div className="text-base font-medium">hansi@gmail.com</div>
+                                    </div>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <Textarea
+                                        key="faded"
+                                        variant="faded"
+                                        label="What is the reason for delete this user?"
+                                        labelPlacement="outside"
+                                        placeholder="Enter your reason"
+                                        className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
+                                    />
+                                    <p className="p-2">Are you sure you want to delete this user?</p>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onPress={onClose}>
+                                        Delete
+                                    </Button>
+                                    <Button color="secondary" onPress={onClose}>
+                                        Cancel
+                                    </Button>
+                                </ModalFooter>
+                            </>
+                        )}
+                    </ModalContent>
+                </Modal>
             </div>
 
         </>
