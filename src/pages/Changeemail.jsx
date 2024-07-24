@@ -7,7 +7,6 @@ import {Button} from "@nextui-org/react";
 function Changeemail() {
   return (
     <div>
-          <Editprofilesidebar />
 
           <div className="dashboard">
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
