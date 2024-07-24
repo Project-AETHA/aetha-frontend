@@ -7,8 +7,6 @@ import { FaDownload } from "react-icons/fa";
 function Downloadacc() {
   return (
      <div>
-          <Editprofilesidebar />
-          
             <div className="dashboard">
             <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
