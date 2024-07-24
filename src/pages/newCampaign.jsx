@@ -17,14 +17,14 @@ const NewCampaign = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700">Rectangle</label>
               <RadioGroup label="Select your prefered place" orientation="horizontal" size='sm'>
-                  <Radio value="Leaderboard">Leaderboard (728 x 90)
+                  <Radio value="Leaderboard" className='p-7'>Leaderboard (728 x 90)
                     <Image
                       width={300}
                       alt="NextUI hero Image"
                       src="../../public/images/ads/LatestUpdatesLeaderboard.png"
                     />
                   </Radio>
-                  <Radio value="Rectangle">Rectangle (300 x 250)
+                  <Radio value="Rectangle" className='p-7'>Rectangle (300 x 250)
                     <Image
                       width={300}
                       alt="NextUI hero Image"

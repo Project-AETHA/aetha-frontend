@@ -1,7 +1,7 @@
 import React from 'react';
-import { Breadcrumbs, BreadcrumbItem, Card, Button, Tab, Tabs, CardBody, CardFooter, Image } from '@nextui-org/react';
+import { Breadcrumbs, BreadcrumbItem, Card, Button, Tab, Tabs, CardBody, CardFooter, Image, Link } from '@nextui-org/react';
 import { Book, BarChart2, BookOpenCheck, Users, Star, BookHeadphones, LibraryBig, Castle, NotepadTextDashed } from "lucide-react";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import Sidebar, { SidebarItem } from "../components/Writer-dashboard/Sidebar";
 import Book1 from "/images/books/book1.jpg";
 import Book2 from "/images/books/book2.jpg";
