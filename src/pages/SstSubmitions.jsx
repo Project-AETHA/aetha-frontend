@@ -67,7 +67,7 @@ const Submissions = () => {
       </div>
       </Card> */}
       <Card className="p-4 mb-4 shadow-none" radius="none">
-      <h1 className="text-2xl font-bold dark:text-white mb-5">Novels</h1>
+      <h1 className="text-2xl font-bold dark:text-white mb-5">Short Stories</h1>
         <div className="flex items-center bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
           <span className="mr-2">
             <svg
@@ -100,7 +100,7 @@ const Submissions = () => {
         <div className="flex justify-end mt-4">
         <Link href="/author/chapter/create">
           <Button auto className="bg-blue-500 text-white">
-            + Submit a New Novel
+            + Submit a New Short Story
           </Button>
           </Link>
         </div>
@@ -108,11 +108,11 @@ const Submissions = () => {
       <Card className="p-4 mb-4 shadow-none mt-4" radius="none">
       <Tabs aria-label="Recent Activities" color="default" variant="underlined" size="lg">
           <Tab
-            key="novels"
+            key="Stories"
             title={
               <div className="flex items-center space-x-2">
                 <LibraryBig />
-                <span>Novels</span>
+                <span>Short Stories</span>
               </div>
             }
           >
