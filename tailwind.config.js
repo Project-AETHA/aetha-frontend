@@ -1,4 +1,5 @@
-const { nextui } = require("@nextui-org/react");
+import {nextui} from "@nextui-org/react";
+import tailwind_scrollbar from "tailwind-scrollbar";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -29,6 +30,9 @@ themes: {
           fill: {
             1: "rgba(255, 255, 255, 0.10)",
           },
+          scrollbarNormal: 'rgba(73,73,73,0.5)',
+          scrollbarActive: 'rgb(0,110,237)',
+          scrollbarTrack: 'rgb(197,197,197)',
           recruitBlue: "#0179FE", //main blue
           whiteText:'#FFFFFF',
           primaryText: '#000000',
@@ -41,6 +45,9 @@ themes: {
           infoText: '#17A2B8',
           inputLabel:'#333333',
           authbackground:'bg-gray-50',
+          chapters:'#DDDDDD',
+          chapterbutton:'#FFFFFF',
+          authbackground:'#F9FAFB',
           indigo: {
             500: "#6172F3",
             700: "#3538CD",
@@ -60,6 +67,18 @@ themes: {
             600: "#DD2590",
             700: "#C11574",
             900: "#851651",
+          },
+          purple: {
+            50: '#F3E8FF',
+            100: '#E9D8FD',
+            200: '#D6BCFA',
+            300: '#B794F4',
+            400: '#9F7AEA',
+            500: '#805AD5',
+            600: '#6B46C1',
+            700: '#553C9A',
+            800: '#44337A',
+            900: '#322659',
           },
           blue: {
             25: "#F5FAFF",
@@ -92,6 +111,9 @@ themes: {
           fill: {
             1: "rgba(255, 255, 255, 0.10)",
           },
+          scrollbarNormal: 'rgba(244,244,244,0.5)',
+          scrollbarActive: 'rgb(0,110,237)',
+          scrollbarTrack: 'rgb(39,39,39)',
           recruitBlue: "#0179FE", //main blue
           whiteText:'#000000',
           primaryText: '#FFFFFF', // White for primary text
@@ -104,6 +126,9 @@ themes: {
           infoText: '#33CFFF', // Light teal for info text
           inputLabel:'#CCCCCC',
           authbackground:'bg-gray-900',
+          chapters:'#5B5B5B',
+          chapterbutton:'#999999',
+          authbackground:'#111827',
           indigo: {
             500: "#6172F3",
             700: "#3538CD",
@@ -123,6 +148,18 @@ themes: {
             600: "#DD2590",
             700: "#C11574",
             900: "#851651",
+          },
+          purple: {
+            50: '#2D1B42',
+            100: '#3E2965',
+            200: '#4D3789',
+            300: '#5D45AD',
+            400: '#6E52D1',
+            500: '#7F61F5',
+            600: '#926EFF',
+            700: '#A37CFF',
+            800: '#B48AFF',
+            900: '#C59AFF',
           },
           blue: {
             25: "#F5FAFF",
@@ -152,5 +189,6 @@ themes: {
       // ... custom themes
     },
     }),
+    tailwind_scrollbar({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
   ],
 };

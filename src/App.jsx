@@ -1,23 +1,20 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import axios from "axios";
+import { useAuthContext } from "./hooks/useAuthContext.jsx";
+
 import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
+
 import Reading from "./pages/Reading";
 import Novels from "./pages/Novels";
 import Poems from "./pages/Poems";
+import Chapterreading from "./pages/Chapterreading.jsx";
 import Chapters from "./pages/Chapter";
 import Shop from "./pages/Shop";
-import UserManagement from "./pages/Admin/UserManagement/UserManagement.jsx";
-import SupportPage from "./pages/Support/SupportPage.jsx";
-import AuthorDashboard from "./pages/AuthorDashboard";
 import FirstChapter from "./pages/FirstChapter.jsx";
-import LandingPage from "./pages/LandingPage/LandingPage.jsx"
-import PoemCreationPage from "./pages/PoemCreationPage.jsx";
+import Submitions from "./pages/Submitions.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
-import axios from "axios";
-import {useAuthContext} from "./hooks/useAuthContext.jsx";
 
+// ! Profile imports
 import ProfilePage from "./pages/Profile";
 import EditProfilePage from "./pages/Editprofile";
 // import FictionPage from "./pages/Fictions";
@@ -52,33 +49,26 @@ import MyreadinghistoryPage from './pages/Myreadinghistory';
 import MyreviewsPage from './pages/Myreviews';
 import MycommentsPage from './pages/Mycomments';
 import MyblockedusersPage from './pages/Myblockedusers';
+// ! End of profile imports
 
-//? Importing Layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
 import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
-import SingleUser from './pages/Admin/UserManagement/SingleUser.jsx';
+import SimpleLayout from "./layouts/SimpleLayout.jsx";
 
+// Routing files
+import RoutesWriter from "./components/routes/Writer.jsx";
+import RoutesGeneral from "./components/routes/General.jsx";
+import RoutesAdmin from "./components/routes/Admin.jsx";
 
 const routes = [
-    { path: '/', element: <LandingPage />, layout: "default" },
-    { path: '/home', element: <Home />, layout: "default" },
     { path: '/reading', element: <Reading />, layout: "default" },
     { path: '/novels', element: <Novels />, layout: "default" },
     { path: '/poems', element: <Poems />, layout: "default" },
-    { path: '/login', element: <LoginPage />, layout: "default" },
-    { path: '/signup', element: <SignupPage />, layout: "default" },
-    { path: '/support', element: <SupportPage />, layout: "default" },
-    { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
-    { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard"},
-    { path: '/admin/users', element: <UserManagement/>, layout:"admin_dashboard"},
-    { path: '/admin/users/single', element: <SingleUser/>, layout:"admin_dashboard"},
-    { path: '/author/publishes/create/poem', element: <PoemCreationPage />, layout: "author_dashboard" },
     { path: '/shop', element: <Shop />, layout: "default" },
     { path: '/chapters', element: <Chapters />, layout: "default" },
-
     { path: '/editprofile/compose', element: <ComposePage />, layout: "default"},
     { path: "/editprofile/inbox" , element: <InboxPage />, layout: "default"},
     { path: "/editprofile/sentitems" , element: <SentitemsPage />, layout: "default"},
@@ -108,37 +98,50 @@ const routes = [
     { path:  "/editprofile/myreadinghistory" , element: <MyreadinghistoryPage />, layout: "default"},
     { path:  "/editprofile/myreviews" , element: <MyreviewsPage />, layout: "default"},
     { path:  "/editprofile/mycomments" , element: <MycommentsPage />, layout: "default"},
-    { path:  "/editprofile/myblockedusers" , element: <MyblockedusersPage />, layout: "default"}
+    { path:  "/editprofile/myblockedusers" , element: <MyblockedusersPage />, layout: "default"},
+    { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
+    { path: '/submitions', element: <Submitions />, layout: "author_dashboard" },
+    ...RoutesGeneral(),
+    ...RoutesWriter(),
+    ...RoutesAdmin(),
 ];
 
-function App() {
-    const {user} = useAuthContext();
-    console.log(user)
-    axios.interceptors.request.use(request => {
-        console.log(request)
+const layoutComponents = {
+    default: DefaultLayout,
+    admin_dashboard: AdminDashboardLayout,
+    author_dashboard: AuthorDashboardLayout,
+    simple: SimpleLayout
+};
 
+const generateRoutes = () => {
+    return routes.map((route, index) => {
+        const Layout = layoutComponents[route.layout];
+        return (
+            <Route key={index} path={route.path} element={<Layout>{route.element}</Layout>} />
+        );
+    });
+};
+
+function App() {
+
+    //* Debugging codes
+    const { user } = useAuthContext();
+    // console.log(user);
+
+    axios.interceptors.request.use(request => {
         if (localStorage.getItem('token') !== null) {
-            request.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+            request.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
         }
 
-        return request
-    })
+        return request;
+    });
 
     return (
-
         <Router>
-            <Navigation/>
+            <Navigation />
             <div className="content">
                 <Routes>
-                    {routes.map((route, index) => (
-                        <Route key={index} path={route.path} element={route.layout === "admin_dashboard" ? (
-                            <AdminDashboardLayout className={route.class}>{route.element}</AdminDashboardLayout>
-                        ) : route.layout === "author_dashboard" ? (
-                            <AuthorDashboardLayout className={route.class}>{route.element}</AuthorDashboardLayout>
-                        ) : (
-                            <DefaultLayout>{route.element}</DefaultLayout>
-                        )} />
-                    ))}
+                    {generateRoutes()}
                 </Routes>
             </div>
         </Router>

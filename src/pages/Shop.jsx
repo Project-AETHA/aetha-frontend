@@ -1,7 +1,7 @@
 
 import Services from '../components/Services';
-import Books from '../components/Books';
 import SearchBar from "../components/SearchBar";
+import Advertistment from '../components/Advertistment';
 
 
 
@@ -11,7 +11,7 @@ const Shop = () => {
     <div>
       <SearchBar />
       <Services />
-      <Books />
+      <Advertistment />
      
 
     </div>

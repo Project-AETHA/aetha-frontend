@@ -1,4 +1,5 @@
-import {Button, Image, Input, Select, SelectItem, Textarea} from "@nextui-org/react";
+import { Button, Input, Select, SelectItem, Textarea } from "@nextui-org/react";
+import ImageUpload from "../../../components/common/ImageUpload";
 
 function CreateTicket({
                           createTicket,
@@ -6,15 +7,15 @@ function CreateTicket({
                           setTitle,
                           setCategory,
                           setDescription,
-                          setImages,
+                          setFiles,
                           title,
                           category,
                           description,
-                          images
+                          files
                       }) {
     return (
-        <form onSubmit={createTicket} className="sub-container flex flex-col gap-4">
-            <div className="flex items-center justify-evenly flex-wrap gap-4">
+        <form onSubmit={createTicket} className="flex flex-col gap-4 w-full items-center">
+            <div className="flex items-center flex-wrap md:flex-nowrap gap-4">
                 <Input
                     isRequired
                     key="title"
@@ -23,7 +24,7 @@ function CreateTicket({
                     size="md"
                     labelPlacement="outside"
                     placeholder="Short Title"
-                    className="max-w-[300px]"
+                    className="min-w-[200px] max-w-[400px] lg:min-w-[400px]"
                     onChange={e => setTitle(e.target.value)}
                     value={title}
                 />
@@ -32,11 +33,11 @@ function CreateTicket({
                     isRequired
                     size="md"
                     label="Category"
-                    defaultSelectedKeys={["default"]}
                     placeholder="Select a category"
                     labelPlacement="outside"
-                    className="max-w-[300px]"
+                    className="min-w-[200px] max-w-[400px] lg:min-w-[400px]"
                     onChange={e => setCategory(e.target.value)}
+                    value={category}
                 >
                     <SelectItem key="default" isDisabled>Select Category</SelectItem>
                     <SelectItem key="complaint">Complaint</SelectItem>
@@ -45,44 +46,27 @@ function CreateTicket({
                 </Select>
             </div>
 
-            <div className="flex items-center justify-evenly flex-wrap gap-4">
+            <div className="flex items-center justify-evenly flex-wrap gap-4 w-full">
                 <Textarea
                     isRequired
                     label="Description"
                     labelPlacement="outside"
                     placeholder="Enter your description"
-                    className="max-w-[300px] sm:max-w-[652px]"
+                    className="min-w-[290px] w-full max-w-[420px] lg:min-w-[820px]"
                     onChange={e => setDescription(e.target.value)}
                     value={description}
                 />
             </div>
 
             <div className="flex items-center justify-evenly flex-wrap gap-4">
-                <Image
-                    width={200}
-                    height={160}
-                    alt="NextUI hero Image with delay"
-                    src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                />
-                <Image
-                    width={200}
-                    height={160}
-                    alt="NextUI hero Image with delay"
-                    src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                />
-                <Image
-                    width={200}
-                    height={160}
-                    alt="NextUI hero Image with delay"
-                    src="https://app.requestly.io/delay/5000/https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
-                />
+                <ImageUpload files={files} setFiles={setFiles} />
             </div>
 
             <div className="flex items-center justify-evenly flex-wrap gap-4">
                 <Button type="submit" color="primary" variant="flat">
                     Create Ticket
                 </Button>
-                <Button type="clear" onClick={clearAll} color="danger" variant="flat">
+                <Button type="button" onClick={clearAll} color="danger" variant="flat">
                     Cancel
                 </Button>
             </div>
