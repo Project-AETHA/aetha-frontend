@@ -1,0 +1,188 @@
+/* .profile-pic {
+    justify-content:space-evenly;
+    width: 100%;
+    height: auto;
+    color: black;
+    background-color: rgb(134, 150, 245);
+    border-color: black;
+    border-radius: 1px;
+    padding: 5px;
+} */
+
+.main-detail{
+    justify-content:center;
+    align-items: center;
+    justify-content:space-evenly;
+     display:flex;
+}
+
+.comment-edit-button{
+    height:50px;
+    justify-content: end;
+    align-items:last baseline;
+}
+
+.picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    margin: 6px;
+    background-image: url("../../../public/profilepic.JPG");
+    background-size: 100% 100%;
+}
+
+.profile-info {
+    color: black;
+    /* background-color: white; */
+    text-decoration:none;
+    padding:3px 16px ;  
+}
+
+.username {
+    height: 50px;
+    width: 100%;
+    justify-content:center;
+    background-color: white;
+    font-size: 24px; 
+}
+
+.profile-content {
+    width: 100%;
+    height: auto;
+    color: black;
+}
+
+.profile-pic-titles{
+    justify-content:auto;
+    align-items: auto;
+
+}
+
+.profile-sidebar {
+    width: 20%;
+    height: auto;
+    border-color: black;
+    border-radius: 1px;
+}
+
+.footer{
+    color: #d2ebe4;
+    /* margin-bottom:3cm; */
+    min-height:20vh;
+    background-color: black;
+}
+
+/* 
+.content{
+    background-color: rgb(129, 129, 178);
+    min-height:600px;
+    color:black;
+    justify-content: center;
+    align-items: center;
+} */
+
+.topics{
+    font-size:large;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    background-color: rgb(138, 138, 255);
+    margin-top: 10px;
+    border-bottom-color: black;
+}
+
+.details{
+    color:rgb(40, 41, 44);
+    background-color: #ffffff ;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 18px;
+    border-color: black;
+    padding:10px;
+}
+
+.details-pic{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin :10px;
+    border: 3px solid #212674;
+}
+
+.personal-info{
+    margin-left:120px ;
+    width:500px;
+    padding:10px;
+
+}
+
+.side-bar-main {
+  position:absolute;
+  height: calc(100vh - 70px);
+  width: 300px;
+  background-color: #9ec8eb;
+  transition: left 0.5s ease;
+  z-index: 2000;
+  left:0;
+}
+
+.side-bar-main.active {
+  width: 270px;
+  left: 0;
+}
+
+
+.nav-links li:hover~.active {
+  display: block;
+  transition: 0.3s;
+}
+
+
+.dashboard{
+    background-color: rgb(255, 255, 255);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* .side-topic {
+    width: 300px;
+    height: 20px;
+    border: 25px solid rgb(255, 255, 255);
+    color: black;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+} */
+
+.side-topic:hover {
+    border-color: rgb(200, 200, 200); 
+    background-color: rgb(245, 245, 245); 
+    color: rgb(101, 101, 222); 
+    cursor: pointer; 
+}
+
+.badge{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin :20px;
+    border: 3px solid #212674;
+}
+
+.badge-details{
+    margin-left:120px ;
+    width:500px;
+    padding:10px;
+}
+
+.novels{
+    width:200px;
+    height:300px;
+    border-radius: 1px;    
+}
+
+.side-parts{
+    
+}

@@ -14,16 +14,18 @@ import FirstChapter from "./pages/FirstChapter.jsx";
 import Submitions from "./pages/Submitions.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 
-// Importing Layouts
+// Importing layouts
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
 import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import SimpleLayout from "./layouts/SimpleLayout.jsx";
+import ProfileLayout from './layouts/ProfileDashboardLayout.jsx';
 
 // Routing files
 import RoutesWriter from "./components/routes/Writer.jsx";
 import RoutesGeneral from "./components/routes/General.jsx";
 import RoutesAdmin from "./components/routes/Admin.jsx";
+import RoutesProfile from './components/routes/Profile.jsx';
 
 const routes = [
     { path: '/reading', element: <Reading />, layout: "default" },
@@ -38,14 +40,15 @@ const routes = [
     ...RoutesGeneral(),
     ...RoutesWriter(),
     ...RoutesAdmin(),
-
+    ...RoutesProfile(),
 ];
 
 const layoutComponents = {
     default: DefaultLayout,
     admin_dashboard: AdminDashboardLayout,
     author_dashboard: AuthorDashboardLayout,
-    simple: SimpleLayout
+    simple: SimpleLayout,
+    profile_dashboard: ProfileLayout
 };
 
 const generateRoutes = () => {
