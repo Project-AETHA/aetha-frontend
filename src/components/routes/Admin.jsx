@@ -8,6 +8,6 @@ export default function RoutesAdmin () {
         { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard" },
         { path: '/admin/users', element: <UserManagement />, layout: "admin_dashboard" },
         { path: '/admin/users/:userId', element: <SingleUser />, layout: "admin_dashboard" },
-        { path: '/admin/content', element: <ContentManagemenet/>, layout: "admin_dashboard" },
+        { path: '/admin/contents', element: <ContentManagemenet/>, layout: "admin_dashboard" },
     ]
 }
