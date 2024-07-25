@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Image } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { FcBiomass, FcGallery } from "react-icons/fc";
-import { FaHeart, FaAddressBook, FaDonate, FaUserEdit, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { FaHeart, FaBook , FaLock , FaDonate, FaUserEdit } from "react-icons/fa";
 import { MdOutlineReport, MdAddAlert } from "react-icons/md";
 import { Button } from "@nextui-org/react";
+
 
 function LandingPage() {
     let recommendations = [
@@ -24,109 +25,126 @@ function LandingPage() {
             key: 1,
             chapter: 'Jane Cooper',
             releaseday: '1 day ago',
+            content:'free'
 
         },
         {
             key: 2,
             chapter: 'John Doe',
             releaseday: '20 day ago',
+            content:'premium'
 
         },
         {
             key: 3,
             chapter: 'Veronica Lodge',
             releaseday: '10 day ago',
+            content:'premium'
 
         },
         {
             key: 4,
             chapter: 'Veronica Lodge',
             releaseday: '8 day ago',
+            content:'premium'
 
         },
         {
             key: 5,
             chapter: 'Veronica Lodge',
             releaseday: '7 day ago',
+            content:'premium'
 
         },
         {
             key: 6,
             chapter: 'Veronica Lodge',
             releaseday: '5 day ago',
+            content:'premium'
 
         },
         {
             key: 7,
             chapter: 'Veronica Lodge',
             releaseday: '4 day ago',
+            content:'premium'
 
         },
         {
             key: 8,
             chapter: 'Veronica Lodge',
             releaseday: '3 day ago',
+            content:'premium'
 
         },
         {
             key: 9,
             chapter: 'Veronica Lodge',
             releaseday: '2 day ago',
+            content:'premium'
 
         },
         {
             key: 10,
             chapter: 'Veronica Lodge',
             releaseday: '1 day ago',
+            content:'premium'
 
         },
         {
             key: 11,
             chapter: 'Veronica Lodge',
             releaseday: '1 day ago',
+            content:'premium'
 
         },
         {
             key: 12,
             chapter: 'Veronica Lodge',
             releaseday: '1 day ago',
+            content:'premium'
 
         },
         {
             key: 13,
             chapter: 'Veronica Lodge',
             releaseday: '1 day ago',
+            content:'premium'
 
         },
         {
             key: 14,
             chapter: 'Veronica Lodge',
             releaseday: '1 day ago',
+            content:'premium'
 
         },
         {
             key: 15,
             chapter: 'Veronica Lodge',
             releaseday: '1 day ago',
+            content:'premium'
 
         },
         {
             key: 16,
             chapter: 'Veronica Lodge',
             releaseday: '1 day ago',
+            content:'premium'
 
         },
         {
             key: 17,
             chapter: 'Veronica Lodge',
             releaseday: 'today',
+            content:'premium'
 
         }
 
 
     ];
 
-   
+
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
@@ -158,20 +176,18 @@ function LandingPage() {
                         <FcGallery size="25px" />
                         Novel
                     </p>
-                    <div className="w-full md:w-3/12 inline-block">
-                        <div className="flex mx-5 items-center flex-wrap gap-2">
+                    <div className="w-full md:w-3/12 inline-block ">
+                        <div className="flex mx-5 flex-wrap gap-2 justify-center items-center">
                             {latest_updates &&
                                 latest_updates.map((latest_update, index) => (
                                     <Link to="#" key={index}>
                                         <div className="max-w-[350px] w-[150px] flex flex-col">
                                             <Image
-                                                width="150px"
-                                                height="300px"
-                                                className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer h-[200px]"
+                                                className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer w-[80%] m-auto justify-center"
                                                 alt="NextUI hero Image"
                                                 src={latest_update.image}
                                             />
-                                            <p className="text-md text-foreground-700 font-bold text-center">
+                                            <p className="md:text-md text-sm text-foreground-700 font-bold text-center pt-3">
                                                 {latest_update.title}
                                             </p>
 
@@ -180,26 +196,47 @@ function LandingPage() {
                                 ))}
                         </div>
                     </div>
-                    <div className="w-full md:w-9/12 inline-block align-top text-justify px-5 text-primaryText">
-                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda quaerat, eos tenetur explicabo nam in facere aspernatur fuga accusantium magni saepe, ex nesciunt consectetur, eum sit reiciendis mollitia. Excepturi, magni. Repudiandae, doloribus veritatis doloremque, odio delectus repellat saepe facilis adipisci ullam ratione illo iste! Voluptatum facere fugiat error. Incidunt!
+                    <div className="w-full md:w-9/12 inline-block align-top text-justify px-5 text-primaryText ">
+                        <p className="h-55 md:inline-block hidden">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda quaerat, eos tenetur explicabo nam in
+                            facere aspernatur fuga accusantium magni saepe, ex nesciunt consectetur, eum sit reiciendis mollitia. Excepturi, magni.
+                            Repudiandae, doloribus veritatis doloremque, odio delectus repellat saepe facilis adipisci ullam ratione illo iste! Voluptatum facere fugiat error. Incidunt!
                         </p>
+
+
+                        <div className="mt-5 w-full flex flex-col md:flex-row justify-center md:justify-start">
+                            <div className="mb-4 md:mb-0 justify-center flex">
+                                <Link to="/chapterreading">
+                                <Button className="bg-accentText text-whiteText rounded-none">
+                                    <FaBook /> Start Reading
+                                </Button>
+                                </Link>
+                            </div>
+                            <div className="ml-0 md:ml-10 justify-center flex">
+                                <Button className="border border-accentText text-accentText rounded-none">
+                                <MdAddAlert /> Subscribe
+                                </Button>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
 
 
                 <div className="bg-gray-300 w-full md:w-3/12 rounded-md p-2 h-[300px] flex justify-center items-center">
                     <div className="flex flex-col gap-2">
 
-                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2 hover:bg-green-300">
+                        <Button className="bg-gray-200 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
                             <FaHeart />
                             <p>Favourite</p>
                         </Button>
 
-                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2 hover:bg-green-300">
+                        <Button className="bg-gray-200 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
                             <FaDonate />
                             <p> Donate </p>
                         </Button>
-                        <Button className="bg-white text-black border border-black w-40 flex items-center justify-start space-x-2 hover:bg-red-300">
+                        <Button className="bg-gray-200 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-red-600">
                             <MdOutlineReport />
                             <p> Complaint </p>
                         </Button>
@@ -219,23 +256,23 @@ function LandingPage() {
                         <FcBiomass size="25px" />
                         Chapters
                     </p>
-                    <a href="./chapterreading" className="">
-                    <div className="flex justify-evenly items-center flex-wrap gap-2">
-                        {currentItems.map(person => (
-                            <div key={person.key} className="bg-chapters rounded-xl p-3 w-full mx-2 flex hover:shadow-md hover:bg-gray-400">
-                                <div className="inline-block w-full md:w-8/12">
-                                    <p className="text-primaryText text-sm">Chapter {person.key} : {person.chapter}</p>
+                    <Link to="/chapterreading" className="">
+                        <div className="flex justify-evenly items-center flex-wrap gap-2">
+                            {currentItems.map(person => (
+                                <div key={person.key} className="bg-chapters rounded-xl p-3 w-full mx-2 flex hover:shadow-md hover:bg-gray-400">
+                                    <div className="inline-block w-full md:w-8/12">
+                                        <p className="text-primaryText text-sm">
+                                            {person.content === 'premium' && <FaLock className="w-3 mx-2 inline-block" />}
+                                            Chapter {person.key} : {person.chapter}
+                                        </p>
+                                    </div>
+                                    <div className="inline-block w-0 md:w-4/12">
+                                        <p className="text-secondaryText text-right text-xs italic hidden md:block"> {person.releaseday} </p>
+                                    </div>
                                 </div>
-                              
-                                <div className="inline-block w-0 md:w-4/12">
-                                    <p className="text-secondaryText text-right text-xs italic hidden md:block">{person.releaseday}</p>
-                                </div>
-                                
-
-                            </div>
-                        ))}
-                    </div>
-                    </a>
+                            ))}
+                        </div>
+                    </Link>
                     <div className="flex justify-between items-center mt-4">
                         <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
                             Previous
@@ -294,7 +331,11 @@ function LandingPage() {
 
 
         </div>
+
     );
+
+
 }
+
 
 export default LandingPage;
