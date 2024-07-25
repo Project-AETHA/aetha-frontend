@@ -77,26 +77,26 @@ function ContentManagemenet() {
     return (
         <div className='min-h-screen flex justify-center'>
             <div className='flex-col w-full bg-white rounded-md'>
-                <div className='flex flex-wrap gap-4 p-4 max-w-[990px] mx-auto'>
-                    <Card className='bg-blue-400 flex-1 min-w-[200px] max-w-[240px] min-h-[120px]'>
+                <div className='flex flex-wrap gap-4 p-4 max-w-full w-full'>
+                    <Card className='bg-blue-400 flex-1 min-w-[200px] min-h-[120px]'>
                         <CardBody className='flex flex-col justify-center h-full'>
                             <p className='text-white text-xl font-bold'>Novels</p>
                             <p className='text-white text'>5 Contents</p>
                         </CardBody>
                     </Card>
-                    <Card className='bg-green-400 flex-1 min-w-[200px] max-w-[240px] min-h-[120px]'>
+                    <Card className='bg-green-400 flex-1 min-w-[200px] w-full min-h-[120px]'>
                         <CardBody className='flex flex-col justify-center h-full'>
                             <p className='text-white text-xl font-semibold'>Short Stories</p>
                             <p className='text-white text-md'>7 Contents</p>
                         </CardBody>
                     </Card>
-                    <Card className='bg-red-400 flex-1 min-w-[200px] max-w-[240px] min-h-[120px]'>
+                    <Card className='bg-red-400 flex-1 min-w-[200px] w-full min-h-[120px]'>
                         <CardBody className='flex flex-col justify-center h-full'>
                             <p className='text-white text-xl font-semibold'>Poems</p>
                             <p className='text-white text-md'>10 Contents</p>
                         </CardBody>
                     </Card>
-                    <Card className='bg-yellow-400 flex-1 min-w-[200px] max-w-[240px] min-h-[120px]'>
+                    <Card className='bg-yellow-400 flex-1 min-w-[200px] w-full min-h-[120px]'>
                         <CardBody className='flex flex-col justify-center h-full'>
                             <p className='text-white text-xl font-semibold'>Nisadas</p>
                             <p className='text-white text-md'>3 Contents</p>
