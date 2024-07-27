@@ -11,7 +11,9 @@ import {
     getKeyValue,
     Chip,
     Image,
-    Button
+    Button,
+    User,
+    Link
 } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom'
 
@@ -73,25 +75,25 @@ function ContentManagemenet() {
         <div className='min-h-screen flex justify-center'>
             <div className='flex-col w-full bg-white rounded-md'>
                 <div className='flex flex-wrap gap-4 p-4 max-w-full w-full'>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform  hover:cursor-pointer duration-300 hover:scale-105' style={{ backgroundColor: '#A855F7' }}>
-                        <CardBody className='flex flex-col justify-center h-full' onClick={() => {navigate(`/admin/contents/novels`); console.log("RAN")}}>
+                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform  hover:cursor-pointer duration-300 hover:scale-105 bg-slate-700' >
+                        <CardBody className='flex flex-col justify-center h-full' onClick={() => { navigate(`/admin/contents/novels`); }}>
                             <p className='text-white text-xl font-bold'>Novels</p>
                             <p className='text-white text'>5 Contents</p>
                         </CardBody>
                     </Card>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105' style={{ backgroundColor: '#6366F1' }}>
+                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105 bg-slate-600' >
                         <CardBody className='flex flex-col justify-center h-full'>
                             <p className='text-white text-xl font-semibold'>Short Stories</p>
                             <p className='text-white text-md'>7 Contents</p>
                         </CardBody>
                     </Card>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105' style={{ backgroundColor: '#3B82F6' }}>
+                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105 bg-slate-500'>
                         <CardBody className='flex flex-col justify-center h-full'>
                             <p className='text-white text-xl font-semibold'>Poems</p>
                             <p className='text-white text-md'>10 Contents</p>
                         </CardBody>
                     </Card>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105' style={{ backgroundColor: '#0EA5E9' }}>
+                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105 bg-slate-400' >
                         <CardBody className='flex flex-col justify-center h-full'>
                             <p className='text-white text-xl font-semibold'>Nisadas</p>
                             <p className='text-white text-md'>3 Contents</p>
@@ -107,9 +109,9 @@ function ContentManagemenet() {
                 </div>
 
                 <div className='p-4'>
-                    <Table aria-label="Recent Content Details" className='text-foreground-900' radius='none' removeWrapper>
+                <Table aria-label="Recent Content Details" className='text-foreground-900' radius='none' removeWrapper>
                         <TableHeader columns={contentColumns} >
-                            {(column) => <TableColumn key={column.key} className='bg-gray-400 text-black '>{column.label}</TableColumn>}
+                            {(column) => <TableColumn key={column.key} className='bg-gray-400 text-black text-small'>{column.label}</TableColumn>}
                         </TableHeader>
                         <TableBody items={recentContent}>
                             {(item) => (
@@ -119,11 +121,10 @@ function ContentManagemenet() {
                                             return (
                                                 <TableCell>
                                                     <Image
-                                                        width="100px"
-                                                        height="180px"
-                                                        className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer"
-                                                        alt="Content Cover Image"
-                                                        src={item.coverImage}
+                                                        width={80}
+                                                        height={80}
+                                                        alt="NextUI Fruit Image with Zoom"
+                                                        src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
                                                         radius='sm'
                                                     />
                                                 </TableCell>
@@ -138,17 +139,35 @@ function ContentManagemenet() {
                                             );
 
                                         } else if (columnKey === 'createdDate') {
-                                            return <TableCell>{new Date(item.createdDate).toLocaleDateString()}</TableCell>;
-                                        } else if (columnKey === 'view') {
+                                            return <TableCell style={{ fontWeight: 'medium' }} className='font-semibold'>{new Date(item.createdDate).toLocaleDateString()}</TableCell>;
+                                        } else if (columnKey === "title") {
+                                            return <TableCell style={{ fontWeight: 'medium' }} className='font-semibold'>{getKeyValue(item, columnKey)}</TableCell>;
+                                        } else if (columnKey === 'author') {
+                                            return <TableCell>
+                                                <User
+                                                    name="Junior Garcia"
+                                                    description={(
+                                                        <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal>
+                                                            @jrgarciadev
+                                                        </Link>
+                                                    )}
+                                                    avatarProps={{
+                                                        src: "https://avatars.githubusercontent.com/u/30373425?v=4"
+                                                    }}
+                                                />
+
+                                            </TableCell>
+                                        }
+                                        else if (columnKey === 'view') {
                                             return (
                                                 <TableCell>
-                                                    <Button size='sm' className="bg-blue-400">
+                                                    <Button size='sm' className="bg-sky-600 font-semibold text-white" >
                                                         View
                                                     </Button>
                                                 </TableCell>
                                             );
                                         }
-                                        return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;
+                                        return <TableCell  style={{ fontWeight: 'medium' }} className='font-semibold'>{getKeyValue(item, columnKey)}</TableCell>;
                                     }}
                                 </TableRow>
                             )}

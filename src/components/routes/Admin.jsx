@@ -4,6 +4,7 @@ import ContentManagemenet from "../../pages/Admin/ContentManagement/ContentManag
 import Complaints from "../../pages/Admin/Complaints.jsx";
 import ContentList from "../../pages/Admin/ContentManagement/ContentList.jsx";
 
+
 export default function RoutesAdmin () {
     return [
         { path: '/admin', element: <div className="bg-blue-200">Custom Content</div>, layout: "admin_dashboard" },
@@ -12,5 +13,6 @@ export default function RoutesAdmin () {
         { path: '/admin/contents', element: <ContentManagemenet/>, layout: "admin_dashboard" },
         { path: '/admin/contents/novels', element: <ContentList/>, layout: "admin_dashboard" },
         { path: '/admin/complaints', element: <Complaints/>, layout:"admin_dashboard"},
+        
     ]
 }
