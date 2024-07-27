@@ -1,7 +1,7 @@
 import UserManagement from "../../pages/Admin/UserManagement/UserManagement.jsx";
 import SingleUser from "../../pages/Admin/UserManagement/SingleUser.jsx";
 import ContentManagemenet from "../../pages/Admin/ContentManagement/ContentManagemenet.jsx";
-import Complaints from "../../pages/Admin/Complaints.jsx";import ContentList from "../../pages/Admin/ContentManagement/ContentList.jsx";
+import Complaints from "../../pages/Admin/Complaints.jsx";
 import ContentList from "../../pages/Admin/ContentManagement/ContentList.jsx";
 
 export default function RoutesAdmin () {
