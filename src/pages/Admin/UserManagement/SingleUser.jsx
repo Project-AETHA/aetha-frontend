@@ -298,7 +298,7 @@ function SingleUser() {
                             </div>
                         </div>
 
-                        <div className="bg-white w-full shadow overflow-hidden sm:rounded-lg p-5">
+                        <div className="bg-white w-full overflow-hidden sm:rounded-lg p-5">
                             <div className="px-4 py-5 sm:px-6">
                                 <h3 className="text-lg leading-6 font-medium text-gray-900">
                                     Recent Login Details
@@ -394,14 +394,14 @@ function SingleUser() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-white w-11/12 shadow overflow-hidden sm:rounded-lg p-5 m-5">
+                <div className="bg-white w-11/12  overflow-hidden sm:rounded-lg p-5 m-5">
                     <div className="px-4 py-5 sm:px-6">
                         <h3 className="text-lg leading-6 font-medium text-gray-900">
                             Subscription Details
                         </h3>
                     </div>
-                    <div className="border-t border-gray-200 ">
-                        <Table aria-label="Subscription details" className='text-foreground-900 ' radius='none'>
+                    <div className="border-t border-gray-200">
+                        <Table aria-label="Subscription details" className='text-foreground-900 ' radius='none' removeWrapper>
                             <TableHeader columns={subscriptionColumns}>
                                 {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                             </TableHeader>
@@ -415,7 +415,7 @@ function SingleUser() {
                         </Table>
                     </div>
                 </div>
-                <div className="bg-white w-11/12 shadow overflow-hidden sm:rounded-lg p-5 m-5">
+                <div className="bg-white w-11/12  overflow-hidden sm:rounded-lg p-5 m-5">
                     <div className="px-4 py-5 sm:px-6">
                         <h3 className="text-lg leading-6 font-medium text-gray-900">
                             Publishes
@@ -504,14 +504,14 @@ function SingleUser() {
                     </div>
 
                 </div>
-                <div className="bg-white w-11/12 shadow overflow-hidden sm:rounded-lg p-5 m-5">
+                <div className="bg-white w-11/12 overflow-hidden sm:rounded-lg p-5 m-5">
                     <div className="px-4 py-5 sm:px-6">
                         <h3 className="text-lg leading-6 font-medium text-gray-900">
                             Complaints
                         </h3>
                     </div>
                     <div className="border-t border-gray-200">
-                        <Table aria-label="Complaints details" className='text-foreground-900' radius='none'>
+                        <Table aria-label="Complaints details" className='text-foreground-900' radius='none' removeWrapper>
                             <TableHeader columns={complaintColumns}>
                                 {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                             </TableHeader>
