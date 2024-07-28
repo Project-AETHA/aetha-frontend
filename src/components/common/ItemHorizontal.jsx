@@ -5,7 +5,7 @@ import Rating from "./Rating.jsx";
 
 export default function ItemHorizontal ({ content }) {
     return (
-        <Link to={`/reading/${content.type.toLowerCase()}/${content.id}`}>
+        <Link to={`/${content.type.toLowerCase()}/${content.id}`}>
             <div className="max-h-[200px] flex gap-2">
                 <Image
                     width={150}

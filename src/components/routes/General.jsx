@@ -20,7 +20,7 @@ export default function RoutesGeneral () {
         { path: '/signup', element: <SignupPage />, layout: "simple" },
         { path: '/support', element: <SupportPage />, layout: "default" },
         { path: '/shop', element: <Shop />, layout: "default" },
-        { path: '/chapters', element: <Chapters />, layout: "default" },
+        { path: '/novel/:novelId', element: <Chapters />, layout: "default" },
         { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
         { path: '/reading', element: <Reading />, layout: "default" },
         { path: '/novels', element: <NovelLandingPage />, layout: "default" },
