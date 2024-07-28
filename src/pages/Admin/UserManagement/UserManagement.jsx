@@ -291,6 +291,7 @@ function UserManagement() {
                         onClear={() => onClear()}
                         onValueChange={onSearchChange}
                         color="primary"
+                
                     />
 
                     <div className="flex gap-3">
@@ -298,7 +299,7 @@ function UserManagement() {
                             <DropdownTrigger className="hidden sm:flex">
                                 <Button
                                     endContent={<ChevronDownIcon className="text-small" />}
-                                    variant="flat"
+                                    variant="ghost"
                                     color="primary"
                                 >
                                     Role
@@ -320,7 +321,7 @@ function UserManagement() {
                         </Dropdown>
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat" color="primary">
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" color="primary">
                                     Status
                                 </Button>
                             </DropdownTrigger>
@@ -341,7 +342,7 @@ function UserManagement() {
                         </Dropdown>
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat" color="primary">
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" color="primary">
                                     Columns
                                 </Button>
                             </DropdownTrigger>
@@ -366,11 +367,11 @@ function UserManagement() {
                     </div>
                 </div>
                 <div className="flex justify-between items-center">
-                    <span className="text-default-400 text-small">Total {users.length} users</span>
-                    <label className="flex items-center text-default-400 text-small">
+                    <span className="text-black text-small ">Total {users.length} users</span>
+                    <label className="flex items-center text-black text-small">
                         Rows per page:
                         <select
-                            className="bg-transparent outline-none text-default-400 text-small"
+                            className="bg-transparent outline-none text-black text-small"
                             onChange={onRowsPerPageChange}
                         >
                             <option value="6">6</option>
@@ -442,12 +443,13 @@ function UserManagement() {
                     onSelectionChange={setSelectedKeys}
                     onSortChange={setSortDescriptor}
                 >
-                    <TableHeader columns={headerColumns}>
+                    <TableHeader columns={headerColumns} >
                         {(column) => (
                             <TableColumn
                                 key={column.uid}
                                 align={column.uid === "actions" ? "center" : "start"}
                                 allowsSorting={column.sortable}
+                                className="bg-indigo-400 text-black"
                             >
                                 {column.name}
                             </TableColumn>
@@ -604,8 +606,8 @@ function UserManagement() {
                         {(onClose) => (
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center">
-                                        <div className="text-lg font-semibold">Edit User Details</div>
+                                    <div className="flex flex-col items-center text-center w-full">
+                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black">Edit User Details</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 "
                                             src="https://randomuser.me/api/portraits/women/21.jpg"
@@ -614,11 +616,11 @@ function UserManagement() {
                                     </div>
                                 </ModalHeader>
                                 <ModalBody>
-                                    <Input type="text" variant="faded" label="Username" placeholder="MadhuHansi" labelPlacement="outside" />
-                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" />
+                                    <Input type="text" variant="faded" label="Username" placeholder="MadhuHansi" labelPlacement="outside" color="primary" />
+                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" color="primary" />
                                     <div className="flex gap-3">
-                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" />
-                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" />
+                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" color="primary"/>
+                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" color="primary" />
                                     </div>
                                     <div className="flex gap-3">
                                         <DatePicker
@@ -626,6 +628,7 @@ function UserManagement() {
                                             className="max-w-[284px]"
                                             labelPlacement="outside"
                                             variant="faded"
+                                            color="primary"
                                         />
                                         <Select
                                             variant="faded"
@@ -633,6 +636,7 @@ function UserManagement() {
                                             placeholder="Select your gender"
                                             className=""
                                             labelPlacement="outside"
+                                            color="primary"
                                         >
                                             {genderOptions.map((option) => (
                                                 <SelectItem
@@ -672,8 +676,8 @@ function UserManagement() {
                         {(onClose) => (
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center">
-                                        <div className="text-lg font-semibold">Disable User</div>
+                                    <div className="flex flex-col items-center text-center w-full">
+                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black">Disable User</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
                                             src="https://randomuser.me/api/portraits/women/21.jpg"
@@ -690,6 +694,7 @@ function UserManagement() {
                                         labelPlacement="outside"
                                         placeholder="Enter your reason"
                                         className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
+                                        color="primary"
                                     />
                                     <p className="p-2">Are you sure you want to disable this user?</p>
                                 </ModalBody>
@@ -719,8 +724,8 @@ function UserManagement() {
                         {(onClose) => (
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center">
-                                        <div className="text-lg font-semibold">Delete User</div>
+                                    <div className="flex flex-col items-center text-center w-full">
+                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black">Delete User</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
                                             src="https://randomuser.me/api/portraits/women/21.jpg"
@@ -737,6 +742,7 @@ function UserManagement() {
                                         labelPlacement="outside"
                                         placeholder="Enter your reason"
                                         className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
+                                        color="primary"
                                     />
                                     <p className="p-2">Are you sure you want to delete this user?</p>
                                 </ModalBody>

@@ -11,6 +11,11 @@ function ApproveNovel() {
 
     <div className="bg-white flex justify-center pt-8">
       <div className="flex-col w-10/12 bg-gray-200 rounded-md">
+      <div className='mt-4 mx-4 p-4 shadow-lg bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative' style={{ height: '50px' }}>
+                    <p className='flex items-center justify-center h-full font-sans text-white text-xl font-normal'>
+                        Admin Approval
+                    </p>
+                </div>
         <div className='text-black font-bold flex justify-start items-start ml-20 mt-4'>
           <FcGallery size="25px" />
           Novel

@@ -82,7 +82,6 @@ function ContentList() {
                 radius="none"
                 removeWrapper
                 className="p-4"
-                color="primary"
                 selectionMode="single"
                 defaultSelectedKeys={["2"]}
                 aria-label="Example table with client side pagination"
@@ -105,7 +104,7 @@ function ContentList() {
             >
                 <TableHeader className="bg-gradient-to-r from-purple-400 to-blue-500 text-lg">
                     {contentColumns.map((column) => (
-                        <TableColumn key={column.key} className='bg-indigo-400 text-black text-medium'>{column.label}</TableColumn>
+                        <TableColumn key={column.key} className='bg-indigo-400 text-black '>{column.label}</TableColumn>
                     ))}
                 </TableHeader>
                 <TableBody items={paginatedItems}>
@@ -127,12 +126,12 @@ function ContentList() {
                                 } else if (columnKey === "title") {
                                     return (
                                         <TableCell>
-                                            <span className="font-bold">{getKeyValue(item, columnKey)}</span>
+                                            <span >{getKeyValue(item, columnKey)}</span>
                                         </TableCell>
                                     );
                                 } else if (columnKey === "publishedDate") {
                                     return (
-                                        <TableCell style={{ fontWeight: 'medium' }} className='font-semibold'>
+                                        <TableCell  >
                                             {new Date(getKeyValue(item, columnKey)).toLocaleDateString('en-GB')}
                                         </TableCell>
                                     );
