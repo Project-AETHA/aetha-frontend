@@ -9,6 +9,8 @@ import Chapterreading from "../../pages/Chapterreading.jsx";
 import Chapters from "../../pages/Chapter";
 import Shop from "../../pages/Shop";
 import Subscribe from "../../pages/Subscribe";
+import ShortStoriesReading from "../../pages/ShortStoriesReading";
+import Shortstories from "../../pages/Shortstories";
 
 export default function RoutesGeneral () {
     return [
@@ -23,5 +25,7 @@ export default function RoutesGeneral () {
         { path: '/novels', element: <Novels />, layout: "default" },
         { path: '/poems', element: <Poems />, layout: "default" },
         { path: '/subscribe', element: <Subscribe />, layout: "default" },
+        { path: '/shortstoriesreading', element: <ShortStoriesReading />, layout: "default" },
+        { path: '/shortstories', element: <Shortstories />, layout: "default" },
     ]
 }

@@ -8,10 +8,10 @@ import { MdOutlineSettings } from "react-icons/md";
 function Reading() {
     let recommendations = [
         {
-            title: "THE GREAT GASBY",
+            title: "Who's there",
             description: "Recommendation description",
-            image: "../../public/images/books/book1.jpg",
-            author: "James Wan",
+            image: "../../public/images/shortstories/shortstory1.jpg",
+            author: "John williams",
             badge1: "../../public/images/badge.png"
         },
     ];
@@ -25,31 +25,30 @@ function Reading() {
                 <div className="w-full border-5 border-gray-300 rounded-md p-2 dark:bg-[url('../../public/images/darkbackground.png')] bg-[url('../../public/images/bookbackground.png')] bg-cover">
 
                     <div className="w-full md:w-3/12 inline-block">
-                        <div className="flex mx-5 items-center flex-wrap gap-2">
+                        <div className="flex items-center justify-center">
                             {latest_updates &&
                                 latest_updates.map((latest_update, index) => (
                                     <Link to="#" key={index}>
-                                        <div className="max-w-[350px] w-[150px] flex flex-col">
+                                   
                                             <Image
-                                                width="150px"
-                                                height="300px"
-                                                className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer h-[200px]"
+                                                
+                                                className="rounded-md hover:scale-105transition-transform duration-300 ease-in-out hover:cursor-pointer"
                                                 alt="NextUI hero Image"
                                                 src={latest_update.image}
                                             />
 
 
-                                        </div>
+                                       
                                     </Link>
                                 ))}
                         </div>
                     </div>
-                    <div className="w-full md:w-9/12 inline-block align-top text-justify px-5 text-primaryText mt-5">
+                    <div className="w-full md:w-9/12 inline-block align-top text-center md:text-justify px-5 text-primaryText md:mt-5 ">
 
                         {latest_updates &&
                             latest_updates.map((latest_update, index) => (
                                 <div key={index}>
-                                    <h1 className="md:text-4xl text-xl font-semibold">  {latest_update.title} </h1>
+                                    <h1 className="md:text-4xl text-2xl font-semibold">  {latest_update.title} </h1>
 
                                     <p className="md:text-xl"> by {latest_update.author} </p>
                                 </div>
@@ -74,24 +73,6 @@ function Reading() {
                         </Button>
                     </div>
 
-                    {/* prvious chapter button and next chapter button */}
-                    <div className="flex justify-between items-center md:mx-5">
-                        <Button
-                            className="bg-accentText rounded-none text-whiteText shadow-md w-[140px] h-[35px]"
-
-                        >
-                            Previous Chapter
-                        </Button>
-                        
-                        <Link to="/subscribe">
-                        <Button
-                            className="bg-accentText rounded-none text-whiteText shadow-md w-[140px] h-[35px]"
-
-                        >
-                            Next Chapter
-                        </Button>
-                        </Link>
-                    </div>
 
 
 
@@ -99,7 +80,7 @@ function Reading() {
 
                     {/* chapter story */}
                     <div className="w-full md:w-full inline-block align-top text-justify px-5 text-primaryText my-5">
-                        <h1 className=" bg-gray-200 text-center my-4 p-2 text-xl font-semibold">  Chapter 1 : John Cooper  </h1>
+                     
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                             pellentesque, nisl vel tincidunt ornare, felis nunc lacinia
@@ -163,21 +144,8 @@ function Reading() {
                         </p>
                     </div>
 
-                    {/* prvious chapter button and next chapter button */}
-                    <div className="flex justify-between items-center md:mx-5">
-                        <Button
-                            className="bg-accentText rounded-none text-whiteText shadow-md w-[140px] h-[35px]"
-
-                        >
-                            Previous Chapter
-                        </Button>
-                        <Button
-                            className="bg-accentText rounded-none text-whiteText shadow-md w-[140px] h-[35px]"
-
-                        >
-                            Next Chapter
-                        </Button>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
