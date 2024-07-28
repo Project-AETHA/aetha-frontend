@@ -23,15 +23,24 @@ import {
     ModalBody,
     ModalFooter,
     useDisclosure,
-    Textarea
+    Textarea,
+    DatePicker,
+    Select,
+    SelectItem,
+    Radio,
+    RadioGroup
 } from "@nextui-org/react";
 import { LiaUserSlashSolid } from "react-icons/lia";
 import { PlusIcon } from "../../../components/common/icons/PlusIcon";
 import { SearchIcon } from "../../../components/common/icons/SearchIcon";
+import { EyeIcon } from "../../../components/common/icons/EyeIcon";
 import { ChevronDownIcon } from "../../../components/common/icons/ChevronDownIcon";
 import React, { useEffect, useState } from "react";
 import { EditIcon } from "../../../components/common/icons/EditIcon";
 import { DeleteIcon } from "../../../components/common/icons/DeleteIcon";
+import { useNavigate } from 'react-router-dom'
+import { EyeFilledIcon } from "../../../components/common/icons/EyeFilledIcon";
+import { EyeSlashFilledIcon } from "../../../components/common/icons/EyeSlashFilledIcon";
 
 
 
@@ -50,10 +59,17 @@ const columns = [
 ];
 
 const statusOptions = [
-    { name: "Active", uid: "active" },
-    { name: "Disabled", uid: "disabled" },
-    { name: "Deleted", uid: "deleted" },
+    { name: "ACTIVE", uid: "active" },
+    { name: "DISABLED", uid: "disabled" },
+    { name: "DELETED", uid: "deleted" },
 ];
+
+const roleOptions = [
+    { name: "READER", uid: "reader" },
+    { name: "WRITER", uid: "writer" },
+    { name: "ADMIN", uid: "admin" },
+];
+
 
 const statusColorMap = {
     ACTIVE: "success",
@@ -70,10 +86,19 @@ function capitalize(str) {
 
 function UserManagement() {
 
+    const genderOptions = [
+        { key: "male", label: "Male" },
+        { key: "female", label: "Female" },
+        { key: "other", label: "Other" },
+        { key: "not-preferred", label: "Prefer not to say" },
+    ];
+
+    const navigate = useNavigate()
 
     const { isOpen: isEditOpen, onOpen: onEditOpen, onOpenChange: onEditOpenChange } = useDisclosure();
     const { isOpen: isDisableOpen, onOpen: onDisableOpen, onOpenChange: onDisableOpenChange } = useDisclosure();
     const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onOpenChange: onDeleteOpenChange } = useDisclosure();
+    const { isOpen: isAddNewOpen, onOpen: onAddNewOpen, onOpenChange: onAddNewOpenChange } = useDisclosure();
 
     async function getAllUsers() {
 
@@ -91,13 +116,16 @@ function UserManagement() {
     }
 
 
+    const [isVisible, setIsVisible] = React.useState(false);
 
+    const toggleVisibility = () => setIsVisible(!isVisible);
 
     const [users, setUsers] = useState([])
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
     const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
     const [statusFilter, setStatusFilter] = React.useState("all");
+    const [roleFilter, setRoleFilter] = React.useState("all");
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
     const [sortDescriptor, setSortDescriptor] = React.useState({
         column: "age",
@@ -127,9 +155,16 @@ function UserManagement() {
         }
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
             filteredUsers = filteredUsers.filter((user) =>
-                Array.from(statusFilter).includes(user.status),
+                Array.from(statusFilter).includes(user.status.toLowerCase())
             );
         }
+        if (roleFilter !== "all" && Array.from(roleFilter).length !== roleOptions.length) {
+            filteredUsers = filteredUsers.filter((user) =>
+                Array.from(roleFilter).includes(user.role.toLowerCase())
+            );
+        }
+
+
 
         return filteredUsers;
     }, [users, filterValue, statusFilter]);
@@ -183,6 +218,11 @@ function UserManagement() {
             case "actions":
                 return (
                     <div className="relative flex justify-center items-center gap-2">
+                        <Tooltip key="view" color="secondary" content="view" >
+                            <Button isIconOnly variant="flat" color="secondary" className="capitalize" size="sm" onPress={() => navigate(`/admin/users/${user.id}`)}>
+                                <EyeIcon />
+                            </Button>
+                        </Tooltip>
                         <Tooltip key="edit" color="success" content="edit" >
                             <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm" onPress={onEditOpen}>
                                 <EditIcon />
@@ -250,42 +290,37 @@ function UserManagement() {
                         value={filterValue}
                         onClear={() => onClear()}
                         onValueChange={onSearchChange}
+                        color="primary"
                     />
-                    <div>
-                        <Tabs aria-label="Options" color="danger" variant="bordered">
-                            <Tab
-                                key="photos"
-                                title={
-                                    <div className="flex items-center space-x-2">
-                                        {/* <GalleryIcon /> */}
-                                        <span>Readers</span>
-                                    </div>
-                                }
-                            />
-                            <Tab
-                                key="music"
-                                title={
-                                    <div className="flex items-center space-x-2">
-                                        {/* <MusicIcon /> */}
-                                        <span>Writers</span>
-                                    </div>
-                                }
-                            />
-                            <Tab
-                                key="videos"
-                                title={
-                                    <div className="flex items-center space-x-2">
-                                        {/* <VideoIcon /> */}
-                                        <span>Admin</span>
-                                    </div>
-                                }
-                            />
-                        </Tabs>
-                    </div>
+
                     <div className="flex gap-3">
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                                <Button
+                                    endContent={<ChevronDownIcon className="text-small" />}
+                                    variant="flat"
+                                    color="primary"
+                                >
+                                    Role
+                                </Button>
+                            </DropdownTrigger>
+                            <DropdownMenu
+                                aria-label="Select role"
+                                closeOnSelect={false}
+                                disallowEmptySelection
+                                selectedKeys={roleFilter}
+                                selectionMode="multiple"
+                                onSelectionChange={(keys) => setRoleFilter(keys)}
+                            >
+                                {roleOptions.map((item) => (
+                                    <DropdownItem key={item.uid}>{item.name}</DropdownItem>
+                                ))}
+                            </DropdownMenu>
+
+                        </Dropdown>
+                        <Dropdown>
+                            <DropdownTrigger className="hidden sm:flex">
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat" color="primary">
                                     Status
                                 </Button>
                             </DropdownTrigger>
@@ -306,7 +341,7 @@ function UserManagement() {
                         </Dropdown>
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat" color="primary">
                                     Columns
                                 </Button>
                             </DropdownTrigger>
@@ -325,7 +360,7 @@ function UserManagement() {
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                        <Button color="primary" endContent={<PlusIcon />}>
+                        <Button color="primary" endContent={<PlusIcon />} onPress={onAddNewOpen}>
                             Add New
                         </Button>
                     </div>
@@ -385,6 +420,7 @@ function UserManagement() {
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
     return (
+
         <>
 
             <div className='min-h-[calc(100dvh-65px)]  overflow-hidden bg-slate-100 px-3 pt-6'>
@@ -419,12 +455,141 @@ function UserManagement() {
                     </TableHeader>
                     <TableBody emptyContent={"No users found"} className="" items={sortedItems}>
                         {(item) => (
-                            <TableRow key={item.id} >
+                            <TableRow key={item.id}  >
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                             </TableRow>
                         )}
                     </TableBody>
                 </Table>
+
+
+                <Modal
+                    isOpen={isAddNewOpen}
+                    onOpenChange={onAddNewOpenChange}
+                    backdrop="blur"
+                    classNames={{
+                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
+                    }}
+                >
+                    <ModalContent>
+                        {(onClose) => (
+                            <>
+                                <ModalHeader className="flex flex-col gap-4 items-center">
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="text-lg font-semibold">Add New User</div>
+
+                                    </div>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <div className="flex gap-3">
+                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" />
+                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" />
+                                    </div>
+                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" />
+                                    <div className="flex gap-3">
+                                        <Input
+                                            label="Password"
+                                            variant="faded"
+                                            placeholder="Enter password"
+                                            labelPlacement="outside"
+                                            endContent={
+                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
+                                                    {isVisible ? (
+                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    ) : (
+                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    )}
+                                                </button>
+                                            }
+                                            type={isVisible ? "text" : "password"}
+                                            className="max-w-xs"
+                                        />
+                                        <Input
+                                            label="Confirm Password"
+                                            variant="faded"
+                                            placeholder="Enter password"
+                                            labelPlacement="outside"
+                                            endContent={
+                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
+                                                    {isVisible ? (
+                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    ) : (
+                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                                                    )}
+                                                </button>
+                                            }
+                                            type={isVisible ? "text" : "password"}
+                                            className="max-w-xs"
+                                        />
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <DatePicker
+                                            label={"Birth date"}
+                                            className="max-w-[284px]"
+                                            labelPlacement="outside"
+                                            variant="faded"
+                                        />
+                                        <Select
+                                            variant="faded"
+                                            label="Gender"
+                                            placeholder="Select your gender"
+                                            className=""
+                                            labelPlacement="outside"
+                                        >
+                                            {genderOptions.map((option) => (
+                                                <SelectItem
+                                                    key={option.key}
+                                                    value={option.key}
+                                                    color="primary"
+                                                >
+                                                    {option.label}
+                                                </SelectItem>
+                                            ))}
+                                        </Select>
+                                    </div>
+                                    <div className="">
+                                        <label className="text-sm text-blue-500 font-bold">
+                                            Register as
+                                        </label>
+                                        <RadioGroup color="primary">
+                                            <div className="flex gap-5 w-full justify-around items-center">
+                                                <Tooltip
+                                                    content="Can only read content"
+                                                    color="primary"
+                                                    placement="bottom"
+                                                    offset={-4}
+                                                >
+                                                    <Radio value="reader" color="primary">
+                                                        Reader
+                                                    </Radio>
+                                                </Tooltip>
+                                                <Tooltip
+                                                    content="Can read and write content"
+                                                    color="primary"
+                                                    placement="bottom"
+                                                    offset={-4}
+                                                >
+                                                    <Radio value="writer" color="primary">
+                                                        Writer
+                                                    </Radio>
+                                                </Tooltip>
+                                            </div>
+                                        </RadioGroup>
+                                    </div>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onPress={onClose}>
+                                        Add User
+                                    </Button>
+                                    <Button color="secondary" onPress={onClose}>
+                                        Cancel
+                                    </Button>
+                                </ModalFooter>
+                            </>
+                        )}
+                    </ModalContent>
+                </Modal>
+
 
                 {/* Edit modal */}
                 <Modal
@@ -442,17 +607,44 @@ function UserManagement() {
                                     <div className="flex flex-col items-center text-center">
                                         <div className="text-lg font-semibold">Edit User Details</div>
                                         <img
-                                            className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
+                                            className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 "
                                             src="https://randomuser.me/api/portraits/women/21.jpg"
                                             alt="User Avatar"
                                         />
                                     </div>
                                 </ModalHeader>
                                 <ModalBody>
-                                <Input type="text" variant="faded" label="Username" placeholder="MadhuHansi"  labelPlacement="outside"/>
-                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" />
-                                    <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" />
-                                    <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" />
+                                    <Input type="text" variant="faded" label="Username" placeholder="MadhuHansi" labelPlacement="outside" />
+                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" />
+                                    <div className="flex gap-3">
+                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" />
+                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" />
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <DatePicker
+                                            label={"Birth date"}
+                                            className="max-w-[284px]"
+                                            labelPlacement="outside"
+                                            variant="faded"
+                                        />
+                                        <Select
+                                            variant="faded"
+                                            label="Gender"
+                                            placeholder="Select your gender"
+                                            className=""
+                                            labelPlacement="outside"
+                                        >
+                                            {genderOptions.map((option) => (
+                                                <SelectItem
+                                                    key={option.key}
+                                                    value={option.key}
+                                                    color="primary"
+                                                >
+                                                    {option.label}
+                                                </SelectItem>
+                                            ))}
+                                        </Select>
+                                    </div>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button color="primary" onPress={onClose}>

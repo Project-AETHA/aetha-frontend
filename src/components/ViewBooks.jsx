@@ -2,7 +2,7 @@ import React from "react";
 import Book1 from "../../public/images/books/book1.jpg";
 import Book2 from "../../public/images/books/book2.jpg";
 import Book3 from "../../public/images/books/book3.jpg";
-import AOS from 'aos';
+import { Link } from "react-router-dom";
 import 'aos/dist/aos.css';
 import { FaStar } from "react-icons/fa";
 
@@ -126,13 +126,13 @@ const ViewBooks = () => {
 
                 <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out mb-4">
 
-                  <a href="/chapters">
+                  <Link to="/chapters" color="foreground">
                     <img
                       src={img}
                       alt=""
                       className="h-[220px] w-[150px] object-cover rounded-sm"
                     />
-                  </a>
+                  </Link>
                   <div>
                     <h3 className="font-semibold text-primaryText">{title}</h3>
                     <p className="text-sm text-secondaryText">{author}</p>
