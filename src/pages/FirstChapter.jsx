@@ -36,7 +36,7 @@ const FirstChapter = () => {
           <h2 className="text-2xl font-semibold mb-4">New Novel Submission</h2>
           <div className="mb-4">
             <h3 className="text-xl font-medium mb-3">Submit your Novel</h3>
-            <p className=" text-gray-500 p-3 rounded-lg bg-amber-300">
+            <p className=" text-gray-400 p-3 rounded-lg bg-amber-300">
               To submit your Novel, both the Novel information and the first
               chapter or prologue are required. After that, your submission will
               be inspected by our system and one of the staff members.
