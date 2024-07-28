@@ -109,7 +109,7 @@ function ContentManagemenet() {
                 </div>
 
                 <div className='p-4'>
-                <Table aria-label="Recent Content Details" className='text-foreground-900' radius='none' removeWrapper>
+                    <Table aria-label="Recent Content Details" className='text-foreground-900' radius='none' removeWrapper>
                         <TableHeader columns={contentColumns} >
                             {(column) => <TableColumn key={column.key} className='bg-gray-400 text-black text-small'>{column.label}</TableColumn>}
                         </TableHeader>
@@ -161,13 +161,13 @@ function ContentManagemenet() {
                                         else if (columnKey === 'view') {
                                             return (
                                                 <TableCell>
-                                                    <Button size='sm' className="bg-sky-600 font-semibold text-white" >
+                                                    <Button size='sm' className="bg-sky-600 font-semibold text-white" onClick={() => { navigate(`/admin/contents/approve`); }}>
                                                         View
                                                     </Button>
                                                 </TableCell>
                                             );
                                         }
-                                        return <TableCell  style={{ fontWeight: 'medium' }} className='font-semibold'>{getKeyValue(item, columnKey)}</TableCell>;
+                                        return <TableCell style={{ fontWeight: 'medium' }} className='font-semibold'>{getKeyValue(item, columnKey)}</TableCell>;
                                     }}
                                 </TableRow>
                             )}
