@@ -7,6 +7,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
     extend: {
@@ -190,5 +191,6 @@ themes: {
     },
     }),
     tailwind_scrollbar({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
+    require('flowbite/plugin')
   ],
 };
