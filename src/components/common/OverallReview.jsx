@@ -23,11 +23,10 @@ export default function OverallReview({ review_score, font_size = "text-medium" 
         <div className={`
             ${font_size} 
             flex items-center
-            text-white
             rounded 
         `}>
-            <span className="bg-gray-700/50 px-2 py-1 rounded-tl text-small rounded-bl">Reviews </span>
-            <div className="bg-foreground-100/25 px-2 py-1 flex gap-2 rounded-tr rounded-br">
+            <span className="bg-gray-700/50 px-2 text-white py-1 rounded-tl text-small rounded-bl hidden sm:flex">Reviews </span>
+            <div className="bg-foreground-300/75 px-2 py-1 flex gap-2 text-foreground-900 rounded-tr rounded-br">
                 <span>{icon}</span>
                 <span>{message}</span>
             </div>
