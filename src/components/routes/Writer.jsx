@@ -11,8 +11,7 @@ import Submitions from "../../pages/Submitions.jsx";
 import Advertising from "../../pages/Advertising.jsx";
 import NewCampaign from "../../pages/NewCampaign.jsx";
 import SstSubmitions from "../../pages/SstSubmitions.jsx";
-import Nisades from "../../pages/Nisades.jsx";
-import CreateNisades from "../../pages/CreateNisades.jsx";
+import RevenuePage from "../../pages/Revenue.jsx";
 
 
 export default function RoutesWriter () {
@@ -29,9 +28,8 @@ export default function RoutesWriter () {
         { path: '/author/advertising', element: <Advertising />, layout: "author_dashboard" },
         { path: '/author/advertising/newcampaign', element: <NewCampaign />, layout: "author_dashboard" },
         { path: '/author/short-stories', element: <SstSubmitions />, layout: "author_dashboard" },
-        { path: '/author/nisades', element: <Nisades />, layout: "author_dashboard" },
-        { path: '/author/nisades/create', element: <CreateNisades/>, layout: "author_dashboard" },
         { path: '/author/ebooks', element: <Ebook/>, layout: "author_dashboard" },
+        { path: '/author/revenue', element: <RevenuePage/>, layout: "author_dashboard" },
 
 
     ]
