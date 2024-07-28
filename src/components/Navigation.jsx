@@ -35,7 +35,7 @@ export default function Navigation() {
       title: "Read",
       subItems: [
         { key: "novels", title: "Novels", link: "/novels" },
-        { key: "shortstories", title: "Short Stories", link: "#shortstories" },
+        { key: "shortstories", title: "Short Stories", link: "/shortstories" },
         { key: "poems", title: "Poems", link: "/poems" },
         { key: "nisades", title: "Nisades", link: "#nisades" },
       ],
