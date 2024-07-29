@@ -2,6 +2,8 @@ import React from 'react'
 import { IoBagHandle, IoPieChart, IoPeople, IoCart } from 'react-icons/io5'
 import Barchart from './Barchart'
 
+
+
 function BoxWrapper({ children }) {
 	return <div className="bg-white rounded-md p-4 flex-1 border border-gray-200 flex items-center">{children}</div>
 }
