@@ -11,7 +11,9 @@ import AdminDashboardLayout from "./layouts/AdminDashboardLayout.jsx";
 import AuthorDashboardLayout from "./layouts/AuthorDashboardLayout.jsx";
 import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import SimpleLayout from "./layouts/SimpleLayout.jsx";
-import ProfileLayout from './layouts/ProfileDashboardLayout.jsx';
+import ProfileLayout from './layouts/ProfileLayout.jsx';
+import ProfileDashboardLayout from './layouts/ProfileDashboardLayout.jsx';
+
 
 // Routing files
 import RoutesWriter from "./components/routes/Writer.jsx";
@@ -34,7 +36,9 @@ const layoutComponents = {
     admin_dashboard: AdminDashboardLayout,
     author_dashboard: AuthorDashboardLayout,
     simple: SimpleLayout,
-    profile_dashboard: ProfileLayout
+    profile_dashboard: ProfileDashboardLayout,
+    profile: ProfileLayout
+
 };
 
 const generateRoutes = () => {

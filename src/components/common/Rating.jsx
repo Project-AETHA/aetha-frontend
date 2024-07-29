@@ -18,3 +18,4 @@ export default function Rating({ rating, size=20 }) {
         </div>
     );
 }
+

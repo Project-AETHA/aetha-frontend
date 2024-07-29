@@ -6,6 +6,7 @@ import { DatePicker } from "@nextui-org/react";
 import { FaEnvelope } from "react-icons/fa";
 import { FaMapMarkerAlt, FaLink, FaTwitter, FaFacebook, FaPen } from "react-icons/fa";
 import {Button} from "@nextui-org/react";
+import { LuPaperclip } from 'react-icons/lu';
 
 function EditProfile() {
   const [gender, setGender] = useState('');
@@ -55,8 +56,11 @@ function EditProfile() {
           <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
             <div className='w-1/3'>Username</div>
             <div className='w-2/3'>
-              <label className='ml-2'>
-                <div className='w-auto align-middle p-2 bg-gray-300'>Hansini Bhagya</div>
+              <label className='ml-2 flex items-center '>
+                <div className='w-full align-middle p-2 bg-gray-300 flex'>Hansini Bhagya</div>
+                <button className='bg-primary h-10 py-3'>  
+                    <LuPaperclip className='ml-2 mr-3 text-white ' />
+                    </button> 
               </label>
             </div>
           </div>
