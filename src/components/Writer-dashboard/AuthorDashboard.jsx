@@ -60,7 +60,7 @@ const AuthorDashboard = () => {
           <Dropdown backdrop="blur">
             <DropdownTrigger>
             <Button color="secondary" auto>
-            New Story
+            + New Content
             </Button>
             </DropdownTrigger>
             <DropdownMenu variant="faded" aria-label="Static Actions">
