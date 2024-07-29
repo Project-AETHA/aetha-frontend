@@ -12,6 +12,7 @@ import Subscribe from "../../pages/Subscribe";
 import ShortStoriesReading from "../../pages/ShortStoriesReading";
 import Shortstories from "../../pages/Shortstories";
 import GeneralLandingPage from "../../pages/LandingPage/GeneralLandingPage.jsx";
+import TestComponent from "../../components/common/Tables/Temp.tsx";
 
 export default function RoutesGeneral () {
     return [
@@ -20,7 +21,7 @@ export default function RoutesGeneral () {
         { path: '/signup', element: <SignupPage />, layout: "simple" },
         { path: '/support', element: <SupportPage />, layout: "default" },
         { path: '/shop', element: <Shop />, layout: "default" },
-        { path: '/chapters', element: <Chapters />, layout: "default" },
+        { path: '/novel/:novelId', element: <Chapters />, layout: "default" },
         { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
         { path: '/reading', element: <Reading />, layout: "default" },
         { path: '/novels', element: <NovelLandingPage />, layout: "default" },
@@ -28,5 +29,6 @@ export default function RoutesGeneral () {
         { path: '/subscribe', element: <Subscribe />, layout: "default" },
         { path: '/shortstoriesreading', element: <ShortStoriesReading />, layout: "default" },
         { path: '/shortstories', element: <Shortstories />, layout: "default" },
+        { path: '/test', element: <TestComponent message="Hellow World" />, layout: "default" }
     ]
 }
