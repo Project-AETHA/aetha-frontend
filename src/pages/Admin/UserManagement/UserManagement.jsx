@@ -290,7 +290,7 @@ function UserManagement() {
                         value={filterValue}
                         onClear={() => onClear()}
                         onValueChange={onSearchChange}
-                        
+                        color="primary"
                 
                     />
 
@@ -300,7 +300,7 @@ function UserManagement() {
                                 <Button
                                     endContent={<ChevronDownIcon className="text-small" />}
                                     variant="ghost"
-                                    
+                                    color="primary"
                                 >
                                     Role
                                 </Button>
@@ -321,7 +321,7 @@ function UserManagement() {
                         </Dropdown>
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" >
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" color="primary">
                                     Status
                                 </Button>
                             </DropdownTrigger>
@@ -342,7 +342,7 @@ function UserManagement() {
                         </Dropdown>
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" >
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" color="primary">
                                     Columns
                                 </Button>
                             </DropdownTrigger>
@@ -477,8 +477,8 @@ function UserManagement() {
                         {(onClose) => (
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black w-full">Add New User</div>
+                                    <div className="flex flex-col items-center text-center">
+                                        <div className="text-lg font-semibold">Add New User</div>
 
                                     </div>
                                 </ModalHeader>
@@ -550,11 +550,11 @@ function UserManagement() {
                                         </Select>
                                     </div>
                                     <div className="">
-                                        <label className="text-sm ">
+                                        <label className="text-sm text-blue-500 font-bold">
                                             Register as
                                         </label>
                                         <RadioGroup color="primary">
-                                            <div className="flex gap-5 w-full justify-around items-center my-4">
+                                            <div className="flex gap-5 w-full justify-around items-center">
                                                 <Tooltip
                                                     content="Can only read content"
                                                     color="primary"
