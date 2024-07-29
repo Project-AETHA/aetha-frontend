@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Table, Input, Pagination, TableColumn, TableCell, TableRow, TableBody, TableHeader } from '@nextui-org/react';
-import { Button } from '@nextui-org/react';
-
+import { Table, Input, Pagination, TableColumn, TableCell, TableRow, TableBody, TableHeader, Card, Button } from '@nextui-org/react';
+import 'tailwindcss/tailwind.css';
 
 const initialChapters = [
-  // Example data
   { name: 'Chapter 1', lastModified: '2024-07-01', wordCount: 1200, scheduledDate: '2024-07-15', status: 'Published' },
   { name: 'Chapter 2', lastModified: '2024-07-10', wordCount: 1500, scheduledDate: '2024-07-20', status: 'Waiting' },
   // Add more chapters as needed
@@ -24,6 +22,18 @@ const Chapters = () => {
   const currentChapters = filteredChapters.slice(indexOfFirstChapter, indexOfLastChapter);
 
   const totalPages = Math.ceil(filteredChapters.length / chaptersPerPage);
+
+  const [tiers, setTiers] = useState([
+    { tier: 1, chapters: 0, cost: 0 },
+    { tier: 2, chapters: 0, cost: 0 },
+    { tier: 3, chapters: 0, cost: 0 }
+  ]);
+
+  const handleTierChange = (index, field, value) => {
+    const newTiers = [...tiers];
+    newTiers[index][field] = value;
+    setTiers(newTiers);
+  };
 
   return (
     <div className="p-4">
@@ -69,6 +79,31 @@ const Chapters = () => {
         onPageChange={page => setCurrentPage(page)}
         className="mt-4"
       />
+
+      <Card className="mt-8 p-4">
+        <h3 className="text-lg font-bold mb-4">Manage Subscription Tiers</h3>
+        {tiers.map((tier, index) => (
+          <div key={index} className="mb-4 grid grid-cols-2 gap-4">
+            <Input
+              aria-label={`Tier ${tier.tier} Chapters`}
+              placeholder={`Tier ${tier.tier} Chapters`}
+              type="number"
+              value={tier.chapters}
+              onChange={(e) => handleTierChange(index, 'chapters', e.target.value)}
+              className="w-full"
+            />
+            <Input
+              aria-label={`Tier ${tier.tier} Cost`}
+              placeholder={`Tier ${tier.tier} Cost`}
+              type="number"
+              value={tier.cost}
+              onChange={(e) => handleTierChange(index, 'cost', e.target.value)}
+              className="w-full"
+            />
+          </div>
+        ))}
+        <Button auto color="primary">Save Tiers</Button>
+      </Card>
     </div>
   );
 };
