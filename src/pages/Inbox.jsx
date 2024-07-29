@@ -8,8 +8,9 @@ import { IoTrash } from 'react-icons/io5';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, RadioGroup, Radio} from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
 import {Select, SelectItem, Avatar} from "@nextui-org/react";
+import { SearchIcon } from 'lucide-react';
+import {Input} from "@nextui-org/react";
 const colors = ["default", "primary", "secondary", "success", "warning", "danger"];
-
 
 function Inbox() {
    const [selectedColor, setSelectedColor] = React.useState("default");
@@ -30,31 +31,47 @@ function Inbox() {
         </div>
       </div>
         <div className="details">
-          <div className="topics text-black font-semibold inline-flex align-middle">
-            <div className="flex w-full flex-col">
-              <div className="flex flex-wrap gap-4">
-                <Tabs variant="underlined" aria-label="Tabs variants" style={{backgroundColor:'white'}}>
-                  <Tab key="photos" title={<div className="flex items-center"><RiFolderSharedFill className="mr-2" />Inbox</div>}/>
-                  <Tab key="sent" title={<div className="flex items-center"><RiFolderReceivedFill className="mr-2" />Sent Items</div>}/>
-                  <Tab key="drafts" title={<div className="flex items-center"><MdDrafts className="mr-2" />Drafts</div>}/>
-                  <Tab key="trash" title={<div className="flex items-center"><IoTrash className="mr-2" />Trash Can</div>}/>
-                </Tabs>
-              </div>
-            </div>
-          </div>
+          <Input
+        isClearable
+        radius="lg"
+        classNames={{
+          label: "text-black/50 dark:text-white/90",
+          input: [
+            "bg-transparent",
+            "text-black/90 dark:text-white/90",
+            "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+          ],
+          innerWrapper: "bg-transparent",
+          inputWrapper: [
+            "shadow-xl",
+            "bg-default-200/50",
+            "dark:bg-default/60",
+            "backdrop-blur-xl",
+            "backdrop-saturate-200",
+            "hover:bg-default-200/70",
+            "dark:hover:bg-default/70",
+            "group-data-[focus=true]:bg-default-200/50",
+            "dark:group-data-[focus=true]:bg-default/60",
+            "!cursor-text",
+          ],
+        }}
+        placeholder="Type to search..."
+        startContent={
+          <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+        }
+      />
           <div className="flex flex-col gap-3">
       <Table 
         color={'primary'}
         selectionMode="multiple" 
-        defaultSelectedKeys={["2", "3"]} 
         aria-label="Example static collection table"
       >
         <TableHeader>
-          <TableColumn>lore</TableColumn>
+          <TableColumn>Message Title</TableColumn>
           <TableColumn>Sender</TableColumn>
           <TableColumn>Date/Time Sent</TableColumn>
         </TableHeader>
-        <TableBody>
+        <TableBody className='text-black/90 dark:text-white/90'>
           <TableRow key="1">
             <TableCell>Lorem ipsum dolor sit amet consectetur.</TableCell>
             <TableCell>CEO</TableCell>

@@ -1,75 +1,90 @@
-import React from 'react'
+import React from 'react';
 import "../components/Profile.css";
-import Editprofilesidebar from '../components/Editprofilesidebar';
-import { BsStarHalf } from 'react-icons/bs';
+import { FaUsersSlash } from "react-icons/fa";
 import novelpic from '../../public/images/novel.jpg';
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 
+function ReviewPage() {
+  const reviews = [
+    {
+      profilePic: novelpic,
+      username: 'JohnDoe123',
+      review: 'This is a fantastic book! The storyline is compelling and the characters are well-developed.',
+      date: '1 month ago'
+    },
+    {
+      profilePic: novelpic,
+      username: 'JaneSmith456',
+      review: 'I enjoyed reading this book, but some parts were a bit slow. Overall, a good read.',
+      date: '2 months ago'
+    },
+    {
+      profilePic: novelpic,
+      username: 'MikeBrown789',
+      review: 'The plot twists were amazing. Couldn’t put the book down!',
+      date: '3 months ago'
+    },
+    {
+      profilePic: novelpic,
+      username: 'EmilyWhite012',
+      review: 'Not my cup of tea. The story didn’t capture my interest.',
+      date: '4 months ago'
+    }
+  ];
 
-function Myreviews() {
   return (
     <div>
-           <div className="dashboard">
-          <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
+      <div className="dashboard">
+        <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
-              <BsStarHalf size={50} className="text-white justify-middle " />
+              <FaUsersSlash size={50} className="text-white justify-middle " />
             </div>
             <span>
               <h1 className="text-3xl font-semibold text-left bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-purple- to-blue-100">
                 Reviews
               </h1>
-              <h1 className='text-base text-left'>Manage your account</h1>
+              <h1 className='text-base text-left'>What our readers say</h1>
             </span>
           </div>
         </div>
-         
 
-    <div class="bg-white border-2 border-black m-4 h-20 p-4 text-black">
-    Advertisement
-    </div>
-    <div className='m-4'>
-    <div className='h-auto border-1 border-x-white flex p-3'>
-             
-                <div className="div space-y-3">
-                  <img
-                    src={novelpic} 
-                    alt="novel"
-                    className="h-[220px] w-[150px] object-cover rounded-md "
-                  />
-                    
-                </div>
-                <div className='p-6 font-semibold text-primary text-3xl'>Soul
-                <div className='mt-3 font-thin text-black text-small'>Last Update : 
-                <div className='mt-3 font-semibold text-purple-600 text-medium'>Chapter name</div>
-                </div>
-                </div>
-                <div className=' text-primary-400 text-small ml-auto flex pt-16 items-start'>by Olivia Wilson</div>
+        <div className="bg-white border-2 border-black m-4 h-20 p-4 text-black">
+          Advertisement
+        </div>
 
-            </div>
-            <div className='h-auto border-1 border-x-white flex p-3'>
-             
-                <div className="div space-y-3">
-                  <img
-                    src={novelpic} 
-                    alt="novel"
-                    className="h-[220px] w-[150px] object-cover rounded-md "
-                  />
-                    
-                </div>
-                <div className='p-6 font-semibold text-primary text-3xl'>Soul
-                <div className='mt-3 font-thin text-black text-small'>Last Update : 
-                <div className='mt-3 font-semibold text-purple-600 text-medium'>Chapter name</div>
-                </div>
-                </div>
-                <div className=' text-primary-400 text-small ml-auto flex pt-16 items-start'>by Olivia Wilson</div>
-
-            </div>
+        <div className='m-4'>
+          <Table aria-label="Reviews Table">
+            <TableHeader>
+              <TableColumn>Profile</TableColumn>
+              <TableColumn>Username</TableColumn>
+              <TableColumn>Review</TableColumn>
+              <TableColumn>Date</TableColumn>
+            </TableHeader>
+            <TableBody>
+              {reviews.map((review, index) => (
+                <TableRow
+                  key={index}
+                  className={index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}
+                >
+                  <TableCell>
+                    <img
+                      src={review.profilePic}
+                      alt="profile"
+                      className="h-12 w-12 object-cover rounded-full"
+                    />
+                  </TableCell>
+                  <TableCell className='text-primary-400'>{review.username}</TableCell>
+                  <TableCell>{review.review}</TableCell>
+                  <TableCell>{review.date}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     </div>
-    </div>
-   
-      {/* <div className="footer"></div> */}
-    </div>
-  )
+  );
 }
 
-export default Myreviews
+export default ReviewPage;

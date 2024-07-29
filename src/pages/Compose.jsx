@@ -9,7 +9,6 @@ function Compose() {
   const [value, setValue] = useState('');
   return (
     <div>
-      <Editprofilesidebar />
 
       <div className="dashboard">
         <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
@@ -25,15 +24,30 @@ function Compose() {
         </div>
 
         <div className="details">
-          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center font-semibold'><div className='w-1/3'>Recipients</div><div className='w-2/3'></div></div>
+          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center font-semibold'>
+          Recipients</div>
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-center'>
-            Verify password
+            <div className='p-3  pb-0 h-auto border-1 border-y-white border-x-white w- w-full items-center'>
+          <input
+                type='text '
+                placeholder='Search for a user'
+                className='w-full align-middle p-2 bg-gray-300'
+              />
           </div>
-          <div className='p-3  pb-0 h-auto border-1 border-t-white border-x-white flex items-center font-semibold'><div className='w-1/3'>Subject</div><div className='w-2/3'></div></div>
+          </div>
+          <div className='p-3  pb-0 h-auto border-1 border-y-white border-x-white flex items-center font-semibold'>
+          Subject
+          </div>
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-center'>
-            Verify password
+            <div className='p-3  pb-0 h-auto border-1 border-y-white border-x-white w- w-full items-center'>
+          <input
+                type='text '
+                className='w-full align-middle p-2 bg-gray-300'
+              />
           </div>
-          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center font-semibold'><div className='w-1/3'>Message</div><div className='w-2/3'></div></div>
+          </div>
+          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center font-semibold'>
+          Message</div>
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex flex-col items-center'>
             <div className='w-full flex justify-center items-center mb-2'>
 

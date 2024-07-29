@@ -16,7 +16,7 @@ function Myfictions() {
          </div>
          </div>
          </div>
-          <Editprofilesidebar />
+          
           
           <div className="bg-[#a4a4f9] pt-2 pb-2 ml-[300px]">
           <div className="text-[#28292c] bg-white mt-5 mb-5 mx-[100px] rounded-[18px] border border-black p-2.5">

@@ -30,9 +30,19 @@ import MyreviewsPage from '../../pages/Myreviews';
 import MycommentsPage from '../../pages/Mycomments';
 import MyblockedusersPage from '../../pages/Myblockedusers';
 
+import Pro_fictionsPage from '../../pages/Pro_fictions';
+import Pro_reviewsPage from '../../pages/Pro_reviews';
+import Pro_favoritesPage from '../../pages/Pro_favorites.jsx';
+import Pro_threadsPage from '../../pages/Pro_threads';
+import Pro_postsPage from '../../pages/Pro_posts';
+import Pro_achievementsPage from '../../pages/Pro_achievements';
+import Pro_reputationPage from '../../pages/Pro_reputation';
+
+
+
 export default function RoutesProfile () {
     return [
-        { path: '/profile', element: <ProfilePage />, layout: "simple"},
+        { path: '/profile', element: <ProfilePage />, layout: "profile"},
         { path: '/profile/edit', element: <EditProfilePage />, layout: "profile_dashboard"},
         { path: '/profile/edit/compose', element: <ComposePage />, layout: "profile_dashboard"},
         { path: "/profile/edit/inbox" , element: <InboxPage />, layout: "profile_dashboard"},
@@ -63,5 +73,14 @@ export default function RoutesProfile () {
         { path:  "/profile/edit/myreviews" , element: <MyreviewsPage />, layout: "profile_dashboard"},
         { path:  "/profile/edit/mycomments" , element: <MycommentsPage />, layout: "profile_dashboard"},
         { path:  "/profile/edit/myblockedusers" , element: <MyblockedusersPage />, layout: "profile_dashboard"},
+        
+        { path:  "/author" , element: <Pro_fictionsPage />, layout: "profile"},
+        { path:  "/profile/reviews" , element: <Pro_reviewsPage />, layout: "profile"},
+        { path:  "/profile/favorites" , element: <Pro_favoritesPage />, layout: "profile"},
+        { path:  "/profile/threads" , element: <Pro_threadsPage />, layout: "profile"},
+        { path:  "/profile/posts" , element: <Pro_postsPage />, layout: "profile"},
+        { path:  "/profile/achievements" , element: <Pro_achievementsPage />, layout: "profile"},
+        { path:  "/profile/reputation" , element: <Pro_reputationPage />, layout: "profile"},
+        
     ]
 }
