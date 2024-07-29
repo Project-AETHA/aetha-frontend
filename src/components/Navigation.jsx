@@ -177,7 +177,7 @@ export default function Navigation() {
               <Link to="/profile">Profile</Link>
             </DropdownItem>
             <DropdownItem key="settings">
-              <Link to="#settings">Settings</Link>
+              <Link to="/settings">Settings</Link>
             </DropdownItem>
             <DropdownItem key="support">
               <Link to="/support">Support</Link>
