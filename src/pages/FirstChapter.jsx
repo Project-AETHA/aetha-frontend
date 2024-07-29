@@ -27,17 +27,17 @@ const FirstChapter = () => {
           <BreadcrumbItem>
             <Link to="/submition">Submissions</Link>
           </BreadcrumbItem>
-          <BreadcrumbItem>New Fiction Submission</BreadcrumbItem>
+          <BreadcrumbItem>New Novel Submission</BreadcrumbItem>
         </Breadcrumbs>
       </div>
       </Card>
       <div className="p-2">
         <Card className="p-8" shadow='none' radius='sm'>
-          <h2 className="text-2xl font-semibold mb-4">New Fiction Submission</h2>
+          <h2 className="text-2xl font-semibold mb-4">New Novel Submission</h2>
           <div className="mb-4">
-            <h3 className="text-xl font-medium">Submit your fiction</h3>
-            <p>
-              To submit your fiction, both the fiction information and the first
+            <h3 className="text-xl font-medium mb-3">Submit your Novel</h3>
+            <p className=" text-gray-400 p-3 rounded-lg bg-amber-300">
+              To submit your Novel, both the Novel information and the first
               chapter or prologue are required. After that, your submission will
               be inspected by our system and one of the staff members.
             </p>
@@ -48,7 +48,7 @@ const FirstChapter = () => {
           </div>
           <div className="mb-4">
             <h3 className="text-xl font-medium mb-2">Title</h3>
-            <Input placeholder="Title of fiction" fullWidth />
+            <Input placeholder="Title of Novel" fullWidth />
           </div>
           <div className="mb-4">
             <h3 className="text-xl font-medium mb-2">Synopsis</h3>
@@ -92,7 +92,7 @@ const FirstChapter = () => {
           <div className="mb-4">
             <h3 className="text-xl font-medium mb-2">Content Ownership</h3>
             <div className="flex flex-wrap gap-2">
-              <Checkbox>Fanfiction</Checkbox>
+              <Checkbox>FanNovel</Checkbox>
             </div>
           </div>
           <div className="mb-4">

@@ -7,7 +7,7 @@ export default function PublishesPage() {
       <div className="bg-foreground-50 w-full h-full rounded p-2 flex flex-col gap-6">
       <div className="flex flex-col gap-0">
           <p className="font-bold text-large w-full flex justify-center">
-            Poems
+            Poems & Nisadas
           </p>
           <p className="text-small w-full flex justify-center">
             Pen your verses and let your soul speak, for poetry is the heart's language, waiting to be heard.
