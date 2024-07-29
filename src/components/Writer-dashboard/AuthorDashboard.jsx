@@ -1,5 +1,5 @@
 import { Book, BarChart2, Star, MessageCircleMore } from "lucide-react";
-import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab, Link } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab, Link, Dropdown,DropdownTrigger, DropdownMenu, DropdownItem,} from "@nextui-org/react";
 import Book1 from "/images/books/book1.jpg";
 import Book2 from "/images/books/book2.jpg";
 import Book3 from "/images/books/book3.jpg";
@@ -57,11 +57,18 @@ const AuthorDashboard = () => {
       <div className="flex-grow p-5 authbackground">
         <div className="flex justify-between items-center mb-5">
           <h1 className="text-2xl font-bold dark:text-white">Author Dashboard - Overview</h1>
-          <Link href="/author/chapter/create">
-          <Button color="secondary" auto>
+          <Dropdown backdrop="blur">
+            <DropdownTrigger>
+            <Button color="secondary" auto>
             New Story
-          </Button>
-          </Link>
+            </Button>
+            </DropdownTrigger>
+            <DropdownMenu variant="faded" aria-label="Static Actions">
+              <DropdownItem key="novel" href="/author/chapter/create">Novel</DropdownItem>
+              <DropdownItem key="shortStory">Short Story</DropdownItem>
+              <DropdownItem key="poemnisadas" href="/author/poems/create">Poem & Nisadas</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
           <StatsCard title="Total Chapters" value="0" Icon={Book} />
