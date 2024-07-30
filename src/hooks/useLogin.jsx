@@ -35,7 +35,11 @@ export const useLogin = () => {
         dispatch({ type: "LOGIN", payload: {user: response.data.content.user, token: response.data.content.jwtToken} })
         setLoading(false)
 
-        navigate("/")
+        if(response.data.content.roles.includes("ROLE_ADMIN")){
+          navigate("/admin")
+        }
+        else{navigate("/")}
+        
       }
     }
   }
