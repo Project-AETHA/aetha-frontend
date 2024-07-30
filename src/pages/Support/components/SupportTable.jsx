@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Table,
   TableHeader,
   TableColumn,
@@ -13,6 +12,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { parseISO, format } from "date-fns";
 import {useNavigate} from 'react-router-dom';
+import { FaRegEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 
 const formatDate = (dateString, default_style = true) => {
     // Parse the given date string
@@ -69,10 +70,10 @@ function SupportTable({ createTicket }) {
       selectionMode="single"
     >
       <TableHeader>
-        <TableColumn className="hidden sm:flex items-center">NAME</TableColumn>
         <TableColumn>TITLE</TableColumn>
         <TableColumn>CREATED AT</TableColumn>
         <TableColumn>STATUS</TableColumn>
+        <TableColumn>ACTIONS</TableColumn>
       </TableHeader>
       <TableBody
         emptyContent={"No rows to display."}
@@ -82,17 +83,6 @@ function SupportTable({ createTicket }) {
       >
         {(item) => (
           <TableRow key={item.id} className="hover:cursor-pointer" onClick={() => navigate(`/support/${item.id}`)}>
-            <TableCell className="hidden sm:flex items-center gap-2">
-              <Avatar
-                src={
-                  item.author.image
-                    ? item.author.image
-                    : "https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                }
-                size="sm"
-              />
-              {item.author.displayName}
-            </TableCell>
             <TableCell className="truncate text-pretty">{item.title}</TableCell>
             <TableCell className="text-nowrap">
               <span className="hidden sm:block">{formatDate(item.createdAt)}</span>
@@ -112,6 +102,10 @@ function SupportTable({ createTicket }) {
                   Cancelled
                 </Chip>
               )}
+            </TableCell>
+            <TableCell className="flex gap-2">
+              <Chip variant="flat" radius="sm" className="px-2" color="primary"><FaRegEdit size={13} /></Chip>
+              <Chip variant="flat" radius="sm" className="px-2" color="danger"><MdDeleteForever size={15} /></Chip>
             </TableCell>
           </TableRow>
         )}

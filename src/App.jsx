@@ -15,6 +15,9 @@ import ProfileLayout from './layouts/ProfileLayout.jsx';
 import ProfileDashboardLayout from './layouts/ProfileDashboardLayout.jsx';
 
 
+// Importing common files like toast(alert)
+import { Toaster } from "@/components/ui/toaster"
+
 // Routing files
 import RoutesWriter from "./components/routes/Writer.jsx";
 import RoutesGeneral from "./components/routes/General.jsx";
@@ -72,6 +75,7 @@ function App() {
                     {generateRoutes()}
                 </Routes>
             </div>
+            <Toaster />
         </Router>
     );
 }

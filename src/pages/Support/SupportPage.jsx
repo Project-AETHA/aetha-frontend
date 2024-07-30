@@ -2,12 +2,20 @@ import SupportTable from "./components/SupportTable";
 import CreateTicket from "./components/CreateTicket";
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
+
+import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 const SupportPage = () => {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
     const [files, setFiles] = useState(null);
+
+    const navigate = useNavigate()
+
+    const { toast } = useToast()
 
     const createTicket = async (e) => {
         e.preventDefault();
@@ -33,7 +41,7 @@ const SupportPage = () => {
             console.log(response);
 
             if (response.data.code === "00") {
-                alert('Ticket created successfully');
+                createAlert("Success", "Ticket created successfully", response.data.content.id)
                 clearAll();
             }
         } catch (error) {
@@ -47,6 +55,14 @@ const SupportPage = () => {
         setDescription('');
         setFiles([]);
     };
+
+    function createAlert(title, description, complaintId) {
+        toast({
+            title: title,
+            description: description,
+            action: <ToastAction altText="View" className="hover:bg-purple-500 hover:text-white" onClick={() => navigate(`/support/${complaintId}`)}>View</ToastAction>,
+        })
+    }
 
     return (
         <div className="alt-container">
@@ -74,7 +90,7 @@ const SupportPage = () => {
                     Active Tickets
                 </div>
                 <div>
-                    <SupportTable />
+                    <SupportTable createTicket={createTicket} />
                 </div>
             </div>
         </div>
