@@ -8,7 +8,8 @@ function Changeemail() {
   return (
     <div>
 
-          <div className="dashboard">
+          <div className="">
+          <div className="details">
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -22,7 +23,6 @@ function Changeemail() {
             </span>
           </div>
         </div>
-          <div className="details">
               <div className='pb-0 h-auto border-1 border-t-white border-x-white font-semibold items-center'>Current Email Address</div>
         <div className='pl-10 p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-start'>
           b********6.gmail.com
