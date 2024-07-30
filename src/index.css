@@ -184,6 +184,35 @@ header {
     }
 }
 
+.text-editor2 {
+    @apply
+    bg-white
+    p-4
+    rounded-md
+    text-white
+    text-sm
+    overflow-y-auto
+    resize-none
+    w-full
+    h-full
+    focus:outline-none
+    focus:ring-2
+    focus:ring-primary-500
+    focus:border-transparent
+    flex
+    flex-col
+    ;
+
+    .ql-toolbar {
+        @apply rounded-t-md dark:bg-foreground-600;
+    }
+
+    & > .ql-container {
+        @apply h-full rounded-b-md text-foreground-900
+        min-h-28;
+    }
+}
+
 .default-scrollbar {
     @apply
     w-full
