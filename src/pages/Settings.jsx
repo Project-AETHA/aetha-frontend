@@ -9,7 +9,8 @@ import {Button} from "@nextui-org/react";
 function Settings() {
   return (
       <div>
-          <div className="dashboard">
+          <div className="">
+          <div className="details">
            <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
         <div className="max-w-2xl px-4 m-auto relative z-10 flex">
           <div className="h-16 w-16">
@@ -23,7 +24,7 @@ function Settings() {
           </span>
         </div>
       </div>
-        <div className="details">
+        
           <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center'><div className='w-1/3 font-bold'>General</div><div className='w-2/3'></div></div>
          <div className='p-3 h-auto border-1  border-t-gray-300 border-x-white flex items-center'>
          <CheckboxGroup  >
@@ -34,7 +35,7 @@ function Settings() {
     </CheckboxGroup>
          </div>
 
-          <div className='p-3 h-auto border-1 border-t-white border-x-white flex items-center justify-center'>
+          {/* <div className='p-3 h-auto border-1 border-t-white border-x-white flex items-center justify-center'>
          User Avatar Borders
           </div>
           <div className='p-3 h-auto border-1 border-t-white border-x-white flex items-center justify-center'>
@@ -45,7 +46,7 @@ function Settings() {
           </div>
           <div className='p-3 h-auto border-1 border-white border-x-white flex items-center justify-center'>
           Time Format
-          </div>
+          </div> */}
           <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center'><div className='w-1/3 font-bold'>Reading</div><div className='w-2/3'></div></div>
          
           <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
@@ -61,12 +62,12 @@ function Settings() {
           <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center'><div className='w-1/3 font-bold'>Forum</div><div className='w-2/3'></div></div>
           <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
          <CheckboxGroup>
-         <Checkbox value="usersigns">Enable fullscreen mode with double-tap on the chapter</Checkbox>
+         <Checkbox value="usersigns">Display users' signatures in their posts</Checkbox>
     </CheckboxGroup>
           </div>
-          <div className='p-3 h-auto border-1 border-t-white border-x-white flex items-center justify-center'>
+          {/* <div className='p-3 h-auto border-1 border-t-white border-x-white flex items-center justify-center'>
           Default Forum subscription method
-          </div>
+          </div> */}
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-white border-x-white flex items-center justify-center'>
           <Button color="primary">
       Save Changes

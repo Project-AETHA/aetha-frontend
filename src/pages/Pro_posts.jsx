@@ -63,11 +63,11 @@ function Pro_posts() {
           </button>
         </div>
       </div>
-      <div className="dashboard flex">
+      <div className="flex">
         <Sidebar menus={menus} />
         {/* <div className="flex"> */}
         {/* <div className='m-4'> */}
-        <div className="m-16 mt-12">
+        <div className="m-16 mt-12 w-full">
           <Table isStriped aria-label="Example static collection table">
             <TableHeader>
               <TableColumn>Posts</TableColumn>

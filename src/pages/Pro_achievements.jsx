@@ -61,34 +61,38 @@ function Pro_achievements() {
           </button>
         </div>
       </div>
-        <div className="dashboard flex">
+        <div className="flex">
         <Sidebar menus={menus} />
-          <div className="flex-wrap mx-16 justify-items-start p-0">
+        <div className="mx-16 mt-6 w-full">
+        <div className="details">
+          <div className="flex-wrap mx-16 justify-items-start">
           <div className='p-1 h-40 border-1 border-t-white border-x-white flex items-center '>
           <div className='w-1/6 justify-center'>
-          <div className='h-20 w-20 border-2  border-blue-800 rounded-full overflow-hidden'><img className='w-full h-full object-cover' src='../../public/images/profilepic.jpg'></img></div>
-          </div>
+                    <div className='h-20 w-20 m-4'><img  src='../../public/images/badge.png'></img></div>
+</div>
           <div className='w-4/5'>
           <label className='ml-2'><div className='w-auto align-middle p-2 bg-gray-300'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo iure quasi voluptate. Eveniet, accusamus veritatis ab vero iusto unde voluptates natus accusantium, explicabo, est pariatur? Ratione aliquid dolorum porro dolore.</div></label>
           </div>
           </div>
           <div className='p-1 h-40 border-1 border-t-white border-x-white flex items-center '>
           <div className='w-1/6'>
-          <div className='h-20 w-20 border-2  border-blue-800 rounded-full overflow-hidden'><img className='w-full h-full object-cover' src='../../public/images/profilepic.jpg'></img></div>
-          </div>
+                    <div className='h-20 w-20 m-4'><img  src='../../public/images/badge.png'></img></div>
+</div>
           <div className='w-4/5'>
           <label className='ml-2'><div className='w-auto align-middle p-2 bg-gray-300'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo iure quasi voluptate. Eveniet, accusamus veritatis ab vero iusto unde voluptates natus accusantium, explicabo, est pariatur? Ratione aliquid dolorum porro dolore.</div></label>
           </div>
           </div>
           <div className='p-1 h-40 border-1 border-t-white border-x-white flex items-center '>
           <div className='w-1/6'>
-          <div className='h-20 w-20 border-2  border-blue-800 rounded-full overflow-hidden'><img className='w-full h-full object-cover' src='../../public/images/profilepic.jpg'></img></div>
-          </div>
+                    <div className='h-20 w-20 m-4'><img  src='../../public/images/badge.png'></img></div>
+</div>
           <div className='w-4/5'>
           <label className='ml-2'><div className='w-auto align-middle p-2 bg-gray-300'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo iure quasi voluptate. Eveniet, accusamus veritatis ab vero iusto unde voluptates natus accusantium, explicabo, est pariatur? Ratione aliquid dolorum porro dolore.</div></label>
           </div>
           </div>
   </div>
+  </div>
+        </div>
         </div>
       
     </>

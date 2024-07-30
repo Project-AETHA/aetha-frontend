@@ -6,7 +6,8 @@ import { IoNotifications } from 'react-icons/io5';
 function Notificationhistory() {
   return (
     <div>
-          <div className="dashboard">
+          <div className="">
+          <div className="details">
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -20,7 +21,6 @@ function Notificationhistory() {
             </span>
           </div>
         </div>
-          <div className="details">
                <div className='p-3 h-auto border-1 border-t-white border-x-white flex items-center'><div className='w-1/3'></div><div className='w-2/3'></div></div>
         <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-center'></div>
          
