@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { parseISO, format } from "date-fns";
+import {useNavigate} from 'react-router-dom';
 
 const formatDate = (dateString, default_style = true) => {
     // Parse the given date string
@@ -21,6 +22,9 @@ const formatDate = (dateString, default_style = true) => {
   };
 
 function SupportTable({ createTicket }) {
+
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [tickets, setTickets] = useState([]);
@@ -77,7 +81,7 @@ function SupportTable({ createTicket }) {
         loadingContent={<Spinner />}
       >
         {(item) => (
-          <TableRow key={item.id}>
+          <TableRow key={item.id} className="hover:cursor-pointer" onClick={() => navigate(`/support/${item.id}`)}>
             <TableCell className="hidden sm:flex items-center gap-2">
               <Avatar
                 src={

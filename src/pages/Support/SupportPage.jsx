@@ -7,7 +7,7 @@ const SupportPage = () => {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
-    const [files, setFiles] = useState([]);
+    const [files, setFiles] = useState(null);
 
     const createTicket = async (e) => {
         e.preventDefault();
@@ -18,10 +18,9 @@ const SupportPage = () => {
         formData.append('description', description);
 
         // Append each file in the files array
-        if (files !== null && files.length > 0) {
-            for (const file of files) {
-                formData.append('files', file);
-            }
+        if (files) {
+            console.log(files)
+            formData.append('files', files);
         }
 
         try {
