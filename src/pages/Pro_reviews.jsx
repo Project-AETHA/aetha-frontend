@@ -9,7 +9,6 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from 
 import Rating from "../components/common/Rating.jsx";
 import novelpic from '../../public/images/novel.jpg';
 
-
 function Pro_reviews() {
   const navigate = useNavigate();
 
@@ -99,9 +98,9 @@ function Pro_reviews() {
           </button>
         </div>
       </div>
-      <div className="dashboard flex">
+      <div className="flex">
         <Sidebar menus={menus} />
-        <div className="m-16 mt-12">
+        <div className="mx-16 mt-6 w-full">
           <Table aria-label="Example static collection table">
             <TableHeader>
               <TableColumn>Picture</TableColumn>
@@ -114,9 +113,15 @@ function Pro_reviews() {
               {reviews.map((review) => (
                 <TableRow key={review.key}>
                   <TableCell><img src={review.picture} alt={review.title} className="w-20 h-28 object-cover" /></TableCell>
+<<<<<<< HEAD
+                  <TableCell>{review.content}</TableCell>
+                  <TableCell className='text-foreground'>
+                    <div className="font-semibold">{review.title}</div>
+=======
                   <TableCell><div className="font-semibold">{review.title}</div></TableCell>
                   <TableCell className='text-foreground'>
                     {review.content}
+>>>>>>> b5bbf237dff9a9151fa547bb42df69146fedd941
                   </TableCell>
                   <TableCell><Rating rating={review.rating} size={15} /></TableCell>
                   <TableCell>{review.date}</TableCell>

@@ -31,7 +31,7 @@ function Profile() {
 
   return (
     <>
-      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-blue-400">
+      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-gradient-to-r from-purple-400 to-blue-500">
         <div className="main-detail">
           <div className="profile-info">
             <h3>Follows</h3>
@@ -61,10 +61,10 @@ function Profile() {
           </button>
         </div>
       </div>
-        <div className="dashboard flex">
+        <div className="flex">
         <Sidebar menus={menus} />
            <div className="flex-1 ">
-          <div className="details border-2 border-blue-700 px-8">
+          <div className="details border-2 border-blue-700 px-8 dark:bg-background text-foreground">
             <div className="topics">
               <FaRegUserCircle className="inline m-3" />Personal Information
             </div>
@@ -74,7 +74,7 @@ function Profile() {
             <p className="leading-loose">Last Active:</p>
             <p className="leading-loose">Bio:</p>
           </div>
-          <div className="details border-2 border-blue-700 px-8">
+          <div className="details border-2 border-blue-700 px-8 dark:bg-background text-foreground">
             <div className="topics">
               <MdOutlineHistory className="inline m-3" />Activity
             </div>
@@ -84,7 +84,7 @@ function Profile() {
             <p className="leading-loose">Reviews :</p>
             <p className="leading-loose">Comments :</p>
           </div>
-          <div className="details border-2 border-blue-700 px-8">
+          <div className="details border-2 border-blue-700 px-8 dark:bg-background text-foreground">
             <div className="topics">
               <FaPen className="inline m-3" />Author Information
             </div>

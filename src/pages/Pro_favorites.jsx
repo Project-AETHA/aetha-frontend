@@ -25,10 +25,10 @@ function Pro_favorites() {
         { name: "Fictions", link: "/author", icon: FaBook },
         { name: "Reviews", link: "/profile/reviews", icon: FaEye },
         { name: "Favorites", link: "/profile/favorites", icon: FaStar },
-        { name: "Threads", link: "/profile/threads", icon: FaFileAlt},
+//{ name: "Threads", link: "/profile/threads", icon: FaFileAlt},
         { name: "Posts", link: "/profile/posts", icon: FaThList },
         { name: "Achievements", link: "/profile/achievements", icon: FaTrophy },
-        { name: "Reputation", link: "/profile/reputation", icon: BiSolidCertification },
+       // { name: "Reputation", link: "/profile/reputation", icon: BiSolidCertification },
     ];
 
   return (
@@ -63,9 +63,9 @@ function Pro_favorites() {
           </button>
         </div>
       </div>
-        <div className="dashboard flex">
+        <div className="flex">
   <Sidebar menus={menus} />
-  
+  <div className="mx-16 mt-6 w-full">
   <div className="flex flex-wrap justify-items-start">
     <img
       src={novelpic}
@@ -113,6 +113,13 @@ function Pro_favorites() {
       alt="novel"
       className="h-[308px] w-[210px] object-cover rounded-md m-4"
     />
+   
+    <img
+      src={novelpic}
+      alt="novel"
+      className="h-[308px] w-[210px] object-cover rounded-md m-4"
+    />
+  </div> 
   </div>
 </div>
 
