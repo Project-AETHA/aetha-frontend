@@ -1,23 +1,40 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import { FaRegComments, FaUserEdit, FaRegUserCircle, FaTrophy, FaBook, FaEye, FaStar, FaFileAlt, FaThList } from "react-icons/fa";
-import profilepic from '../../public/images/profilepic.jpg';
+import { useNavigate } from "react-router-dom";
+import {
+  FaRegComments,
+  FaUserEdit,
+  FaRegUserCircle,
+  FaTrophy,
+  FaBook,
+  FaEye,
+  FaStar,
+  FaFileAlt,
+  FaThList,
+} from "react-icons/fa";
+import profilepic from "../../public/images/profilepic.jpg";
 import "../components/Profile.css";
 import Sidebar from "../components/Sidebar/Sidebar.jsx";
 import { BiSolidCertification } from "react-icons/bi";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@nextui-org/react";
 import Rating from "../components/common/Rating.jsx";
-import novelpic from '../../public/images/novel.jpg';
+import novelpic from "../../public/images/novel.jpg";
 
 function Pro_reviews() {
   const navigate = useNavigate();
 
   const handleEditClick = () => {
-    navigate('/profile/edit');
+    navigate("/profile/edit");
   };
 
   const handleCommentsClick = () => {
-    navigate('/profile/edit/inbox');
+    navigate("/profile/edit/inbox");
   };
 
   const menus = [
@@ -25,10 +42,10 @@ function Pro_reviews() {
     { name: "Fictions", link: "/author", icon: FaBook },
     { name: "Reviews", link: "/profile/reviews", icon: FaEye },
     { name: "Favorites", link: "/profile/favorites", icon: FaStar },
-  //  { name: "Threads", link: "/profile/threads", icon: FaFileAlt },
+    //  { name: "Threads", link: "/profile/threads", icon: FaFileAlt },
     { name: "Posts", link: "/profile/posts", icon: FaThList },
     { name: "Achievements", link: "/profile/achievements", icon: FaTrophy },
-  //  { name: "Reputation", link: "/profile/reputation", icon: BiSolidCertification },
+    //  { name: "Reputation", link: "/profile/reputation", icon: BiSolidCertification },
   ];
 
   const reviews = [
@@ -38,7 +55,7 @@ function Pro_reviews() {
       title: "The Enchanted Forest",
       content: "Chapter 3: The Hidden Village",
       rating: 4.5,
-      date: "18 February 2023, 17:30"
+      date: "18 February 2023, 17:30",
     },
     {
       key: "2",
@@ -46,7 +63,7 @@ function Pro_reviews() {
       title: "Galactic Adventures",
       content: "Chapter 2: The Alien Encounter",
       rating: 4.1,
-      date: "08 April 2023, 19:30"
+      date: "08 April 2023, 19:30",
     },
     {
       key: "3",
@@ -54,7 +71,7 @@ function Pro_reviews() {
       title: "Secrets of the Ancient Temple",
       content: "Chapter 152: The Forbidden Scrolls",
       rating: 3.5,
-      date: "24 January 2024, 20:53"
+      date: "24 January 2024, 20:53",
     },
     {
       key: "4",
@@ -62,8 +79,8 @@ function Pro_reviews() {
       title: "Chronicles of the Lost Kingdom",
       content: "Chapter 54: The Battle for the Throne",
       rating: 3.8,
-      date: "14 February 2023, 07:10"
-    }
+      date: "14 February 2023, 07:10",
+    },
   ];
 
   return (
@@ -89,7 +106,9 @@ function Pro_reviews() {
           </div>
         </div>
         <div className="flex p-1 bg-white">
-          <h2 className="font-semibold flex-grow text-black text-center">HANSI</h2>
+          <h2 className="font-semibold flex-grow text-black text-center">
+            HANSI
+          </h2>
           <button onClick={handleCommentsClick}>
             <FaRegComments className="ml-auto mr-2 text-black" />
           </button>
@@ -112,18 +131,20 @@ function Pro_reviews() {
             <TableBody>
               {reviews.map((review) => (
                 <TableRow key={review.key}>
-                  <TableCell><img src={review.picture} alt={review.title} className="w-20 h-28 object-cover" /></TableCell>
-<<<<<<< HEAD
-                  <TableCell>{review.content}</TableCell>
-                  <TableCell className='text-foreground'>
-                    <div className="font-semibold">{review.title}</div>
-=======
-                  <TableCell><div className="font-semibold">{review.title}</div></TableCell>
-                  <TableCell className='text-foreground'>
-                    {review.content}
->>>>>>> b5bbf237dff9a9151fa547bb42df69146fedd941
+                  <TableCell>
+                    <img
+                      src={review.picture}
+                      alt={review.title}
+                      className="w-20 h-28 object-cover"
+                    />
                   </TableCell>
-                  <TableCell><Rating rating={review.rating} size={15} /></TableCell>
+                  <TableCell>{review.content}</TableCell>
+                  <TableCell className="text-foreground">
+                    <div className="font-semibold">{review.title}</div>
+                  </TableCell>
+                  <TableCell>
+                    <Rating rating={review.rating} size={15} />
+                  </TableCell>
                   <TableCell>{review.date}</TableCell>
                 </TableRow>
               ))}
@@ -136,5 +157,3 @@ function Pro_reviews() {
 }
 
 export default Pro_reviews;
-
-
