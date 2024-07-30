@@ -35,23 +35,23 @@ const FirstChapter = () => {
         <Card className="p-8" shadow='none' radius='sm'>
           <h2 className="text-2xl font-semibold mb-4">New Novel Submission</h2>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-3">Submit your Novel</h3>
-            <p className=" text-gray-400 p-3 rounded-lg bg-amber-300">
+            <h3 className="text-md font-medium mb-3">Submit your Novel</h3>
+            <p className=" text-gray-400 p-3 rounded-lg bg-cyan-100">
               To submit your Novel, both the Novel information and the first
               chapter or prologue are required. After that, your submission will
               be inspected by our system and one of the staff members.
             </p>
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-5">Cover</h3>
+            <h3 className="text-md font-medium mb-5">Cover</h3>
             <FileUpload />
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Title</h3>
+            <h3 className="text-md font-medium mb-2">Title</h3>
             <Input placeholder="Title of Novel" fullWidth />
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Synopsis</h3>
+            <h3 className="text-md font-medium mb-2">Synopsis</h3>
             <ReactQuill
               value={Synopsis}
               onChange={setSynopsis}
@@ -61,7 +61,7 @@ const FirstChapter = () => {
             />
           </div>
           <div className="mb-4 ">
-            <h3 className="text-xl font-medium mb-2">Genres</h3>
+            <h3 className="text-md font-medium mb-2">Genres</h3>
             <div className="flex flex-wrap gap-2">
               <Checkbox>Action</Checkbox>
               <Checkbox>Adventure</Checkbox>
@@ -70,7 +70,7 @@ const FirstChapter = () => {
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Tags</h3>
+            <h3 className="text-md font-medium mb-2">Tags</h3>
             <div className="flex flex-wrap gap-2">
               <Checkbox>Anti-Hero Lead</Checkbox>
               <Checkbox>Artificial Intelligence</Checkbox>
@@ -79,7 +79,7 @@ const FirstChapter = () => {
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Content Warning</h3>
+            <h3 className="text-md font-medium mb-2">Content Warning</h3>
             <div className="flex flex-wrap gap-2">
               <Checkbox>Profanity</Checkbox>
               <Checkbox>Sexual Content</Checkbox>
@@ -90,21 +90,21 @@ const FirstChapter = () => {
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Content Ownership</h3>
+            <h3 className="text-md font-medium mb-2">Content Ownership</h3>
             <div className="flex flex-wrap gap-2">
               <Checkbox>FanNovel</Checkbox>
             </div>
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Manual Release</h3>
+            <h3 className="text-md font-medium mb-2">Manual Release</h3>
             <Checkbox>Set manual release</Checkbox>
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Chapter Title</h3>
+            <h3 className="text-md font-medium mb-2">Chapter Title</h3>
             <Input placeholder="Title of Chapter" fullWidth />
           </div>
           <div className="mb-4">
-            <h3 className="text-xl font-medium mb-2">Chapter Content</h3>
+            <h3 className="text-md font-medium mb-2">Chapter Content</h3>
             <ReactQuill
               value={chapterContent}
               onChange={setChapterContent}
