@@ -143,7 +143,7 @@ function ContentManagemenet() {
                                                         height={80}
                                                         alt="NextUI Fruit Image with Zoom"
                                                         src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
-                                                        radius='sm'
+                                                        radius='none'
                                                     />
                                                 </TableCell>
                                             );
@@ -179,7 +179,7 @@ function ContentManagemenet() {
                                         else if (columnKey === 'view') {
                                             return (
                                                 <TableCell>
-                                                    <Button size='sm' className="bg-indigo-400  text-white" onClick={() => { navigate(`/admin/contents/approve`); }}>
+                                                    <Button size='sm' style={{ backgroundColor: '#3e9cf2', color: '#fff' }} className="text-white" onClick={() => { navigate(`/admin/contents/approve`); }}>
                                                         View
                                                     </Button>
                                                 </TableCell>
