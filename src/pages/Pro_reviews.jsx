@@ -114,8 +114,8 @@ function Pro_reviews() {
               {reviews.map((review) => (
                 <TableRow key={review.key}>
                   <TableCell><img src={review.picture} alt={review.title} className="w-20 h-28 object-cover" /></TableCell>
+                  <TableCell><div className="font-semibold">{review.title}</div></TableCell>
                   <TableCell className='text-foreground'>
-                    <div className="font-semibold">{review.title}</div>
                     {review.content}
                   </TableCell>
                   <TableCell><Rating rating={review.rating} size={15} /></TableCell>

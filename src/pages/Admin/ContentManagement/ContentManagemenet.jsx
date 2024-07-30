@@ -16,6 +16,10 @@ import {
     Link
 } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom'
+import { IoPeople, IoMenu, IoLogoUsd } from 'react-icons/io5'
+import { FaBookOpen } from "react-icons/fa";
+import { FaRegPenToSquare } from "react-icons/fa6";
+import { BsMusicNoteList } from "react-icons/bs";
 
 const contentColumns = [
     { key: 'coverImage', label: 'Cover Image' },
@@ -66,6 +70,10 @@ const recentContent = [
     },
 ];
 
+function BoxWrapper({ children }) {
+    return <div className="bg-white rounded-md p-4 flex-1 border border-gray-200 flex items-center">{children}</div>
+}
+
 function ContentManagemenet() {
 
     const navigate = useNavigate();
@@ -73,32 +81,42 @@ function ContentManagemenet() {
 
     return (
         <div className='min-h-screen flex justify-center'>
-            <div className='flex-col w-full bg-white rounded-md'>
-                <div className='flex flex-wrap gap-4 p-4 max-w-full w-full'>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform  hover:cursor-pointer duration-300 hover:scale-105 bg-slate-700' >
-                        <CardBody className='flex flex-col justify-center h-full' onClick={() => { navigate(`/admin/contents/novels`); }}>
-                            <p className='text-white text-xl font-bold'>Novels</p>
-                            <p className='text-white text'>5 Contents</p>
-                        </CardBody>
-                    </Card>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105 bg-slate-600' >
-                        <CardBody className='flex flex-col justify-center h-full'>
-                            <p className='text-white text-xl font-semibold'>Short Stories</p>
-                            <p className='text-white text-md'>7 Contents</p>
-                        </CardBody>
-                    </Card>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105 bg-slate-500'>
-                        <CardBody className='flex flex-col justify-center h-full'>
-                            <p className='text-white text-xl font-semibold'>Poems</p>
-                            <p className='text-white text-md'>10 Contents</p>
-                        </CardBody>
-                    </Card>
-                    <Card className='flex-1 min-w-[200px] min-h-[120px] transform transition-transform duration-300 hover:scale-105 bg-slate-400' >
-                        <CardBody className='flex flex-col justify-center h-full'>
-                            <p className='text-white text-xl font-semibold'>Nisadas</p>
-                            <p className='text-white text-md'>3 Contents</p>
-                        </CardBody>
-                    </Card>
+            <div className='flex-col w-full rounded-md'>
+                <div className="flex gap-4 m-4">
+                    <BoxWrapper>
+                        <div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
+                            <FaBookOpen className="text-2xl text-white" />
+
+                        </div>
+                        <div className="pl-4">
+                            <span className="text-sm text-gray-500 font-light">Novels</span>
+                            <div className="flex items-center">
+                                <strong className="text-xl text-gray-700 font-semibold">232</strong>
+                            </div>
+                        </div>
+                    </BoxWrapper>
+                    <BoxWrapper>
+                        <div className="rounded-full h-12 w-12 flex items-center justify-center bg-orange-600">
+                            <FaRegPenToSquare className="text-2xl text-white" />
+                        </div>
+                        <div className="pl-4">
+                            <span className="text-sm text-gray-500 font-light">Short Stories</span>
+                            <div className="flex items-center">
+                                <strong className="text-xl text-gray-700 font-semibold">423</strong>
+                            </div>
+                        </div>
+                    </BoxWrapper>
+                    <BoxWrapper>
+                        <div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-400">
+                            <BsMusicNoteList className="text-2xl text-white" />
+                        </div>
+                        <div className="pl-4">
+                            <span className="text-sm text-gray-500 font-light">Poems & Nisadas</span>
+                            <div className="flex items-center">
+                                <strong className="text-xl text-gray-700 font-semibold">613</strong>
+                            </div>
+                        </div>
+                    </BoxWrapper>
 
                 </div>
 
@@ -111,7 +129,7 @@ function ContentManagemenet() {
                 <div className='p-4'>
                     <Table aria-label="Recent Content Details" className='text-foreground-900' radius='none' removeWrapper>
                         <TableHeader columns={contentColumns} >
-                            {(column) => <TableColumn key={column.key} className='bg-gray-400 text-black '>{column.label}</TableColumn>}
+                            {(column) => <TableColumn key={column.key} className='  '>{column.label}</TableColumn>}
                         </TableHeader>
                         <TableBody items={recentContent}>
                             {(item) => (
