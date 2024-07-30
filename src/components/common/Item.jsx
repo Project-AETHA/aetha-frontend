@@ -5,7 +5,7 @@ import Rating from "./Rating.jsx";
 
 export default function Item ({ content }) {
     return (
-        <Link to={`/reading/${content.type.toLowerCase()}/${content.id}`}>
+        <Link to={`/${content.type.toLowerCase()}/${content.id}`}>
             <div className="max-w-[150px] flex flex-col">
                 <Image
                     width={150}

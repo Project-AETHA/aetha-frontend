@@ -16,7 +16,7 @@ const Poem = ({ user, duration, title, content, tags, followers }) => {
         <>
 
             <Card className="my-1" key={title}>
-                <CardHeader className="justify-between mx-2">
+                <CardHeader className="justify-between px-4">
                     <div>
                         <div className='flex gap-5'>
                             <Avatar isBordered radius="full" size="sm" src="https://nextui.org/avatars/avatar-1.png" />

@@ -1,15 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from "axios";
 import { useAuthContext } from "./hooks/useAuthContext.jsx";
-
 import Navigation from "./components/Navigation";
-
-import Reading from "./pages/Reading";
-import Novels from "./pages/Novels";
-import Poems from "./pages/Poems";
-import Chapterreading from "./pages/Chapterreading.jsx";
-import Chapters from "./pages/Chapter";
-import Shop from "./pages/Shop";
 import FirstChapter from "./pages/FirstChapter.jsx";
 import Submitions from "./pages/Submitions.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
@@ -30,14 +22,8 @@ import RoutesAdmin from "./components/routes/Admin.jsx";
 import RoutesProfile from './components/routes/Profile.jsx';
 
 const routes = [
-    { path: '/reading', element: <Reading />, layout: "default" },
-    { path: '/novels', element: <Novels />, layout: "default" },
-    { path: '/poems', element: <Poems />, layout: "default" },
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
     { path: '/create', element: <FirstChapter />, layout: "default" },
-    { path: '/shop', element: <Shop />, layout: "default" },
-    { path: '/chapters', element: <Chapters />, layout: "default" },
-    { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
     { path: '/submitions', element: <Submitions />, layout: "author_dashboard" },
     ...RoutesGeneral(),
     ...RoutesWriter(),
