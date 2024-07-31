@@ -8,7 +8,7 @@ function Changepwd() {
   return (
     <div>
           <div className="">
-          <div className="details">
+          <div className="details bg-background text-foreground">
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -28,7 +28,7 @@ function Changepwd() {
         <span className='w-full'>Current password</span>
         <input
           type='password'
-          className='ml-2 p-2 bg-gray-300 w-80 outline-none'
+          className='ml-2 p-2 border-2  rounded-large border-gray-300 w-80 outline-none'
           placeholder='Enter current password'
         />
       </div>
@@ -41,7 +41,7 @@ function Changepwd() {
         <span className='w-full'>New password</span>
         <input
           type='password'
-          className='ml-2 p-2 bg-gray-300 w-80 outline-none'
+          className='ml-2 p-2 border-2  rounded-large border-gray-300 w-80 outline-none'
           placeholder='Enter new password'
         />
       </div>
@@ -49,7 +49,7 @@ function Changepwd() {
         <span className='w-full'>Verify new password</span>
         <input
           type='password'
-          className='ml-2 p-2 bg-gray-300 w-80  outline-none'
+          className='ml-2 p-2 border-2  rounded-large border-gray-300 w-80  outline-none'
           placeholder='Confirm password'
         />
       </div>

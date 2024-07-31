@@ -35,7 +35,7 @@ function Myblockedusers() {
   return (
     <div>
       <div className="">
-      <div className="details">
+      <div className="details bg-background text-foreground">
         <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -66,7 +66,7 @@ function Myblockedusers() {
               {blockedUsers.map((user, index) => (
                 <TableRow
                   key={index}
-                  className={index % 2 === 0 ? 'bg-white' : 'bg-gray-200'}
+                  className={index % 2 === 0 ? 'bg-foreground-50' : 'bg-gray-200'}
                 >
                   <TableCell>
                     <img
