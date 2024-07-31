@@ -77,7 +77,7 @@ function ContentList() {
     }, [page]);
 
     return (
-        <div className="flex flex-col gap-3 bg-white h-full">
+        <div className="flex flex-col gap-3 h-full">
             <Table
                 radius="none"
                 removeWrapper
@@ -104,7 +104,7 @@ function ContentList() {
             >
                 <TableHeader className="bg-gradient-to-r from-purple-400 to-blue-500 text-lg">
                     {contentColumns.map((column) => (
-                        <TableColumn key={column.key} className='bg-indigo-400 text-black '>{column.label}</TableColumn>
+                        <TableColumn key={column.key} className=''>{column.label}</TableColumn>
                     ))}
                 </TableHeader>
                 <TableBody items={paginatedItems}>
@@ -119,7 +119,7 @@ function ContentList() {
                                                 height={60}
                                                 alt="NextUI Fruit Image with Zoom"
                                                 src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
-                                                radius='sm'
+                                                radius='none'
                                             />
                                         </TableCell>
                                     );
