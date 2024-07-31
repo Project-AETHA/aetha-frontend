@@ -1,6 +1,4 @@
 import {
-    Tabs,
-    Tab,
     Table,
     TableHeader,
     TableColumn,
@@ -16,78 +14,173 @@ import {
     Chip,
     User,
     Pagination,
-    Tooltip
+    Tooltip,
+    Modal,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    useDisclosure,
+    Textarea,
+    DatePicker,
+    Select,
+    SelectItem,
+    Radio,
+    RadioGroup
 } from "@nextui-org/react";
+import { LiaUserSlashSolid } from "react-icons/lia";
+import { PlusIcon } from "@/components/common/icons/PlusIcon.jsx";
+import { SearchIcon } from "@/components/common/icons/SearchIcon.jsx";
+import { EyeIcon } from "@/components/common/icons/EyeIcon.jsx";
+import { ChevronDownIcon } from "@/components/common/icons/ChevronDownIcon.jsx";
+import { useEffect, useState, useMemo, useCallback } from "react";
+import { EditIcon } from "@/components/common/icons/EditIcon.jsx";
+import { DeleteIcon } from "@/components/common/icons/DeleteIcon.jsx";
+import { useNavigate } from 'react-router-dom'
+import { EyeFilledIcon } from "@/components/common/icons/EyeFilledIcon.jsx";
+import { EyeSlashFilledIcon } from "@/components/common/icons/EyeSlashFilledIcon.jsx";
 
+import axios from 'axios'
 
-import { SearchIcon } from "../../../components/common/icons/SearchIcon.jsx";
-import { ChevronDownIcon } from "../../../components/common/icons/ChevronDownIcon.jsx";
-import React from "react";
-import { columns, users, statusOptions } from "../data.jsx";
-import { FaEye } from "react-icons/fa";
+const columns = [
+    { name: "NAME", uid: "username", sortable: true },
+    { name: "EMAIL", uid: "email", sortable: true },
+    { name: "TITLE", uid: "title", sortable: false },
+    { name: "CATEGORY", uid: "category", sortable: true },
+    { name: "CREATED AT", uid: "createdAt", sortable: true },
+    { name: "STATUS", uid: "status", sortable: true },
+    { name: "ACTIONS", uid: "actions" },
+];
 
-   
+const statusOptions = [
+    { name: "PENDING", uid: "pending" },
+    { name: "SOLVED", uid: "solved" },
+    { name: "DECLINED", uid: "declined" },
+];
+
+const categoryOptions = [
+    { name: "COMPLAINT", uid: "complaint" },
+    { name: "BUG", uid: "bug" },
+    { name: "ASSISTANCE", uid: "assistance" },
+    { name: "OTHER", uid: "other" },
+];
+
 
 const statusColorMap = {
-    active: "success",
-    disabled: "danger",
-    deleted: "warning",
+    PENDING: "primary",
+    SOLVED: "success",
+    DECLINED: "danger",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "title", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["name", "title", "category", "createdAt", "status", "actions"];
 
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+function formatDateTime(isoString) {
+    const date = new Date(isoString);
 
-function Complaints() {
-    const [filterValue, setFilterValue] = React.useState("");
-    const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
-    const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
-    const [statusFilter, setStatusFilter] = React.useState("all");
-    const [rowsPerPage, setRowsPerPage] = React.useState(6);
-    const [sortDescriptor, setSortDescriptor] = React.useState({
-        column: "age",
-        direction: "ascending",
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const formattedTime = `${hours}.${minutes} ${ampm}`;
+
+    return `${year}-${month}-${day} ${formattedTime}`;
+}
+
+export default function Complaints() {
+
+    const navigate = useNavigate()
+
+    const { isOpen: isEditOpen, onOpen: onEditOpen, onOpenChange: onEditOpenChange } = useDisclosure();
+    const { isOpen: isDisableOpen, onOpen: onDisableOpen, onOpenChange: onDisableOpenChange } = useDisclosure();
+    const { isOpen: isDeleteOpen, onOpen: onDeleteOpen, onOpenChange: onDeleteOpenChange } = useDisclosure();
+    const { isOpen: isAddNewOpen, onOpen: onAddNewOpen, onOpenChange: onAddNewOpenChange } = useDisclosure();
+
+    async function getAllComplaints() {
+
+        const response = await axios.get("http://localhost:8080/api/support/get_all_tickets")
+
+        if (response.status === 200) {
+            //? DEBUG console.log(response);
+
+            if (response.data.code === "00") {
+                // Saving content to the complaints variable
+                setComplaints(response.data.content)
+            }
+        }
+
+    }
+
+    const [isVisible, setIsVisible] = useState(false);
+
+    const toggleVisibility = () => setIsVisible(!isVisible);
+
+    const [complaints, setComplaints] = useState([])
+    const [filterValue, setFilterValue] = useState("");
+    const [selectedKeys, setSelectedKeys] = useState(new Set([]));
+    const [visibleColumns, setVisibleColumns] = useState(new Set(INITIAL_VISIBLE_COLUMNS));
+    const [statusFilter, setStatusFilter] = useState("all");
+    const [categoryFilter, setCategoryFilter] = useState("all");
+    const [rowsPerPage, setRowsPerPage] = useState(6);
+    const [sortDescriptor, setSortDescriptor] = useState({
+        column: "createdAt",
+        direction: "descending",
     });
-    const [page, setPage] = React.useState(1);
+    const [page, setPage] = useState(1);
+
+    useEffect(() => {
+        getAllComplaints()
+    }, [])
 
     const hasSearchFilter = Boolean(filterValue);
 
-    const headerColumns = React.useMemo(() => {
+    const headerColumns = useMemo(() => {
         if (visibleColumns === "all") return columns;
 
         return columns.filter((column) => Array.from(visibleColumns).includes(column.uid));
     }, [visibleColumns]);
 
-    const filteredItems = React.useMemo(() => {
-        let filteredUsers = [...users];
+    const filteredItems = useMemo(() => {
+        let filteredComplaints = [...complaints];
 
         if (hasSearchFilter) {
-            filteredUsers = filteredUsers.filter((user) =>
-                user.name.toLowerCase().includes(filterValue.toLowerCase()),
+            filteredComplaints = filteredComplaints.filter((complaint) =>
+                complaint.title.toLowerCase().includes(filterValue.toLowerCase()),
             );
         }
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
-            filteredUsers = filteredUsers.filter((user) =>
-                Array.from(statusFilter).includes(user.status),
+            filteredComplaints = filteredComplaints.filter((complaint) =>
+                Array.from(statusFilter).includes(complaint.status.toLowerCase())
+            );
+        }
+        if (categoryFilter !== "all" && Array.from(categoryFilter).length !== categoryOptions.length) {
+            filteredComplaints = filteredComplaints.filter((complaint) =>
+                Array.from(categoryFilter).includes(complaint.category.toLowerCase())
             );
         }
 
-        return filteredUsers;
-    }, [users, filterValue, statusFilter]);
+        return filteredComplaints;
+    }, [complaints, filterValue, statusFilter, categoryFilter]);
 
     const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
-    const items = React.useMemo(() => {
+    const items = useMemo(() => {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
 
         return filteredItems.slice(start, end);
     }, [page, filteredItems, rowsPerPage]);
 
-    const sortedItems = React.useMemo(() => {
+    const sortedItems = useMemo(() => {
         return [...items].sort((a, b) => {
             const first = a[sortDescriptor.column];
             const second = b[sortDescriptor.column];
@@ -97,74 +190,101 @@ function Complaints() {
         });
     }, [sortDescriptor, items]);
 
-    const renderCell = React.useCallback((user, columnKey) => {
-        const cellValue = user[columnKey];
+    const renderCell = useCallback((complaint, columnKey) => {
+        complaint.username = complaint.author.username
+        complaint.email = complaint.author.email
+
+        const cellValue = complaint[columnKey];
 
         switch (columnKey) {
             case "name":
                 return (
                     <User
-                        avatarProps={{ radius: "lg", src: user.avatar }}
-                        description={user.email}
+                        avatarProps={{ radius: "lg", src: complaint.author.image }}
+                        description={complaint.email}
                         name={cellValue}
                     >
-                        {user.email}
+                        {complaint.email}
                     </User>
                 );
-            case "role":
+            case "email":
                 return (
                     <div className="flex flex-col">
                         <p className="text-bold text-small capitalize">{cellValue}</p>
-                        <p className="text-bold text-tiny capitalize text-default-400">{user.team}</p>
+                    </div>
+                );
+            case "title":
+                return (
+                    <div className="flex flex-col">
+                        <p className="text-bold text-small capitalize">{cellValue}</p>
+                    </div>
+                );
+            case "category":
+                return (
+                    <div className="flex flex-col">
+                        <p className="text-bold text-small capitalize">{cellValue}</p>
+                    </div>
+                );
+            case "createdAt":
+                return (
+                    <div className="flex flex-col">
+                        <p className="text-bold text-small capitalize">{formatDateTime(cellValue)}</p>
                     </div>
                 );
             case "status":
                 return (
-                    <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
+                    <Chip className="capitalize" color={statusColorMap[complaint.status]} size="sm" variant="flat">
                         {cellValue}
                     </Chip>
                 );
             case "actions":
-
                 return (
-                    
                     <div className="relative flex justify-center items-center gap-2">
-                     
-                        <Tooltip key="View" color="success" content="View" >
-                            <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm">
-                            <FaEye />
-
+                        <Tooltip key="view" color="secondary" content="view" >
+                            <Button isIconOnly variant="flat" color="secondary" className="capitalize" size="sm" onPress={() => navigate(`/admin/support/${complaint.id}`)}>
+                                <EyeIcon />
                             </Button>
                         </Tooltip>
-                      
+                        <Tooltip key="edit" color="success" content="edit" >
+                            <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm" onPress={onEditOpen}>
+                                <EditIcon />
+                            </Button>
+                        </Tooltip>
+                        <Tooltip key="disable" color="danger" content="disable">
+                            <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm" onPress={onDisableOpen}>
+                                <LiaUserSlashSolid size="18px" />
+                            </Button>
+                        </Tooltip>
+                        <Tooltip key="delete" color="warning" content="delete" >
+                            <Button isIconOnly variant="flat" color="warning" className="capitalize" size="sm" onPress={onDeleteOpen}>
+                                <DeleteIcon />
+                            </Button>
+                        </Tooltip>
                     </div>
-
-                  
                 );
             default:
                 return cellValue;
-        case "title":
         }
     }, []);
 
-    const onNextPage = React.useCallback(() => {
+    const onNextPage = useCallback(() => {
         if (page < pages) {
             setPage(page + 1);
         }
     }, [page, pages]);
 
-    const onPreviousPage = React.useCallback(() => {
+    const onPreviousPage = useCallback(() => {
         if (page > 1) {
             setPage(page - 1);
         }
     }, [page]);
 
-    const onRowsPerPageChange = React.useCallback((e) => {
+    const onRowsPerPageChange = useCallback((e) => {
         setRowsPerPage(Number(e.target.value));
         setPage(1);
     }, []);
 
-    const onSearchChange = React.useCallback((value) => {
+    const onSearchChange = useCallback((value) => {
         if (value) {
             setFilterValue(value);
             setPage(1);
@@ -173,60 +293,53 @@ function Complaints() {
         }
     }, []);
 
-    const onClear = React.useCallback(() => {
+    const onClear = useCallback(() => {
         setFilterValue("")
         setPage(1)
     }, [])
 
-    const topContent = React.useMemo(() => {
+    const topContent = useMemo(() => {
         return (
+
             <div className="flex flex-col gap-4">
-                  
                 <div className="flex justify-between gap-3 items-end">
                     <Input
                         isClearable
                         className="w-full sm:max-w-[44%]"
-                        placeholder="Search by name..."
+                        placeholder="Search by title..."
                         startContent={<SearchIcon />}
                         value={filterValue}
                         onClear={() => onClear()}
                         onValueChange={onSearchChange}
                     />
-                    <div>
-                        <Tabs aria-label="Options" color="danger" variant="bordered">
-                            <Tab
-                                key="photos"
-                                title={
-                                    <div className="flex items-center space-x-2">
-                                        {/* <GalleryIcon /> */}
-                                        <span>Readers</span>
-                                    </div>
-                                }
-                            />
-                            <Tab
-                                key="music"
-                                title={
-                                    <div className="flex items-center space-x-2">
-                                        {/* <MusicIcon /> */}
-                                        <span>Writers</span>
-                                    </div>
-                                }
-                            />
-                            <Tab
-                                key="videos"
-                                title={
-                                    <div className="flex items-center space-x-2">
-                                        {/* <VideoIcon /> */}
-                                        <span>Admin</span>
-                                    </div>
-                                }
-                            />
-                        </Tabs>
-                    </div>
+
                     <div className="flex gap-3">
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                                <Button
+                                    endContent={<ChevronDownIcon className="text-small" />}
+                                    variant="ghost"
+                                >
+                                    Category
+                                </Button>
+                            </DropdownTrigger>
+                            <DropdownMenu
+                                aria-label="Select category"
+                                closeOnSelect={false}
+                                disallowEmptySelection
+                                selectedKeys={categoryFilter}
+                                selectionMode="multiple"
+                                onSelectionChange={(keys) => setCategoryFilter(keys)}
+                            >
+                                {categoryOptions.map((item) => (
+                                    <DropdownItem key={item.uid}>{item.name}</DropdownItem>
+                                ))}
+                            </DropdownMenu>
+
+                        </Dropdown>
+                        <Dropdown>
+                            <DropdownTrigger className="hidden sm:flex">
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" >
                                     Status
                                 </Button>
                             </DropdownTrigger>
@@ -247,7 +360,7 @@ function Complaints() {
                         </Dropdown>
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
-                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                                <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" >
                                     Columns
                                 </Button>
                             </DropdownTrigger>
@@ -266,15 +379,14 @@ function Complaints() {
                                 ))}
                             </DropdownMenu>
                         </Dropdown>
-                      
                     </div>
                 </div>
                 <div className="flex justify-between items-center">
-                    <span className="text-default-400 text-small">Total {users.length} users</span>
-                    <label className="flex items-center text-default-400 text-small">
+                    <span className="text-black text-small ">Total {complaints.length} complaints</span>
+                    <label className="flex items-center text-black text-small">
                         Rows per page:
                         <select
-                            className="bg-transparent outline-none text-default-400 text-small"
+                            className="bg-transparent outline-none text-black text-small"
                             onChange={onRowsPerPageChange}
                         >
                             <option value="6">6</option>
@@ -288,14 +400,15 @@ function Complaints() {
     }, [
         filterValue,
         statusFilter,
+        categoryFilter,
         visibleColumns,
         onRowsPerPageChange,
-        users.length,
+        complaints.length,
         onSearchChange,
         hasSearchFilter,
     ]);
 
-    const bottomContent = React.useMemo(() => {
+    const bottomContent = useMemo(() => {
         return (
             <div className="py-2 px-2 flex justify-center items-center">
 
@@ -324,7 +437,9 @@ function Complaints() {
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
     return (
+
         <>
+
             <div className='min-h-[calc(100dvh-65px)]  overflow-hidden bg-slate-100 px-3 pt-6'>
 
                 <Table
@@ -344,20 +459,21 @@ function Complaints() {
                     onSelectionChange={setSelectedKeys}
                     onSortChange={setSortDescriptor}
                 >
-                    <TableHeader columns={headerColumns}>
+                    <TableHeader columns={headerColumns} >
                         {(column) => (
                             <TableColumn
                                 key={column.uid}
                                 align={column.uid === "actions" ? "center" : "start"}
                                 allowsSorting={column.sortable}
+
                             >
                                 {column.name}
                             </TableColumn>
                         )}
                     </TableHeader>
-                    <TableBody emptyContent={"No users found"} className="" items={sortedItems}>
+                    <TableBody emptyContent={"No complaints found"} className="" items={sortedItems}>
                         {(item) => (
-                            <TableRow key={item.id}>
+                            <TableRow key={item.id}  >
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                             </TableRow>
                         )}
@@ -369,5 +485,3 @@ function Complaints() {
 
     )
 }
-
-export default Complaints
