@@ -20,10 +20,10 @@ import {
 } from "@nextui-org/react";
 
 
-import { SearchIcon } from "../../components/common/icons/SearchIcon";
-import { ChevronDownIcon } from "../../components/common/icons/ChevronDownIcon";
+import { SearchIcon } from "../../../components/common/icons/SearchIcon.jsx";
+import { ChevronDownIcon } from "../../../components/common/icons/ChevronDownIcon.jsx";
 import React from "react";
-import { columns, users, statusOptions } from "./data";
+import { columns, users, statusOptions } from "../data.jsx";
 import { FaEye } from "react-icons/fa";
 
    

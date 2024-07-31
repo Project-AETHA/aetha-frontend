@@ -14,13 +14,14 @@ import Shortstories from "../../pages/Shortstories";
 import GeneralLandingPage from "../../pages/LandingPage/GeneralLandingPage.jsx";
 import TestComponent from "../../components/common/Tables/Temp.tsx";
 import SettingPage from '../../pages/Settings';
+import ComplaintDetails from '../../pages/Support/ComplaintDetails.jsx';
 
 export default function RoutesGeneral () {
     return [
         { path: '/', element: <GeneralLandingPage />, layout: "default" },
         { path: '/login', element: <LoginPage />, layout: "simple" },
         { path: '/signup', element: <SignupPage />, layout: "simple" },
-        { path: '/support', element: <SupportPage />, layout: "default" },
+        { path: '/support', element: <SupportPage />, layout: "simple" },
         { path: '/shop', element: <Shop />, layout: "default" },
         { path: '/novel/:novelId', element: <Chapters />, layout: "default" },
         { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
@@ -31,6 +32,7 @@ export default function RoutesGeneral () {
         { path: '/shortstoriesreading', element: <ShortStoriesReading />, layout: "default" },
         { path: '/shortstories', element: <Shortstories />, layout: "default" },
         { path: '/test', element: <TestComponent message="Hellow World" />, layout: "default" },
-        { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" }
+        { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" },
+        { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
     ]
 }
