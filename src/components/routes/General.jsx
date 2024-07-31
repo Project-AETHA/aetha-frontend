@@ -13,6 +13,7 @@ import ShortStoriesReading from "../../pages/ShortStoriesReading";
 import Shortstories from "../../pages/Shortstories";
 import GeneralLandingPage from "../../pages/LandingPage/GeneralLandingPage.jsx";
 import TestComponent from "../../components/common/Tables/Temp.tsx";
+import SettingPage from '../../pages/Settings';
 
 export default function RoutesGeneral () {
     return [
@@ -29,6 +30,7 @@ export default function RoutesGeneral () {
         { path: '/subscribe', element: <Subscribe />, layout: "default" },
         { path: '/shortstoriesreading', element: <ShortStoriesReading />, layout: "default" },
         { path: '/shortstories', element: <Shortstories />, layout: "default" },
-        { path: '/test', element: <TestComponent message="Hellow World" />, layout: "default" }
+        { path: '/test', element: <TestComponent message="Hellow World" />, layout: "default" },
+        { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" }
     ]
 }

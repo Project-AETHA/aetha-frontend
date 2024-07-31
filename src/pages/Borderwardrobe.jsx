@@ -6,9 +6,8 @@ import { BiSolidUserRectangle } from "react-icons/bi";
 function Borderwardrobe() {
   return (
     <div>
-      <Editprofilesidebar />
-
-      <div className="dashboard">
+      <div className="">
+        <div className="details">
         <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -22,7 +21,6 @@ function Borderwardrobe() {
             </span>
           </div>
         </div>
-        <div className="details">
 </div>
         </div>
 

@@ -6,7 +6,8 @@ import { FaHome } from 'react-icons/fa';
 function Usercp() {
   return (
     <div>
-          <div className="dashboard">
+          <div className="">
+          <div className="details">
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -20,7 +21,6 @@ function Usercp() {
             </span>
           </div>
         </div>
-          <div className="details">
           <div className='p-3 m-4 h-auto border-1 border-gray-300 flex items-center'>
         <div className='p-2 h-auto items-center border-b-gray-300 border-2 border-white'><div className='font-semibold'>Thread Subscriptions With New Posts</div></div>
         </div>
