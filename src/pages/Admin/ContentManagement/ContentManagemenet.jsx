@@ -120,8 +120,8 @@ function ContentManagemenet() {
 
                 </div>
 
-                <div className='mt-8 mx-4 p-4 shadow-lg bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative' style={{ height: '50px' }}>
-                    <p className='flex items-center justify-center h-full font-sans text-white text-xl font-normal'>
+                <div className='mt-8 mx-4 p-4 shadow-lg to-blue-500 py-8 relative bg-gray-300' style={{ height: '50px' }} >
+                    <p className='flex items-center justify-center h-full font-sans text-black  text-lg font-semibold'>
                         Pending Approvals
                     </p>
                 </div>
@@ -179,7 +179,7 @@ function ContentManagemenet() {
                                         else if (columnKey === 'view') {
                                             return (
                                                 <TableCell>
-                                                    <Button size='sm' style={{ backgroundColor: '#3e9cf2', color: '#fff' }} className="text-white" onClick={() => { navigate(`/admin/contents/approve`); }}>
+                                                    <Button size='sm' color='primary' className="text-white " onClick={() => { navigate(`/admin/contents/approve`); }}>
                                                         View
                                                     </Button>
                                                 </TableCell>

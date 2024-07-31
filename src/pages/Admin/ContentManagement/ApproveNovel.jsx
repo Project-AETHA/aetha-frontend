@@ -2,17 +2,22 @@ import React from 'react'
 import {
   Image,
   Chip,
-  Button
+  Button,
+  Textarea
 } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@nextui-org/react";
 
 
 function ApproveNovel() {
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   return (
 
     <div className="flex justify-center pt-8">
       <div className="flex-col w-10/12 bg-white rounded-md">
-        <div className='mt-4 mx-4 p-4 shadow-lg bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative' style={{ height: '50px' }}>
-          <p className='flex items-center justify-center h-full font-sans text-white text-xl font-normal'>
+        <div className='mt-4 mx-4 p-4 shadow-lg bg-gray-300 py-8 relative' style={{ height: '50px' }}>
+          <p className='flex items-center justify-center h-full font-sans text-black text-lg font-semibold'>
             Admin Approval
           </p>
         </div>
@@ -31,17 +36,17 @@ function ApproveNovel() {
           </div>
           <div className="my-8 mr-14 w-2/3">
             <div className='flex gap-4 '>
-              <div className="font-semibold flex text-black text-xl">
-              The grate adventure
-            </div >
-            <div className="flex items-center text-black">
-              -
+              <div className="font-medium flex text-black text-xl">
+                The grate adventure
+              </div >
+              <div className="flex items-center text-black">
+                -
+              </div>
+              <div className='text-foreground-700 flex justify-start items-center '>
+                Novel
+              </div>
             </div>
-            <div className='text-foreground-700 flex justify-start items-center '>
-              Novel
-            </div>
-            </div>
-            
+
             <div className='flex gap-3 mt-5 mb-3'>
               <Chip color="secondary" radius='sm'>Tag 1</Chip>
               <Chip color="primary" radius='sm'>Tag 2</Chip>
@@ -86,12 +91,59 @@ function ApproveNovel() {
           <Button color="primary" radius='sm'>
             Approve
           </Button>
-          <Button color="secondary" radius='sm'>
+          <Button color="secondary" radius='sm' onPress={onOpen}>
             Decline
           </Button>
         </div>
       </div>
-
+      <Modal
+                    isOpen={isOpen}
+                    onOpenChange={onOpenChange}
+                    backdrop="blur"
+                    classNames={{
+                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
+                    }}
+                >
+                    <ModalContent>
+                        {(onClose) => (
+                            <>
+                                <ModalHeader className="flex flex-col gap-4 items-center">
+                                    <div className="flex flex-col items-center text-center w-full">
+                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Decline Novel</div>
+                                        <Image
+                                                        width={80}
+                                                        height={80}
+                                                        alt="NextUI Fruit Image with Zoom"
+                                                        src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
+                                                        radius='none'
+                                                    />
+                                        <div className="text-base font-medium">The grate adventure</div>
+                                    </div>
+                                </ModalHeader>
+                                <ModalBody>
+                                    <Textarea
+                                        key="faded"
+                                        variant="faded"
+                                        label="Reason for decline this novel?"
+                                        labelPlacement="outside"
+                                        placeholder="Enter your reason"
+                                        className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
+                                        color="primary"
+                                    />
+                                    <p className="p-2">Are you sure you want to decline this novel?</p>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onPress={onClose}>
+                                        Delete
+                                    </Button>
+                                    <Button color="secondary" onPress={onClose}>
+                                        Cancel
+                                    </Button>
+                                </ModalFooter>
+                            </>
+                        )}
+                    </ModalContent>
+                </Modal>
     </div>
 
   );
