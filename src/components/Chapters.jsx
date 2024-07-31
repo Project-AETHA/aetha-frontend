@@ -32,54 +32,54 @@ function LandingPage() {
             key: 2,
             chapter: 'John Doe',
             releaseday: '20 day ago',
-            content:'premium'
+            content:'free'
 
         },
         {
             key: 3,
-            chapter: 'Veronica Lodge',
+            chapter: 'Veronica Lodge I',
             releaseday: '10 day ago',
-            content:'premium'
+            content:'free'
 
         },
         {
             key: 4,
-            chapter: 'Veronica Lodge',
+            chapter: 'Veronica Lodge II',
             releaseday: '8 day ago',
-            content:'premium'
+            content:'free'
 
         },
         {
             key: 5,
-            chapter: 'Veronica Lodge',
+            chapter: 'Firing Squad',
             releaseday: '7 day ago',
-            content:'premium'
+            content:'free'
 
         },
         {
             key: 6,
-            chapter: 'Veronica Lodge',
+            chapter: 'Start of the End',
             releaseday: '5 day ago',
             content:'premium'
 
         },
         {
             key: 7,
-            chapter: 'Veronica Lodge',
+            chapter: 'Veronica Lodge III',
             releaseday: '4 day ago',
             content:'premium'
 
         },
         {
             key: 8,
-            chapter: 'Veronica Lodge',
+            chapter: 'New Beginnings',
             releaseday: '3 day ago',
             content:'premium'
 
         },
         {
             key: 9,
-            chapter: 'Veronica Lodge',
+            chapter: 'Return of Lodge',
             releaseday: '2 day ago',
             content:'premium'
 
@@ -147,7 +147,7 @@ function LandingPage() {
 
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+    const itemsPerPage = 13;
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -168,10 +168,10 @@ function LandingPage() {
     };
 
     return (
-        <div className="alt-container p-4">
-            <div className="flex flex-col md:flex-row gap-4 !p-0">
+        <div className="alt-container">
+            <div className="flex flex-col md:flex-row gap-4 !p-0 bg-foreground-50">
                 {/* Latest Updates */}
-                <div className="bg-gray-300 w-full md:w-9/12 rounded-md p-2">
+                <div className="bg-foreground-50 w-full md:w-9/12 rounded-md p-2">
                     <p className="flex gap-2 items-center font-bold text-lg text-primaryText mb-4">
                         <FcGallery size="25px" />
                         Novel
@@ -196,7 +196,7 @@ function LandingPage() {
                                 ))}
                         </div>
                     </div>
-                    <div className="w-full md:w-9/12 inline-block align-top text-justify px-5 text-primaryText ">
+                    <div className="w-full md:w-9/12 inline-block align-top text-justify pl-5 text-primaryText ">
                         <p className="h-55 md:inline-block hidden">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda quaerat, eos tenetur explicabo nam in
                             facere aspernatur fuga accusantium magni saepe, ex nesciunt consectetur, eum sit reiciendis mollitia. Excepturi, magni.
@@ -207,13 +207,13 @@ function LandingPage() {
                         <div className="mt-5 w-full flex flex-col md:flex-row justify-center md:justify-start">
                             <div className="mb-4 md:mb-0 justify-center flex">
                                 <Link to="/chapterreading">
-                                <Button className="bg-accentText text-whiteText rounded-none">
+                                <Button className="bg-accentText text-whiteText rounded-">
                                     <FaBook /> Start Reading
                                 </Button>
                                 </Link>
                             </div>
                             <div className="ml-0 md:ml-10 justify-center flex">
-                                <Button className="border border-accentText text-accentText rounded-none">
+                                <Button className="border border-accentText text-accentText rounded-xl" variant="bordered">
                                 <MdAddAlert /> Subscribe
                                 </Button>
                             </div>
@@ -224,19 +224,19 @@ function LandingPage() {
                 </div>
 
 
-                <div className="bg-gray-300 w-full md:w-3/12 rounded-md p-2 h-[300px] flex justify-center items-center">
+                <div className="bg-foreground-50 w-full md:w-3/12 rounded-md h-[300px] pl-5 flex justify-center md:pr-10 md:items-center">
                     <div className="flex flex-col gap-2">
 
-                        <Button className="bg-gray-200 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
+                        <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
                             <FaHeart />
                             <p>Favourite</p>
                         </Button>
 
-                        <Button className="bg-gray-200 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
+                        <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
                             <FaDonate />
                             <p> Donate </p>
                         </Button>
-                        <Button className="bg-gray-200 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-red-600">
+                        <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-red-600">
                             <MdOutlineReport />
                             <p> Complaint </p>
                         </Button>
@@ -250,62 +250,65 @@ function LandingPage() {
             </div>
 
             <div className="flex flex-col md:flex-row gap-4 !p-0">
-                {/* Latest Updates */}
-                <div className="bg-gray-300 w-full md:w-9/12 rounded-md p-2">
-                    <p className="flex gap-2 items-center font-bold text-lg text-primaryText mb-4">
-                        <FcBiomass size="25px" />
-                        Chapters
-                    </p>
-                    <Link to="/chapterreading" className="">
-                        <div className="flex justify-evenly items-center flex-wrap gap-2">
-                            {currentItems.map(person => (
-                                <div key={person.key} className="bg-chapters rounded-xl p-3 w-full mx-2 flex hover:shadow-md hover:bg-gray-400">
-                                    <div className="inline-block w-full md:w-8/12">
-                                        <p className="text-primaryText text-sm">
-                                            {person.content === 'premium' && <FaLock className="w-3 mx-2 inline-block" />}
-                                            Chapter {person.key} : {person.chapter}
-                                        </p>
-                                    </div>
-                                    <div className="inline-block w-0 md:w-4/12">
-                                        <p className="text-secondaryText text-right text-xs italic hidden md:block"> {person.releaseday} </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </Link>
-                    <div className="flex justify-between items-center mt-4">
-                        <Button onClick={handlePreviousPage} disabled={currentPage === 1}>
-                            Previous
-                        </Button>
-                        <p>Page {currentPage} of {totalPages}</p>
-                        <Button onClick={handleNextPage} disabled={currentPage === totalPages}>
-                            Next
-                        </Button>
+                {/* Chapters part */}
+<div className="bg-foreground-50 w-full md:w-9/12 rounded-md p-2">
+    <p className="flex gap-2 items-center font-bold text-lg text-primaryText mb-4">
+        <FcBiomass size="25px" />
+        Chapters
+    </p>
+    <div className="flex justify-evenly items-center flex-wrap gap-1">
+        {currentItems.map(person => (
+            <Link to={person.content === 'premium' ? "/subscribe" : "/chapterreading"} key={person.key} className="w-full pr-3">
+                <div className="h-10 items-center border-2 border-gray-200 rounded-xl p-3 w-full mx-2 flex hover:shadow-sm hover:bg-chapterselect">
+                    <div className="inline-block w-full md:w-8/12">
+                        <p className="text-primaryText text-xs">
+                            {person.content === 'premium' && <FaLock className="w-3 mx-2 inline-block" />}
+                            Chapter {person.key} : {person.chapter}
+                        </p>
+                    </div>
+                    <div className="inline-block w-0 md:w-4/12">
+                        <p className="text-secondaryText text-right text-xs italic hidden md:block"> {person.releaseday} </p>
                     </div>
                 </div>
+            </Link>
+        ))}
+    </div>
+    <div className="flex justify-between items-center mt-4">
+        <Button onClick={handlePreviousPage} disabled={currentPage === 1} variant="bordered" className="text-accentText h-8 border border-accentText">
+            Previous
+        </Button>
+        <p className="text-primaryText">Page {currentPage} of {totalPages}</p>
+        <Button onClick={handleNextPage} disabled={currentPage === totalPages} variant="bordered" className="text-accentText h-8 border border-accentText">
+            Next
+        </Button>
+    </div>
+</div>
+
 
                 {/* Rising Stars */}
-                <div className="bg-gray-300 w-full md:w-3/12 rounded-md p-2 h-[500px] flex justify-center items-center">
+                <div className="bg-foreground-50 w-full md:w-3/12 rounded-md p-2 flex justify-center">
                     <div className="flex flex-col gap-2">
-                        <p className="flex gap-2 items-center font-bold text-lg text-gray-500 mb-1 justify-center">
+                        <p className="flex gap-2 items-center font-bold text-lg text-gray-500 mb-1 justify-center mt-5">
                             <FaUserEdit size="25px" />
                             Author Details
                         </p>
                         <div>
                             {recommendations.map((recommendation, index) => (
                                 <div key={index}>
-                                    <div className="p-4 border border-gray-300 rounded-md flex">
-                                        <div className=" font-bold inline-block"> Name : </div> <div className="inline-block ml-2"> {recommendation.author}</div>
+                                    <img src="../../../public/images/user.png" alt="book" className="w-20 mx-auto" />
+                                    <div className="p-4 rounded-md flex text-primaryText justify-center">
+                                        
+                                        <div className="font-bold inline-block"> Name : </div> <div className="inline-block ml-2"> {recommendation.author}</div>
                                     </div>
 
-                                    <div className="flex items-center justify-center">
-                                        <Button className="bg-white text-black border border-black items-center justify-start hover:scale-105 hover:bg-green-200">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <Button variant="bordered" className="text-primaryText border border-primaryText items-center justify-start hover:scale-105 hover:bg-accentText hover:text-black">
                                             <MdAddAlert />
                                             <p> Subscribe </p>
                                         </Button>
                                     </div>
 
-                                    <p className="flex gap-2 items-center font-bold text-lg text-gray-500 mb-1 mt-5 justify-center">
+                                    <p className="flex gap-2 items-center font-bold text-lg text-gray-500 justify-center">
                                         Achievements
                                     </p>
 

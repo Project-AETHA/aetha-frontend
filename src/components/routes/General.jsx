@@ -14,6 +14,9 @@ import Shortstories from "../../pages/Shortstories";
 import GeneralLandingPage from "../../pages/LandingPage/GeneralLandingPage.jsx";
 import TestComponent from "../../components/common/Tables/Temp.tsx";
 import SettingPage from '../../pages/Settings';
+import Forum from '../../pages/Forum';
+import Forumselection from '../../pages/Forumselection';
+import Buytiers from '../../pages/Buytiers';
 
 export default function RoutesGeneral () {
     return [
@@ -31,6 +34,9 @@ export default function RoutesGeneral () {
         { path: '/shortstoriesreading', element: <ShortStoriesReading />, layout: "default" },
         { path: '/shortstories', element: <Shortstories />, layout: "default" },
         { path: '/test', element: <TestComponent message="Hellow World" />, layout: "default" },
-        { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" }
+        { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" },
+        { path: '/forum', element: <Forum />, layout: "default" },
+        { path: '/forumselection', element: <Forumselection />, layout: "default" },
+        { path: '/buytiers', element: <Buytiers />, layout: "default" },
     ]
 }

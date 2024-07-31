@@ -8,11 +8,19 @@ function NovelLandingPage() {
   let recommendations = [
     {
       id: 1,
-      title: "Recommendation 1",
+      title: "The Great Gatsby",
+      type: "novel",
+      rating: 4.6,
+      description: "lorem ipsum dolor sit amet",
+      image: "../../../public/images/books/4.png",
+    },
+    {
+      id: 1,
+      title: "Walk in the Shadow",
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/2.png",
     },
     {
       id: 1,
@@ -20,7 +28,15 @@ function NovelLandingPage() {
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/3.png",
+    },
+    {
+      id: 1,
+      title: "Alone",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/1.png",
     },
     {
       id: 1,
@@ -28,23 +44,7 @@ function NovelLandingPage() {
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-    },
-    {
-      id: 1,
-      title: "Recommendation 1",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-    },
-    {
-      id: 1,
-      title: "Recommendation 1",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/5.png",
     },
   ];
 
@@ -82,28 +82,28 @@ function NovelLandingPage() {
       review_score: 4.8,
       rating: 4.5,
       description: "Something-01",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/4.png",
     },
     {
       title: "slide-02",
       review_score: 1.2,
       rating: 2.0,
       description: "Something-02",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/2.png",
     },
     {
       title: "slide-03",
       review_score: 5.0,
       rating: 3.5,
       description: "Something-03",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/1.png",
     },
     {
       title: "slide-04",
       review_score: 3.2,
       rating: 1.5,
       description: "Something-04",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/5.png",
     },
   ];
 
@@ -124,12 +124,12 @@ function NovelLandingPage() {
 
         {/* Personalized Recommendations */}
         <div className="bg-foreground-100/75">
-          <p className="flex gap-2 items-center font-bold text-lg text-green-700 mb-4">
+          <p className="flex items-center font-bold text-lg text-green-700 mb-4">
             <FcBiomass size="25px" />
             Personalized Recommendations
           </p>
 
-          <div className="flex items-center flex-wrap gap-3">
+          <div className="flex items-center flex-wrap gap-9 justify-center">
             {recommendations &&
               recommendations.map((recommendation, index) => (
                 <Item key={index} content={recommendation} />
@@ -159,7 +159,7 @@ function NovelLandingPage() {
               Latest Updates
             </p>
 
-            <div className="flex items-center flex-wrap gap-3">
+            <div className="flex items-center flex-wrap gap-3 justify-center md:justify-start">
               {latest_updates &&
                 latest_updates.map((latest_update, index) => (
                   <Item key={index} content={latest_update} />
@@ -174,17 +174,17 @@ function NovelLandingPage() {
               Rising Stars
             </p>
 
-            <div className="flex items-center flex-wrap gap-3">
+            <div className="flex items-center flex-wrap gap-3 justify-center md:justify-start">
               {rising_stars &&
                 rising_stars.map((rising_star, index) => (
-                  <Item key={index} content={rising_star} />
+                  <Item key={index} content={rising_star}/>
                 ))}
             </div>
           </div>
         </div>
       </div>
       <div className="bg-foreground-200/75 rounded p-2 flex flex-col col-span-12 lg:col-span-3 min-h-full lg:max-w-[350px]">
-        <p className="text-foreground-900 text-purple-600">Recent Content</p>
+        <p className="text-purple-600">Recent Content</p>
         <div className="grow rounded p-1 flex">
           <LatestUpdates data={latest_updates_data} />
         </div>

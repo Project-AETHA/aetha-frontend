@@ -20,9 +20,9 @@ function Subscribe() {
         <div className="alt-container px-4 pb-2">
             <div className="flex flex-col md:flex-row gap-4 !p-0">
 
-                <div className="bg-gray-300 w-full rounded-md my-5">
+                <div className="bg-foreground-50 w-full rounded-md my-5">
 
-                    <h1 className="md:text-2xl font-semibold text-center my-8 text-primaryText mx-2"> Please ! Subscribe this Book to read Next Chapters </h1>
+                    <h1 className="md:text-2xl font-semibold text-center my-8 text-primaryText mx-2"> Please ! Subscribe the chapter tiers to read </h1>
 
                     {recommendations && recommendations.map((recommendation, index) => (
                         <div className=" md:w-1/2 m-auto text-primaryText text-center my-10 p-5" key={index}>
@@ -47,11 +47,11 @@ function Subscribe() {
 
 
                             <div className="ustify-center mt-5">
-                                <div className="justify-center">
-                                    <h1 className="text-md text-accentText"> Rs. 2 000/=  </h1>
-                                </div>
-                                <Link to="">
-                                    <Button className="rounded-none border-2 border-accentText text-accentText px-9 hover:bg-accentText hover:text-white hover:scale-110"> Subscribe </Button>
+                                
+                                <Link to="/buytiers">
+                                    <Button variant="bordered" className="rounded-lg border-2 border-accentText text-accentText px-9 hover:bg-accentText hover:text-white"> 
+                                       View chapter tiers
+                                    </Button>
                                 </Link>
                             </div>
                         </div>
