@@ -229,10 +229,10 @@ function SingleUser() {
 
                         <div className="bg-white w-full shadow overflow-hidden sm:rounded-lg">
                             <div className="flex justify-between px-4 py-5 sm:px-6">
-                                <h3 className="text-lg leading-6  text-indigo-600 font-bold ">
+                                <h3 className="text-lg leading-6  text-gray-600 font-semibold ">
                                     User details
                                 </h3>
-                                <Button  radius='sm' size="sm" className='bg-indigo-400'>
+                                <Button  radius='sm' size="sm" color='primary'>
                                     Edit
                                 </Button>
                             </div>
@@ -300,14 +300,14 @@ function SingleUser() {
 
                         <div className="bg-white w-full overflow-hidden sm:rounded-lg p-5">
                             <div className="px-4 py-5 sm:px-6">
-                                <h3 className="text-lg leading-6 text-indigo-600 font-bold">
+                                <h3 className="text-lg leading-6 text-gray-600 font-semibold">
                                     Recent Login Details
                                 </h3>
                             </div>
                             <div className="border-t border-gray-200 ">
                                 <Table aria-label="Recent login details" className='text-foreground-900 ' radius='none' removeWrapper>
                                     <TableHeader columns={loginColumns}>
-                                        {(column) => <TableColumn key={column.key} className='bg-gray-400 text-black'>{column.label}</TableColumn>}
+                                        {(column) => <TableColumn key={column.key} >{column.label}</TableColumn>}
                                     </TableHeader>
                                     <TableBody items={recentLogins}>
                                         {(item) => (
@@ -323,7 +323,7 @@ function SingleUser() {
 
                     <div className='w-1/3 p-5 border-l overflow-hidden flex flex-col'>
                         <div className='mb-5 ml-3'>
-                            <span className="text-black-2 font-bold block mb-3">Followers</span>
+                            <span className="text-black-2 font-bold block mb-3 text-gray-600">Followers</span>
                             <div className='flex flex-col gap-3 items-start max-h-80 overflow-y-auto text-foreground-900'>
                                 <User name="Jane Doe"
                                     description="Reader"
@@ -352,7 +352,7 @@ function SingleUser() {
                             </div>
                         </div>
                         <div className='mb-5 ml-3'>
-                            <span className="text-black-2 font-bold block my-3">Followings</span>
+                            <span className="text-black-2 font-bold block my-3 text-gray-600">Followings</span>
                             <div className='flex flex-col gap-3 items-start max-h-80 overflow-y-auto text-foreground-900'>
                                 <User name="Jane Doe"
                                     description="Reader"
@@ -396,14 +396,14 @@ function SingleUser() {
                 </div>
                 <div className="bg-white w-11/12  overflow-hidden sm:rounded-lg p-5 m-5">
                     <div className="px-4 py-5 sm:px-6">
-                        <h3 className="text-lg leading-6 text-indigo-600 font-bold">
+                        <h3 className="text-lg leading-6 text-gray-600 font-semibold">
                             Subscription Details
                         </h3>
                     </div>
                     <div className="border-t border-gray-200">
                         <Table aria-label="Subscription details" className='text-foreground-900 ' radius='none' removeWrapper>
                             <TableHeader columns={subscriptionColumns}>
-                                {(column) => <TableColumn key={column.key} className=' bg-gray-400 text-black'>{column.label}</TableColumn>}
+                                {(column) => <TableColumn key={column.key} className=''>{column.label}</TableColumn>}
                             </TableHeader>
                             <TableBody items={subscriptionDetails}>
                                 {(item) => (
@@ -417,13 +417,13 @@ function SingleUser() {
                 </div>
                 <div className="bg-white w-11/12  overflow-hidden sm:rounded-lg p-5 m-5">
                     <div className="px-4 py-5 sm:px-6">
-                        <h3 className="text-lg leading-6 text-indigo-600 font-bold">
+                        <h3 className="text-lg leading-6 text-gray-600 font-semibold">
                             Publishes
                         </h3>
                     </div>
                     <div className="flex border-t border-gray-200 ">
                         <div className=" w-[50%] rounded-md p-2">
-                            <p className="flex gap-2 items-center  text-medium font-semibold  mb-4">
+                            <p className="flex gap-2 items-center  text-medium font-semibold text-gray-600 mb-4">
                                 Novels
                             </p>
 
@@ -449,7 +449,7 @@ function SingleUser() {
                             </div>
                         </div>
                         <div className=" w-[50%] rounded-md p-2">
-                            <p className="flex gap-2 items-center font-semibold text-medium  mb-4">
+                            <p className="flex gap-2 items-center font-semibold text-gray-600 text-medium  mb-4">
                                 Short Stories
                             </p>
 
@@ -476,7 +476,7 @@ function SingleUser() {
                         </div>
                     </div>
                     <div className="flex-col border-t border-gray-200 ">
-                        <p className="flex gap-2 items-center font-semibold text-medium  mb-4">
+                        <p className="flex gap-2 items-center font-semibold  text-gray-600 text-medium  mb-4">
                             Poems
                         </p>
                         <div className="flex items-center flex-wrap gap-3 ">
@@ -506,14 +506,14 @@ function SingleUser() {
                 </div>
                 <div className="bg-white w-11/12 overflow-hidden sm:rounded-lg p-5 m-5">
                     <div className="px-4 py-5 sm:px-6">
-                        <h3 className="text-lg leading-6 text-indigo-600 font-bold">
+                        <h3 className="text-lg leading-6 text-gray-600 font-semibold">
                             Complaints
                         </h3>
                     </div>
                     <div className="border-t border-gray-200">
                         <Table aria-label="Complaints details" className='text-foreground-900' radius='none' removeWrapper>
                             <TableHeader columns={complaintColumns}>
-                                {(column) => <TableColumn key={column.key} className=' bg-gray-400 text-black'>{column.label}</TableColumn>}
+                                {(column) => <TableColumn key={column.key} >{column.label}</TableColumn>}
                             </TableHeader>
                             <TableBody items={complaints}>
                                 {(item) => (

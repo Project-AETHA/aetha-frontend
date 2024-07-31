@@ -25,7 +25,7 @@ function EditProfile() {
 
   return (
     <div>
-      <div className="details bg-background">
+      <div className="details bg-background text-foreground">
         <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -54,10 +54,10 @@ function EditProfile() {
           <div className='w-1/3'>Username</div>
           <div className='w-2/3'>
             <label className='ml-2 flex items-center'>
-              <div className='w-full align-middle p-2 bg-input'>
+              <div className='w-full align-middle p-2 bg-input border-2 rounded-l-xl'>
                 Hansini Bhagya
               </div>
-              <button className='bg-primary h-10 py-3'>
+              <button className='bg-primary h-10 py-3 rounded-r-xl'>
                 <LuPaperclip className='ml-2 mr-3 text-white' />
               </button>
             </label>
@@ -69,7 +69,7 @@ function EditProfile() {
           <div className='w-2/3'>
             <label className='ml-2'>
               <div className='w-auto align-middle p-2 bg-input'>
-                <DatePicker showMonthAndYearPickers />
+                <DatePicker showMonthAndYearPickers class/>
               </div>
             </label>
           </div>
@@ -175,12 +175,14 @@ function EditProfile() {
             />
           </div>
         </div>
-
-        <div className='p-3 w-2/3 h-auto border-1 border-t-gray-300 border-b-white border-x-white flex items-center justify-center'>
+        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='w-1/3'></div>
+        <div className='p-3 w-2/3 h-auto border-1 border-t-gray-300 border-b-white border-x-white flex items-center justify-start'>
           <Button color="primary">
             Update Profile
           </Button>
         </div>
+      </div>
       </div>
     </div>
   );

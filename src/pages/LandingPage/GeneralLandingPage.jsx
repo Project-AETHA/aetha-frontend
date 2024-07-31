@@ -10,85 +10,222 @@ export default function GeneralLandingPage() {
   let recommendations = [
     {
       id: 1,
-      title: "Recommendation 1",
+      title: "The Great Gatsby",
       type: "novel",
       rating: 4.6,
-      description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      description: "lorem ipsum dolor sit amet",
+      image: "../../../public/images/books/4.png",
     },
     {
       id: 1,
-      title: "Recommendation 1",
+      title: "Walk in Shadow",
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/2.png",
     },
     {
       id: 1,
-      title: "Recommendation 1",
+      title: "The catcher in RYE",
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/3.png",
     },
     {
       id: 1,
-      title: "Recommendation 1",
+      title: "Alone",
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/1.png",
     },
     {
       id: 1,
-      title: "Recommendation 1",
+      title: "Brave New World",
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
+      image: "../../../public/images/books/5.png",
     },
     {
-        id: 1,
-        title: "Recommendation 1",
-        type: "novel",
-        rating: 4.6,
-        description: "Recommendation description",
-        image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-      },
-      {
-        id: 1,
-        title: "Recommendation 1",
-        type: "novel",
-        rating: 4.6,
-        description: "Recommendation description",
-        image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-      },
-      {
-        id: 1,
-        title: "Recommendation 1",
-        type: "novel",
-        rating: 4.6,
-        description: "Recommendation description",
-        image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-      },
-      {
-        id: 1,
-        title: "Recommendation 1",
-        type: "novel",
-        rating: 4.6,
-        description: "Recommendation description",
-        image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-      },
-      {
-        id: 1,
-        title: "Recommendation 1",
-        type: "novel",
-        rating: 4.6,
-        description: "Recommendation description",
-        image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-      },
+      id: 1,
+      title: "Soul",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/6.png",
+    },
+    {
+      id: 1,
+      title: "New World",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/7.png",
+    },
+    {
+      id: 1,
+      title: "Magic Hour",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/8.png",
+    },
+    {
+      id: 1,
+      title: "Norse Mythology",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/9.png",
+    },
+
   ];
+
+  let poems = [
+    {
+      id: 1,
+      title: "The Butterfly",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/7.png",
+    },
+    {
+      id: 1,
+      title: "Fower",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/6.png",
+    },
+    {
+      id: 1,
+      title: "Hand",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/8.png",
+    },
+    {
+      id: 1,
+      title: "Alone",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/9.png",
+    },
+    {
+      id: 1,
+      title: "Flower",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/6.png",
+    },
+    {
+      id: 1,
+      title: "Hand",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/8.png",
+    },
+    {
+      id: 1,
+      title: "Alone",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/9.png",
+    },
+    {
+      id: 1,
+      title: "The Butterfly",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/7.png",
+    },
+    {
+      id: 1,
+      title: "Hand",
+      type: "novel",
+      rating: 4.6,
+      image: "../../../public/images/poems/8.png",
+    },
+
+  ];
+
+  let shortstories = [
+    {
+      id: 1,
+      title: "Who's There",
+      type: "novel",
+      rating: 4.6,
+      description: "lorem ipsum dolor sit amet",
+      image: "../../../public/images/shortstories/11.png",
+    },
+    {
+      id: 1,
+      title: "The Last Boys",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/12.png",
+    },
+    {
+      id: 1,
+      title: "Her Life",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/13.png",
+    },
+    {
+      id: 1,
+      title: "Alone",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/14.png",
+    },
+    {
+      id: 1,
+      title: "Who's There",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/11.png",
+    },
+    {
+      id: 1,
+      title: "The Last Boys",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/12.png",
+    },
+    {
+      id: 1,
+      title: "Alone",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/14.png",
+    },
+    {
+      id: 1,
+      title: "The catcher in RYE",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/13.png",
+    },
+    {
+      id: 1,
+      title: "Who's There",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/shortstories/11.png",
+    },
+
+  ];
+
 
   let ads = [
     {
@@ -156,7 +293,8 @@ export default function GeneralLandingPage() {
         </div>
         <div className="flex gap-2 overflow-hidden flex-nowrap">
             {recommendations.map((recommendation, index) => (
-                <Item key={index} content={recommendation} />
+                <Item key={index} content={recommendation}/>
+          
             ))}
         </div>
       </div>
@@ -169,8 +307,8 @@ export default function GeneralLandingPage() {
             </button>
         </div>
         <div className="flex gap-2 overflow-hidden flex-nowrap">
-            {recommendations.map((recommendation, index) => (
-                <Item key={index} content={recommendation} />
+            {shortstories.map((shortstories, index) => (
+                <Item key={index} content={shortstories} />
             ))}
         </div>
       </div>
@@ -183,8 +321,8 @@ export default function GeneralLandingPage() {
             </button>
         </div>
         <div className="flex gap-2 overflow-hidden flex-nowrap">
-            {recommendations.map((recommendation, index) => (
-                <Item key={index} content={recommendation} />
+            {poems.map((poems, index) => (
+                <Item key={index} content={poems} />
             ))}
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Image } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 
 let ads = [
@@ -30,7 +31,10 @@ const Advertistment = () => {
 
   return (
     <>
-        <div className="ad-container p-4 rounded-md mx-4">
+
+        <div className="ad-container p-4 rounded-md">
+           
+           
                 {ads &&
                     ads.map((ad, index) => (
                         <div className="" key={ad.id}>
@@ -41,7 +45,9 @@ const Advertistment = () => {
                             <p>{ad.content}</p>
                         </div>
                     ))}
-            </div>
+              
+        </div>
+           
     </>
   );
 };

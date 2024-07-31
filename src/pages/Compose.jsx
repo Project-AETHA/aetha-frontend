@@ -23,39 +23,39 @@ function Compose() {
             </span>
           </div>
         </div>
-          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center font-semibold'>
+          <div className='p-3 pb-0 h-auto border-none flex items-center font-semibold'>
           Recipients</div>
-          <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-center'>
+          <div className='p-3 h-auto border-none flex items-center justify-center'>
             <div className='p-3  pb-0 h-auto border-1 border-y-white border-x-white w- w-full items-center'>
           <input
                 type='text '
                 placeholder='Search for a user'
-                className='w-full align-middle p-2 bg-gray-300'
+                className='w-full align-middle p-2 bg-foreground-50 border-2 border-gray-300 rounded-xl'
               />
           </div>
           </div>
           <div className='p-3  pb-0 h-auto border-1 border-y-white border-x-white flex items-center font-semibold'>
           Subject
           </div>
-          <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-center'>
+          <div className='p-3 h-auto border-1 border-none flex items-center justify-center'>
             <div className='p-3  pb-0 h-auto border-1 border-y-white border-x-white w- w-full items-center'>
           <input
                 type='text '
-                className='w-full align-middle p-2 bg-gray-300'
+                className='w-full align-middle p-2 bg-foreground-50 border-2 border-gray-300 rounded-xl'
               />
           </div>
           </div>
-          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center font-semibold'>
+          <div className='p-3 pb-0 h-auto border-none flex items-center font-semibold'>
           Message</div>
-          <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex flex-col items-center'>
+          <div className='p-3 h-auto border-none border-x-white flex flex-col items-center'>
             <div className='w-full flex justify-center items-center mb-2'>
 
-              <div className="bg-gray-200 w-full">
+              <div className="bg-foreground-50 border-none rounded-xl w-full">
                 <ReactQuill className="text-editor" theme="snow" value={value} onChange={setValue} />
               </div>
             </div>
           </div>
-          <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-center'>
+          <div className='p-3 h-auto border-none border-x-white flex items-center justify-center'>
             <Button className="bg-primary m-2 text-white">
               Send
             </Button>

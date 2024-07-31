@@ -1,5 +1,5 @@
 import { Image, Button } from '@nextui-org/react';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { FileUploader } from "react-drag-drop-files";
 
 export default function ImageUpload({ files, setFiles }) {
@@ -19,6 +19,10 @@ export default function ImageUpload({ files, setFiles }) {
         // Clear file input value
         document.getElementById('complaint_image_upload').value = '';
     }
+
+    useEffect(() => {
+        setImagePreview(files ? URL.createObjectURL(files) : null);
+    }, [files, setFiles]);
 
     return (
         <div className="flex flex-col items-center justify-evenly flex-wrap gap-4">

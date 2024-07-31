@@ -1,6 +1,4 @@
 import {
-    Tabs,
-    Tab,
     Table,
     TableHeader,
     TableColumn,
@@ -449,7 +447,7 @@ function UserManagement() {
                                 key={column.uid}
                                 align={column.uid === "actions" ? "center" : "start"}
                                 allowsSorting={column.sortable}
-                                className="bg-indigo-400 text-black"
+                                
                             >
                                 {column.name}
                             </TableColumn>
@@ -478,16 +476,16 @@ function UserManagement() {
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
                                     <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black w-full">Add New User</div>
+                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white w-full">Add New User</div>
 
                                     </div>
                                 </ModalHeader>
                                 <ModalBody>
                                     <div className="flex gap-3">
-                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" />
-                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" />
+                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" color="primary" />
+                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" color="primary"  />
                                     </div>
-                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" />
+                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" color="primary" />
                                     <div className="flex gap-3">
                                         <Input
                                             label="Password"
@@ -495,7 +493,7 @@ function UserManagement() {
                                             placeholder="Enter password"
                                             labelPlacement="outside"
                                             endContent={
-                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
+                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility" color="primary" >
                                                     {isVisible ? (
                                                         <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                                                     ) : (
@@ -511,6 +509,7 @@ function UserManagement() {
                                             variant="faded"
                                             placeholder="Enter password"
                                             labelPlacement="outside"
+                                            color="primary" 
                                             endContent={
                                                 <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
                                                     {isVisible ? (
@@ -530,6 +529,7 @@ function UserManagement() {
                                             className="max-w-[284px]"
                                             labelPlacement="outside"
                                             variant="faded"
+                                            color="primary" 
                                         />
                                         <Select
                                             variant="faded"
@@ -537,6 +537,7 @@ function UserManagement() {
                                             placeholder="Select your gender"
                                             className=""
                                             labelPlacement="outside"
+                                            color="primary" 
                                         >
                                             {genderOptions.map((option) => (
                                                 <SelectItem
@@ -557,8 +558,8 @@ function UserManagement() {
                                             <div className="flex gap-5 w-full justify-around items-center my-4">
                                                 <Tooltip
                                                     content="Can only read content"
-                                                    color="primary"
                                                     placement="bottom"
+                                                    className="bg-gray-300"
                                                     offset={-4}
                                                 >
                                                     <Radio value="reader" color="primary">
@@ -567,8 +568,8 @@ function UserManagement() {
                                                 </Tooltip>
                                                 <Tooltip
                                                     content="Can read and write content"
-                                                    color="primary"
                                                     placement="bottom"
+                                                    className="bg-gray-300"
                                                     offset={-4}
                                                 >
                                                     <Radio value="writer" color="primary">
@@ -607,7 +608,7 @@ function UserManagement() {
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
                                     <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black">Edit User Details</div>
+                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Edit User Details</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 "
                                             src="https://randomuser.me/api/portraits/women/21.jpg"
@@ -677,7 +678,7 @@ function UserManagement() {
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
                                     <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black">Disable User</div>
+                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Disable User</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
                                             src="https://randomuser.me/api/portraits/women/21.jpg"
@@ -690,7 +691,7 @@ function UserManagement() {
                                     <Textarea
                                         key="faded"
                                         variant="faded"
-                                        label="What is the reason for disable this user?"
+                                        label="Reason for disable this user?"
                                         labelPlacement="outside"
                                         placeholder="Enter your reason"
                                         className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
@@ -725,7 +726,7 @@ function UserManagement() {
                             <>
                                 <ModalHeader className="flex flex-col gap-4 items-center">
                                     <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-indigo-400 w-full m-5 p-1 text-black">Delete User</div>
+                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Delete User</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
                                             src="https://randomuser.me/api/portraits/women/21.jpg"
@@ -738,7 +739,7 @@ function UserManagement() {
                                     <Textarea
                                         key="faded"
                                         variant="faded"
-                                        label="What is the reason for delete this user?"
+                                        label="Reason for delete this user?"
                                         labelPlacement="outside"
                                         placeholder="Enter your reason"
                                         className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"

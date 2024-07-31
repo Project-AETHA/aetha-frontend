@@ -83,7 +83,7 @@ function ContentManagemenet() {
         <div className='min-h-screen flex justify-center'>
             <div className='flex-col w-full rounded-md'>
                 <div className="flex gap-4 m-4">
-                    <BoxWrapper>
+                    <BoxWrapper onClick={() => { navigate(`/admin/contents/novels`); }}>
                         <div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
                             <FaBookOpen className="text-2xl text-white" />
 
@@ -120,8 +120,8 @@ function ContentManagemenet() {
 
                 </div>
 
-                <div className='mt-8 mx-4 p-4 shadow-lg bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative' style={{ height: '50px' }}>
-                    <p className='flex items-center justify-center h-full font-sans text-white text-xl font-normal'>
+                <div className='mt-8 mx-4 p-4 shadow-lg to-blue-500 py-8 relative bg-gray-300' style={{ height: '50px' }} >
+                    <p className='flex items-center justify-center h-full font-sans text-black  text-lg font-semibold'>
                         Pending Approvals
                     </p>
                 </div>
@@ -131,9 +131,9 @@ function ContentManagemenet() {
                         <TableHeader columns={contentColumns} >
                             {(column) => <TableColumn key={column.key} className='  '>{column.label}</TableColumn>}
                         </TableHeader>
-                        <TableBody items={recentContent}>
+                        <TableBody items={recentContent} >
                             {(item) => (
-                                <TableRow key={item.key}>
+                                <TableRow key={item.key} className='bg-white'>
                                     {(columnKey) => {
                                         if (columnKey === 'coverImage') {
                                             return (
@@ -143,7 +143,7 @@ function ContentManagemenet() {
                                                         height={80}
                                                         alt="NextUI Fruit Image with Zoom"
                                                         src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
-                                                        radius='sm'
+                                                        radius='none'
                                                     />
                                                 </TableCell>
                                             );
@@ -179,7 +179,7 @@ function ContentManagemenet() {
                                         else if (columnKey === 'view') {
                                             return (
                                                 <TableCell>
-                                                    <Button size='sm' className="bg-indigo-400  text-white" onClick={() => { navigate(`/admin/contents/approve`); }}>
+                                                    <Button size='sm' color='primary' className="text-white " onClick={() => { navigate(`/admin/contents/approve`); }}>
                                                         View
                                                     </Button>
                                                 </TableCell>

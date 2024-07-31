@@ -47,6 +47,10 @@ export default function Navigation() {
       title: "Shop",
       link: "/shop",
     },
+    {
+      title: "Community",
+      link: "/forumselection",
+    },
   ];
 
   return (
@@ -93,6 +97,13 @@ export default function Navigation() {
             className="hover:cursor-pointer"
           >
             Shop
+          </NavbarItem>
+
+          <NavbarItem
+            onClick={() => navigate("/forumselection")}
+            className="hover:cursor-pointer"
+          >
+            Community
           </NavbarItem>
         </div>
         |

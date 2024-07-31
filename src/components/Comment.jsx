@@ -13,7 +13,7 @@ function Comment() {
         <>
             <div className="alt-container px-4 pb-2">
                 <div className="flex flex-col md:flex-row gap-4 !p-0">
-                    <div className="bg-gray-300 w-full rounded-md p-2">
+                    <div className="bg-foreground-50 w-full rounded-md p-2">
                         <hr className="my-4 mx-4" />
 
                         <h1 className="text-center m-2 text-primaryText"> Login to comment </h1>
@@ -30,17 +30,29 @@ function Comment() {
 
                         <div className="md:w-10/12 m-auto my-5">
 
+                        <h1 className=" text-xl font-semibold text-center text-primaryText"> What do you think ? </h1>
+                        <h3 className="text-center text-primaryText text-sm"> 2 responses </h3>
+
+                        {/* add 6 emojies */}
+                        <div className="flex justify-center gap-10 mb-5">
+                            <Image src="../../public/images/thumbsup.gif" alt="emojies" width="45" height="45" />
+                            <Image src="../../public/images/funny.gif" alt="emojies" width="37" height="37" className="mt-1"/>
+                            <Image src="../../public/images/heart.gif" alt="emojies" width="40" height="40" />
+                            <Image src="../../public/images/angry.gif" alt="emojies" width="40" height="40" className="mt-1"/>
+                            <Image src="../../public/images/sad.gif" alt="emojies" width="40" height="40" className="mt-1"/>
+                        </div>
+
                             <div>
                                 <Textarea isRequired labelPlacement="outside" placeholder="Type Here" />
                             </div>
 
                             <div className="flex justify-end mt-4">
-                                <Button className=" rounded-sm text-whiteText bg-accentText mx-2">
+                                <Button className=" rounded-lg text-whiteText bg-accentText mx-2">
                                     <FaComment />
                                     Comment
                                 </Button>
 
-                                <Button className="rounded-sm text-accentText border border-accentText mx-2">
+                                <Button variant="bordered" className="rounded-lg text-accentText border border-accentText mx-2">
                                     Cancel
                                 </Button>
                             </div>
