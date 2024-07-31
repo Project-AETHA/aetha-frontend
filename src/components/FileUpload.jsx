@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, Card, Spacer, Avatar, Tooltip, Divider } from '@nextui-org/react';
 import { X, Upload } from 'lucide-react';
 
-const FileUpload = ({file, setFile}) => {
-  // const [file, setFile] = useState(null);
+const FileUpload = () => {
+  const [file, setFile] = useState(null);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
