@@ -1,10 +1,10 @@
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
 import Item from "../../../components/common/ItemHorizontal";
 
 export default function LatestUpdates({ data }) {
   return (
     <div className="flex w-full flex-col items-center">
-      <Tabs aria-label="Options" radius="full" color="secondary">
+      <Tabs aria-label="Options" radius="full" color="secondary" className="py-4">
         <Tab key="daily" title="Daily">
           <div className="flex flex-col gap-2">
           {data.daily &&

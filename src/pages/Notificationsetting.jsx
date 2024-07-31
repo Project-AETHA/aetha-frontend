@@ -3,6 +3,7 @@ import "../components/Profile.css";
 import Editprofilesidebar from '../components/Editprofilesidebar';
 import { MdNotificationImportant } from 'react-icons/md';
 import { Button } from "@nextui-org/react";
+import { CheckboxGroup, Checkbox } from "@nextui-org/react";
 
 function Notificationsetting() {
   const [settings, setSettings] = useState({
@@ -28,7 +29,7 @@ function Notificationsetting() {
   return (
     <div>
       <div className="">
-        <div className="details">
+        <div className="details bg-background text-foreground">
       <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -51,24 +52,11 @@ function Notificationsetting() {
             <div className='w-1/3 m-6'>Comment Replies</div>
             <div className='w-2/3'>
               <div>
-                <label>
-                  <input
-                    type='checkbox'
-                    name='commentRepliesOnSite'
-                    checked={settings.commentRepliesOnSite}
-                    onChange={handleCheckboxChange}
-                  /> On-site notification
-                </label>
+                      <Checkbox value="pm">On-site notification</Checkbox>
               </div>
               <div>
-                <label>
-                  <input
-                    type='checkbox'
-                    name='commentRepliesEmail'
-                    checked={settings.commentRepliesEmail}
-                    onChange={handleCheckboxChange}
-                  /> Email
-                </label>
+                      <Checkbox value="pm">Email</Checkbox>
+                
               </div>
             </div>
           </div>
@@ -77,24 +65,11 @@ function Notificationsetting() {
             <div className='w-1/3 m-6'>Mentioning</div>
             <div className='w-2/3'>
               <div>
-                <label>
-                  <input
-                    type='checkbox'
-                    name='mentioningOnSite'
-                    checked={settings.mentioningOnSite}
-                    onChange={handleCheckboxChange}
-                  /> On-site notification
-                </label>
+                                      <Checkbox value="pm">On-site notification</Checkbox>
               </div>
               <div>
-                <label>
-                  <input
-                    type='checkbox'
-                    name='mentioningEmail'
-                    checked={settings.mentioningEmail}
-                    onChange={handleCheckboxChange}
-                  /> Email
-                </label>
+                                      <Checkbox value="pm">Email</Checkbox>
+
               </div>
             </div>
           </div>
@@ -102,42 +77,24 @@ function Notificationsetting() {
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center pl-8'>
             <div className='w-1/3 m-6'>Private Messages</div>
             <div className='w-2/3'>
-              <label>
-                <input
-                  type='checkbox'
-                  name='privateMessagesEmail'
-                  checked={settings.privateMessagesEmail}
-                  onChange={handleCheckboxChange}
-                /> Email
-              </label>
+                                    <Checkbox value="pm">Email</Checkbox>
+
             </div>
           </div>
           
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center pl-8'>
             <div className='w-1/3 m-6'>New Chapters</div>
             <div className='w-2/3'>
-              <label>
-                <input
-                  type='checkbox'
-                  name='newChaptersEmail'
-                  checked={settings.newChaptersEmail}
-                  onChange={handleCheckboxChange}
-                /> Email
-              </label>
+                                    <Checkbox value="pm">Email</Checkbox>
+
             </div>
           </div>
           
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center pl-8'>
             <div className='w-1/3 m-6'>Weekly Chapter Summary</div>
             <div className='w-2/3'>
-              <label>
-                <input
-                  type='checkbox'
-                  name='weeklySummaryEmail'
-                  checked={settings.weeklySummaryEmail}
-                  onChange={handleCheckboxChange}
-                /> Email
-              </label>
+                                    <Checkbox value="pm">Email</Checkbox>
+
             </div>
           </div>
 
@@ -148,28 +105,16 @@ function Notificationsetting() {
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center pl-8'>
             <div className='w-1/3 m-6'>New comment in chapter</div>
             <div className='w-2/3'>
-              <label>
-                <input
-                  type='checkbox'
-                  name='newCommentOnSite'
-                  checked={settings.newCommentOnSite}
-                  onChange={handleCheckboxChange}
-                /> On-site notification
-              </label>
+                                                    <Checkbox value="pm">On-site notification</Checkbox>
+
             </div>
           </div>
           
           <div className='p-3 h-auto border-1 border-y-gray-300 border-x-white flex items-center pl-8'>
             <div className='w-1/3 m-6'>Reviews</div>
             <div className='w-2/3'>
-              <label>
-                <input
-                  type='checkbox'
-                  name='reviewsOnSite'
-                  checked={settings.reviewsOnSite}
-                  onChange={handleCheckboxChange}
-                /> On-site notification
-              </label>
+                                                    <Checkbox value="pm">On-site notification</Checkbox>
+
             </div>
           </div>
           <div className='p-3 h-auto border-1 border-t-gray-300 border-b-0 border-x-white flex items-center justify-center'>
