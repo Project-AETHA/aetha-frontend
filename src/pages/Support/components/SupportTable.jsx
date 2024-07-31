@@ -6,14 +6,27 @@ import {
   TableRow,
   TableCell,
   Chip,
-  Spinner,
+  Spinner
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { parseISO, format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
-import { MdDeleteForever, MdOutlineRefresh } from "react-icons/md";
+import {MdDeleteForever, MdError, MdOutlineRefresh} from "react-icons/md";
+import {IoCheckmarkDoneCircleSharp} from "react-icons/io5";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { useToast } from "@/components/ui/use-toast";
 
 const formatDate = (dateString, default_style = true) => {
   // Parse the given date string
@@ -24,6 +37,8 @@ const formatDate = (dateString, default_style = true) => {
 
 function SupportTable({ createTicket }) {
   const navigate = useNavigate();
+
+  const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,6 +75,51 @@ function SupportTable({ createTicket }) {
     setIsLoading(false);
   };
 
+  function createAlert(title, description) {
+    toast({
+      title: title,
+      description: description,
+    });
+  }
+
+  const deleteTicket = async (complaintId) => {
+
+    try {
+      const response = await axios.delete("http://localhost:8080/api/support/delete_ticket/" + complaintId);
+
+      if (response.data.code === "00") {
+        // Code for creating a custom title for the popup alert
+
+        let title = (
+            <div className="flex gap-2 items-center text-green-600">
+              <IoCheckmarkDoneCircleSharp size={20} />
+              <p className="text-green-700">Success</p>
+            </div>
+        );
+
+        createAlert(
+            title,
+            "Ticket deleted successfully",
+            "success"
+        );
+
+        navigate("/support")
+      }
+    } catch (error) {
+      // Code for creating a custom title for the popup alert
+
+      let title = (
+          <div className="flex gap-2 items-center text-red-800">
+            <MdError size={20} />
+            <p className="text-red-700">Error !</p>
+          </div>
+      );
+
+      createAlert(title, "Ticket deletion failed", "danger");
+      console.error("Error deleting the ticket:", error);
+    }
+  };
+
   function handleRetry() {
     getData();
   }
@@ -72,8 +132,6 @@ function SupportTable({ createTicket }) {
     <Table
       aria-label="Support Tickets Table"
       className="text-black dark:text-white"
-      color="primary"
-      selectionMode="single"
     >
       <TableHeader>
         <TableColumn>TITLE</TableColumn>
@@ -87,7 +145,7 @@ function SupportTable({ createTicket }) {
             className="flex gap-2 items-center justify-center"
             onClick={handleRetry}
           >
-            <p>"No rows to display."</p>
+            <p>No rows to display.</p>
             <span className="text-primary border-b-2 border-primary hover:cursor-pointer flex gap-1 items-center">
               Retry <MdOutlineRefresh />
             </span>
@@ -101,7 +159,6 @@ function SupportTable({ createTicket }) {
           <TableRow
             key={item.id}
             className="hover:cursor-pointer"
-            onClick={() => navigate(`/support/${item.id}`)}
           >
             <TableCell className="truncate text-pretty">{item.title}</TableCell>
             <TableCell className="text-nowrap">
@@ -128,12 +185,30 @@ function SupportTable({ createTicket }) {
               )}
             </TableCell>
             <TableCell className="flex gap-2">
-              <Chip variant="flat" radius="sm" className="px-2" color="primary">
+              <Chip variant="flat" radius="sm" className="px-2" color="primary" onClick={() => navigate("/support/" + item.id)}>
                 <FaRegEdit size={13} />
               </Chip>
-              <Chip variant="flat" radius="sm" className="px-2" color="danger">
-                <MdDeleteForever size={15} />
-              </Chip>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Chip variant="flat" radius="sm" className="px-2" color="danger">
+                    <MdDeleteForever size={15} />
+                  </Chip>
+
+                  {/* This element is the alert confirmation window from shadcn/ui */}
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete this complaint data from our servers.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction className="bg-danger/75 hover:bg-danger" onClick={() => deleteTicket(item.id)}>Continue</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </TableCell>
           </TableRow>
         )}

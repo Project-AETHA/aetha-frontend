@@ -95,7 +95,7 @@ const SupportPage = () => {
     setTitle("");
     setCategory("");
     setDescription("");
-    setFiles([]);
+    setFiles(null);
   };
 
   function createAlert(title, description, complaintId, bcolor = "secondary") {
