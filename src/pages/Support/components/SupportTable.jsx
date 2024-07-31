@@ -11,19 +11,18 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { parseISO, format } from "date-fns";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
+import { MdDeleteForever, MdOutlineRefresh } from "react-icons/md";
 
 const formatDate = (dateString, default_style = true) => {
-    // Parse the given date string
-    const date = parseISO(dateString);
-    // Format the date to the desired format
-    return default_style ? format(date, "yyyy MMM dd") : format(date, "do MMM");
-  };
+  // Parse the given date string
+  const date = parseISO(dateString);
+  // Format the date to the desired format
+  return default_style ? format(date, "yyyy MMM dd") : format(date, "do MMM");
+};
 
 function SupportTable({ createTicket }) {
-
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -34,9 +33,12 @@ function SupportTable({ createTicket }) {
     setIsLoading(true);
 
     try {
-      const response = await axios.get("http://localhost:8080/api/support/get_my_tickets", {
-        timeout: 3000, // Set timeout to 3 seconds
-      });
+      const response = await axios.get(
+        "http://localhost:8080/api/support/get_my_tickets",
+        {
+          timeout: 3000, // Set timeout to 3 seconds
+        }
+      );
 
       if (response.status === 200) {
         if (response.data.code === "00") {
@@ -48,7 +50,7 @@ function SupportTable({ createTicket }) {
         console.log("Error while fetching data");
       }
     } catch (error) {
-      if (error.code === 'ECONNABORTED') {
+      if (error.code === "ECONNABORTED") {
         console.log("Request timed out");
       } else {
         console.log("Error while fetching data:", error.message);
@@ -57,6 +59,10 @@ function SupportTable({ createTicket }) {
 
     setIsLoading(false);
   };
+
+  function handleRetry() {
+    getData();
+  }
 
   useEffect(() => {
     getData();
@@ -76,17 +82,35 @@ function SupportTable({ createTicket }) {
         <TableColumn>ACTIONS</TableColumn>
       </TableHeader>
       <TableBody
-        emptyContent={"No rows to display."}
+        emptyContent={
+          <div
+            className="flex gap-2 items-center justify-center"
+            onClick={handleRetry}
+          >
+            <p>"No rows to display."</p>
+            <span className="text-primary border-b-2 border-primary hover:cursor-pointer flex gap-1 items-center">
+              Retry <MdOutlineRefresh />
+            </span>
+          </div>
+        }
         items={tickets}
         isLoading={isLoading}
         loadingContent={<Spinner />}
       >
         {(item) => (
-          <TableRow key={item.id} className="hover:cursor-pointer" onClick={() => navigate(`/support/${item.id}`)}>
+          <TableRow
+            key={item.id}
+            className="hover:cursor-pointer"
+            onClick={() => navigate(`/support/${item.id}`)}
+          >
             <TableCell className="truncate text-pretty">{item.title}</TableCell>
             <TableCell className="text-nowrap">
-              <span className="hidden sm:block">{formatDate(item.createdAt)}</span>
-              <span className="block sm:hidden">{formatDate(item.createdAt, false)}</span>
+              <span className="hidden sm:block">
+                {formatDate(item.createdAt)}
+              </span>
+              <span className="block sm:hidden">
+                {formatDate(item.createdAt, false)}
+              </span>
             </TableCell>
             <TableCell>
               {item.status === "PENDING" ? (
@@ -104,8 +128,12 @@ function SupportTable({ createTicket }) {
               )}
             </TableCell>
             <TableCell className="flex gap-2">
-              <Chip variant="flat" radius="sm" className="px-2" color="primary"><FaRegEdit size={13} /></Chip>
-              <Chip variant="flat" radius="sm" className="px-2" color="danger"><MdDeleteForever size={15} /></Chip>
+              <Chip variant="flat" radius="sm" className="px-2" color="primary">
+                <FaRegEdit size={13} />
+              </Chip>
+              <Chip variant="flat" radius="sm" className="px-2" color="danger">
+                <MdDeleteForever size={15} />
+              </Chip>
             </TableCell>
           </TableRow>
         )}
@@ -114,4 +142,4 @@ function SupportTable({ createTicket }) {
   );
 }
 
-export default SupportTable
+export default SupportTable;

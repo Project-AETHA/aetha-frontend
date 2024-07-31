@@ -75,7 +75,7 @@ function App() {
                     {generateRoutes()}
                 </Routes>
             </div>
-            <Toaster />
+            <Toaster duration={3000} />
         </Router>
     );
 }

@@ -12,7 +12,10 @@ function CreateTicket({
   title,
   category,
   description,
-  files
+  files,
+  errorCategory,
+  errorDescription,
+  errorTitle,
 }) {
   return (
     <form
@@ -26,20 +29,23 @@ function CreateTicket({
           type="text"
           label="Title"
           size="md"
+          isInvalid={errorTitle}
+          variant="bordered"
           labelPlacement="outside"
           placeholder="Short Title"
-          className="min-w-[200px] max-w-[400px] lg:min-w-[400px] border-2 border-gray-300 rounded-xl"
+          className="min-w-[200px] max-w-[400px] lg:min-w-[400px] rounded-xl"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
 
         <Select
-          isRequired
           size="md"
+          isInvalid={errorCategory}
+          variant="bordered"
           label="Category"
           placeholder="Select a category"
           labelPlacement="outside"
-          className="min-w-[200px] max-w-[400px] lg:min-w-[400px] border-2 border-gray-300 rounded-xl"
+          className="min-w-[200px] max-w-[400px] lg:min-w-[400px] rounded-xl"
           onChange={(e) => setCategory(e.target.value)}
           value={category}
         >
@@ -56,9 +62,11 @@ function CreateTicket({
         <Textarea
           isRequired
           label="Description"
+          variant="bordered"
+          isInvalid={errorDescription}
           labelPlacement="outside"
           placeholder="Enter your description"
-          className="min-w-[290px] w-full max-w-[420px] lg:min-w-[820px] border-2 border-gray-300 rounded-xl p-2"
+          className="min-w-[290px] w-full max-w-[420px] lg:min-w-[820px] rounded-xl p-2"
           onChange={(e) => setDescription(e.target.value)}
           value={description}
         />
