@@ -12,48 +12,49 @@ import {
 import CarouselMain from "./components/CarouselMain";
 
 function NovelLandingPage() {
-    let recommendations = [
-        {
-            id: 1,
-            title: "Recommendation 1",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-        {
-            id: 1,
-            title: "Recommendation 1",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-        {
-            id: 1,
-            title: "Recommendation 1",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-        {
-            id: 1,
-            title: "Recommendation 1",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-        {
-            id: 1,
-            title: "Recommendation 1",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-    ];
+
+  let recommendations = [
+    {
+      id: 1,
+      title: "The Great Gatsby",
+      type: "novel",
+      rating: 4.6,
+      description: "lorem ipsum dolor sit amet",
+      image: "../../../public/images/books/4.png",
+    },
+    {
+      id: 1,
+      title: "Walk in the Shadow",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/2.png",
+    },
+    {
+      id: 1,
+      title: "Recommendation 1",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/3.png",
+    },
+    {
+      id: 1,
+      title: "Alone",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/1.png",
+    },
+    {
+      id: 1,
+      title: "Recommendation 1",
+      type: "novel",
+      rating: 4.6,
+      description: "Recommendation description",
+      image: "../../../public/images/books/5.png",
+    },
+  ];
 
     let ads = [
         {
@@ -83,41 +84,40 @@ function NovelLandingPage() {
         monthly: recommendations.slice(0, 3),
     };
 
-    const slides = [
-        {
-            title: "slide-01",
-            review_score: 4.8,
-            rating: 4.5,
-            description: "Something-01",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-        {
-            title: "slide-02",
-            review_score: 1.2,
-            rating: 2.0,
-            description: "Something-02",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-        {
-            title: "slide-03",
-            review_score: 5.0,
-            rating: 3.5,
-            description: "Something-03",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-        {
-            title: "slide-04",
-            review_score: 3.2,
-            rating: 1.5,
-            description: "Something-04",
-            image: "https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg",
-        },
-    ];
+  const slides = [
+    {
+      title: "slide-01",
+      review_score: 4.8,
+      rating: 4.5,
+      description: "Something-01",
+      image: "../../../public/images/books/4.png",
+    },
+    {
+      title: "slide-02",
+      review_score: 1.2,
+      rating: 2.0,
+      description: "Something-02",
+      image: "../../../public/images/books/2.png",
+    },
+    {
+      title: "slide-03",
+      review_score: 5.0,
+      rating: 3.5,
+      description: "Something-03",
+      image: "../../../public/images/books/1.png",
+    },
+    {
+      title: "slide-04",
+      review_score: 3.2,
+      rating: 1.5,
+      description: "Something-04",
+      image: "../../../public/images/books/5.png",
+    },
+  ];
 
     return (
         <div className="grid grid-cols-12 justify-stretch items-start !p-2 !m-0 w-full h-full gap-2 lg:flex-nowrap">
             <div className="alt-container col-span-12 lg:col-span-9 !m-0 !p-0">
-
                 <div className="flex w-full items-center justify-center !p-0">
                     <CarouselMain>
                         {slides.map((slide, index) => (
@@ -169,7 +169,6 @@ function NovelLandingPage() {
                         <FcBiomass size="25px" />
                         Personalized Recommendations
                     </p>
-
                     <div className="flex items-center flex-wrap gap-3">
                         {recommendations &&
                             recommendations.map((recommendation, index) => (
