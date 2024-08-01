@@ -13,7 +13,7 @@ function Comment() {
         <>
             <div className="alt-container px-4 pb-2">
                 <div className="flex flex-col md:flex-row gap-4 !p-0">
-                    <div className="bg-foreground-50 w-full rounded-md p-2">
+                    <div className="shadow-2xl bg-foreground-50 w-full rounded-md p-2">
                         <hr className="my-4 mx-4" />
 
                         <h1 className="text-center m-2 text-primaryText"> Login to comment </h1>
