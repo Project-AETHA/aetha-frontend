@@ -79,8 +79,7 @@ function ContentList() {
     return (
         <div className="flex flex-col gap-3 h-full">
             <Table
-                radius="none"
-                removeWrapper
+                radius="md"
                 className="p-4"
                 selectionMode="single"
                 defaultSelectedKeys={["2"]}
