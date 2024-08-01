@@ -23,6 +23,10 @@ function EditProfile() {
     setHideGender(event.target.checked);
   };
 
+  const handleEditClick = () => {
+    navigate('/profile/editusername');
+  };
+
   return (
     <div>
       <div className="details bg-background text-foreground">
@@ -57,9 +61,15 @@ function EditProfile() {
               <div className='w-full align-middle p-2 bg-input border-2 rounded-l-xl'>
                 Hansini Bhagya
               </div>
-              <button className='bg-primary h-10 py-3 rounded-r-xl'>
-                <LuPaperclip className='ml-2 mr-3 text-white' />
-              </button>
+              {/* <button className='bg-primary h-10 py-3 rounded-r-xl'>
+      <Link to="./Editusername" className="flex items-center">
+        <LuPaperclip className='ml-2 mr-3 text-white' />
+        Edit Username
+      </Link>
+    </button> */}
+    <button onClick={handleEditClick} className="bg-primary h-10 py-3 rounded-r-xl">
+             <LuPaperclip className="ml-2 mr-3 text-white" />
+            </button>
             </label>
           </div>
         </div>
