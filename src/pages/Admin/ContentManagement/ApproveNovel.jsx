@@ -16,8 +16,8 @@ function ApproveNovel() {
 
     <div className="flex justify-center pt-8">
       <div className="flex-col w-10/12 bg-white rounded-md">
-        <div className='mt-4 mx-4 p-4 shadow-lg bg-gray-300 py-8 relative' style={{ height: '50px' }}>
-          <p className='flex items-center justify-center h-full font-sans text-black text-lg font-semibold'>
+        <div className='mt-4 mx-4 p-4 shadow-lg bg-sky-500 py-8 relative' style={{ height: '50px' }}>
+          <p className='flex items-center justify-center h-full font-sans text-foreground-50 text-lg font-semibold'>
             Admin Approval
           </p>
         </div>
@@ -97,53 +97,53 @@ function ApproveNovel() {
         </div>
       </div>
       <Modal
-                    isOpen={isOpen}
-                    onOpenChange={onOpenChange}
-                    backdrop="blur"
-                    classNames={{
-                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
-                    }}
-                >
-                    <ModalContent>
-                        {(onClose) => (
-                            <>
-                                <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Decline Novel</div>
-                                        <Image
-                                                        width={80}
-                                                        height={80}
-                                                        alt="NextUI Fruit Image with Zoom"
-                                                        src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
-                                                        radius='none'
-                                                    />
-                                        <div className="text-base font-medium">The grate adventure</div>
-                                    </div>
-                                </ModalHeader>
-                                <ModalBody>
-                                    <Textarea
-                                        key="faded"
-                                        variant="faded"
-                                        label="Reason for decline this novel?"
-                                        labelPlacement="outside"
-                                        placeholder="Enter your reason"
-                                        className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
-                                        color="primary"
-                                    />
-                                    <p className="p-2">Are you sure you want to decline this novel?</p>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <Button color="primary" onPress={onClose}>
-                                        Delete
-                                    </Button>
-                                    <Button color="secondary" onPress={onClose}>
-                                        Cancel
-                                    </Button>
-                                </ModalFooter>
-                            </>
-                        )}
-                    </ModalContent>
-                </Modal>
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        backdrop="blur"
+        classNames={{
+          backdrop: "bg-neutral-900/50 backdrop-blur-sm",
+        }}
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-4 items-center">
+                <div className="flex flex-col items-center text-center w-full">
+                  <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Decline Novel</div>
+                  <Image
+                    width={80}
+                    height={80}
+                    alt="NextUI Fruit Image with Zoom"
+                    src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
+                    radius='none'
+                  />
+                  <div className="text-base font-medium">The grate adventure</div>
+                </div>
+              </ModalHeader>
+              <ModalBody>
+                <Textarea
+                  key="faded"
+                  variant="faded"
+                  label="Reason for decline this novel?"
+                  labelPlacement="outside"
+                  placeholder="Enter your reason"
+                  className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
+                  color="primary"
+                />
+                <p className="p-2">Are you sure you want to decline this novel?</p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onPress={onClose}>
+                  Delete
+                </Button>
+                <Button color="secondary" onPress={onClose}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
 
   );
