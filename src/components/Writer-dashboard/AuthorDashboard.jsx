@@ -76,9 +76,9 @@ const AuthorDashboard = () => {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
-          <StatsCard title="Total Chapters" value="0" Icon={Book} />
-          <StatsCard title="Total Words" value="0" Icon={BarChart2} />
-          <StatsCard title="Reviews Received" value="0" Icon={Star} />
+          <StatsCard title="Total Chapters" value="4" Icon={Book} />
+          <StatsCard title="Total Words" value="34896" Icon={BarChart2} />
+          <StatsCard title="Reviews Received" value="218" Icon={Star} />
         </div>
         <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
           <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
