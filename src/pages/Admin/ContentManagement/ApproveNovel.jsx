@@ -36,8 +36,8 @@ function ApproveNovel() {
           </div>
           <div className="my-8 mr-14 w-2/3">
             <div className='flex gap-4 '>
-              <div className="font-medium flex text-black text-xl">
-                The grate adventure
+              <div className="font-semibold flex text-black text-xl">
+                New World
               </div >
               <div className="flex items-center text-black">
                 -
@@ -114,10 +114,10 @@ function ApproveNovel() {
                     width={80}
                     height={80}
                     alt="NextUI Fruit Image with Zoom"
-                    src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
+                    src="/images/books/7.png"
                     radius='none'
                   />
-                  <div className="text-base font-medium">The grate adventure</div>
+                  <div className="text-base font-medium">New World</div>
                 </div>
               </ModalHeader>
               <ModalBody>

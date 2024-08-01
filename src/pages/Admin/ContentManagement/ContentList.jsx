@@ -23,11 +23,11 @@ const contentColumns = [
 ];
 
 const articles = [
-    { key: "1", coverImage: "https://via.placeholder.com/50", title: "The Rise of AI", publishedDate: "2024-01-01", author: "Tony Reichert", ratings: 4 },
-    { key: "2", coverImage: "https://via.placeholder.com/50", title: "Quantum Computing", publishedDate: "2024-02-01", author: "Zoey Lang", ratings: 5 },
-    { key: "3", coverImage: "https://via.placeholder.com/50", title: "Blockchain Revolution", publishedDate: "2024-03-01", author: "Jane Fisher", ratings: 3 },
-    { key: "4", coverImage: "https://via.placeholder.com/50", title: "Future of Work", publishedDate: "2024-04-01", author: "William Howard", ratings: 4 },
-    { key: "5", coverImage: "https://via.placeholder.com/50", title: "Health Tech", publishedDate: "2024-05-01", author: "Emily Collins", ratings: 5 },
+    { key: "1", coverImage: "https://via.placeholder.com/50", title: "Walk Shadow", publishedDate: "2024-01-01", author: "Tony Reichert", ratings: 4 },
+    { key: "2", coverImage: "https://via.placeholder.com/50", title: "The Catcher in the Rye", publishedDate: "2024-02-01", author: "Zoey Lang", ratings: 5 },
+    { key: "3", coverImage: "https://via.placeholder.com/50", title: "The Greats Gatsby", publishedDate: "2024-03-01", author: "Jane Fisher", ratings: 3 },
+    { key: "4", coverImage: "https://via.placeholder.com/50", title: "Brave New World", publishedDate: "2024-04-01", author: "William Howard", ratings: 4 },
+    { key: "5", coverImage: "https://via.placeholder.com/50", title: "Soul", publishedDate: "2024-05-01", author: "Emily Collins", ratings: 5 },
     { key: "6", coverImage: "https://via.placeholder.com/50", title: "Autonomous Vehicles", publishedDate: "2024-06-01", author: "Brian Kim", ratings: 3 },
     { key: "7", coverImage: "https://via.placeholder.com/50", title: "5G Networks", publishedDate: "2024-07-01", author: "Laura Thompson", ratings: 4 },
     { key: "8", coverImage: "https://via.placeholder.com/50", title: "Cybersecurity Trends", publishedDate: "2024-08-01", author: "Michael Stevens", ratings: 5 },
