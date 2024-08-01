@@ -9,7 +9,8 @@ import {
     Pagination,
     Image,
     Link,
-    User
+    User,
+    Input // Import Input for the search bar
 } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
 
@@ -66,18 +67,33 @@ function StarRating({ rating }) {
 
 function ContentList() {
     const [page, setPage] = React.useState(1);
+    const [searchTerm, setSearchTerm] = React.useState(""); // Add state for search term
     const rowsPerPage = 5;
 
     const pages = Math.ceil(articles.length / rowsPerPage);
 
+    // Filter articles based on search term
+    const filteredArticles = React.useMemo(() => {
+        return articles.filter(article =>
+            article.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [searchTerm]);
+
+    // Paginate filtered articles
     const paginatedItems = React.useMemo(() => {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
-        return articles.slice(start, end);
-    }, [page]);
+        return filteredArticles.slice(start, end);
+    }, [page, filteredArticles]);
 
     return (
-        <div className="flex flex-col gap-3 h-full">
+        <div className="flex flex-col h-full">
+            <Input
+                placeholder="Search by title..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-4 pt-4"
+            />
             <Table
                 radius="md"
                 className="p-4"
@@ -98,7 +114,7 @@ function ContentList() {
                     </div>
                 }
                 classNames={{
-                    wrapper: "min-h-[600px]",
+                    wrapper: "min-h-[400px]",
                 }}
             >
                 <TableHeader className="bg-gradient-to-r from-purple-400 to-blue-500 text-lg">
