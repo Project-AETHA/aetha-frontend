@@ -19,7 +19,7 @@ export default function BreadCrumbs () {
     let accumulatedPath = '';
 
     return (
-        <Breadcrumbs className="bg-foreground-50 px-2 py-1">
+        <Breadcrumbs className="bg-foreground-50/75 border-b-2 border-foreground-200 px-2 py-1">
             {pathArray &&
                 pathArray.map((path, index) => {
                     accumulatedPath += `/${path}`;

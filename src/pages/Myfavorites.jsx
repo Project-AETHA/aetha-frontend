@@ -47,7 +47,7 @@ function Myfavorites() {
   return (
     <div>
       <div className="">
-      <div className='details'>
+      <div className='details bg-background text-foreground'>
         <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -77,8 +77,8 @@ function Myfavorites() {
               </div>
               <div className='p-6 w-3/4 font-semibold text-primary text-xl'>
                 {review.title}
-                <div className='mt-3 font-semibold pb-3 text-black text-small'>{review.pages}</div>
-                <div className='text-black text-small font-normal'>
+                <div className='mt-3 font-semibold pb-3 text-foreground text-small'>{review.pages}</div>
+                <div className='text-foreground text-small font-normal'>
                   {showMore[index] ? review.description : `${review.description.substring(0, 100)}...`}
                 </div>
                 <button 

@@ -10,7 +10,7 @@ function Mycomments() {
   return (
     <div>
            <div className="">
-      <div className="details">
+      <div className="details bg-background text-foreground">
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -36,52 +36,27 @@ function Mycomments() {
               <TableColumn>History</TableColumn>
               <TableColumn></TableColumn>
               <TableColumn></TableColumn>
-              <TableColumn></TableColumn>
             </TableHeader>
             <TableBody>
               <TableRow key="1">
                 <TableCell className='text-primary-400'>Chasing Sunlight</TableCell>
                 <TableCell className='text-primary-400'>Not a Chapter - New Story Announcement!</TableCell>
                 <TableCell>1 month ago</TableCell>
-                <TableCell>
-                  <button className='bg-primary-400 px-3 py-1 text-white rounded-lg'>
-                    <span className='flex'>
-                      <FaBookReader className='mr-2'></FaBookReader>Read</span>
-                  </button>
-                </TableCell>
               </TableRow>
               <TableRow key="2">
                 <TableCell className='text-primary-400'>Riftwalker</TableCell>
                 <TableCell className='text-primary-400'>R: Chapter 1: Kei Nakamura</TableCell>
                 <TableCell>1 month ago</TableCell>
-                <TableCell>
-                  <button className='bg-primary-400 px-3 py-1 text-white rounded-lg'>
-                    <span className='flex'>
-                      <FaBookReader className='mr-2'></FaBookReader>Read</span>
-                  </button>
-                </TableCell>
               </TableRow>
               <TableRow key="3">
                 <TableCell className='text-primary-400'>Reborn as a Lizard: Evolve! Cultivate! Become a Dragon!</TableCell>
                 <TableCell className='text-primary-400'>Chapter 82 - Cooperation with the Holy See?</TableCell>
                 <TableCell>1 month ago</TableCell>
-                <TableCell>
-                  <button className='bg-primary-400 px-3 py-1 text-white rounded-lg'>
-                    <span className='flex'>
-                      <FaBookReader className='mr-2'></FaBookReader>Read</span>
-                  </button>
-                </TableCell>
               </TableRow>
               <TableRow key="4">
                 <TableCell className='text-primary-400'>William Howard</TableCell>
                 <TableCell className='text-primary-400'>Community Manager</TableCell>
                 <TableCell>2 months ago</TableCell>
-                <TableCell>
-                  <button className='bg-primary-400 px-3 py-1 text-white rounded-lg'>
-                    <span className='flex'>
-                      <FaBookReader className='mr-2'></FaBookReader>Read</span>
-                  </button>
-                </TableCell>
               </TableRow>
             </TableBody>
           </Table>
