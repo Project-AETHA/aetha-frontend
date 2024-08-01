@@ -9,7 +9,7 @@ function Changeemail() {
     <div>
 
           <div className="">
-          <div className="details">
+          <div className="details bg-background text-foreground">
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
@@ -34,7 +34,7 @@ function Changeemail() {
         <span className='w-full'>Verify Password</span>
         <input
           type='password'
-          className='ml-2 p-2 bg-gray-300 w-full outline-none justify-end'
+          className='ml-2 p-2 border-2  rounded-large border-gray-300 w-full outline-none justify-end'
           placeholder='Enter password'
         />
       </div>
@@ -46,7 +46,7 @@ function Changeemail() {
         <span className='w-full'>New Email</span>
         <input
           type='email'
-          className='ml-2 p-2 bg-gray-300 w-full outline-none justify-end'
+          className='ml-2 p-2 border-2  rounded-large border-gray-300 w-full outline-none justify-end'
           placeholder='Enter new email'
         />
       </div>
@@ -54,7 +54,7 @@ function Changeemail() {
         <span className='w-full'>Confirm Email Address</span>
         <input
           type='email'
-          className='ml-2 p-2 bg-gray-300 w-full outline-none justify-end'
+          className='ml-2 p-2 border-2  rounded-large border-gray-300 w-full outline-none justify-end'
           placeholder='Confirm email'
         />
       </div>

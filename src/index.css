@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 main {
-    @apply !bg-foreground-200;
+    @apply !bg-foreground-200 min-h-screen;
 }
 
 /* Overriding the navbar max width */

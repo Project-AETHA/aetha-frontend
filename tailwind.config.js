@@ -48,6 +48,7 @@ themes: {
           chapters:'#DDDDDD',
           chapterbutton:'#FFFFFF',
           authbackground:'#F9FAFB',
+          chapterselect:'#ebf2ff',
           indigo: {
             500: "#6172F3",
             700: "#3538CD",
@@ -129,6 +130,7 @@ themes: {
           chapters:'#5B5B5B',
           chapterbutton:'#999999',
           authbackground:'#111827',
+          chapterselect:'#2d2d2d',
           indigo: {
             500: "#6172F3",
             700: "#3538CD",
