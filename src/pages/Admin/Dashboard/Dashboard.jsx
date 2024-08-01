@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, Table, TableHeader, TableBody, Button, User, TableColumn, TableRow, TableCell, Image, Chip, Link } from '@nextui-org/react';
-import { IoPeople, IoMenu, IoLogoUsd } from 'react-icons/io5';
+import { Card } from '@nextui-org/react';
+import { IoPeople, IoMenu, IoPauseSharp } from 'react-icons/io5';
 import { Bar, Line, Doughnut, Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -42,7 +42,7 @@ const data5 = {
         ((stats.declined / total) * 100).toFixed(2),
         ((stats.pending / total) * 100).toFixed(2)
       ],
-      backgroundColor: ['#4caf50', '#f44336', '#ffeb3b'],
+      backgroundColor: ['#8ed4be', '#f44336', '#ffeb3b'],
       hoverBackgroundColor: ['#66bb6a', '#ef5350', '#fff176']
     }
   ]
@@ -66,52 +66,8 @@ const options5 = {
   }
 }
 
-const data4 = {
-  labels: ['Advertising', 'E-Book Selling', 'Subscriptions', 'Pre-Book Selling'],
-  datasets: [
-    {
-      label: 'Revenue',
-      data: [5000, 7000, 3000, 2000], // Example revenue data
-      backgroundColor: [
-        '#42a5f5', // Blue for advertising
-        '#66bb6a', // Green for e-book selling
-        '#ffa726', // Orange for subscriptions
-        '#ab47bc', // Purple for pre-book selling
-      ],
-      borderColor: [
-        '#1e88e5', // Darker blue for advertising
-        '#43a047', // Darker green for e-book selling
-        '#fb8c00', // Darker orange for subscriptions
-        '#8e24aa', // Darker purple for pre-book selling
-      ],
-      borderWidth: 1,
-    },
-  ]
-}
 
-const options4 = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-  scales: {
-    x: {
-      title: {
-        display: true,
-        text: 'Source of Revenue',
-      },
-    },
-    y: {
-      beginAtZero: true,
-      title: {
-        display: true,
-        text: 'Revenue (USD)',
-      },
-    },
-  },
-};
+
 
 const data3 = {
   labels: ['Handled Complaints', 'Pending Complaints'],
@@ -228,44 +184,7 @@ const options = {
   },
 };
 
-const contentColumns = [
-  { key: 'title', label: 'Title' },
-  { key: 'author', label: 'Author' },
-  { key: 'createdDate', label: 'Date Created' },
-  { key: 'status', label: 'Status' },
-  { key: 'view', label: 'Actions' }, // New column for the "View" button
-];
 
-const recentContent = [
-  {
-    key: '1',
-    title: 'The Great Adventure',
-    author: 'Jane Doe',
-    createdDate: '2024-07-20T10:30:00Z',
-    status: 'Pending',
-  },
-  {
-    key: '2',
-    title: 'Mystery of the Forest',
-    author: 'John Smith',
-    createdDate: '2024-07-21T14:45:00Z',
-    status: 'Pending',
-  },
-  {
-    key: '3',
-    title: 'Whispers of the Wind',
-    author: 'Emily Johnson',
-    createdDate: '2024-07-22T09:15:00Z',
-    status: 'Pending',
-  },
-  {
-    key: '4',
-    title: 'Legends of the Past',
-    author: 'Michael Brown',
-    createdDate: '2024-07-23T12:00:00Z',
-    status: 'Pending',
-  },
-];
 
 
 
@@ -301,12 +220,12 @@ function Dashboard() {
         </BoxWrapper>
         <BoxWrapper>
           <div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-400">
-            <IoLogoUsd className="text-2xl text-white" />
+            <IoPauseSharp className="text-2xl text-white" />
           </div>
           <div className="pl-4">
-            <span className="text-sm text-gray-500 font-light">Total Revenue</span>
+            <span className="text-sm text-gray-500 font-light">Pending Approvals</span>
             <div className="flex items-center">
-              <strong className="text-xl text-gray-700 font-semibold">$56,313</strong>
+              <strong className="text-xl text-gray-700 font-semibold">13</strong>
             </div>
           </div>
         </BoxWrapper>
@@ -322,104 +241,14 @@ function Dashboard() {
           <Doughnut data={data3} options={options3} />
         </Card>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
-        <Card className="p-4" shadow="none" radius="sm">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4">
+        <Card className="p-4 col-span-2" shadow="none" radius="sm">
           <h2 className="text-lg font-semibold mb-4 flex justify-center">User Registration Trend</h2>
           <Line data={data2} options={options2} />
         </Card>
-        <Card className="p-4" shadow="none" radius="sm">
-          <h2 className="text-lg font-semibold mb-4 flex justify-center">Revenue</h2>
-          <Bar data={data4} options={options4} />
-        </Card>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-4">
         <Card className="p-4 col-span-1" shadow="none" radius="sm">
           <h2 className="text-lg font-semibold mb-4 flex justify-center">Publishing Novels</h2>
           <Pie data={data5} options={options5} />
-        </Card>
-        <Card className="p-4 col-span-3" shadow="none" radius="sm">
-          <h2 className="text-lg font-semibold mb-4 flex justify-center">Approval Pending List</h2>
-          <Table aria-label="Recent Content Details" className='text-foreground-900' radius='none' removeWrapper>
-            <TableHeader columns={contentColumns}>
-              {column => (
-                <TableColumn key={column.key} >
-                  {column.label}
-                </TableColumn>
-              )}
-            </TableHeader>
-            <TableBody items={recentContent}>
-              {item => (
-                <TableRow key={item.key}>
-                  {columnKey => {
-                    switch (columnKey) {
-                      case 'coverImage':
-                        return (
-                          <TableCell>
-                            <Image
-                              width={80}
-                              height={80}
-                              alt="Cover Image"
-                              src={item.coverImage}
-                              radius='sm'
-                            />
-                          </TableCell>
-                        );
-                      case 'status':
-                        return (
-                          <TableCell>
-                            <Chip color="danger" variant='flat' radius='sm'>
-                              {item.status}
-                            </Chip>
-                          </TableCell>
-                        );
-                      case 'createdDate':
-                        return (
-                          <TableCell>
-                            {new Date(item.createdDate).toLocaleDateString()}
-                          </TableCell>
-                        );
-                      case 'title':
-                        return <TableCell>{item.title}</TableCell>;
-                      case 'author':
-                        return (
-                          <TableCell>
-                            <User
-                              description={(
-                                <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal>
-                                  @jrgarciadev
-                                </Link>
-                              )}
-                              avatarProps={{
-                                src: "https://avatars.githubusercontent.com/u/30373425?v=4"
-                              }}
-                            />
-                          </TableCell>
-                        );
-                      case 'view':
-                        return (
-                          <TableCell>
-                            <Button
-                              size='sm'
-                              style={{ backgroundColor: '#3e9cf2', color: '#fff' }}
-                              className=" text-white"
-                              onClick={() => { navigate(`/admin/contents/approve`); }}
-                            >
-                              View
-                            </Button>
-                          </TableCell>
-                        );
-                      default:
-                        return (
-                          <TableCell>
-                            {item[columnKey]}
-                          </TableCell>
-                        );
-                    }
-                  }}
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
         </Card>
       </div>
     </div>

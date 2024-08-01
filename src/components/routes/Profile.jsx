@@ -37,8 +37,7 @@ import Pro_threadsPage from '../../pages/Pro_threads';
 import Pro_postsPage from '../../pages/Pro_posts';
 import Pro_achievementsPage from '../../pages/Pro_achievements';
 import Pro_reputationPage from '../../pages/Pro_reputation';
-
-
+import EditusernamePage from '../../pages/Editusername';
 
 export default function RoutesProfile () {
     return [
@@ -81,6 +80,8 @@ export default function RoutesProfile () {
         { path:  "/profile/posts" , element: <Pro_postsPage />, layout: "profile"},
         { path:  "/profile/achievements" , element: <Pro_achievementsPage />, layout: "profile"},
         { path:  "/profile/reputation" , element: <Pro_reputationPage />, layout: "profile"},
+        { path:  "/profile/editusername" , element: <EditusernamePage />, layout: "profile_dashboard"},
+
         
     ]
 }

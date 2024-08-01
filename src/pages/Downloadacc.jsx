@@ -28,13 +28,13 @@ function Downloadacc() {
 <div>
 This download consists of the following:</div>
 <div className='font-semibold mt-3 mb-2'>ACCOUNT DATA</div>
-<div className='ml-5'>0 Fictions</div>
-<div className='ml-5'>0 Chapters</div>
-<div className='ml-5'>0 Drafts</div>
-<div className='ml-5'>0 Comments</div>
-<div className='ml-5'>0 Posts</div>
+<div className='ml-5'>2 Fictions</div>
+<div className='ml-5'>8 Chapters</div>
+<div className='ml-5'>2 Drafts</div>
+<div className='ml-5'>24 Comments</div>
+<div className='ml-5'>6 Posts</div>
 <div className='ml-5 mb-3'>0 Private Messages</div>
-          <button className="text-white bg-blue-800 align-middle px-4 py-2 ml-4 rounded-none flex items-center">
+          <button className="text-foreground-50 bg-primary rounded align-middle px-4 py-2 ml-4 flex items-center">
   <FaDownload className="mr-2" />Download
 </button>
           </div>

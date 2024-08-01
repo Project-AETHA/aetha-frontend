@@ -6,6 +6,7 @@ import { TiTickOutline } from 'react-icons/ti';
 import { ImCross } from 'react-icons/im';
 import { GrTransaction } from 'react-icons/gr';
 import { Doughnut } from 'react-chartjs-2';
+import TransactionTable from './Transactiontable';
 
 
 
@@ -103,46 +104,46 @@ const weeklyData = [
     { week: 'Week 2', success: 150, failure: 20 },
     { week: 'Week 3', success: 130, failure: 25 },
     { week: 'Week 4', success: 140, failure: 35 },
-  ];
-  
-  const totalTransactions = weeklyData.reduce((acc, { success, failure }) => acc + success + failure, 0);
-  const totalSuccess = weeklyData.reduce((acc, { success }) => acc + success, 0);
-  const totalFailure = weeklyData.reduce((acc, { failure }) => acc + failure, 0);
-  
-  const avgSuccessRate = (totalSuccess / totalTransactions) * 100;
-  const avgFailureRate = (totalFailure / totalTransactions) * 100;
-  
-  const data1 = {
+];
+
+const totalTransactions = weeklyData.reduce((acc, { success, failure }) => acc + success + failure, 0);
+const totalSuccess = weeklyData.reduce((acc, { success }) => acc + success, 0);
+const totalFailure = weeklyData.reduce((acc, { failure }) => acc + failure, 0);
+
+const avgSuccessRate = (totalSuccess / totalTransactions) * 100;
+const avgFailureRate = (totalFailure / totalTransactions) * 100;
+
+const data1 = {
     labels: ['Success', 'Failure'],
     datasets: [{
-      label: 'Transaction Rates',
-      data: [avgSuccessRate, avgFailureRate],
-      backgroundColor: [
-        'rgb(75, 192, 192)', // Success color
-        'rgb(255, 99, 132)'  // Failure color
-      ],
-      hoverOffset: 4
+        label: 'Transaction Rates',
+        data: [avgSuccessRate, avgFailureRate],
+        backgroundColor: [
+            'rgb(75, 192, 192)', // Success color
+            'rgb(255, 99, 132)'  // Failure color
+        ],
+        hoverOffset: 4
     }]
-  };
-  
-  const options1 = {
+};
+
+const options1 = {
     responsive: true,
     plugins: {
-      legend: {
-        position: 'top',
-      },
-      tooltip: {
-        callbacks: {
-          label: function(context) {
-            let label = context.label || '';
-            let value = context.raw || 0;
-            return `${label}: ${value.toFixed(2)}%`;
-          }
+        legend: {
+            position: 'top',
+        },
+        tooltip: {
+            callbacks: {
+                label: function (context) {
+                    let label = context.label || '';
+                    let value = context.raw || 0;
+                    return `${label}: ${value.toFixed(2)}%`;
+                }
+            }
         }
-      }
     },
     cutout: '50%', // Creates the donut effect
-  };
+};
 
 
 
@@ -160,8 +161,8 @@ function Transactions() {
                 </Card>
 
                 <Card className="p-4 col-span-1 flex justify-center items-center" shadow="none" radius="sm">
-                <h2 className="text-lg font-semibold mb-4 flex text-center">Average Transaction Rate for a Week  </h2>
-                <Doughnut data={data1} options={options1} />
+                    <h2 className="text-lg font-semibold mb-4 flex text-center">Average Transaction Rate for a Week  </h2>
+                    <Doughnut data={data1} options={options1} />
                 </Card>
 
                 <div className="col-span-1 flex flex-col space-y-3">
@@ -208,8 +209,9 @@ function Transactions() {
                     </BoxWrapper>
                 </div>
             </div>
-            <div className=' bg-white p-3 my-4 '>
-                </div>
+            <div className=' my-4 '>
+              <TransactionTable />
+            </div>
         </div>
     );
 }

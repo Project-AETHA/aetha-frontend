@@ -79,8 +79,7 @@ function ContentList() {
     return (
         <div className="flex flex-col gap-3 h-full">
             <Table
-                radius="none"
-                removeWrapper
+                radius="md"
                 className="p-4"
                 selectionMode="single"
                 defaultSelectedKeys={["2"]}
@@ -118,7 +117,8 @@ function ContentList() {
                                                 width={60}
                                                 height={60}
                                                 alt="NextUI Fruit Image with Zoom"
-                                                src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
+                                                src={`/images/books/${(item.key % 9) + 1}.png
+                                                `}
                                                 radius='none'
                                             />
                                         </TableCell>

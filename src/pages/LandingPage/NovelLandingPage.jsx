@@ -224,7 +224,7 @@ function NovelLandingPage() {
                 </div>
             </div>
             <div className="bg-foreground-50/75 rounded p-2 flex flex-col col-span-12 lg:col-span-3 min-h-full lg:max-w-[350px]">
-                <p className="text-foreground-900 font-semibold tracking-wide pl-2">Recent Content</p>
+                <p className="text-foreground-900 font-semibold tracking-wide pl-2">Trending Content</p>
                 <hr className="pb-4" />
                 <div className="grow rounded p-1 flex">
                     <LatestUpdates data={latest_updates_data} />

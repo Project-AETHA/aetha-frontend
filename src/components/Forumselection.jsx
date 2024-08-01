@@ -172,7 +172,7 @@ function Forum() {
         <>
             <div className="alt-container pb-2">
                 <div className="flex flex-col md:flex-row gap-4 !p-0">
-                    <div className="bg-gray-300 w-full rounded-md">
+                    <div className="bg-foreground-50 py-5 w-full rounded-md">
                         <div className="m-auto">
                                 <div className="mx-5 py-5">
                                         <Table aria-label="Example table with custom cells">
