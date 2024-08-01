@@ -18,6 +18,7 @@ import Forum from '../../pages/Forum';
 import Forumselection from '../../pages/Forumselection';
 import Buytiers from '../../pages/Buytiers';
 import ComplaintDetails from '../../pages/Support/ComplaintDetails.jsx';
+import Buybook from '../../pages/BuyBook.jsx';
 
 export default function RoutesGeneral () {
     return [
@@ -40,5 +41,6 @@ export default function RoutesGeneral () {
         { path: '/forumselection', element: <Forumselection />, layout: "default" },
         { path: '/buytiers', element: <Buytiers />, layout: "default" },
         { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
+        { path: '/buybook', element: <Buybook />, layout: "default" },
     ]
 }

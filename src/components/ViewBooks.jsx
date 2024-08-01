@@ -110,49 +110,49 @@ const booksData = [
 
 const ViewBooks = () => {
 
- 
+
 
 
   return (
 
     <>
-    <div className="alt-container">
-      <div className="bg-gray-300 transform -translate-y-12">
-          {/* Body section */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-3 py-5">
-              {/* Card */}
+      <div className="alt-container">
+        <div className="bg-foreground-50">
+          {/* Body section */} 
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-3 py-5">
+            {/* Card */}
 
-              {booksData.map(({ id, img, title, rating, author }) => (
+            {booksData.map(({ id, img, title, rating, author }) => (
 
-                <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out mb-4">
+              <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out mb-4">
 
-                  <Link to="/chapters" color="foreground">
-                    <img
-                      src={img}
-                      alt=""
-                      className="h-[220px] w-[150px] object-cover rounded-sm"
-                    />
-                  </Link>
-                  <div>
-                    <h3 className="font-semibold text-primaryText">{title}</h3>
-                    <p className="text-sm text-secondaryText">{author}</p>
-                    <div className="flex items-center gap-1">
-                      {/* <FaStar className="text-yellow-500" /> */}
-                      <span className="text-tertiaryText text-xs">
+                <Link to="/chapters" color="foreground">
+                  <img
+                    src={img}
+                    alt=""
+                    className="h-[220px] w-[150px] object-cover rounded-sm"
+                  />
+                </Link>
+                <div>
+                  <h3 className="font-semibold text-primaryText">{title}</h3>
+                  <p className="text-sm text-secondaryText">{author}</p>
+                  <div className="flex items-center gap-1">
+                    {/* <FaStar className="text-yellow-500" /> */}
+                    <span className="text-tertiaryText text-xs">
                       <FaStar className="text-yellow-500 mr-1 inline-block" />
                       {rating}</span>
-                    </div>
                   </div>
                 </div>
+              </div>
 
-              ))}
-
-            </div>
+            ))}
 
           </div>
+
         </div>
-        
-      
+      </div>
+
+
     </>
   );
 };
