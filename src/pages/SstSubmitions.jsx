@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Book1 from "/images/books/book1.jpg";
 import Book2 from "/images/books/book2.jpg";
 import Book3 from "/images/books/book3.jpg";
+import Book4 from "/images/books/book4.png";
+import Book5 from "/images/books/book7.png";
 
 const booksData = [
     {
@@ -32,17 +34,26 @@ const booksData = [
   
     {
       id: 4,
-      img: Book3,
-      title: "Lost boys",
+      img: Book4,
+      title: "Gun Soul",
       rating: 4.7,
       author: "Lost Girl",
     },
     // Add more book objects as needed...
   ];
 
+  const DraftsData = [
+    {
+      id: 1,
+      img: Book5,
+      title: "OP Wizard",
+      author: "Someone",
+    },
+  ];
+
 const Submissions = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen p-2">
     {/* <Sidebar className="w-1/4 bg-gray-100 p-4">
       <SidebarItem icon={<BarChart2 />} text="Overview"/>
       <SidebarItem icon={<Book />} text="Submissions" active/>
@@ -51,7 +62,7 @@ const Submissions = () => {
       <SidebarItem icon={<BookOpenCheck />} text="E-Book Selling" />
     </Sidebar> */}
     <div className="flex-1">
-    {/* <Card className="p-5 mb-4 shadow-none flex-auto" radius="none">
+    {/* <Card className="p-5 mb-4 shadow-none flex-auto" >
       <div className="flex justify-between items-center">
         <Breadcrumbs>
           <BreadcrumbItem>
@@ -66,9 +77,9 @@ const Submissions = () => {
         </Link>
       </div>
       </Card> */}
-      <Card className="p-4 mb-4 shadow-none" radius="none">
-      <h1 className="text-2xl font-bold dark:text-white mb-5">Short Stories</h1>
-        <div className="flex items-center bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
+      <Card className="p-4 mb-4 shadow-none" >
+      <h1 className="text-3xl font-bold dark:text-white mb-5">Short Stories</h1>
+        {/* <div className="flex items-center bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
           <span className="mr-2">
             <svg
               className="w-6 h-6 text-blue-500"
@@ -90,9 +101,9 @@ const Submissions = () => {
             approved. If issues are found within the submission, it will be
             rejected and corrections will have to be made before re-submission.
           </span>
-        </div>
+        </div> */}
       </Card>
-      <Card className="p-4 shadow-none" radius="none">
+      <Card className="p-4 shadow-none" >
         <h3 className="text-xl font-semibold">Pending Submissions</h3>
         <div className="mt-4">
           {/* List of pending submissions will go here */}
@@ -105,7 +116,7 @@ const Submissions = () => {
           </Link>
         </div>
       </Card>
-      <Card className="p-4 mb-4 shadow-none mt-4" radius="none">
+      <Card className="p-4 mb-4 shadow-none mt-4" >
       <Tabs aria-label="Recent Activities" color="default" variant="underlined" size="lg">
           <Tab
             key="Stories"
@@ -117,7 +128,6 @@ const Submissions = () => {
             }
           >
             <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
-          <h2 className="text-xl font-semibold mb-3 dark:text-white">Most Recent Publishes</h2>
           <div className="flex gap-10">
             {booksData.slice(0, 4).map(({ id, img, title }) => (
               <Card shadow="none" key={id} isPressable>
@@ -148,20 +158,27 @@ const Submissions = () => {
               </div>
             }
           >
-            <Card className='mb-2 mt-2'>
-            <CardBody>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </CardBody>
-          </Card>
-          <Card>
-            <CardBody>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </CardBody>
-          </Card>
-
-            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-sm mb-5">
-              {/* <p className="text-gray-500 dark:text-gray-400">No Draft yet</p> */}
-            </div>
+            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
+          <div className="flex gap-10">
+            {DraftsData.map(({ id, img, title }) => (
+              <Card shadow="none" key={id} isPressable>
+                <CardBody className="overflow-visible p-0">
+                  <Image
+                    shadow="sm"
+                    radius="lg"
+                    width="100%"
+                    alt={title}
+                    className="w-[120px] object-cover h-[180px]"
+                    src={img}
+                  />
+                </CardBody>
+                <CardFooter className="text-small justify-center bg-gray-100 p-1 dark:bg-gray-800 dark:text-white"> 
+                  <b>{title}</b>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
           </Tab>
         </Tabs>
         </Card>

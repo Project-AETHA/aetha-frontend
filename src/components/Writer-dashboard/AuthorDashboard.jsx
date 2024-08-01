@@ -1,36 +1,38 @@
 import { Book, BarChart2, Star, MessageCircleMore } from "lucide-react";
 import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab, Link, Dropdown,DropdownTrigger, DropdownMenu, DropdownItem,} from "@nextui-org/react";
-import Book1 from "/images/books/book1.jpg";
-import Book2 from "/images/books/book2.jpg";
-import Book3 from "/images/books/book3.jpg";
+import Book1 from "/images/books/book8.png";
+import Book2 from "/images/books/book5.png";
+import Book3 from "/images/books/book6.png";
+import Book4 from "/images/books/book4.png";
+import Book5 from "/images/books/book9.png";
 
 const booksData = [
   {
     id: 1,
     img: Book1,
-    title: "Who's there",
+    title: "Skill Eater",
     rating: 5.0,
     author: "Someone",
   },
   {
     id: 2,
     img: Book2,
-    title: "His Life",
+    title: "Dao of Cooking",
     rating: 4.5,
     author: "John",
   },
   {
     id: 3,
     img: Book3,
-    title: "Lost boys",
+    title: "Worm Mage",
     rating: 4.7,
     author: "Lost Girl",
   },
 
   {
     id: 4,
-    img: Book3,
-    title: "Lost boys",
+    img: Book4,
+    title: "Gun Soul",
     rating: 4.7,
     author: "Lost Girl",
   },
@@ -56,7 +58,7 @@ const AuthorDashboard = () => {
     <div className="flex h-screen">
       <div className="flex-grow p-5 authbackground">
         <div className="flex justify-between items-center mb-5">
-          <h1 className="text-2xl font-bold dark:text-white">Author Dashboard - Overview</h1>
+          <h1 className="text-3xl font-bold dark:text-white">Author Dashboard - Overview</h1>
           <Dropdown backdrop="blur">
             <DropdownTrigger>
             <Button color="secondary" auto>
@@ -76,24 +78,31 @@ const AuthorDashboard = () => {
           <StatsCard title="Reviews Received" value="0" Icon={Star} />
         </div>
         <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
-          <h2 className="text-xl font-semibold mb-3 dark:text-white">Most Recent Publishes</h2>
-          <div className="flex gap-10">
-            {booksData.slice(0, 4).map(({ id, img, title }) => (
+          <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
+          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-xl">
+            {booksData.map(({ id, img, title, rating }) => (
+              <Link href="/author/chapter">
               <Card shadow="none" key={id} isPressable>
-                <CardBody className="overflow-visible p-0">
+                <CardBody className="p-0">
                   <Image
                     shadow="sm"
-                    radius="lg"
+                    radius="sm"
                     width="100%"
                     alt={title}
                     className="w-[120px] object-cover h-[180px]"
                     src={img}
+                    href='/author/chapter'
                   />
                 </CardBody>
-                <CardFooter className="text-small justify-center bg-gray-100 p-1 dark:bg-gray-800 dark:text-white"> 
-                  <b>{title}</b>
-                </CardFooter>
+                <CardFooter className="flex flex-col items-start p-1">
+                      <h3 className="text-sm font-semibold">{title}</h3>
+                      <div className="flex items-center mt-2">
+                        <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                        <span className="text-xs font-medium">{rating}</span>
+                      </div>
+                    </CardFooter>
               </Card>
+              </Link>
             ))}
           </div>
         </div>
