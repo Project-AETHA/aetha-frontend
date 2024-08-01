@@ -3,6 +3,7 @@ import { Card, Input, Checkbox, Button, Image } from '@nextui-org/react';
 import { Plus, X } from "lucide-react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import FileUpload from "../components/FileUpload";
 
 const AddEbook = () => {
   const [title, setTitle] = useState('');
@@ -43,17 +44,6 @@ const AddEbook = () => {
     setCustomTags(customTags.filter(tag => tag !== tagToRemove));
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setCoverImage(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -88,12 +78,13 @@ const AddEbook = () => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Description</label>
-            <ReactQuill 
-              value={description}
-              onChange={setDescription}
-              placeholder="Enter book description"
-              className="h-40 mb-12"
-            />
+              <ReactQuill
+                value={description}
+                onChange={setDescription}
+                theme="snow"
+                placeholder="Write your description here..."
+                className="text-editor2"
+              />
           </div>
 
           <div className="mb-4">
@@ -160,7 +151,7 @@ const AddEbook = () => {
                   </div>
                 ))}
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center max-w-60">
                 <Input
                   size="sm"
                   placeholder="Add custom tag"
@@ -176,24 +167,9 @@ const AddEbook = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Cover Image</label>
-            <Input
-              type="file"
-              onChange={handleImageUpload}
-              accept="image/*"
-            />
-            {imagePreview && (
-              <div className="mt-4">
-                <Image
-                  src={imagePreview}
-                  alt="Cover preview"
-                  width={150}
-                  height={200}
-                  objectFit="cover"
-                />
-              </div>
-            )}
-          </div>
+              <h3 className="text-default-700 text-small">Cover</h3>
+              <FileUpload />
+            </div>
 
           <Button color="primary" type="submit">
             Add Ebook

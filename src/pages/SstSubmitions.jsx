@@ -1,7 +1,6 @@
 import React from 'react';
-import { Breadcrumbs, BreadcrumbItem, Card, Button, Tab, Tabs, CardBody, CardFooter, Image } from '@nextui-org/react';
+import { Breadcrumbs, BreadcrumbItem, Card, Button, Tab, Tabs, CardBody, CardFooter, Image, Link } from '@nextui-org/react';
 import { Book, BarChart2, BookOpenCheck, Users, Star, BookHeadphones, LibraryBig, Castle, NotepadTextDashed } from "lucide-react";
-import { Link } from 'react-router-dom';
 // import Sidebar, { SidebarItem } from "../components/Writer-dashboard/Sidebar";
 import Book1 from "/images/books/book1.jpg";
 import Book2 from "/images/books/book2.jpg";
@@ -78,7 +77,7 @@ const Submissions = () => {
       </div>
       </Card> */}
       <Card className="p-4 mb-4 shadow-none" >
-      <h1 className="text-3xl font-bold dark:text-white mb-5">Short Stories</h1>
+      <h1 className="text-3xl font-bold dark:text-white">Short Stories</h1>
         {/* <div className="flex items-center bg-gray-100 dark:bg-gray-800 p-4 rounded-md">
           <span className="mr-2">
             <svg
@@ -109,7 +108,7 @@ const Submissions = () => {
           {/* List of pending submissions will go here */}
         </div>
         <div className="flex justify-end mt-4">
-        <Link href="/author/chapter/create">
+        <Link href="/author/short-stories/create">
           <Button auto className="bg-blue-500 text-white">
             + Submit a New Short Story
           </Button>

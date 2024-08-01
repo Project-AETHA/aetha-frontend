@@ -40,7 +40,7 @@ const initialTiers = [
     benefits: ['Unlock 25 chapters', 'Silver avatar frame', 'VIP community access', 'No advertising'],
     monthlyCost: 7,
     yearlyCost: 70,
-    color: 'secondary'
+    color: 'warning'
   },
   {
     name: 'Gold',
@@ -181,8 +181,8 @@ const Chapters = () => {
     <div className="p-8 min-h-screen bg-foreground-100 text-gray-900">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold text-primary">Chapter Management</h1>
-          <Button auto shadow color="primary" size="lg" onPress={onOpenAddDraftModal}>
+          <h1 className="text-3xl font-bold">Chapter Management</h1>
+          <Button auto shadow color="primary"  onPress={onOpenAddDraftModal}>
             <FaPlus className="w-5 h-5 mr-2" />
             Add New Chapter
           </Button>
@@ -250,12 +250,12 @@ const Chapters = () => {
             {tiers.map((tier, index) => (
               <Card key={index} className="p-6 bg-white shadow-lg transform hover:scale-105 transition-transform duration-300">
                 <h3 className="text-2xl font-bold mb-4">{tier.name}</h3>
-                <ul className="list-disc list-inside mb-6">
+                <ul className="list-none list-inside mb-6">
                   {tier.benefits.map((benefit, i) => (
-                    <li key={i} className="text-gray-600">{benefit}</li>
+                    <li key={i} className="text-gray-600">✓ {benefit}</li>
                   ))}
                 </ul>
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mt-auto mb-2">
                   <div>
                     <p className="text-3xl font-bold">${tier.monthlyCost}</p>
                     <p className="text-sm text-gray-500">per month</p>
@@ -265,7 +265,7 @@ const Chapters = () => {
                     <p className="text-sm text-gray-500">per year</p>
                   </div>
                 </div>
-                <Button auto color={tier.color} onPress={() => handleEditTier(tier)} className="w-full">Edit Tier</Button>
+                <Button auto color={tier.color} onPress={() => handleEditTier(tier)} className="w-full mt-auto" variant="flat">Edit Tier</Button>
               </Card>
             ))}
           </div>

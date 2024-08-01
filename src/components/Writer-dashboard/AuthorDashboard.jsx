@@ -57,8 +57,9 @@ const AuthorDashboard = () => {
   return (
     <div className="flex h-screen">
       <div className="flex-grow p-5 authbackground">
-        <div className="flex justify-between items-center mb-5">
-          <h1 className="text-3xl font-bold dark:text-white">Author Dashboard - Overview</h1>
+        <Card className="p-4 mb-4 shadow-none" >
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold dark:text-white">Author Dashboard</h1>
           <Dropdown backdrop="blur">
             <DropdownTrigger>
             <Button color="secondary" auto>
@@ -67,11 +68,13 @@ const AuthorDashboard = () => {
             </DropdownTrigger>
             <DropdownMenu variant="faded" aria-label="Static Actions">
               <DropdownItem key="novel" href="/author/chapter/create">Novel</DropdownItem>
-              <DropdownItem key="shortStory">Short Story</DropdownItem>
+              <DropdownItem key="shortStory" href="/author/short-stories/create">Short Story</DropdownItem>
               <DropdownItem key="poemnisadas" href="/author/poems/create">Poem & Nisadas</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
+        </Card>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
           <StatsCard title="Total Chapters" value="0" Icon={Book} />
           <StatsCard title="Total Words" value="0" Icon={BarChart2} />
@@ -106,7 +109,7 @@ const AuthorDashboard = () => {
             ))}
           </div>
         </div>
-        <Tabs aria-label="Recent Activities" color="default" variant="solid" size="lg">
+        <Tabs aria-label="Recent Activities" color="default" variant="underlined" size="lg">
           <Tab
             key="comments"
             title={

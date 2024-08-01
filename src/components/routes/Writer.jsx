@@ -13,6 +13,8 @@ import NewCampaign from "../../pages/NewCampaign.jsx";
 import SstSubmitions from "../../pages/SstSubmitions.jsx";
 import RevenuePage from "../../pages/Revenue.jsx";
 import AddEbook from "../../pages/AddEbook.jsx";
+import UpgradeToWriter from "../../pages/UpgradeToWriter.jsx";
+import AddShortStory from "../../pages/AddShortStory.jsx";
 
 
 export default function RoutesWriter () {
@@ -32,6 +34,8 @@ export default function RoutesWriter () {
         { path: '/author/ebooks', element: <Ebook/>, layout: "author_dashboard" },
         { path: '/author/ebooks/add', element: <AddEbook/>, layout: "author_dashboard" },
         { path: '/author/revenue', element: <RevenuePage/>, layout: "author_dashboard" },
+        { path: '/author/upgrade', element: <UpgradeToWriter/>, layout: "author_dashboard" },
+        { path: '/author/short-stories/create', element: <AddShortStory/>, layout: "author_dashboard" },
 
 
     ]
