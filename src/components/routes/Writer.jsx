@@ -12,6 +12,7 @@ import Advertising from "../../pages/Advertising.jsx";
 import NewCampaign from "../../pages/NewCampaign.jsx";
 import SstSubmitions from "../../pages/SstSubmitions.jsx";
 import RevenuePage from "../../pages/Revenue.jsx";
+import AddEbook from "../../pages/AddEbook.jsx";
 
 
 export default function RoutesWriter () {
@@ -29,6 +30,7 @@ export default function RoutesWriter () {
         { path: '/author/advertising/newcampaign', element: <NewCampaign />, layout: "author_dashboard" },
         { path: '/author/short-stories', element: <SstSubmitions />, layout: "author_dashboard" },
         { path: '/author/ebooks', element: <Ebook/>, layout: "author_dashboard" },
+        { path: '/author/ebooks/add', element: <AddEbook/>, layout: "author_dashboard" },
         { path: '/author/revenue', element: <RevenuePage/>, layout: "author_dashboard" },
 
 

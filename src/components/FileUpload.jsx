@@ -53,7 +53,7 @@ const FileUpload = () => {
       <Spacer y={1} />
       <Divider />
       <Spacer y={1} />
-      <Button>Upload</Button>
+      <Button color="success" variant="flat">Upload</Button>
     </Card>
   );
 };
