@@ -148,9 +148,11 @@ const FirstChapter = () => {
               />
             </div>
             <div className="mb-4 mt-4">
-              <Button color="primary" variant="flat">
-                Submit
-              </Button>  
+            <div className="w-full  flex justify-center gap-2">
+                    <Button variant="flat" color="success" className="text-sm">Submit</Button>
+                    <Button variant="flat" color="primary" className="text-sm">Save as a Draft</Button>
+                    <Button variant="flat" color="danger" className="text-sm">Discard</Button>
+                </div>
             </div>
           </Card>
         </div>

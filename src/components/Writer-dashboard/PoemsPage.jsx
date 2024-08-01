@@ -6,7 +6,7 @@ export default function PublishesPage() {
     <div className="w-full h-full p-2 bg-foreground-300">
       <div className="bg-foreground-50 w-full h-full rounded p-2 flex flex-col gap-6">
       <div className="flex flex-col gap-0">
-          <p className="font-bold text-large w-full flex justify-center">
+          <p className="font-bold text-3xl w-full flex justify-center">
             Poems & Nisadas
           </p>
           <p className="text-small w-full flex justify-center">

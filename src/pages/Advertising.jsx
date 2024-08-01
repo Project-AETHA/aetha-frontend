@@ -64,10 +64,10 @@ const adClicksData = {
 
 const Advertising = () => {
   return (
-    <div className="p-8 min-h-screen bg-foreground-100 text-gray-900 dark:text-gray-100">
-      <div className="max-w-7xl mx-auto">
+    <div className="p-2 min-h-screen bg-foreground-100 text-gray-900 dark:text-gray-100">
+      <Card className="mx-auto p-8 shadow-sm">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold">Marketing Dashboard</h1>
+          <h1 className="text-3xl font-bold">Marketing Dashboard</h1>
           <Link href="/author/advertising/newcampaign">
             <Button auto shadow color="primary" icon={<CirclePlus />}>
               New Campaign
@@ -132,7 +132,7 @@ const Advertising = () => {
             </Link>
           </div>
         </Card>
-      </div>
+      </Card>
     </div>
   );
 };

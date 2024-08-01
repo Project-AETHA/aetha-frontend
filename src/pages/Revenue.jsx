@@ -160,12 +160,12 @@ const RevenuePage = () => {
               <p className="text-4xl font-bold">${revenueData.balance}</p>
               <p className="text-sm opacity-75">Total earnings: ${totalEarnings}</p>
             </div>
-            <Button 
+            {/* <Button 
               className="mt-4 md:mt-0 bg-white text-blue-500 hover:bg-blue-100"
               endContent={<FiDollarSign />}
             >
               Withdraw Funds
-            </Button>
+            </Button> */}
           </div>
           <div className="mt-4">
             <Progress 
