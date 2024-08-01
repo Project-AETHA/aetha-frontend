@@ -9,7 +9,8 @@ import {
     Pagination,
     Image,
     Link,
-    User
+    User,
+    Input // Import Input for the search bar
 } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
 
@@ -23,11 +24,11 @@ const contentColumns = [
 ];
 
 const articles = [
-    { key: "1", coverImage: "https://via.placeholder.com/50", title: "The Rise of AI", publishedDate: "2024-01-01", author: "Tony Reichert", ratings: 4 },
-    { key: "2", coverImage: "https://via.placeholder.com/50", title: "Quantum Computing", publishedDate: "2024-02-01", author: "Zoey Lang", ratings: 5 },
-    { key: "3", coverImage: "https://via.placeholder.com/50", title: "Blockchain Revolution", publishedDate: "2024-03-01", author: "Jane Fisher", ratings: 3 },
-    { key: "4", coverImage: "https://via.placeholder.com/50", title: "Future of Work", publishedDate: "2024-04-01", author: "William Howard", ratings: 4 },
-    { key: "5", coverImage: "https://via.placeholder.com/50", title: "Health Tech", publishedDate: "2024-05-01", author: "Emily Collins", ratings: 5 },
+    { key: "1", coverImage: "https://via.placeholder.com/50", title: "Walk Shadow", publishedDate: "2024-01-01", author: "Tony Reichert", ratings: 4 },
+    { key: "2", coverImage: "https://via.placeholder.com/50", title: "The Catcher in the Rye", publishedDate: "2024-02-01", author: "Zoey Lang", ratings: 5 },
+    { key: "3", coverImage: "https://via.placeholder.com/50", title: "The Greats Gatsby", publishedDate: "2024-03-01", author: "Jane Fisher", ratings: 3 },
+    { key: "4", coverImage: "https://via.placeholder.com/50", title: "Brave New World", publishedDate: "2024-04-01", author: "William Howard", ratings: 4 },
+    { key: "5", coverImage: "https://via.placeholder.com/50", title: "Soul", publishedDate: "2024-05-01", author: "Emily Collins", ratings: 5 },
     { key: "6", coverImage: "https://via.placeholder.com/50", title: "Autonomous Vehicles", publishedDate: "2024-06-01", author: "Brian Kim", ratings: 3 },
     { key: "7", coverImage: "https://via.placeholder.com/50", title: "5G Networks", publishedDate: "2024-07-01", author: "Laura Thompson", ratings: 4 },
     { key: "8", coverImage: "https://via.placeholder.com/50", title: "Cybersecurity Trends", publishedDate: "2024-08-01", author: "Michael Stevens", ratings: 5 },
@@ -66,18 +67,33 @@ function StarRating({ rating }) {
 
 function ContentList() {
     const [page, setPage] = React.useState(1);
+    const [searchTerm, setSearchTerm] = React.useState(""); // Add state for search term
     const rowsPerPage = 5;
 
     const pages = Math.ceil(articles.length / rowsPerPage);
 
+    // Filter articles based on search term
+    const filteredArticles = React.useMemo(() => {
+        return articles.filter(article =>
+            article.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [searchTerm]);
+
+    // Paginate filtered articles
     const paginatedItems = React.useMemo(() => {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
-        return articles.slice(start, end);
-    }, [page]);
+        return filteredArticles.slice(start, end);
+    }, [page, filteredArticles]);
 
     return (
-        <div className="flex flex-col gap-3 h-full">
+        <div className="flex flex-col h-full">
+            <Input
+                placeholder="Search by title..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-4 pt-4"
+            />
             <Table
                 radius="md"
                 className="p-4"
@@ -98,7 +114,7 @@ function ContentList() {
                     </div>
                 }
                 classNames={{
-                    wrapper: "min-h-[600px]",
+                    wrapper: "min-h-[400px]",
                 }}
             >
                 <TableHeader className="bg-gradient-to-r from-purple-400 to-blue-500 text-lg">

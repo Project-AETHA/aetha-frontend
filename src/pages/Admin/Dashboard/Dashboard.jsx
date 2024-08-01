@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card } from '@nextui-org/react';
 import { IoPeople, IoMenu, IoPauseSharp } from 'react-icons/io5';
-import { Bar, Line, Doughnut, Pie } from 'react-chartjs-2';
+import { useNavigate } from 'react-router-dom'
+import { Bar, Line, Doughnut, Pie, Bubble } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -64,10 +65,7 @@ const options5 = {
       }
     }
   }
-}
-
-
-
+};
 
 const data3 = {
   labels: ['Handled Complaints', 'Pending Complaints'],
@@ -184,19 +182,75 @@ const options = {
   },
 };
 
+const complaintData = {
+  labels: ['Assistance', 'Bug', 'Complaints'],
+  datasets: [
+    {
+      label: 'Number of Complaints',
+      data: [10, 15, 20],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(255, 159, 64, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(54, 162, 235, 1)',
+      ],
+      borderWidth: 1,
+    }
+  ]
+};
+
+const optionsBar = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: 'Categories'
+      }
+    },
+    y: {
+      title: {
+        display: true,
+        text: 'Number of Complaints'
+      },
+      beginAtZero: true
+    }
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          const label = context.dataset.label || '';
+          const value = context.raw;
+          return `${label}: ${value}`;
+        }
+      }
+    }
+  }
+};
 
 
-
-
-function BoxWrapper({ children }) {
-  return <div className="bg-white rounded-md p-4 flex-1 border border-gray-200 flex items-center">{children}</div>
-}
 
 function Dashboard() {
+
+  const navigate = useNavigate();
+
+  function BoxWrapper({ children, link }) {
+    return <div className="bg-white rounded-md p-4 hover:cursor-pointer hover:scale-105 duration-300 ease-in-out flex-1 border border-gray-200 flex items-center" onClick={() => navigate(link)}>{children}</div>
+  }
+
   return (
     <div>
       <div className="flex gap-4 m-4">
-        <BoxWrapper>
+        <BoxWrapper link="/admin/users">
           <div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
             <IoPeople className="text-2xl text-white" />
           </div>
@@ -207,7 +261,7 @@ function Dashboard() {
             </div>
           </div>
         </BoxWrapper>
-        <BoxWrapper>
+        <BoxWrapper link="/admin/complaints">
           <div className="rounded-full h-12 w-12 flex items-center justify-center bg-orange-600">
             <IoMenu className="text-2xl text-white" />
           </div>
@@ -218,7 +272,7 @@ function Dashboard() {
             </div>
           </div>
         </BoxWrapper>
-        <BoxWrapper>
+        <BoxWrapper link="/admin/contents">
           <div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-400">
             <IoPauseSharp className="text-2xl text-white" />
           </div>
@@ -249,6 +303,12 @@ function Dashboard() {
         <Card className="p-4 col-span-1" shadow="none" radius="sm">
           <h2 className="text-lg font-semibold mb-4 flex justify-center">Publishing Novels</h2>
           <Pie data={data5} options={options5} />
+        </Card>
+        <Card className="p-4 col-span-1 h-96" shadow="none" radius="sm">
+          <h2 className="text-lg font-semibold mb-4 flex justify-center text-center">Number of Complaints by Category</h2>
+          <div className="relative h-full">
+            <Bar data={complaintData} options={optionsBar} />
+          </div>
         </Card>
       </div>
     </div>
