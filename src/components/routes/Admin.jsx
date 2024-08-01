@@ -10,6 +10,9 @@ import Reports from "../../pages/Admin/ReportGeneration/Reports.jsx"
 import ReportedContent from "../../pages/Admin/ReportedContent/ReportedContent.jsx"
 import Finance from "../../pages/Admin/Finance/Finance.jsx"
 import Advertisements from "../../pages/Admin/Finance/Advertisements.jsx";
+import EBookSelling from "../../pages/Admin/Finance/EBookSelling.jsx";
+import Subscriptions from "../../pages/Admin/Finance/Subscriptions.jsx"
+import PreSeliing from "../../pages/Admin/Finance/PreSeliing.jsx";
 
 
 export default function RoutesAdmin () {
@@ -27,8 +30,8 @@ export default function RoutesAdmin () {
         { path: '/admin/report-generation', element: <Reports/>, layout:"admin_dashboard"},
         { path: '/admin/finance', element: <Finance/>, layout:"admin_dashboard"},
         { path: '/admin/finance/advertisements', element: <Advertisements />, layout: "admin_dashboard" },
-        { path: '/admin/finance/subscriptions', element: <Advertisements />, layout: "admin_dashboard" },
-        { path: '/admin/finance/ebooks', element: <Advertisements />, layout: "admin_dashboard" },
-        { path: '/admin/finance/preselling', element: <Advertisements />, layout: "admin_dashboard" },
+        { path: '/admin/finance/subscriptions', element: <Subscriptions />, layout: "admin_dashboard" },
+        { path: '/admin/finance/ebooks', element: <EBookSelling />, layout: "admin_dashboard" },
+        { path: '/admin/finance/preselling', element: <PreSeliing />, layout: "admin_dashboard" },
     ]
 }
