@@ -22,7 +22,7 @@ function Reading() {
         <div className="alt-container px-4">
             <div className="flex flex-col md:flex-row gap-4 !p-0">
                 {/* Latest Updates */}
-                <div className="w-full border-5 border-foreground-50 rounded-md p-2 dark:bg-[url('../../public/images/darkbackground.png')] bg-[url('../../public/images/bookbackground.png')] bg-cover">
+                <div className="w-full border-5 shadow-2xl border-foreground-50 rounded-md p-2 dark:bg-[url('../../public/images/darkbackground.png')] bg-[url('../../public/images/bookbackground.png')] bg-cover">
 
                     <div className="w-full md:w-3/12 inline-block">
                         <div className="flex mx-5 items-center flex-wrap gap-2">
@@ -60,7 +60,7 @@ function Reading() {
 
             <div className="flex flex-col md:flex-row gap-4 !p-0">
                 {/* Latest Updates */}
-                <div className="bg-foreground-50 w-full rounded-md py-5 p-2">
+                <div className="shadow-2xl bg-foreground-50 w-full rounded-md py-5 p-2">
 
 
                     {/* reader preference butotn on right side */}

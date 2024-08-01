@@ -144,8 +144,6 @@ function LandingPage() {
 
     ];
 
-
-
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 13;
 
@@ -169,7 +167,7 @@ function LandingPage() {
 
     return (
         <div className="alt-container">
-            <div className="flex flex-col md:flex-row gap-4 !p-0 bg-foreground-50">
+            <div className="flex flex-col md:flex-row gap-4 !p-0 bg-foreground-50 shadow-2xl">
                 {/* Latest Updates */}
                 <div className="bg-foreground-50 w-full md:w-9/12 rounded-md p-2">
                     <p className="flex gap-2 items-center font-bold text-lg text-primaryText mb-4">
@@ -181,9 +179,9 @@ function LandingPage() {
                             {latest_updates &&
                                 latest_updates.map((latest_update, index) => (
                                     <Link to="#" key={index}>
-                                        <div className="max-w-[350px] w-[150px] flex flex-col">
+                                        <div className="max-w-[370px] w-[170px] flex flex-col m-auto">
                                             <Image
-                                                className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer w-[80%] m-auto justify-center"
+                                                className="hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer w-[80%] m-auto justify-center rounded-md"
                                                 alt="NextUI hero Image"
                                                 src={latest_update.image}
                                             />
@@ -213,9 +211,11 @@ function LandingPage() {
                                 </Link>
                             </div>
                             <div className="ml-0 md:ml-10 justify-center flex">
+                                <Link to="/buytiers">
                                 <Button className="border border-accentText text-accentText rounded-xl" variant="bordered">
                                 <MdAddAlert /> Subscribe
                                 </Button>
+                                </Link>
                             </div>
                         </div>
 
@@ -251,7 +251,7 @@ function LandingPage() {
 
             <div className="flex flex-col md:flex-row gap-4 !p-0">
                 {/* Chapters part */}
-<div className="bg-foreground-50 w-full md:w-9/12 rounded-md p-2">
+<div className="shadow-2xl bg-foreground-50 w-full md:w-9/12 rounded-md p-2">
     <p className="flex gap-2 items-center font-bold text-lg text-primaryText mb-4">
         <FcBiomass size="25px" />
         Chapters
@@ -286,7 +286,7 @@ function LandingPage() {
 
 
                 {/* Rising Stars */}
-                <div className="bg-foreground-50 w-full md:w-3/12 rounded-md p-2 flex justify-center">
+                <div className="shadow-2xl bg-foreground-50 w-full md:w-3/12 rounded-md p-2 flex justify-center">
                     <div className="flex flex-col gap-2">
                         <p className="flex gap-2 items-center font-bold text-lg text-gray-500 mb-1 justify-center mt-5">
                             <FaUserEdit size="25px" />

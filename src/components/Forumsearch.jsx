@@ -5,7 +5,7 @@ import {Button} from "@nextui-org/react";
 export default function SearchBar() {
     return (
         <div className="alt-container">
-        <div className="bg-[url('../../public/images/forumwallpaper.png')] bg-cover to-blue-500 relative">
+        <div className="shadow-lg bg-[url('../../public/images/forumwallpaper.png')] dark:bg-[url('../../public/images/forumwallpaper2.png')] bg-cover to-blue-500 relative">
             
             <div className="max-w-2xl px-4 m-auto relative z-10 py-5">
                 <h1 className="text-2xl font-semibold mb-4 text-center text-primaryText">
@@ -19,7 +19,7 @@ export default function SearchBar() {
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="absolute top-0 bottom-0 w-6 h-6 my-auto text-secondaryText left-3"
+                                className="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -34,7 +34,7 @@ export default function SearchBar() {
                             <input
                                 type="text"
                                 placeholder="Search"
-                                className="w-full py-2 px-10 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:bg-white focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
+                                className="w-full py-2 px-10 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:ring-2 transition duration-300 ease-in-out"
                             />
                         </TERipple>
                     </div>
