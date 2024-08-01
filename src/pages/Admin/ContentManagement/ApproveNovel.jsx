@@ -30,7 +30,7 @@ function ApproveNovel() {
               width={180}
               height={180}
               alt="NextUI Fruit Image with Zoom"
-              src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
+              src="/images/books/7.png"
             />
 
           </div>

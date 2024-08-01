@@ -117,7 +117,8 @@ function ContentList() {
                                                 width={60}
                                                 height={60}
                                                 alt="NextUI Fruit Image with Zoom"
-                                                src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
+                                                src={`/images/books/${(item.key % 9) + 1}.png
+                                                `}
                                                 radius='none'
                                             />
                                         </TableCell>

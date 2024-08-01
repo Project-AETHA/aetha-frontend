@@ -35,7 +35,7 @@ const recentContent = [
     {
         key: '1',
         coverImage: 'https://via.placeholder.com/150',
-        title: 'The Great Adventure',
+        title: 'The Alone',
         contentType: 'Novel',
         author: 'Jane Doe',
         createdDate: '2024-07-20T10:30:00Z',
@@ -44,7 +44,7 @@ const recentContent = [
     {
         key: '2',
         coverImage: 'https://via.placeholder.com/150',
-        title: 'Mystery of the Forest',
+        title: 'Walk into the shadows',
         contentType: 'Novel',
         author: 'John Smith',
         createdDate: '2024-07-21T14:45:00Z',
@@ -53,7 +53,7 @@ const recentContent = [
     {
         key: '3',
         coverImage: 'https://via.placeholder.com/150',
-        title: 'Whispers of the Wind',
+        title: 'The Catcher in the Rye',
         contentType: 'Novel',
         author: 'Emily Johnson',
         createdDate: '2024-07-22T09:15:00Z',
@@ -62,7 +62,7 @@ const recentContent = [
     {
         key: '4',
         coverImage: 'https://via.placeholder.com/150',
-        title: 'Legends of the Past',
+        title: 'The Great Gatsby',
         contentType: 'Novel',
         author: 'Michael Brown',
         createdDate: '2024-07-23T12:00:00Z',
@@ -143,7 +143,7 @@ function ContentManagemenet() {
                                                         width={80}
                                                         height={80}
                                                         alt="NextUI Fruit Image with Zoom"
-                                                        src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
+                                                        src={`/images/books/${item.key}.png`}
                                                         radius='none'
                                                     />
                                                 </TableCell>
