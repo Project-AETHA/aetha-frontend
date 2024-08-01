@@ -27,6 +27,13 @@ function Pro_favorites() {
         { name: "Posts", link: "/profile/posts", icon: FaThList },
         { name: "Achievements", link: "/profile/achievements", icon: FaTrophy },
     ];
+    const books = [
+  { title: "The Great Gatsby", author: "F. Scott Fitzgerald", image: "path/to/great-gatsby.jpg" },
+  { title: "To Kill a Mockingbird", author: "Harper Lee", image: "path/to/to-kill-a-mockingbird.jpg" },
+  { title: "1984", author: "George Orwell", image: "path/to/1984.jpg" },
+  { title: "Pride and Prejudice", author: "Jane Austen", image: "path/to/pride-and-prejudice.jpg" },
+  // Add more book objects here
+];
 
   return (
     <>
