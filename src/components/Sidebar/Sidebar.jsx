@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import {Accordion, AccordionItem} from "@nextui-org/react";
 import "./sidebar_styles.css";
 
+function isLinkActive(link) {
+    return window.location.pathname === link;
+}
+
 export default function AuthorSidebar ({menus}) {
 
     const [open, setOpen] = useState(true);
@@ -28,7 +32,7 @@ export default function AuthorSidebar ({menus}) {
                             <Link
                                 to={menu?.link}
                                 key={index}
-                                className={` ${menu?.margin && "mt-5"} group`}
+                                className={` ${menu?.margin && "mt-5"} group ${isLinkActive(menu.link) ? "bg-gradient-to-r from-violet-500 to-fuchsia-500 !text-white" : ""}`}
                             >
                                 <div>{React.createElement(menu?.icon, {size: "20"})}</div>
                                 <h2
@@ -55,7 +59,7 @@ export default function AuthorSidebar ({menus}) {
                                         <Link
                                             to={subMenu.link}
                                             key={subIndex}
-                                            className={` ${subMenu.margin && "mt-5"} group`}
+                                            className={` ${subMenu.margin && "mt-5"} group ${isLinkActive(subMenu.link) ? "bg-gradient-to-r from-violet-500 to-fuchsia-500 !text-white" : ""}`}
                                         >
                                             <div>{React.createElement(subMenu.icon, {size: "20"})}</div>
                                             <h2

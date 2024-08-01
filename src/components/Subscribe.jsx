@@ -18,9 +18,9 @@ function Subscribe() {
 
     return (
         <div className="alt-container px-4 pb-2">
-            <div className="flex flex-col md:flex-row gap-4 !p-0">
+            <div className="flex flex-col md:flex-row gap-4 !p-0 ">
 
-                <div className="bg-foreground-50 w-full rounded-md my-5">
+                <div className="shadow-xl bg-foreground-50 w-full rounded-lg my-5">
 
                     <h1 className="md:text-2xl font-semibold text-center my-8 text-primaryText mx-2"> Please ! Subscribe the chapter tiers to read </h1>
 

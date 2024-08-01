@@ -261,9 +261,9 @@ export default function ComplaintDetails() {
                                 selectionMode="single"
                                 selectedKeys={[category]}
                             >
-                                <SelectItem key="complaint">Complaint</SelectItem>
-                                <SelectItem key="needAssistance">Need Assistance</SelectItem>
-                                <SelectItem key="bug">Bug</SelectItem>
+                                <SelectItem key="CMPLAINT">Complaint</SelectItem>
+                                <SelectItem key="ASSISTANCE">Need Assistance</SelectItem>
+                                <SelectItem key="BUG">Bug</SelectItem>
                             </Select>
 
                             <div className="flex gap-2 justify-evenly w-full items-center">

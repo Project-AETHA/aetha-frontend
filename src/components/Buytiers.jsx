@@ -15,10 +15,34 @@ function Subscribe() {
         },
     ];
 
+    const Tiers = [
+        {
+          name: 'Bronze',
+          benefits: ['Unlock 10 chapters', 'Bronze avatar frame', 'No advertising'],
+          monthlyCost: 5,
+          yearlyCost: 50,
+          color: 'warning'
+        },
+        {
+          name: 'Silver',
+          benefits: ['Unlock 25 chapters', 'Silver avatar frame', 'VIP community access', 'No advertising'],
+          monthlyCost: 7,
+          yearlyCost: 70,
+          color: 'secondary'
+        },
+        {
+          name: 'Gold',
+          benefits: ['Unlock 50 chapters', 'Gold avatar frame', 'VIP community access', 'No advertising'],
+          monthlyCost: 9,
+          yearlyCost: 110,
+          color: 'warning'
+        },
+      ];
+
     return (
         <>
 {/* disaply recommendations as text */}
-<div className="bg-foreground-50">
+<div className="shadow-xl pb-1 rounded-lg bg-foreground-50">
    <div className="w-full rounded-md pt-5">
         {recommendations && recommendations.map((recommendation, index) => (
             <div className=" md:w-1/2 m-auto text-primaryText text-center" key={index}>
@@ -47,137 +71,43 @@ function Subscribe() {
                 ))}
    </div>
         
-        <div className="md:flex justify-center md:gap-5 md:mx-0 mx-10 pb-5">
-            <div className="m-auto w-[300px] mt-5 transform transition-transform duration-300 ease-in-out hover:scale-105">
-                <Card className="border border-secondaryText shadow-md">
-                    <CardHeader>
-                        <p className="text-md font-semibold m-auto"> Tier 01 : Chapters 05-10 </p>
-                    </CardHeader>
-                    <Divider />
-                    <CardBody className="h-40 overflow-y-auto gap-1">
-                        {/* random chapter names */}
-                        <p className="text-sm text-secondaryText">Chapter 05 : The Fire Blast</p>
-                        <p className="text-sm text-secondaryText">Chapter 06 : Return of the Earth</p>
-                        <p className="text-sm text-secondaryText">Chapter 07 : Death of King </p>
-                        <p className="text-sm text-secondaryText">Chapter 08 : Next King </p>
-                        <p className="text-sm text-secondaryText">Chapter 09 : The Fire Blast</p>
-                        <p className="text-sm text-secondaryText">Chapter 10 : Return of the Earth</p>
-
-                    </CardBody>
-                    <Divider />
-                    <CardBody>
-                        {/* Price */}
-                        <h1 className="text-4xl text-center"> LKR 200/= </h1>
-
-                    </CardBody>
-
-                    <Divider />
-                    <CardFooter>
-                        <Link
-                            isExternal
-                            showAnchorIcon
-                            href="https://github.com/nextui-org/nextui"
-                            className="m-auto"
-                        >
-
-                            <Button variant="bordered" className="font-semibold border-accentText text-accentText hover:bg-accentText hover:text-whiteText">
-                            BUY NOW
-                            </Button>
-                        </Link>
-                    </CardFooter>
-                </Card>
-            </div>
-
-            <div className="m-auto w-[300px] mt-5 transform transition-transform duration-300 ease-in-out hover:scale-105">
-                <Card className="border border-secondaryText shadow-md">
-                    <CardHeader>
-                        <p className="text-md font-semibold m-auto"> Tier 02 : Chapters 05-15 </p>
-                    </CardHeader>
-                    <Divider />
-                    <CardBody className="h-40 overflow-y-auto gap-1">
-                        {/* random chapter names */}
-                        <p className="text-sm text-secondaryText">Chapter 05 : The Fire Blast</p>
-                        <p className="text-sm text-secondaryText">Chapter 06 : Return of the Earth</p>
-                        <p className="text-sm text-secondaryText">Chapter 07 : Death of King </p>
-                        <p className="text-sm text-secondaryText">Chapter 08 : Next King </p>
-                        <p className="text-sm text-secondaryText">Chapter 09 : The Fire Blast</p>
-                        <p className="text-sm text-secondaryText">Chapter 10 : Return of the Earth</p>
-                        <p className="text-sm text-secondaryText">Chapter 11 : Return of the Earth II </p>
-                        <p className="text-sm text-secondaryText">Chapter 12 : End of the Earth</p>
-                        <p className="text-sm text-secondaryText">Chapter 13 : Death </p>
-                        <p className="text-sm text-secondaryText">Chapter 14 : Kill Queen </p>
-                        <p className="text-sm text-secondaryText">Chapter 15 : Death II </p>
-
-                    </CardBody>
-                    <Divider />
-                    <CardBody>
-                        {/* Price */}
-                        <h1 className="text-4xl text-center"> LKR 250/= </h1>
-
-                    </CardBody>
-
-                    <Divider />
-                    <CardFooter>
-                        <Link
-                            isExternal
-                            showAnchorIcon
-                            href="https://github.com/nextui-org/nextui"
-                            className="m-auto"
-                        >
-
-                            <Button variant="bordered" className="font-semibold border-accentText text-accentText hover:bg-accentText hover:text-whiteText">
-                            BUY NOW
-                            </Button>
-                        </Link>
-                    </CardFooter>
-                </Card>
-            </div>
-
-            <div className="m-auto w-[300px] mt-5 transform transition-transform duration-300 ease-in-out hover:scale-105">
-                <Card className="border border-secondaryText shadow-md">
-                    <CardHeader>
-                        <p className="text-md font-semibold m-auto"> Tier 03 : Chapters 05-20</p>
-                    </CardHeader>
-                    <Divider />
-                    <CardBody className="h-40 overflow-y-auto gap-1">
-                        {/* random chapter names */}
-                        <p className="text-sm text-secondaryText">Chapter 05 : The Fire Blast</p>
-                        <p className="text-sm text-secondaryText">Chapter 06 : Return of the Earth</p>
-                        <p className="text-sm text-secondaryText">Chapter 07 : Death of King</p>
-                        <p className="text-sm text-secondaryText">Chapter 08 : Next King</p>
-                        <p className="text-sm text-secondaryText">Chapter 09 : The Fire Blast</p>
-                        <p className="text-sm text-secondaryText">Chapter 10 : Return of the Earth</p>
-                        <p className="text-sm text-secondaryText">Chapter 11 : Return of the Earth II</p>
-                        <p className="text-sm text-secondaryText">Chapter 12 : End of the Earth</p>
-                        <p className="text-sm text-secondaryText">Chapter 13 : Death</p>
-                        <p className="text-sm text-secondaryText">Chapter 14 : Kill Queen</p>
-                        <p className="text-sm text-secondaryText">Chapter 15 : Death II</p>
-                        <p className="text-sm text-secondaryText">Chapter 16 : Return of the Earth III</p>
-                        <p className="text-sm text-secondaryText">Chapter 17 : The phill</p>
-                        <p className="text-sm text-secondaryText">Chapter 18 : Friend</p>
-                        <p className="text-sm text-secondaryText">Chapter 19 : Phill's friend</p>
-                        <p className="text-sm text-secondaryText">Chapter 20 : The end of phill</p>
-                    </CardBody>
-                    <Divider />
-                    <CardBody>
-                        {/* Price */}
-                        <h1 className="text-4xl text-center">LKR 300/=</h1>
-                    </CardBody>
-                    <Divider />
-                    <CardFooter>
-                        <Link
-                            isExternal
-                            showAnchorIcon
-                            href="https://github.com/nextui-org/nextui"
-                            className="m-auto"
-                        >
-                            <Button variant="bordered" className="font-semibold border-accentText text-accentText hover:bg-accentText hover:text-whiteText">
-                                BUY NOW
-                            </Button>
-                        </Link>
-                    </CardFooter>
-                </Card>
-            </div>
+        <div className="md:flex justify-center md:gap-5 md:mx-0 m-5 pb-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Tiers.map((tier, index) => (
+              <Card 
+              key={index} 
+              className="p-6 bg-whiteText shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105"
+            >
+              <h3 className="text-2xl font-bold mb-4">{tier.name}</h3>
+              
+              <ul className="list-disc list-inside mb-6 h-28 overflow-y-auto">
+                {tier.benefits.map((benefit, i) => (
+                  <li key={i} className="text-gray-600">{benefit}</li>
+                ))}
+              </ul>
+              
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <p className="text-3xl font-bold">${tier.monthlyCost}</p>
+                  <p className="text-sm text-gray-500">per month</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold">${tier.yearlyCost}</p>
+                  <p className="text-sm text-gray-500">per year</p>
+                </div>
+              </div>
+              <Button 
+                auto 
+                color={tier.color} 
+                onPress={() => handleEditTier(tier)} 
+                className="w-full"
+              >
+                BUY NOW
+              </Button>
+            </Card>
+            
+            ))}
+          </div>
 
 
 

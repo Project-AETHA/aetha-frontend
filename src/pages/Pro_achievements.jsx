@@ -65,7 +65,7 @@ function Pro_achievements() {
       </div>
       <div className="flex">
         <Sidebar menus={menus} />
-        <div className="mx-16 mt-6 w-full bg-foreground-50 rounded-2xl pt-6">
+        <div className="mx-16 mt-6 w-full bg-white rounded-2xl pt-6">
           <div className="flex-wrap mx-16 justify-items-start">
             <div className='p-1 h-40 border-1 border-t-white border-x-white flex items-center'>
               <div className='w-1/6'>

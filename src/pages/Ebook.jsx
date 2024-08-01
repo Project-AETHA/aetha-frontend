@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
-  Button, Input, Card, Tabs, Tab, Table, getKeyValue,
-  TableHeader, TableColumn, TableBody, TableRow, TableCell,
+  Button, Input, Card, Tabs, Tab, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell,
   Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Tooltip, Chip
 } from '@nextui-org/react';
-import { Eye, Trash2, Pencil, Plus } from 'lucide-react';
-import Analytics from '../components/Analytics';
+import { Eye, Trash2, Pencil, Plus, BookOpen, DollarSign, Users } from 'lucide-react';
+import { Line, Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip as ChartTooltip, Legend } from 'chart.js';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, ChartTooltip, Legend);
 
 const statusColorMap = {
   Available: "success",
@@ -23,15 +25,15 @@ const Ebook = () => {
   );
 
   const ebooks = [
-    { key: "1", title: 'E Book Title', status: 'Available', sales: '250', },
-    { key: "2", title: 'E Book Title', status: 'Unavailable', sales: '1250',},
-    { key: "3", title: 'E Book Title', status: 'Available', sales: '30',},
+    { key: "1", title: 'E Book Title 1', status: 'Available', sales: '250', },
+    { key: "2", title: 'E Book Title 2', status: 'Unavailable', sales: '1250',},
+    { key: "3", title: 'E Book Title 3', status: 'Available', sales: '30',},
   ];
 
   const ebooks2 = [
-    { key: "1", title: 'E Book Title',comment: 'Reason for declining',},
-    { key: "2", title: 'E Book Title',comment: 'Reason for declining', },
-    { key: "3", title: 'E Book Title',comment: 'Reason for declining', },
+    { key: "1", title: 'E Book Title 1',comment: 'Needs revision',},
+    { key: "2", title: 'E Book Title 2',comment: 'Copyright issues', },
+    { key: "3", title: 'E Book Title 3',comment: 'Inappropriate content', },
   ];
 
   const columns = [
@@ -43,7 +45,6 @@ const Ebook = () => {
 
   const columns2 = [
     { key: "title", label: "Title" },
-    // { key: "status", label: "Status" },
     { key: "comment", label: "Comments" },
     { key: "action", label: "Action" },
   ];
@@ -83,132 +84,190 @@ const Ebook = () => {
     }
   };
 
+  const salesData = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [
+      {
+        label: 'Sales',
+        data: [12, 19, 3, 5, 2, 3],
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }
+    ]
+  };
+
+  const readerData = {
+    labels: ['E Book 1', 'E Book 2', 'E Book 3', 'E Book 4', 'E Book 5'],
+    datasets: [
+      {
+        label: 'Readers',
+        data: [65, 59, 80, 81, 56],
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+      }
+    ]
+  };
+
   return (
-    <div className="min-h-screen bg-gray-200 p-2">
-      <Card className="p-10">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+      <Card className="p-6 bg-white dark:bg-gray-800">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold">E Books</h1>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">E Books</h1>
           <Button color="primary" startContent={<Plus />} className="ml-auto">
             Add an Ebook
           </Button>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <Card className="p-4 bg-blue-100 dark:bg-blue-900">
+            <div className="flex items-center">
+              <BookOpen className="w-8 h-8 text-blue-500 dark:text-blue-300 mr-2" />
+              <div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Total Ebooks</p>
+                <p className="text-xl font-bold text-gray-800 dark:text-white">120</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-4 bg-green-100 dark:bg-green-900">
+            <div className="flex items-center">
+              <DollarSign className="w-8 h-8 text-green-500 dark:text-green-300 mr-2" />
+              <div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Total Sales</p>
+                <p className="text-xl font-bold text-gray-800 dark:text-white">$15,240</p>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-4 bg-purple-100 dark:bg-purple-900">
+            <div className="flex items-center">
+              <Users className="w-8 h-8 text-purple-500 dark:text-purple-300 mr-2" />
+              <div>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Total Readers</p>
+                <p className="text-xl font-bold text-gray-800 dark:text-white">5,420</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <Card className="p-4 bg-white dark:bg-gray-800">
+            <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Monthly Sales</h2>
+            <Line data={salesData} />
+          </Card>
+          <Card className="p-4 bg-white dark:bg-gray-800">
+            <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Readers per Ebook</h2>
+            <Bar data={readerData} />
+          </Card>
+        </div>
+
         <Tabs aria-label="Ebook Tabs" value={selectedTab} onValueChange={setSelectedTab}>
           <Tab key="Listed" title="Listed">
-            <div>
-              <Card className="px-8 py-5 max-3xl shadow-none">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold">E Books on sale</h2>
-                  <div className="flex justify-between items-center">
-                    <Input
-                      clearable
-                      placeholder="Search"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-64 mr-2"
-                    />
-                    <Dropdown>
-                      <DropdownTrigger>
-                        <Button variant="bordered" className="capitalize">
-                          {selectedCategoryValue}
-                        </Button>
-                      </DropdownTrigger>
-                      <DropdownMenu
-                        aria-label="Category selection"
-                        variant="flat"
-                        disallowEmptySelection
-                        selectionMode="single"
-                        selectedKeys={selectedCategory}
-                        onSelectionChange={setSelectedCategory}
-                      >
-                        <DropdownItem key="all">All</DropdownItem>
-                        <DropdownItem key="Novel">Novel</DropdownItem>
-                        <DropdownItem key="Short Story">Short Story</DropdownItem>
-                        <DropdownItem key="Poem & Nisadas">Poem & Nisadas</DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown>
-                  </div>
+            <Card className="px-6 py-4 bg-white dark:bg-gray-800 shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold text-gray-800 dark:text-white">E Books on sale</h2>
+                <div className="flex items-center">
+                  <Input
+                    clearable
+                    placeholder="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-64 mr-2"
+                  />
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant="bordered" className="capitalize">
+                        {selectedCategoryValue}
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu
+                      aria-label="Category selection"
+                      variant="flat"
+                      disallowEmptySelection
+                      selectionMode="single"
+                      selectedKeys={selectedCategory}
+                      onSelectionChange={setSelectedCategory}
+                    >
+                      <DropdownItem key="all">All</DropdownItem>
+                      <DropdownItem key="Novel">Novel</DropdownItem>
+                      <DropdownItem key="Short Story">Short Story</DropdownItem>
+                      <DropdownItem key="Poem & Nisadas">Poem & Nisadas</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </div>
+              </div>
 
-                <Table aria-label="Ebook Table">
-                  <TableHeader columns={columns}>
-                    {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
-                  </TableHeader>
-                  <TableBody items={ebooks}>
-                    {(item) => (
-                      <TableRow key={item.key}>
-                        {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </Card>
-            </div>
+              <Table aria-label="Ebook Table">
+                <TableHeader columns={columns}>
+                  {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
+                </TableHeader>
+                <TableBody items={ebooks}>
+                  {(item) => (
+                    <TableRow key={item.key}>
+                      {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </Card>
           </Tab>
           <Tab key="Pending" title="Pending">
-            <div>
-              <Card className="px-8 py-5 shadow-none">
-              <Table aria-label="Example empty table">
+            <Card className="px-6 py-4 bg-white dark:bg-gray-800 shadow-sm">
+              <Table aria-label="Pending Ebooks Table">
                 <TableHeader>
                   <TableColumn>Title</TableColumn>
                   <TableColumn>Date</TableColumn>
                   <TableColumn>Actions</TableColumn>
                 </TableHeader>
-                <TableBody emptyContent={"No rows to display."}>{[]}</TableBody>
+                <TableBody emptyContent={"No pending ebooks."}>{[]}</TableBody>
               </Table>
-              </Card>
-            </div>
+            </Card>
           </Tab>
           <Tab key="Declined" title="Declined">
-          <div>
-              <Card className="px-8 py-5 max-3xl shadow-none">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold">E Books on sale</h2>
-                  <div className="flex justify-between items-center">
-                    <Input
-                      clearable
-                      placeholder="Search"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-64 mr-2"
-                    />
-                    <Dropdown>
-                      <DropdownTrigger>
-                        <Button variant="bordered" className="capitalize">
-                          {selectedCategoryValue}
-                        </Button>
-                      </DropdownTrigger>
-                      <DropdownMenu
-                        aria-label="Category selection"
-                        variant="flat"
-                        disallowEmptySelection
-                        selectionMode="single"
-                        selectedKeys={selectedCategory}
-                        onSelectionChange={setSelectedCategory}
-                      >
-                        <DropdownItem key="all">All</DropdownItem>
-                        <DropdownItem key="Novel">Novel</DropdownItem>
-                        <DropdownItem key="Short Story">Short Story</DropdownItem>
-                        <DropdownItem key="Poem & Nisadas">Poem & Nisadas</DropdownItem>
-                      </DropdownMenu>
-                    </Dropdown>
-                  </div>
+            <Card className="px-6 py-4 bg-white dark:bg-gray-800 shadow-sm">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Declined E Books</h2>
+                <div className="flex items-center">
+                  <Input
+                    clearable
+                    placeholder="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-64 mr-2"
+                  />
+                  <Dropdown>
+                    <DropdownTrigger>
+                      <Button variant="bordered" className="capitalize">
+                        {selectedCategoryValue}
+                      </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu
+                      aria-label="Category selection"
+                      variant="flat"
+                      disallowEmptySelection
+                      selectionMode="single"
+                      selectedKeys={selectedCategory}
+                      onSelectionChange={setSelectedCategory}
+                    >
+                      <DropdownItem key="all">All</DropdownItem>
+                      <DropdownItem key="Novel">Novel</DropdownItem>
+                      <DropdownItem key="Short Story">Short Story</DropdownItem>
+                      <DropdownItem key="Poem & Nisadas">Poem & Nisadas</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </div>
+              </div>
 
-                <Table aria-label="Ebook Table">
-                  <TableHeader columns={columns2}>
-                    {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
-                  </TableHeader>
-                  <TableBody items={ebooks2}>
-                    {(item) => (
-                      <TableRow key={item.key}>
-                        {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </Card>
-            </div>
+              <Table aria-label="Declined Ebook Table">
+                <TableHeader columns={columns2}>
+                  {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
+                </TableHeader>
+                <TableBody items={ebooks2}>
+                  {(item) => (
+                    <TableRow key={item.key}>
+                      {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </Card>
           </Tab>
         </Tabs>
       </Card>

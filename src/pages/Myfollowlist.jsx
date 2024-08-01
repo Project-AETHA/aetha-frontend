@@ -8,19 +8,27 @@ import { MdNotificationsActive, MdNotificationsOff } from 'react-icons/md';
 import { BsFillEnvelopeFill, BsFillEnvelopeXFill } from 'react-icons/bs';
 import { GoCircleSlash } from 'react-icons/go';
 import novelpic from '../../public/images/novel.jpg';
+import book1 from '../../public/images/books/book1.jpg';
+import book2 from '../../public/images/books/book2.jpg';
+import book3 from '../../public/images/books/book3.jpg';
+import book4 from '../../public/images/books/book4.jpg';
+
+const books = [
+  { title: "Soul", author: "Olivia Wilson", image: novelpic, chapter: "Awakening", updateTime: "3 hours ago" },
+  { title: "Heart of Darkness", author: "Joseph Conrad", image: book2, chapter: "Into the Jungle", updateTime: "30 days ago" },
+  { title: "The Light Between Oceans", author: "M.L. Stedman", image: book3, chapter: "Lighthouse Keeper", updateTime: "2 days ago" },
+  { title: "Brave New World", author: "Aldous Huxley", image: book4, chapter: "The Savage", updateTime: "5 days ago" },
+  // Add more book objects as needed
+];
 
 function Myfollowlist() {
   const [showDropdown, setShowDropdown] = useState(null);
-  const [pushNotifications, setPushNotifications] = useState([true, true, true, true]);
-  const [emailSubscriptions, setEmailSubscriptions] = useState([true, true, true, true]);
+  const [pushNotifications, setPushNotifications] = useState(Array(books.length).fill(true));
+  const [emailSubscriptions, setEmailSubscriptions] = useState(Array(books.length).fill(true));
   const [showModal, setShowModal] = useState(false);
 
   const handleDropdownToggle = (index) => {
-    if (showDropdown === index) {
-      setShowDropdown(null);
-    } else {
-      setShowDropdown(index);
-    }
+    setShowDropdown(showDropdown === index ? null : index);
   };
 
   const togglePushNotification = (index) => {
@@ -49,7 +57,6 @@ function Myfollowlist() {
 
   return (
     <div>
-      <div className="">
       <div className='details bg-background text-foreground'>
         <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex items-center">
@@ -68,26 +75,26 @@ function Myfollowlist() {
         <div className="bg-white border-2 border-black m-4 h-20 p-4 text-black">
           Advertisement
         </div>
+
         <div className='m-4'>
-          {[1, 2, 3, 4].map((item, index) => (
+          {books.map((book, index) => (
             <div key={index} className='h-auto border-1 border-x-white flex p-3 items-center'>
               <div className="space-y-3">
                 <img
-                  src={novelpic}
-                  alt="novel"
+                  src={book.image}
+                  alt={book.title}
                   className="h-[220px] w-[150px] object-cover rounded-md"
                 />
               </div>
               <div className='p-6 font-semibold text-primary text-xl w-1/2'>
-                Soul
+                {book.title}
                 <div className='mt-3 font-thin text-black text-small'>
-                  Last Update :
-                  <div className='mt-3 font-semibold text-purple-600 text-medium'>Chapter name</div>
+                  Last Update : {book.updateTime}
                 </div>
+                <div className='mt-3 font-semibold text-purple-600 text-medium'>{book.chapter}</div>
               </div>
               <div className='text-primary-400 text-small ml-auto flex flex-col items-end'>
-                <div>by Olivia Wilson</div>
-                <div className='text-black text-small mt-4'>3 hours ago</div>
+                <div>by {book.author}</div>
                 <button className='bg-primary-400 px-3 mt-4 py-1 text-white rounded-lg flex items-center'>
                   <FaBookOpenReader className='mr-2' />Open Next Chapter
                 </button>
@@ -130,8 +137,7 @@ function Myfollowlist() {
         </div>
       )}
     </div>
-    </div>
-  )
+  );
 }
 
 export default Myfollowlist;

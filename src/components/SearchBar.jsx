@@ -8,7 +8,7 @@ export default function SearchBar() {
     return (
         <div className="alt-container">
           <div className="bg-gray-300 to-blue-500 relative">
-            <div className="m-auto relative z-10">
+            <div className="m-auto relative">
               <h1 className="text-2xl font-semibold mb-4 text-center text-primaryText">
                 Discover Your Next Read
               </h1>

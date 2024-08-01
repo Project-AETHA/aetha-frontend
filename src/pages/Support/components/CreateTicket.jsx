@@ -52,9 +52,9 @@ function CreateTicket({
           <SelectItem key="default" isDisabled>
             Select Category
           </SelectItem>
-          <SelectItem key="complaint">Complaint</SelectItem>
-          <SelectItem key="needAssistance">Need Assistance</SelectItem>
-          <SelectItem key="bug">Bug</SelectItem>
+          <SelectItem key="COMPLAINT">Complaint</SelectItem>
+          <SelectItem key="ASSISTANCE">Assistance</SelectItem>
+          <SelectItem key="BUG">Bug</SelectItem>
         </Select>
       </div>
 

@@ -31,7 +31,7 @@ function Rate() {
         <>
             <div className="alt-container pb-2">
                 <div className="flex flex-col md:flex-row gap-4 !p-0">
-                    <div className="bg-foreground-50 w-full rounded-md p-2">
+                    <div className="bg-foreground-50 w-full rounded-md p-2 shadow-2xl">
                         <hr className="my-4 mx-4" />
 
                         <h1 className="text-center m-2 text-primaryText"> Login to Rate this Book </h1>
@@ -76,11 +76,11 @@ function Rate() {
                                     <p className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className="flex items-center">
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" /> {/* This is for an empty star */}
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/> {/* This is for an empty star */}
                                         </div>
                                         <div className="text-justify"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, quis illum! Harum accusamus officia eos minima dolor quia voluptas nisi. Dicta impedit, magni quia quae esse harum! Expedita voluptas libero iste rerum veritatis quaerat quas unde ea autem soluta tenetur quis nesciunt quo consectetur, itaque placeat molestias explicabo maiores delectus!</div>
                                     </p>
@@ -93,11 +93,11 @@ function Rate() {
                                     <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3">Reader</div>
                                         <div className="flex items-center">
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-gray-300" /> {/* This is for an empty star */}
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-gray-300" size={20}/> {/* This is for an empty star */}
                                         </div>
                                         <div className="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, deserunt? Labore quasi quos minima animi nobis itaque accusamus placeat blanditiis!</div>
                                     </div>
@@ -109,11 +109,11 @@ function Rate() {
                                     <p className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className="flex items-center">
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-yellow-500" />
-                                            <FaStar className="text-gray-300" />
-                                            <FaStar className="text-gray-300" /> {/* This is for an empty star */}
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-yellow-500" size={20}/>
+                                            <FaStar className="text-gray-300" size={20}/>
+                                            <FaStar className="text-gray-300" size={20}/> {/* This is for an empty star */}
                                         </div>
                                         <div className="text-justify"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos reiciendis tenetur sed neque ex esse suscipit architecto qui sequi nisi minima atque tempora, laborum quas iure unde rem ipsam dolore. Cum explicabo voluptate officia excepturi laboriosam, numquam nemo id, iste vero enim necessitatibus itaque earum nam veniam! Asperiores, officiis, quos mollitia suscipit nihil omnis vitae ducimus nemo beatae quo culpa? </div>
                                     </p>
