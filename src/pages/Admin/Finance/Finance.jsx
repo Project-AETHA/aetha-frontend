@@ -155,7 +155,7 @@ function Payments() {
                         <span className="text-2xl text-gray-500 font-light">Total Income</span>
                         
                         <div className="flex items-center">
-                            <strong className="text-2xl text-blue-800 font-semibold">LKR 4,232</strong>
+                            <strong className="text-2xl text-blue-800 font-semibold">LKR 114,232</strong>
                         </div>
                     </div>
                 </BoxWrapper>
@@ -164,7 +164,7 @@ function Payments() {
                         <span className="text-2xl text-gray-500 font-light">Total Expenses</span>
                         
                         <div className="flex items-center">
-                            <strong className="text-2xl text-blue-800 font-semibold">LKR 4,232</strong>
+                            <strong className="text-2xl text-blue-800 font-semibold">LKR 110,232</strong>
                         </div>
                     </div>
                 </BoxWrapper>
@@ -173,7 +173,7 @@ function Payments() {
                         <span className="text-2xl text-gray-500 font-light">Profit</span>
                         
                         <div className="flex items-center">
-                            <strong className="text-2xl text-blue-800 font-semibold">LKR 4,232 </strong>
+                            <strong className="text-2xl text-blue-800 font-semibold">LKR 14,000 </strong>
                         </div>
                     </div>
                 </BoxWrapper>
