@@ -21,7 +21,7 @@ function Myfavorites() {
     }));
   };
 
-  const reviews = [
+  const favorites = [
     {
       key: "1",
       picture: book4,
@@ -86,20 +86,20 @@ function Myfavorites() {
           Advertisement
         </div>
         <div className='m-4'>
-          {reviews.map((review, index) => (
-            <div key={review.key} className='h-auto border-1 border-x-white flex p-3 items-start mb-4'>
+          {favorites.map((favorite, index) => (
+            <div key={favorite.key} className='h-auto border-1 border-x-white flex p-3 items-start mb-4'>
               <div className="space-y-3">
                 <img
-                  src={review.picture}
+                  src={favorite.picture}
                   alt="novel"
                   className="h-[180px] w-[120px] object-cover rounded-md"
                 />
               </div>
               <div className='p-6 w-3/4 font-semibold text-primary text-xl'>
-                {review.title}
-                <div className='mt-3 font-semibold pb-3 text-foreground text-small'>{review.pages}</div>
+                {favorite.title}
+                <div className='mt-3 font-semibold pb-3 text-foreground text-small'>{favorite.pages}</div>
                 <div className='text-foreground text-small font-normal'>
-                  {showMore[index] ? review.description : `${review.description.substring(0, 100)}...`}
+                  {showMore[index] ? favorite.description : `${favorite.description.substring(0, 100)}...`}
                 </div>
                 <button 
                   onClick={() => toggleShowMore(index)} 
@@ -109,7 +109,7 @@ function Myfavorites() {
                 </button>
               </div>
               <div className='flex flex-col justify-between items-start p-3'>
-                <div className='text-primary-400 text-small'>{review.author}</div>
+                <div className='text-primary-400 text-small'>{favorite.author}</div>
                 <Button className="bg-danger-500 m-1 text-white">
                   Unfavorite
                 </Button>

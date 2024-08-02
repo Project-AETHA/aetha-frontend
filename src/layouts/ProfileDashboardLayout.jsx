@@ -31,7 +31,7 @@ export default function ProfileDashboardLayout (props) {
       { name: "Settings", link: "/profile/edit/settings", icon: TbSettingsCog },
       { name: "Premium", link: "/profile/edit/premium", icon: GoStar },
       { name: "Achievements", link: "/profile/edit/achievements", icon: FaTrophy },
-      { name: "Border Wardrobe", link: "/profile/edit/borderwardrobe", icon: PiUserSquareFill },
+     // { name: "Border Wardrobe", link: "/profile/edit/borderwardrobe", icon: PiUserSquareFill },
       { name: "Refer A Friend", link: "/profile/edit/referafriend", icon: FaEnvelope },
     ]
   },
@@ -48,16 +48,16 @@ export default function ProfileDashboardLayout (props) {
   { name: "Notifications", icon: IoNotifications,
     subMenus: [
       { name: "General Settings", link: "/profile/edit/notifications", icon: MdNotificationImportant },
-      { name: "Threads", link: "/profile/edit/notificationthreads", icon: FaListUl },
+      //{ name: "Threads", link: "/profile/edit/notificationthreads", icon: FaListUl },
       { name: "Notification History", link: "/profile/edit/notificationhistory", icon: IoNotifications },
     ]
   },
-  { name: "Forum", icon: FaHome,
-    subMenus: [
-      { name: "UserCP", link: "/profile/edit/usercp", icon: FaHome },
-      { name: "Edit Signature", link: "/profile/edit/editsign", icon: LuClipboardSignature },
-    ]
-  },
+  // { name: "Forum", icon: FaHome,
+  //   subMenus: [
+  //     { name: "UserCP", link: "/profile/edit/usercp", icon: FaHome },
+  //     { name: "Edit Signature", link: "/profile/edit/editsign", icon: LuClipboardSignature },
+  //   ]
+  // },
   { name: "My", icon: FaBook,
     subMenus: [
       { name: "Fictions", link: "/author", icon: FaBook },

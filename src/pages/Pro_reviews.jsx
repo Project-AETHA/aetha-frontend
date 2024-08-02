@@ -25,6 +25,10 @@ import {
 } from "@nextui-org/react";
 import Rating from "../components/common/Rating.jsx";
 import novelpic from "../../public/images/novel.jpg";
+import book1 from "../../public/images/books/book1.jpg";
+import book2 from "../../public/images/books/book2.jpg";
+import book3 from "../../public/images/books/book3.jpg";
+
 
 function Pro_reviews() {
   const navigate = useNavigate();
@@ -51,7 +55,7 @@ function Pro_reviews() {
   const reviews = [
     {
       key: "1",
-      picture: novelpic,
+      picture: book1,
       title: "The Enchanted Forest",
       content: "Chapter 3: The Hidden Village",
       rating: 4.5,
@@ -59,7 +63,7 @@ function Pro_reviews() {
     },
     {
       key: "2",
-      picture: novelpic,
+      picture: book2,
       title: "Galactic Adventures",
       content: "Chapter 2: The Alien Encounter",
       rating: 4.1,
@@ -67,7 +71,7 @@ function Pro_reviews() {
     },
     {
       key: "3",
-      picture: novelpic,
+      picture: book3,
       title: "Secrets of the Ancient Temple",
       content: "Chapter 152: The Forbidden Scrolls",
       rating: 3.5,
