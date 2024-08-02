@@ -16,7 +16,6 @@ import {
     Pagination,
     Tooltip,
     useDisclosure,
-    
 } from "@nextui-org/react";
 import { LiaUserSlashSolid } from "react-icons/lia";
 import { SearchIcon } from "@/components/common/icons/SearchIcon.jsx";
@@ -26,8 +25,6 @@ import { useEffect, useState, useMemo, useCallback } from "react";
 import { EditIcon } from "@/components/common/icons/EditIcon.jsx";
 import { DeleteIcon } from "@/components/common/icons/DeleteIcon.jsx";
 import { useNavigate } from 'react-router-dom'
-import { EyeFilledIcon } from "@/components/common/icons/EyeFilledIcon.jsx";
-import { EyeSlashFilledIcon } from "@/components/common/icons/EyeSlashFilledIcon.jsx";
 
 import axios from 'axios'
 
@@ -229,24 +226,9 @@ export default function Complaints() {
             case "actions":
                 return (
                     <div className="relative flex justify-center items-center gap-2">
-                        <Tooltip key="view" color="secondary" content="view" >
-                            <Button isIconOnly variant="flat" color="secondary" className="capitalize" size="sm" onPress={() => navigate(`/admin/support/${complaint.id}`)}>
+                        <Tooltip key="view" color="primary" content="view" >
+                            <Button isIconOnly variant="flat" color="primary" className="capitalize" size="sm" onPress={() => navigate(`/admin/complaints/${complaint.id}`)}>
                                 <EyeIcon />
-                            </Button>
-                        </Tooltip>
-                        <Tooltip key="edit" color="success" content="edit" >
-                            <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm" onPress={onEditOpen}>
-                                <EditIcon />
-                            </Button>
-                        </Tooltip>
-                        <Tooltip key="disable" color="danger" content="disable">
-                            <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm" onPress={onDisableOpen}>
-                                <LiaUserSlashSolid size="18px" />
-                            </Button>
-                        </Tooltip>
-                        <Tooltip key="delete" color="warning" content="delete" >
-                            <Button isIconOnly variant="flat" color="warning" className="capitalize" size="sm" onPress={onDeleteOpen}>
-                                <DeleteIcon />
                             </Button>
                         </Tooltip>
                     </div>
@@ -441,7 +423,7 @@ export default function Complaints() {
                     }}
                     selectedKeys={selectedKeys}
                     selectionMode="single"
-                    color="primary"
+                    color="secondary"
                     sortDescriptor={sortDescriptor}
                     topContent={topContent}
                     topContentPlacement="outside"

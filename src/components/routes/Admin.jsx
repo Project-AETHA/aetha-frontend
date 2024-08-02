@@ -2,6 +2,7 @@ import UserManagement from "../../pages/Admin/UserManagement/UserManagement.jsx"
 import SingleUser from "../../pages/Admin/UserManagement/SingleUser.jsx";
 import ContentManagemenet from "../../pages/Admin/ContentManagement/ContentManagemenet.jsx";
 import Complaints from "../../pages/Admin/Complaints/Complaints.jsx";
+import ComplaintDetails from "../../pages/Admin/Complaints/ComplaintDetails.jsx";
 import ContentList from "../../pages/Admin/ContentManagement/ContentList.jsx";
 import ApproveNovel from "../../pages/Admin/ContentManagement/ApproveNovel.jsx"
 import Dashboard from "../../pages/Admin/Dashboard/Dashboard.jsx";
@@ -23,6 +24,7 @@ export default function RoutesAdmin () {
         { path: '/admin/contents', element: <ContentManagemenet/>, layout: "admin_dashboard" },
         { path: '/admin/contents/novels', element: <ContentList/>, layout: "admin_dashboard" },
         { path: '/admin/complaints', element: <Complaints/>, layout:"admin_dashboard"},
+        { path: '/admin/complaints/:complaintId', element: <ComplaintDetails/>, layout:"admin_dashboard"},
         { path: '/admin/contents/approve', element: <ApproveNovel/>, layout:"admin_dashboard"},
         { path: '/admin/payments', element: <Transactions/>, layout:"admin_dashboard"},
         { path: '/admin/transactions', element: <Transactions/>, layout:"admin_dashboard"},
