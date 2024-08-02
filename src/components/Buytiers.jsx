@@ -21,7 +21,7 @@ function Subscribe() {
           benefits: ['Unlock 10 chapters', 'Bronze avatar frame', 'No advertising'],
           monthlyCost: 5,
           yearlyCost: 50,
-          color: 'warning'
+          color: 'secondary'
         },
         {
           name: 'Silver',
@@ -35,7 +35,7 @@ function Subscribe() {
           benefits: ['Unlock 50 chapters', 'Gold avatar frame', 'VIP community access', 'No advertising'],
           monthlyCost: 9,
           yearlyCost: 110,
-          color: 'warning'
+          color: 'secondary'
         },
       ];
 
@@ -101,8 +101,9 @@ function Subscribe() {
                 color={tier.color} 
                 onPress={() => handleEditTier(tier)} 
                 className="w-full"
+                variant={"flat"}
               >
-                BUY NOW
+                SUBSCRIBE
               </Button>
             </Card>
             

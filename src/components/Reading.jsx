@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Image } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 import { MdOutlineSettings } from "react-icons/md";
 
 
 function Reading() {
+
+    const navigate = useNavigate();
+
     let recommendations = [
         {
             title: "THE GREAT GASBY",
@@ -82,15 +85,13 @@ function Reading() {
                         >
                             Previous Chapter
                         </Button>
-                        
-                        <Link to="/subscribe">
+
                         <Button
                             className="bg-accentText rounded-lg text-whiteText shadow-md w-[140px] h-[35px]"
-
+                            onClick={() => navigate("/subscribe")}
                         >
                             Next Chapter
                         </Button>
-                        </Link>
                     </div>
 
 

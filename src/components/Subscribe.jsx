@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Image } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@nextui-org/react";
-import { MdOutlineSettings } from "react-icons/md";
 
 
 function Subscribe() {
+
+    const navigate = useNavigate();
+
     let recommendations = [
         {
             title: "THE GREAT GASBY",
@@ -47,12 +49,11 @@ function Subscribe() {
 
 
                             <div className="ustify-center mt-5">
-                                
-                                <Link to="/buytiers">
-                                    <Button variant="bordered" className="rounded-lg border-2 border-accentText text-accentText px-9 hover:bg-accentText hover:text-white"> 
+
+                                    <Button onClick={() => navigate("/buytiers")} variant="bordered" className="rounded-lg border-2 border-accentText text-accentText px-9 hover:bg-accentText hover:text-white">
                                        View chapter tiers
                                     </Button>
-                                </Link>
+
                             </div>
                         </div>
 
