@@ -217,9 +217,9 @@ function SingleUser() {
                     <div className='flex flex-col w-2/3 p-5 items-start'>
                         <div className="flex text-center my-4 gap-3">
                             <img className=" w-32 rounded-full border-4 border-white dark:border-gray-800 mx-auto"
-                                src="https://randomuser.me/api/portraits/women/21.jpg" alt="" />
+                                src="/images/users/male_01.jpg" alt="" />
                             <div className="flex flex-col items-center justify-center ">
-                                <h3 className="font-bold text-xl text-gray-800 dark:text-white ml-4">Cait Genevieve</h3>
+                                <h3 className="font-bold text-xl text-gray-800 dark:text-white ml-4">Ravindu Ashen</h3>
                                 <div className='flex gap-2 my-2'>
                                     <Chip radius="sm" color='success'>Active</Chip>
                                     <Chip radius="sm" color='danger'>Writer</Chip>
