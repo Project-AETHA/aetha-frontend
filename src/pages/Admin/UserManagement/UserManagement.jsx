@@ -231,11 +231,6 @@ function UserManagement() {
                                 <LiaUserSlashSolid size="18px" />
                             </Button>
                         </Tooltip>
-                        <Tooltip key="delete" color="warning" content="delete" >
-                            <Button isIconOnly variant="flat" color="warning" className="capitalize" size="sm" onPress={onDeleteOpen}>
-                                <DeleteIcon />
-                            </Button>
-                        </Tooltip>
                     </div>
                 );
             default:
@@ -611,17 +606,17 @@ function UserManagement() {
                                         <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Edit User Details</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 "
-                                            src="https://randomuser.me/api/portraits/women/21.jpg"
+                                            src="/images/users/male_01.jpg"
                                             alt="User Avatar"
                                         />
                                     </div>
                                 </ModalHeader>
                                 <ModalBody>
-                                    <Input type="text" variant="faded" label="Username" placeholder="MadhuHansi" labelPlacement="outside" color="primary" />
-                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" color="primary" />
+                                    <Input type="text" variant="faded" label="Username" placeholder="RaviAshen" labelPlacement="outside" color="primary" />
+                                    <Input type="email" variant="faded" label="Email" placeholder="ravindu@gmail.com" labelPlacement="outside" color="primary" />
                                     <div className="flex gap-3">
-                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" color="primary"/>
-                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" color="primary" />
+                                        <Input type="text" variant="faded" label="First Name" placeholder="Ravindu" labelPlacement="outside" color="primary"/>
+                                        <Input type="text" variant="faded" label="Last Name" placeholder="Ashen" labelPlacement="outside" color="primary" />
                                     </div>
                                     <div className="flex gap-3">
                                         <DatePicker
@@ -681,10 +676,10 @@ function UserManagement() {
                                         <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Disable User</div>
                                         <img
                                             className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
-                                            src="https://randomuser.me/api/portraits/women/21.jpg"
+                                            src="/images/users/male_01.jpg"
                                             alt="User Avatar"
                                         />
-                                        <div className="text-base font-medium">hansi@gmail.com</div>
+                                        <div className="text-base font-medium">ravindu@gmail.com</div>
                                     </div>
                                 </ModalHeader>
                                 <ModalBody>
@@ -702,54 +697,6 @@ function UserManagement() {
                                 <ModalFooter>
                                     <Button color="primary" onPress={onClose}>
                                         Disable
-                                    </Button>
-                                    <Button color="secondary" onPress={onClose}>
-                                        Cancel
-                                    </Button>
-                                </ModalFooter>
-                            </>
-                        )}
-                    </ModalContent>
-                </Modal>
-
-                {/* Delete Modal */}
-                <Modal
-                    isOpen={isDeleteOpen}
-                    onOpenChange={onDeleteOpenChange}
-                    backdrop="blur"
-                    classNames={{
-                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
-                    }}
-                >
-                    <ModalContent>
-                        {(onClose) => (
-                            <>
-                                <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Delete User</div>
-                                        <img
-                                            className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 mb-3"
-                                            src="https://randomuser.me/api/portraits/women/21.jpg"
-                                            alt="User Avatar"
-                                        />
-                                        <div className="text-base font-medium">hansi@gmail.com</div>
-                                    </div>
-                                </ModalHeader>
-                                <ModalBody>
-                                    <Textarea
-                                        key="faded"
-                                        variant="faded"
-                                        label="Reason for delete this user?"
-                                        labelPlacement="outside"
-                                        placeholder="Enter your reason"
-                                        className="col-span-12 md:col-span-6 mb-6 md:mb-0 p-2"
-                                        color="primary"
-                                    />
-                                    <p className="p-2">Are you sure you want to delete this user?</p>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <Button color="primary" onPress={onClose}>
-                                        Delete
                                     </Button>
                                     <Button color="secondary" onPress={onClose}>
                                         Cancel
