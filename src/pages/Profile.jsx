@@ -19,7 +19,7 @@ function Profile() {
 
   const menus = [
     { name: "Overview", link: "/profile", icon: FaRegUserCircle },
-    { name: "Fictions", link: "/author", icon: FaBook },
+    { name: "Publishes", link: "/author", icon: FaBook },
     { name: "Reviews", link: "/profile/reviews", icon: FaEye },
     { name: "Favorites", link: "/profile/favorites", icon: FaStar },
     { name: "Posts", link: "/profile/posts", icon: FaThList },

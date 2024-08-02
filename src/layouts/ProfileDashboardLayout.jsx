@@ -60,7 +60,7 @@ export default function ProfileDashboardLayout (props) {
   // },
   { name: "My", icon: FaBook,
     subMenus: [
-      { name: "Fictions", link: "/author", icon: FaBook },
+      { name: "Publishes", link: "/author", icon: FaBook },
       { name: "Follow List", link: "/profile/edit/myfollowlist", icon: IoBookmark },
       { name: "Favorites", link: "/profile/edit/myfavorites", icon: MdOutlineFavorite },
       { name: "Read Later", link: "/profile/edit/myreadlater", icon: MdWatchLater },
