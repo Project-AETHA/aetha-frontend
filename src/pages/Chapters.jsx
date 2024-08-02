@@ -188,7 +188,7 @@ const Chapters = () => {
           </Button>
         </div>
 
-        <Card className="px-6 pb-6 pt-2 mb-8 bg-white shadow-lg">
+        <Card className="px-6 pb-6 pt-2 mb-8  shadow-lg">
           <div className="flex space-x-4 mb-4">
             <Input
               placeholder="Search chapters..."
@@ -237,7 +237,7 @@ const Chapters = () => {
           />
         </Card>
 
-        <Card className="p-6 mb-8 bg-white shadow-lg">
+        <Card className="p-6 mb-8  shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Reader Engagement</h2>
           <div className="h-96">
             <Line data={readerEngagementData} options={{ responsive: true, maintainAspectRatio: false }} />
@@ -248,7 +248,7 @@ const Chapters = () => {
           <h2 className="text-2xl font-bold mb-4">Subscription Tiers</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tiers.map((tier, index) => (
-              <Card key={index} className="p-6 bg-white shadow-lg transform hover:scale-105 transition-transform duration-300">
+              <Card key={index} className="p-6  shadow-lg transform hover:scale-105 transition-transform duration-300">
                 <h3 className="text-2xl font-bold mb-4">{tier.name}</h3>
                 <ul className="list-none list-inside mb-6">
                   {tier.benefits.map((benefit, i) => (
@@ -271,7 +271,7 @@ const Chapters = () => {
           </div>
         </div>
 
-        <Card className="p-6 mb-8 bg-white shadow-lg">
+        <Card className="p-6 mb-8  shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Draft Chapters</h2>
           <Table aria-label="Draft Chapters table" className="w-full">
             <TableHeader>
