@@ -47,7 +47,7 @@ const FirstChapter = () => {
               </span>
               <span className="text-gray-700 dark:text-white">
                 To submit your Novel, both the Novel information and the <strong>first
-                chapter</strong> or <strong>prologue</strong> are required. After that, your submission will
+                  chapter</strong> or <strong>prologue</strong> are required. After that, your submission will
                 be inspected by our system and one of the staff members.
               </span>
             </div>
@@ -148,11 +148,11 @@ const FirstChapter = () => {
               />
             </div>
             <div className="mb-4 mt-4">
-            <div className="w-full  flex justify-center gap-2">
-                    <Button variant="flat" color="success" className="text-sm">Submit</Button>
-                    <Button variant="flat" color="primary" className="text-sm">Save as a Draft</Button>
-                    <Button variant="flat" color="danger" className="text-sm">Discard</Button>
-                </div>
+              <div className="w-full  flex justify-center gap-2">
+                <Button variant="flat" color="success" className="text-sm">Submit</Button>
+                <Button variant="flat" color="primary" className="text-sm">Save as a Draft</Button>
+                <Button variant="flat" color="danger" className="text-sm">Discard</Button>
+              </div>
             </div>
           </Card>
         </div>

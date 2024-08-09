@@ -17,7 +17,7 @@ import UpgradeToWriter from "../../pages/UpgradeToWriter.jsx";
 import AddShortStory from "../../pages/AddShortStory.jsx";
 
 
-export default function RoutesWriter () {
+export default function RoutesWriter() {
     return [
         { path: '/author', element: <AuthorDashboard />, layout: "author_dashboard" },
         { path: '/author/poems', element: <PoemsPage />, layout: "author_dashboard" },
@@ -31,11 +31,11 @@ export default function RoutesWriter () {
         { path: '/author/advertising', element: <Advertising />, layout: "author_dashboard" },
         { path: '/author/advertising/newcampaign', element: <NewCampaign />, layout: "author_dashboard" },
         { path: '/author/short-stories', element: <SstSubmitions />, layout: "author_dashboard" },
-        { path: '/author/ebooks', element: <Ebook/>, layout: "author_dashboard" },
-        { path: '/author/ebooks/add', element: <AddEbook/>, layout: "author_dashboard" },
-        { path: '/author/revenue', element: <RevenuePage/>, layout: "author_dashboard" },
-        { path: '/author/upgrade', element: <UpgradeToWriter/>, layout: "author_dashboard" },
-        { path: '/author/short-stories/create', element: <AddShortStory/>, layout: "author_dashboard" },
+        { path: '/author/ebooks', element: <Ebook />, layout: "author_dashboard" },
+        { path: '/author/ebooks/add', element: <AddEbook />, layout: "author_dashboard" },
+        { path: '/author/revenue', element: <RevenuePage />, layout: "author_dashboard" },
+        { path: '/author/upgrade', element: <UpgradeToWriter />, layout: "author_dashboard" },
+        { path: '/author/short-stories/create', element: <AddShortStory />, layout: "author_dashboard" },
 
 
     ]
