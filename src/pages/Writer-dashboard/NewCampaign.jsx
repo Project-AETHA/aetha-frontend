@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input, Spacer, Card, Divider, DatePicker, Image, RadioGroup, Radio, Select, SelectItem, SelectSection} from '@nextui-org/react';
+import { Button, Input, Spacer, Card, Divider, DatePicker, Image, RadioGroup, Radio, Select, SelectItem, SelectSection } from '@nextui-org/react';
 
 const NewCampaign = () => {
 
@@ -17,20 +17,20 @@ const NewCampaign = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700">Rectangle</label>
               <RadioGroup label="Select your prefered place" orientation="horizontal" size='sm'>
-                  <Radio value="Leaderboard" className='p-7'>Leaderboard (728 x 90)
-                    <Image
-                      width={300}
-                      alt="NextUI hero Image"
-                      src="../../public/images/ads/LatestUpdatesLeaderboard.png"
-                    />
-                  </Radio>
-                  <Radio value="Rectangle" className='p-7'>Rectangle (300 x 250)
-                    <Image
-                      width={300}
-                      alt="NextUI hero Image"
-                      src="../../public/images/ads/LatestUpdatesRectangle.png"
-                    />
-                  </Radio>
+                <Radio value="Leaderboard" className='p-7'>Leaderboard (728 x 90)
+                  <Image
+                    width={300}
+                    alt="NextUI hero Image"
+                    src="../../public/images/ads/LatestUpdatesLeaderboard.png"
+                  />
+                </Radio>
+                <Radio value="Rectangle" className='p-7'>Rectangle (300 x 250)
+                  <Image
+                    width={300}
+                    alt="NextUI hero Image"
+                    src="../../public/images/ads/LatestUpdatesRectangle.png"
+                  />
+                </Radio>
               </RadioGroup>
             </div>
           </div>
@@ -48,13 +48,13 @@ const NewCampaign = () => {
           />
           <div className="w-full max-w-xl flex flex-row gap-4">
             <DatePicker
-                label="Start Date"
-                variant="bordered"
-                showMonthAndYearPickers
+              label="Start Date"
+              variant="bordered"
+              showMonthAndYearPickers
             />
-            </div>
+          </div>
           <div>
-          <Select
+            <Select
               label="price"
               placeholder="Select an preferd plan"
               className="w-full max-w-xl"
@@ -62,7 +62,7 @@ const NewCampaign = () => {
                 isEnabled: false,
               }}
             >
-              <SelectSection 
+              <SelectSection
                 title="Aetha Content Discount"
                 classNames={{
                   heading: headingClasses,
@@ -73,7 +73,7 @@ const NewCampaign = () => {
                 <SelectItem key="3">3</SelectItem>
                 <SelectItem key="4">4</SelectItem>
               </SelectSection>
-              <SelectSection 
+              <SelectSection
                 title="Other"
                 classNames={{
                   heading: headingClasses,

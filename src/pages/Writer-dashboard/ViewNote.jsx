@@ -1,10 +1,10 @@
-import {useNavigate, useParams} from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from "axios";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
-import {Button, Input} from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 
-export default function ViewNote () {
+export default function ViewNote() {
     const { noteId } = useParams()
 
     const navigate = useNavigate()
@@ -74,13 +74,13 @@ export default function ViewNote () {
 
                 <div className="w-full min-h-[300px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
-                    <ReactQuill className="text-editor" theme="snow" value={content} onChange={setContent}/>
+                    <ReactQuill className="text-editor" theme="snow" value={content} onChange={setContent} />
                 </div>
 
                 <div className="w-full flex justify-center gap-2">
                     <Button type="submit" variant="flat" color="primary" className="text-sm">Save</Button>
                     <Button type="button" variant="flat" color="danger" className="text-sm"
-                            onClick={() => navigate("/author/notes")}>Discard</Button>
+                        onClick={() => navigate("/author/notes")}>Discard</Button>
                 </div>
             </div>
         </form>

@@ -3,7 +3,7 @@ import { Card, Input, Checkbox, Button, Image } from '@nextui-org/react';
 import { Plus, X } from "lucide-react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import FileUpload from "../components/FileUpload";
+import FileUpload from "../../components/FileUpload";
 
 const AddEbook = () => {
   const [title, setTitle] = useState('');
@@ -22,13 +22,13 @@ const AddEbook = () => {
   const tagOptions = ['Bestseller', 'Award-winning', 'New Release', 'Classic', 'Young Adult', 'Children'];
 
   const handleGenreChange = (genre) => {
-    setGenres(prev => 
+    setGenres(prev =>
       prev.includes(genre) ? prev.filter(g => g !== genre) : [...prev, genre]
     );
   };
 
   const handleTagChange = (tag) => {
-    setTags(prev => 
+    setTags(prev =>
       prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
     );
   };
@@ -58,7 +58,7 @@ const AddEbook = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Title</label>
-            <Input 
+            <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter book title"
@@ -68,7 +68,7 @@ const AddEbook = () => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Author</label>
-            <Input 
+            <Input
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               placeholder="Enter author name"
@@ -78,18 +78,18 @@ const AddEbook = () => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Description</label>
-              <ReactQuill
-                value={description}
-                onChange={setDescription}
-                theme="snow"
-                placeholder="Write your description here..."
-                className="text-editor2"
-              />
+            <ReactQuill
+              value={description}
+              onChange={setDescription}
+              theme="snow"
+              placeholder="Write your description here..."
+              className="text-editor2"
+            />
           </div>
 
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">Price</label>
-            <Input 
+            <Input
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               placeholder="Enter price"
@@ -101,7 +101,7 @@ const AddEbook = () => {
 
           <div className="mb-4">
             <label className="block text-sm font-medium mb-2">ISBN</label>
-            <Input 
+            <Input
               value={isbn}
               onChange={(e) => setIsbn(e.target.value)}
               placeholder="Enter ISBN"
@@ -113,7 +113,7 @@ const AddEbook = () => {
             <label className="block text-sm font-medium mb-2">Genres</label>
             <div className="flex flex-wrap gap-2">
               {genreOptions.map((genre) => (
-                <Checkbox 
+                <Checkbox
                   key={genre}
                   size="sm"
                   isSelected={genres.includes(genre)}
@@ -129,7 +129,7 @@ const AddEbook = () => {
             <label className="block text-sm font-medium mb-2">Tags</label>
             <div className="flex flex-wrap gap-2">
               {tagOptions.map((tag) => (
-                <Checkbox 
+                <Checkbox
                   key={tag}
                   size="sm"
                   isSelected={tags.includes(tag)}
@@ -167,9 +167,9 @@ const AddEbook = () => {
           </div>
 
           <div className="mb-4">
-              <h3 className="text-default-700 text-small">Cover</h3>
-              <FileUpload />
-            </div>
+            <h3 className="text-default-700 text-small">Cover</h3>
+            <FileUpload />
+          </div>
 
           <Button color="primary" type="submit">
             Add Ebook

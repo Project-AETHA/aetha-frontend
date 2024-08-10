@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Input, Checkbox, Button, Spacer } from '@nextui-org/react';
 import { Plus } from "lucide-react";
-import FileUpload from "../components/FileUpload";
+import FileUpload from "../../components/FileUpload";
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 

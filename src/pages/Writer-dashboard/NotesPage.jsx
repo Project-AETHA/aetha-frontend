@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner} from "@nextui-org/react";
-import {format, parseISO} from "date-fns";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner } from "@nextui-org/react";
+import { format, parseISO } from "date-fns";
 
 
 function formatDate(dateString) {
@@ -20,8 +20,8 @@ export default function NotesPage() {
     setIsLoading(true);
     const response = await axios.get("http://localhost:8080/api/notes/get-my-notes");
 
-    if(response.status === 200) {
-      if(response.data.code === "00") {
+    if (response.status === 200) {
+      if (response.data.code === "00") {
         setData(response.data.content)
       }
     }
@@ -61,22 +61,22 @@ export default function NotesPage() {
               <TableColumn>LAST MODIFIED AT</TableColumn>
             </TableHeader>
             <TableBody
-                items={data}
-                isLoading={isLoading}
-                loadingContent={<Spinner />}
+              items={data}
+              isLoading={isLoading}
+              loadingContent={<Spinner />}
             >
-                {data.map((item) => (
-                    <TableRow key={item.id} className="hover:cursor-pointer" onClick={() => navigate(`/author/notes/${item.id}`)}>
-                      <TableCell>{item.title}</TableCell>
-                      <TableCell>{formatDate(item.createdAt)}</TableCell>
-                      <TableCell>{formatDate(item.lastModified)}</TableCell>
-                    </TableRow>
-                ))}
+              {data.map((item) => (
+                <TableRow key={item.id} className="hover:cursor-pointer" onClick={() => navigate(`/author/notes/${item.id}`)}>
+                  <TableCell>{item.title}</TableCell>
+                  <TableCell>{formatDate(item.createdAt)}</TableCell>
+                  <TableCell>{formatDate(item.lastModified)}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
+        </div>
       </div>
     </div>
-</div>
-)
-  ;
+  )
+    ;
 }

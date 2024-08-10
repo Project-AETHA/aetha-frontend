@@ -1,5 +1,5 @@
 import { Book, BarChart2, Star, MessageCircleMore } from "lucide-react";
-import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab, Link, Dropdown,DropdownTrigger, DropdownMenu, DropdownItem,} from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab, Link, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, } from "@nextui-org/react";
 import Book1 from "/images/books/book8.png";
 import Book2 from "/images/books/book5.png";
 import Book3 from "/images/books/book6.png";
@@ -58,21 +58,21 @@ const AuthorDashboard = () => {
     <div className="flex h-screen">
       <div className="flex-grow p-5 authbackground">
         <Card className="p-4 mb-4 shadow-none" >
-        <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold dark:text-white">Author Dashboard</h1>
-          <Dropdown backdrop="blur">
-            <DropdownTrigger>
-            <Button color="secondary" auto>
-            + New Content
-            </Button>
-            </DropdownTrigger>
-            <DropdownMenu variant="faded" aria-label="Static Actions">
-              <DropdownItem key="novel" href="/author/chapter/create">Novel</DropdownItem>
-              <DropdownItem key="shortStory" href="/author/short-stories/create">Short Story</DropdownItem>
-              <DropdownItem key="poemnisadas" href="/author/poems/create">Poem & Nisadas</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </div>
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold dark:text-white">Author Dashboard</h1>
+            <Dropdown backdrop="blur">
+              <DropdownTrigger>
+                <Button color="secondary" auto>
+                  + New Content
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="faded" aria-label="Static Actions">
+                <DropdownItem key="novel" href="/author/chapter/create">Novel</DropdownItem>
+                <DropdownItem key="shortStory" href="/author/short-stories/create">Short Story</DropdownItem>
+                <DropdownItem key="poemnisadas" href="/author/poems/create">Poem & Nisadas</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
@@ -85,26 +85,26 @@ const AuthorDashboard = () => {
           <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-xl">
             {booksData.map(({ id, img, title, rating }) => (
               <Link href="/author/chapter">
-              <Card shadow="none" key={id} isPressable>
-                <CardBody className="p-0">
-                  <Image
-                    shadow="sm"
-                    radius="sm"
-                    width="100%"
-                    alt={title}
-                    className="w-[120px] object-cover h-[180px]"
-                    src={img}
-                    href='/author/chapter'
-                  />
-                </CardBody>
-                <CardFooter className="flex flex-col items-start p-1">
-                      <h3 className="text-sm font-semibold">{title}</h3>
-                      <div className="flex items-center mt-2">
-                        <Star className="w-4 h-4 text-yellow-400 mr-1" />
-                        <span className="text-xs font-medium">{rating}</span>
-                      </div>
-                    </CardFooter>
-              </Card>
+                <Card shadow="none" key={id} isPressable>
+                  <CardBody className="p-0">
+                    <Image
+                      shadow="sm"
+                      radius="sm"
+                      width="100%"
+                      alt={title}
+                      className="w-[120px] object-cover h-[180px]"
+                      src={img}
+                      href='/author/chapter'
+                    />
+                  </CardBody>
+                  <CardFooter className="flex flex-col items-start p-1">
+                    <h3 className="text-sm font-semibold">{title}</h3>
+                    <div className="flex items-center mt-2">
+                      <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                      <span className="text-xs font-medium">{rating}</span>
+                    </div>
+                  </CardFooter>
+                </Card>
               </Link>
             ))}
           </div>
