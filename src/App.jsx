@@ -2,8 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from "axios";
 import { useAuthContext } from "./hooks/useAuthContext.jsx";
 import Navigation from "./components/Navigation";
-import FirstChapter from "./pages/FirstChapter.jsx";
-import Submitions from "./pages/Submitions.jsx";
 import ProSubscription from "./pages/ProSubscription.jsx";
 
 // Importing layouts
@@ -26,8 +24,6 @@ import RoutesProfile from './components/routes/Profile.jsx';
 
 const routes = [
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
-    { path: '/create', element: <FirstChapter />, layout: "default" },
-    { path: '/submitions', element: <Submitions />, layout: "author_dashboard" },
     ...RoutesGeneral(),
     ...RoutesWriter(),
     ...RoutesAdmin(),

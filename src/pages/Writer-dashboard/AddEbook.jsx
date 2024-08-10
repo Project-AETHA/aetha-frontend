@@ -3,7 +3,7 @@ import { Card, Input, Checkbox, Button, Image } from '@nextui-org/react';
 import { Plus, X } from "lucide-react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import FileUpload from "../components/FileUpload";
+import FileUpload from "../../components/FileUpload";
 
 const AddEbook = () => {
   const [title, setTitle] = useState('');
