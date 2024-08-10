@@ -1,9 +1,9 @@
-import {Input, Button} from "@nextui-org/react";
+import { Input, Button } from "@nextui-org/react";
 import { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-function CreatePoem () {
+function CreatePoem() {
 
     const [value, setValue] = useState('');
 
@@ -28,7 +28,7 @@ function CreatePoem () {
 
                 <div className="w-full min-h-[400px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
-                    <ReactQuill className="text-editor" theme="snow" value={value} onChange={setValue}/>
+                    <ReactQuill className="text-editor" theme="snow" value={value} onChange={setValue} />
                 </div>
 
                 <div className="w-full  flex justify-center gap-2">

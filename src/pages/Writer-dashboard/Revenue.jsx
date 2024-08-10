@@ -124,7 +124,7 @@ const RevenuePage = () => {
     <div className="min-h-screen p-2 bg-foreground-100">
       <Card className="p-6 bg-white dark:bg-gray-800 shadow-none rounded-xl">
         <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">Revenue Dashboard</h1>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
           {revenueData.tiers.map((tier) => (
             <Card key={tier.tier} className={`p-4 shadow-md ${tier.color}`}>
@@ -168,8 +168,8 @@ const RevenuePage = () => {
             </Button> */}
           </div>
           <div className="mt-4">
-            <Progress 
-              value={(totalEarnings / revenueData.balance) * 100} 
+            <Progress
+              value={(totalEarnings / revenueData.balance) * 100}
               color="warning"
               className="h-2"
             />
