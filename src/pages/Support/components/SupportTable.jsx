@@ -49,7 +49,7 @@ function SupportTable({ createTicket }) {
 
         try {
             const response = await axios.get(
-                "http://localhost:8080/api/support/get_my_tickets",
+                "/api/support/get_my_tickets",
                 {
                     timeout: 3000, // Set timeout to 3 seconds
                 }
@@ -85,7 +85,7 @@ function SupportTable({ createTicket }) {
     const deleteTicket = async (complaintId) => {
 
         try {
-            const response = await axios.delete("http://localhost:8080/api/support/delete_ticket/" + complaintId);
+            const response = await axios.delete("/api/support/delete_ticket/" + complaintId);
 
             if (response.data.code === "00") {
                 // Code for creating a custom title for the popup alert

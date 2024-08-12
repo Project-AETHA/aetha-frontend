@@ -47,7 +47,7 @@ const SupportPage = () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/api/support/create_ticket",
+                "/api/support/create_ticket",
                 formData,
                 {
                     headers: {

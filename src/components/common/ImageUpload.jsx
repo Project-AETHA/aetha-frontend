@@ -6,7 +6,7 @@ export default function ImageUpload({ files, setFiles }) {
     const [imagePreview, setImagePreview] = useState(null);
 
     // Allowed file types
-    const fileTypes = ["JPEG", "PNG", "GIF"];
+    const fileTypes = ["JPEG", "PNG", "GIF", "PDF", "TXT"];
 
     function handleUploadClick(files) {
         setFiles(files); // Handle multiple files if needed
@@ -31,7 +31,7 @@ export default function ImageUpload({ files, setFiles }) {
                     width={200}
                     height={160}
                     alt="Image preview"
-                    src={imagePreview || "http://localhost:8080/images/complaints/669aa497a1e4c96348da9c51_1.png"}
+                    src={imagePreview || "/images/complaints/669aa497a1e4c96348da9c51_1.png"}
                 />)
             }
 

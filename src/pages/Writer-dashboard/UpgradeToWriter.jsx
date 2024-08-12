@@ -81,9 +81,9 @@ const UpgradeToWriter = () => {
             </Checkbox>
             <Spacer y={1} />
             <Link href='/author'>
-            <Button color="primary" size="lg" className="w-full">
-              Upgrade Now
-            </Button>
+              <Button color="primary" size="lg" className="w-full">
+                Upgrade Now
+              </Button>
             </Link>
             <p className="mt-4 text-xs text-gray-500 text-center">
               By clicking "Upgrade Now", you agree to our Terms of Service and Privacy Policy.

@@ -100,7 +100,7 @@ function UserManagement() {
 
     async function getAllUsers() {
 
-        const response = await axios.get("http://localhost:8080/api/user/all-users")
+        const response = await axios.get("/api/user/all-users")
 
         if (response.status === 200) {
             //? DEBUG console.log(response);

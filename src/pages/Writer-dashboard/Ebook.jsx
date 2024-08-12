@@ -26,14 +26,14 @@ const Ebook = () => {
 
   const ebooks = [
     { key: "1", title: 'E Book Title 1', status: 'Available', sales: '250', },
-    { key: "2", title: 'E Book Title 2', status: 'Unavailable', sales: '1250',},
-    { key: "3", title: 'E Book Title 3', status: 'Available', sales: '30',},
+    { key: "2", title: 'E Book Title 2', status: 'Unavailable', sales: '1250', },
+    { key: "3", title: 'E Book Title 3', status: 'Available', sales: '30', },
   ];
 
   const ebooks2 = [
-    { key: "1", title: 'E Book Title 1',comment: 'Needs revision',},
-    { key: "2", title: 'E Book Title 2',comment: 'Copyright issues', },
-    { key: "3", title: 'E Book Title 3',comment: 'Inappropriate content', },
+    { key: "1", title: 'E Book Title 1', comment: 'Needs revision', },
+    { key: "2", title: 'E Book Title 2', comment: 'Copyright issues', },
+    { key: "3", title: 'E Book Title 3', comment: 'Inappropriate content', },
   ];
 
   const columns = [
@@ -113,9 +113,9 @@ const Ebook = () => {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">E Books</h1>
           <Link href='/author/ebooks/add'>
-          <Button color="primary" startContent={<Plus />} className="ml-auto">
-            Add an Ebook
-          </Button>
+            <Button color="primary" startContent={<Plus />} className="ml-auto">
+              Add an Ebook
+            </Button>
           </Link>
 
         </div>

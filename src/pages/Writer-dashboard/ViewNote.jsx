@@ -1,12 +1,13 @@
-import { Input, Button } from "@nextui-org/react";
-import { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ReactQuill from "react-quill";
+import { Button, Input } from "@nextui-org/react";
 
-export default function CreateNote() {
-    const navigate = useNavigate();
+export default function ViewNote() {
+    const { noteId } = useParams()
+
+    const navigate = useNavigate()
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -15,7 +16,8 @@ export default function CreateNote() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/api/notes/create-note", {
+            const response = await axios.post("/api/notes/update-note", {
+                id: noteId,
                 title,
                 content
             });
@@ -23,9 +25,10 @@ export default function CreateNote() {
             if (response.status === 200) {
                 if (response.data.code === "00") {
                     console.log("Note created successfully");
-                    navigate("/author/notes");
+                    alert("Note Updated Successfully");
                 } else {
-                    console.log("Error creating note");
+                    console.log("Error updating note");
+                    console.log(response)
                 }
             } else {
                 console.log("Error : Server Error");
@@ -35,15 +38,24 @@ export default function CreateNote() {
         }
     }
 
-    function handleDiscard() {
-        console.log("Discarding note");
+    async function getData() {
+        const response = await axios.get("/api/notes/get-single-note/" + noteId);
+
+        if (response.status === 200) {
+            if (response.data.code === "00") {
+                setTitle(response.data.content.title)
+                setContent(response.data.content.content)
+            }
+        }
     }
+
+    useEffect(() => {
+        getData()
+    }, []);
 
     return (
         <form className="alt-container px-2 pb-4 h-[calc(100vh-110px)]" onSubmit={handleSubmit}>
             <div className="rounded p-4 flex flex-col gap-4 items-center justify-start bg-foreground-50">
-                <h1 className="text-3xl font-bold text-foreground-900">Create a Note</h1>
-                <p className="text-foreground-900">Write your notes here</p>
 
                 <div className="w-full flex flex-col justify-center gap-2">
                     <p className="text-sm text-foreground-900">Title</p>
@@ -67,9 +79,10 @@ export default function CreateNote() {
 
                 <div className="w-full flex justify-center gap-2">
                     <Button type="submit" variant="flat" color="primary" className="text-sm">Save</Button>
-                    <Button type="button" variant="flat" color="danger" className="text-sm" onClick={handleDiscard}>Discard</Button>
+                    <Button type="button" variant="flat" color="danger" className="text-sm"
+                        onClick={() => navigate("/author/notes")}>Discard</Button>
                 </div>
             </div>
         </form>
-    );
+    )
 }
