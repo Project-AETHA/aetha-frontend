@@ -17,10 +17,10 @@ import ProfileDashboardLayout from './layouts/ProfileDashboardLayout.jsx';
 import { Toaster } from "@/components/ui/toaster"
 
 // Routing files
-import RoutesWriter from "./components/routes/Writer.jsx";
-import RoutesGeneral from "./components/routes/General.jsx";
-import RoutesAdmin from "./components/routes/Admin.jsx";
-import RoutesProfile from './components/routes/Profile.jsx';
+import RoutesWriter from "./routes/Writer.jsx";
+import RoutesGeneral from "./routes/General.jsx";
+import RoutesAdmin from "./routes/Admin.jsx";
+import RoutesProfile from './routes/Profile.jsx';
 
 const routes = [
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },

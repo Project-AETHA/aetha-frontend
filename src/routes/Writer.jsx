@@ -1,20 +1,20 @@
-import CreateNote from "../../pages/Writer-dashboard/CreateNote.jsx";
-import NotesPage from "../../pages/Writer-dashboard/NotesPage.jsx";
-import AuthorDashboard from "../../pages/Writer-dashboard/AuthorDashboard.jsx";
-import PoemsPage from "../../pages/Writer-dashboard/PoemsPage.jsx";
-import CreatePoem from "../../pages/Writer-dashboard/CreatePoem.jsx";
-import ViewNote from "../../pages/Writer-dashboard/ViewNote.jsx";
-import FirstChapter from "../../pages/Writer-dashboard/FirstChapter.jsx";
-import Chapters from "../../pages/Writer-dashboard/Chapters.jsx";
-import Ebook from "../../pages/Writer-dashboard/Ebook.jsx";
-import Submitions from "../../pages/Writer-dashboard/Submitions.jsx";
-import Advertising from "../../pages/Writer-dashboard/Advertising.jsx";
-import NewCampaign from "../../pages/Writer-dashboard/NewCampaign.jsx";
-import SstSubmitions from "../../pages/Writer-dashboard/SstSubmitions.jsx";
-import RevenuePage from "../../pages/Writer-dashboard/Revenue.jsx";
-import AddEbook from "../../pages/Writer-dashboard/AddEbook.jsx";
-import UpgradeToWriter from "../../pages/Writer-dashboard/UpgradeToWriter.jsx";
-import AddShortStory from "../../pages/Writer-dashboard/AddShortStory.jsx";
+import CreateNote from "../pages/Writer-dashboard/CreateNote.jsx";
+import NotesPage from "../pages/Writer-dashboard/NotesPage.jsx";
+import AuthorDashboard from "../pages/Writer-dashboard/AuthorDashboard.jsx";
+import PoemsPage from "../pages/Writer-dashboard/PoemsPage.jsx";
+import CreatePoem from "../pages/Writer-dashboard/CreatePoem.jsx";
+import ViewNote from "../pages/Writer-dashboard/ViewNote.jsx";
+import FirstChapter from "../pages/Writer-dashboard/FirstChapter.jsx";
+import Chapters from "../pages/Writer-dashboard/Chapters.jsx";
+import Ebook from "../pages/Writer-dashboard/Ebook.jsx";
+import Submitions from "../pages/Writer-dashboard/Submitions.jsx";
+import Advertising from "../pages/Writer-dashboard/Advertising.jsx";
+import NewCampaign from "../pages/Writer-dashboard/NewCampaign.jsx";
+import SstSubmitions from "../pages/Writer-dashboard/SstSubmitions.jsx";
+import RevenuePage from "../pages/Writer-dashboard/Revenue.jsx";
+import AddEbook from "../pages/Writer-dashboard/AddEbook.jsx";
+import UpgradeToWriter from "../pages/Writer-dashboard/UpgradeToWriter.jsx";
+import AddShortStory from "../pages/Writer-dashboard/AddShortStory.jsx";
 
 
 export default function RoutesWriter() {
