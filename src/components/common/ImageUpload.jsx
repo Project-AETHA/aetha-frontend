@@ -6,7 +6,7 @@ export default function ImageUpload({ files, setFiles }) {
     const [imagePreview, setImagePreview] = useState(null);
 
     // Allowed file types
-    const fileTypes = ["JPEG", "PNG", "GIF"];
+    const fileTypes = ["JPEG", "PNG", "GIF", "PDF", "TXT"];
 
     function handleUploadClick(files) {
         setFiles(files); // Handle multiple files if needed

@@ -167,7 +167,7 @@ export default function Navigation() {
                                     as="button"
                                     avatarProps={{
                                         isBordered: true,
-                                        src: "public/" + user.image,
+                                        src: "/public" + user.image,
                                     }}
                                     className="transition-transform"
                                     description={"AKA " + user.displayName}
@@ -178,7 +178,7 @@ export default function Navigation() {
                             <div className="flex lg:hidden hover:cursor-pointer">
                                 <Avatar
                                     isBordered
-                                    src={user.image}
+                                    src={"/public" + user.image}
                                     name={user.firstname + " " + user.lastname}
                                 />
                             </div>
