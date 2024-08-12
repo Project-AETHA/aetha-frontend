@@ -64,7 +64,7 @@ export default function ComplaintDetails() {
         e.preventDefault();
 
         try {
-            const response = await axios.delete("http://localhost:8080/api/support/delete_ticket/" + complaintId);
+            const response = await axios.delete("/api/support/delete_ticket/" + complaintId);
 
             if (response.data.code === "00") {
                 // Code for creating a custom title for the popup alert
@@ -122,7 +122,7 @@ export default function ComplaintDetails() {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/api/support/update_ticket/" + complaintId,
+                "/api/support/update_ticket/" + complaintId,
                 formData,
                 {
                     headers: {
@@ -181,7 +181,7 @@ export default function ComplaintDetails() {
         setLoading(true);
 
         const response = await axios.get(
-            `http://localhost:8080/api/support/get_ticket/${complaintId}`
+            `/api/support/get_ticket/${complaintId}`
         );
 
         if (response.status === 200) {
@@ -298,7 +298,7 @@ export default function ComplaintDetails() {
                                 >
                                     {/* The image that will be shown in the complaint details page */}
                                     <Image
-                                        src={`http://localhost:8080${image}`}
+                                        src={`${image}`}
                                         radius="none"
                                         width={300}
                                         className="z-2 shadow"
@@ -319,7 +319,7 @@ export default function ComplaintDetails() {
                                             handleClosePopup={handleClosePopup}
                                         >
                                             <Image
-                                                src={`http://localhost:8080${image}`}
+                                                src={`${image}`}
                                                 width={"full"}
                                                 radius={"none"}
                                             />

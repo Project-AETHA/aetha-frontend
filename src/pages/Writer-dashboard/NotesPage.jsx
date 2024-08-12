@@ -18,7 +18,7 @@ export default function NotesPage() {
 
   async function getData() {
     setIsLoading(true);
-    const response = await axios.get("http://localhost:8080/api/notes/get-my-notes");
+    const response = await axios.get("/api/notes/get-my-notes");
 
     if (response.status === 200) {
       if (response.data.code === "00") {

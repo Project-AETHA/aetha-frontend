@@ -1,4 +1,4 @@
-import { Image } from "@nextui-org/react";
+    import { Image } from "@nextui-org/react";
 import { FcBiomass, FcGallery, FcRating } from "react-icons/fc";
 import Item from "../../components/common/Item.jsx";
 import LatestUpdates from "./components/LatestUpdates.jsx";

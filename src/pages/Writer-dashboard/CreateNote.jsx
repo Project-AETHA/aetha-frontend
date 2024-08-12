@@ -15,7 +15,7 @@ export default function CreateNote() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/api/notes/create-note", {
+            const response = await axios.post("/api/notes/create-note", {
                 title,
                 content
             });

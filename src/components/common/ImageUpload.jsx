@@ -31,7 +31,7 @@ export default function ImageUpload({ files, setFiles }) {
                     width={200}
                     height={160}
                     alt="Image preview"
-                    src={imagePreview || "http://localhost:8080/images/complaints/669aa497a1e4c96348da9c51_1.png"}
+                    src={imagePreview || "/images/complaints/669aa497a1e4c96348da9c51_1.png"}
                 />)
             }
 

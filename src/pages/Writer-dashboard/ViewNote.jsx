@@ -16,7 +16,7 @@ export default function ViewNote() {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://localhost:8080/api/notes/update-note", {
+            const response = await axios.post("/api/notes/update-note", {
                 id: noteId,
                 title,
                 content
@@ -39,7 +39,7 @@ export default function ViewNote() {
     }
 
     async function getData() {
-        const response = await axios.get("http://localhost:8080/api/notes/get-single-note/" + noteId);
+        const response = await axios.get("/api/notes/get-single-note/" + noteId);
 
         if (response.status === 200) {
             if (response.data.code === "00") {

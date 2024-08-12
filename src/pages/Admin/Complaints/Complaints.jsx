@@ -93,7 +93,7 @@ export default function Complaints() {
 
     async function getAllComplaints() {
 
-        const response = await axios.get("http://localhost:8080/api/support/get_all_tickets")
+        const response = await axios.get("/api/support/get_all_tickets")
 
         if (response.status === 200) {
             //? DEBUG console.log(response);

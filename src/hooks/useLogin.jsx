@@ -13,7 +13,7 @@ export const useLogin = () => {
     setLoading(true);
     setError(null);
 
-    const response = await axios.post("http://localhost:8080/api/auth/login", {
+    const response = await axios.post("/api/auth/login", {
       email,
       password,
     });

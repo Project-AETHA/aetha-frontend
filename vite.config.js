@@ -12,5 +12,11 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist'
+  },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:8080',
+      '/images': 'http://localhost:8080'
+    }
   }
 })
