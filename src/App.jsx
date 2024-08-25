@@ -14,7 +14,7 @@ import ProfileDashboardLayout from './layouts/ProfileDashboardLayout.jsx';
 
 
 // Importing common files like toast(alert)
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/sonner"
 
 // Routing files
 import RoutesWriter from "./routes/Writer.jsx";
@@ -71,7 +71,7 @@ function App() {
                     {generateRoutes()}
                 </Routes>
             </div>
-            <Toaster duration={3000} />
+            <Toaster duration={3000} richColors />
         </Router>
     );
 }

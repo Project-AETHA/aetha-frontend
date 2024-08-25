@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
   Button, Input, Card, Tabs, Tab, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell,
-  Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Tooltip, Chip, Link
+  Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Tooltip, Chip
 } from '@nextui-org/react';
 import { Eye, Trash2, Pencil, Plus, BookOpen, DollarSign, Users } from 'lucide-react';
 import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip as ChartTooltip, Legend } from 'chart.js';
+
+import { useNavigate } from 'react-router-dom'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, ChartTooltip, Legend);
 
@@ -15,6 +17,9 @@ const statusColorMap = {
 };
 
 const Ebook = () => {
+
+  const navigate = useNavigate()
+
   const [selectedTab, setSelectedTab] = useState('Listed');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(new Set(["all"]));
@@ -112,11 +117,9 @@ const Ebook = () => {
       <Card className="p-6 bg-white dark:bg-gray-800 shadow-sm">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">E Books</h1>
-          <Link href='/author/ebooks/add'>
-            <Button color="primary" startContent={<Plus />} className="ml-auto">
-              Add an Ebook
-            </Button>
-          </Link>
+          <Button color="primary" startContent={<Plus />} className="ml-auto" onClick={() => navigate('/author/ebooks/add')}>
+            Add an Ebook
+          </Button>
 
         </div>
 

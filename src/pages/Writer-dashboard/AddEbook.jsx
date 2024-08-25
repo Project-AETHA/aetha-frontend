@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Card, Input, Checkbox, Button, Textarea } from "@nextui-org/react";
 import { Plus, X } from "lucide-react";
 import axios from "axios";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const AddEbook = () => {
+
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -15,6 +20,17 @@ const AddEbook = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [demoFile, setDemoFile] = useState(null);
   const [originalFile, setOriginalFile] = useState(null);
+
+  // Error variables
+  const [titleError, setTitleError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+  const [priceError, setPriceError] = useState("");
+  const [isbnError, setIsbnError] = useState("");
+  const [genresError, setGenresError] = useState("");
+  const [tagsError, setTagsError] = useState("");
+  const [coverImageError, setCoverImageError] = useState("");
+  const [demoFileError, setDemoFileError] = useState("");
+  const [originalFileError, setOriginalFileError] = useState("");
 
   const genreOptions = [
     "Fiction",
@@ -106,31 +122,126 @@ const AddEbook = () => {
     }
 
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("isbn", isbn);
-    formData.append("genres", genres);
-    formData.append("tags", tags);
-    formData.append("customTags", customTags);
-    formData.append("coverImage", coverImage);
-    formData.append("demoFile", demoFile);
-    formData.append("originalFile", originalFile);
+    // formData.append("title", title);
+    // formData.append("description", description);
+    // formData.append("price", price);
+    // formData.append("isbn", isbn);
+    // formData.append("genres", genres);
+    // formData.append("tags", tags);
+    // formData.append("customTags", customTags);
+    // formData.append("coverImage", coverImage);
+    // formData.append("demoFile", demoFile);
+    // formData.append("originalFile", originalFile);
 
-    try {
-      const response = await axios.post("/api/ebooks/publish", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+    // * Due to the asynchronous nature of state updates, the error messages are not updated immediately
+    // * Therefore, a local variable will be used to check for errors
 
-      if (response.status === 200) {
-        console.log(response.data);
-      } else {
-        console.error("Error: " + response.data);
+    let hasError = false;
+
+    if (title) {
+      formData.append("title", title);
+    } else {
+      setTitleError("Title is required.");
+      hasError = true;
+    }
+
+    if (description) {
+      formData.append("description", description);
+    } else {
+      setDescriptionError("Description is required.");
+      hasError = true;
+    }
+
+    if (price) {
+      formData.append("price", price);
+    } else {
+      setPriceError("Price is required.");
+      hasError = true;
+    }
+
+    if (isbn) {
+      formData.append("isbn", isbn);
+    } else {
+      setIsbnError("ISBN is required.");
+      hasError = true;
+    }
+
+    if (genres.length > 0) {
+      formData.append("genres", genres);
+    } else {
+      setGenresError("At least one genre is required.");
+      hasError = true;
+    }
+
+    if (tags.length > 0) {
+      formData.append("tags", tags);
+    } else {
+      setTagsError("At least one tag is required.");
+      hasError = true;
+    }
+
+    if (customTags.length > 0) {
+      formData.append("customTags", customTags);
+    }
+
+    if (coverImage) {
+      formData.append("coverImage", coverImage);
+    } else {
+      setCoverImageError("Cover image is required.");
+      hasError = true;
+    }
+
+    if (demoFile) {
+      formData.append("demoFile", demoFile);
+    } else {
+      setDemoFileError("Demo file is required.");
+      hasError = true;
+    }
+
+    if (originalFile) {
+      formData.append("originalFile", originalFile);
+    } else {
+      setOriginalFileError("Original file is required.");
+      hasError = true;
+    }
+
+    if (hasError) {
+      toast.error("Please fill all the required fields");
+    } else {
+      try {
+        const response = await axios.post("/api/ebooks/publish", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        if (response.status === 200) {
+
+          switch (response.data.code) {
+            case "00":
+              toast.success("Ebook added successfully");
+              navigate("/author/ebooks");
+              break;
+            case "05":
+              toast.error("Failed to add ebook");
+              break;
+            case "06":
+              toast.warning("Ebook already exists");
+              break;
+            default:
+              toast.error("Error adding ebook", {
+                description: response.data.message
+              });
+              break;
+          }
+        } else {
+          console.error("Error: " + response.data);
+          toast.error("Server Error - Not Responding");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        toast.error("Error occurred when submitting form");
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
     }
   };
 
@@ -143,9 +254,14 @@ const AddEbook = () => {
             <label className="block text-sm font-medium mb-2">Title</label>
             <Input
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                setTitleError("");
+              }}
               placeholder="Enter book title"
               fullWidth
+              isInvalid={titleError ? true : false}
+              errorMessage={titleError}
             />
           </div>
 
@@ -156,8 +272,13 @@ const AddEbook = () => {
               labelPlacement="outside"
               placeholder="Enter your description"
               className="min-w-[290px] w-full lg:min-w-[820px] rounded-xl"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {
+                setDescription(e.target.value);
+                setDescriptionError("");
+              }}
               value={description}
+              isInvalid={descriptionError ? true : false}
+              errorMessage={descriptionError}
             />
           </div>
 
@@ -165,11 +286,16 @@ const AddEbook = () => {
             <label className="block text-sm font-medium mb-2">Price</label>
             <Input
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              onChange={(e) => {
+                setPrice(e.target.value);
+                setPriceError("");
+              }}
               placeholder="Enter price"
               type="number"
               step="0.01"
               fullWidth
+              isInvalid={priceError ? true : false}
+              errorMessage={priceError}
             />
           </div>
 
@@ -177,9 +303,14 @@ const AddEbook = () => {
             <label className="block text-sm font-medium mb-2">ISBN</label>
             <Input
               value={isbn}
-              onChange={(e) => setIsbn(e.target.value)}
+              onChange={(e) => {
+                setIsbn(e.target.value);
+                setIsbnError("");
+              }}
               placeholder="Enter a valid ISBN-13 number (Eg: 978-[0-9]{3}-[0-9]{4}-[0-9]{2}-[0-9]{1}"
               fullWidth
+              isInvalid={isbnError ? true : false}
+              errorMessage={isbnError}
             />
           </div>
 
@@ -191,11 +322,17 @@ const AddEbook = () => {
                   key={genre}
                   size="sm"
                   isSelected={genres.includes(genre)}
-                  onChange={() => handleGenreChange(genre)}
+                  onChange={() => {
+                    handleGenreChange(genre);
+                    setGenresError("");
+                  }}
                 >
                   {genre}
                 </Checkbox>
               ))}
+              {genresError && (
+                <span className="text-red-500 text-sm">{genresError}</span>
+              )}
             </div>
           </div>
 
@@ -207,11 +344,17 @@ const AddEbook = () => {
                   key={tag}
                   size="sm"
                   isSelected={tags.includes(tag)}
-                  onChange={() => handleTagChange(tag)}
+                  onChange={() => {
+                    handleTagChange(tag);
+                    setTagsError("");
+                  }}
                 >
                   {tag}
                 </Checkbox>
               ))}
+              {tagsError && (
+                <span className="text-red-500 text-sm">{tagsError}</span>
+              )}
             </div>
             <div className="mt-2">
               <h4 className="text-sm font-medium mb-2">Custom Tags</h4>
@@ -256,24 +399,42 @@ const AddEbook = () => {
             <h3 className="text-default-700 text-small">Cover Image</h3>
             <input
               type="file"
-              onChange={(e) => setCoverImage(e.target.files[0])}
+              onChange={(e) => {
+                setCoverImage(e.target.files[0]);
+                setCoverImageError("");
+              }}
             />
+            {coverImageError && (
+              <span className="text-red-500 text-sm">{coverImageError}</span>
+            )}
           </div>
 
           <div className="mb-4 flex flex-col">
             <h3 className="text-default-700 text-small">Demo File</h3>
             <input
               type="file"
-              onChange={(e) => setDemoFile(e.target.files[0])}
+              onChange={(e) => {
+                setDemoFile(e.target.files[0]);
+                setDemoFileError("");
+              }}
             />
+            {demoFileError && (
+              <span className="text-red-500 text-sm">{demoFileError}</span>
+            )}
           </div>
 
           <div className="mb-4 flex flex-col">
             <h3 className="text-default-700 text-small">Original File</h3>
             <input
               type="file"
-              onChange={(e) => setOriginalFile(e.target.files[0])}
+              onChange={(e) => {
+                setOriginalFile(e.target.files[0]);
+                setOriginalFileError("");
+              }}
             />
+            {originalFileError && (
+              <span className="text-red-500 text-sm">{originalFileError}</span>
+            )}
           </div>
 
           <Button color="primary" type="submit">
