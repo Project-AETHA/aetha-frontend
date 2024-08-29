@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -11,7 +11,7 @@ import '@fontsource/poppins/600.css'; // Weight 600.
 import '@fontsource/poppins/700.css'; // Weight 700.
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <NextUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="light">
         <AuthContextProvider>
@@ -21,5 +21,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </AuthContextProvider>
       </NextThemesProvider>
     </NextUIProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

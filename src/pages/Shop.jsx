@@ -1,11 +1,21 @@
 import SearchBar from "../components/SearchBar";
-import coverImg from "/images/landing_cover.jpg";
 import Item from "../components/common/Item";
 import { Link } from 'react-router-dom'
 import ViewBooks from "../components/ViewBooks";
-
-import { Image, Input } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
+import axios from 'axios';
+import {useEffect} from "react";
+
+const FIELDS = {
+    PRICE: "price",
+    RATING: "rating",
+    TITLE: "title",
+}
+
+const SORT_OPTIONS = {
+    ASCENDING: "ASC",
+    DESCENDING: "DESC",
+}
 
 export default function ShopPage() {
   let recommendations = [
@@ -188,6 +198,26 @@ export default function ShopPage() {
       image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
     },
   ];
+
+  async function fetchEbooks () {
+    const response = await axios.get("/api/ebooks/all");
+
+    console.log(response.data);
+  }
+
+  async function fetchEbooksSorted (field, order = SORT_OPTIONS.ASCENDING) {
+    console.log(`/api/ebooks/all/${field}/${order}`)
+    const response = await axios.get(`/api/ebooks/all/${field}/${order}`);
+    console.log("Sorted Data : ");
+    console.log(response.data);
+  }
+
+  useEffect(() => {
+    fetchEbooks();
+
+    // ? Example code to fetch sorted data (for searching)
+    // fetchEbooksSorted(FIELDS.PRICE, SORT_OPTIONS.ASCENDING);
+  }, []);
 
   return (
     <div className="rounded-lg mb-10 w-full h-full flex flex-col gap-10 shadow-xl bg-foreground-50 px-10">
