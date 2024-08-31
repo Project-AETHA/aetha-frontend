@@ -185,8 +185,7 @@ export default function ComplaintDetails() {
         );
 
         if (response.status === 200) {
-            const { id, title, category, description, attachments, status } =
-                response.data.content;
+            const { id, title, category, description, attachments, status } = response.data.content;
             setId(id);
             setTitle(title);
             setCategory(category);
@@ -297,20 +296,22 @@ export default function ComplaintDetails() {
                                     onClick={() => handleImageClick(index)}
                                 >
                                     {/* The image that will be shown in the complaint details page */}
+                                    {/* TODO - Image retrieval should be changed */}
                                     <Image
-                                        src={`${image}`}
+                                        src={`http://localhost:8080${image}`}
                                         radius="none"
                                         width={300}
                                         className="z-2 shadow"
                                     />
 
-                                    {/* White oveerlay that is visible when the we hover over the image */}
+                                    {/* White oveerlay that is visible when the hover over the image */}
                                     <div className="absolute inset-0 bg-white z-3 opacity-0 group-hover:opacity-50 border-4 border-black/75 transition-opacity flex gap-2 items-center text-black justify-center">
                                         <ImEnlarge2 size={15} />
                                         <p className="font-bold">View Image</p>
                                     </div>
 
                                     {/* Popup (modal) related to the selected image when clicking on an image */}
+                                    {/* TODO - Image retrieval should be changed */}
                                     {openImageIndex === index && (
                                         <Popup
                                             size="full"
@@ -319,7 +320,7 @@ export default function ComplaintDetails() {
                                             handleClosePopup={handleClosePopup}
                                         >
                                             <Image
-                                                src={`${image}`}
+                                                src={`http://localhost:8080${image}`}
                                                 width={"full"}
                                                 radius={"none"}
                                             />
