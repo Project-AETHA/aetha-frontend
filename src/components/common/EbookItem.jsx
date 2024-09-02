@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 
-const EbookItem = ({ image, title, description, rating, price }) => {
+const EbookItem = ({ image, title, description, rating, price, id }) => {
     return (
         <div className="flex flex-col items-start rounded-md">
-            <Link to="/buybook">
+            <Link to={`/buybook/${id}`}>
                 <img
                     src={`http://localhost:8080${image}`}
                     alt={title}

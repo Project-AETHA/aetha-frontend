@@ -13,6 +13,8 @@ import {toast} from "sonner";
 import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
 import Content_status from "@/components/predefined/ContentStatus.jsx";
 
+import {useQuery} from "@tanstack/react-query";
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, ChartTooltip, Legend);
 
 const statusColorMap = {
@@ -25,6 +27,20 @@ const statusColorMap = {
 };
 
 const Ebook = () => {
+
+  async function getAllBooks() {
+    return await axios.get("/api/ebooks/my-all")
+        .then(response => response.data.content)
+        .catch(error => console.log(error))
+  }
+
+  const ebookQuery = useQuery({
+    queryKey: ["ebooks"],
+    queryFn: getAllBooks
+  });
+
+  if(ebookQuery.isSuccess) console.log(ebookQuery.data);
+  if(ebookQuery.isError) console.log(ebookQuery.error);
 
   const navigate = useNavigate()
 

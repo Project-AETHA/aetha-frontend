@@ -3,11 +3,11 @@ import SignupPage from "../pages/SignupPage.jsx";
 import SupportPage from "../pages/Support/SupportPage.jsx";
 import NovelLandingPage from "../pages/LandingPage/NovelLandingPage.jsx";
 import Reading from "../pages/Reading.jsx";
-import Novels from "../pages/Novels.jsx";
+import SearchResults from "../pages/Shop/SearchResults.jsx";
 import Poems from "../pages/Poems.jsx";
 import Chapterreading from "../pages/Chapterreading.jsx";
 import Chapters from "../pages/Chapter.jsx";
-import Shop from "../pages/Shop.jsx";
+import Shop from "../pages/Shop/Shop.jsx";
 import Subscribe from "../pages/Subscribe.jsx";
 import ShortStoriesReading from "../pages/ShortStoriesReading.jsx";
 import Shortstories from "../pages/Shortstories.jsx";
@@ -18,7 +18,7 @@ import Forum from '../pages/Forum.jsx';
 import Forumselection from '../pages/Forumselection.jsx';
 import Buytiers from '../pages/Buytiers.jsx';
 import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
-import Buybook from '../pages/BuyBook.jsx';
+import Buybook from '../pages/Shop/BuyBook.jsx';
 
 export default function RoutesGeneral () {
     return [
@@ -27,6 +27,7 @@ export default function RoutesGeneral () {
         { path: '/signup', element: <SignupPage />, layout: "simple" },
         { path: '/support', element: <SupportPage />, layout: "simple" },
         { path: '/shop', element: <Shop />, layout: "default" },
+        { path: '/shop/search', element: <SearchResults />, layout: "default" },
         { path: '/novel/:novelId', element: <Chapters />, layout: "default" },
         { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
         { path: '/reading', element: <Reading />, layout: "default" },
@@ -41,6 +42,6 @@ export default function RoutesGeneral () {
         { path: '/forumselection', element: <Forumselection />, layout: "default" },
         { path: '/buytiers', element: <Buytiers />, layout: "default" },
         { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
-        { path: '/buybook', element: <Buybook />, layout: "default" },
+        { path: '/buybook/:bookId', element: <Buybook />, layout: "default" },
     ]
 }

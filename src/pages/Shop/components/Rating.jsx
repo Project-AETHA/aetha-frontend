@@ -72,7 +72,7 @@ function Rate() {
                             <div className="bg-transparant pb-5 px-3 rounded-md mt-10">
 
                                 <div className="flex rounded-4xl my-10">
-                                    <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
+                                    <img src="../../../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
                                     <p className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className="flex items-center">
@@ -89,7 +89,7 @@ function Rate() {
 
 
                                 <div className="flex rounded-4xl my-10">
-                                    <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
+                                    <img src="../../../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
                                     <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3">Reader</div>
                                         <div className="flex items-center">
@@ -105,7 +105,7 @@ function Rate() {
 
 
                                 <div className="flex rounded-4xl my-10">
-                                    <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
+                                    <img src="../../../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
                                     <p className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className="flex items-center">

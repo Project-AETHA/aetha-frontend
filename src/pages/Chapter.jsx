@@ -1,7 +1,7 @@
 import Chapters from '../components/Chapters';
 import Books from '../components/Books';
 import Advertistment from '../components/Advertistment';
-import Rating from '../components/Rating';
+import Rating from './Shop/components/Rating.jsx';
 
 
 
