@@ -1,15 +1,20 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { TERipple } from 'tw-elements-react';
 import { Button } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
+import useFetch from "@/hooks/useFetch.jsx";
+import { Select, SelectItem } from "@nextui-org/react";
 
 export default function SearchBar() {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const [searchText, setSearchText] = useState("");
 
-    // TODO - Add dropdown to support multiple genres selection
+    // Obtaining genres from the server
+    const { data: availableGenres, loading: loadingGenres } = useFetch("/api/config/genres");
+
+    // Manage multiple genres selection
     const [genres, setGenres] = useState([]);
     const [publishedWithin, setPublishedWithin] = useState("");
     const [rating, setRating] = useState(0);
@@ -17,11 +22,37 @@ export default function SearchBar() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        //? Clearing previous search filters before performing the new search
+        // Clearing previous search filters before performing the new search
         localStorage.removeItem("searchFilter");
         localStorage.setItem("searchFilter", JSON.stringify({ searchText, genres, publishedWithin, rating }));
-        console.log({ searchText, genres, publishedWithin, rating })
+
+        // ! Debugging line - Prints the current search filter on pressing the search button
+        console.log({ searchText, genres, publishedWithin, rating });
+
         navigate("/shop/search");
+    }
+
+    function handleTimeSelection(e) {
+        // Extract the index from the value
+        const index = e.target.value.split('.')[1];
+
+        // Map the index to a specific string
+        let label;
+        switch (index) {
+            case "0":
+                label = 'Today';
+                break;
+            case "1":
+                label = 'ThisWeek';
+                break;
+            case "2":
+                label = 'ThisMonth';
+                break;
+            default:
+                label = 'Unknown';
+        }
+
+        setPublishedWithin(label);
     }
 
     return (
@@ -31,7 +62,7 @@ export default function SearchBar() {
                     <h1 className="text-2xl font-semibold mb-4 text-center text-primaryText">
                         Discover Your Next Read
                     </h1>
-                    <form className="space-y-4 md:space-y-0">
+                    <form className="space-y-4 md:space-y-0" onSubmit={handleSubmit}>
                         <div className="flex flex-grow items-center">
                             <TERipple rippleColor="light" className="w-full rounded-md">
                                 <input
@@ -42,64 +73,59 @@ export default function SearchBar() {
                                     onChange={e => setSearchText(e.target.value)}
                                 />
                             </TERipple>
-                            <Button className="ml-2 px-10 rounded-md bg-accentText text-whiteText" onClick={handleSubmit}>
+                            <Button className="ml-2 px-10 rounded-md bg-accentText text-whiteText" type="submit">
                                 Search
                             </Button>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                            <select
-                                className="py-2 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
+                            <Select
+                                label="Genres"
+                                placeholder="Select genres"
+                                selectionMode="multiple"
+                                className="max-w-xs"
                                 value={genres}
-                                onChange={e => setGenres(e.target.value)}
+                                onChange={selectedGenres => {
+                                    setGenres(selectedGenres.target.value.split(',').map(item => availableGenres[item]));
+                                }}
                             >
-                                <option>All</option>
-                                <option value="thriller">Thriller</option>
-                                <option value="comedy">Comedy</option>
-                                <option value="new-arrivals">New Arrivals</option>
-                                <option value="top-rated">Top Rated</option>
-                            </select>
+                                {loadingGenres ? (
+                                    <SelectItem value="" disabled>Loading...</SelectItem>
+                                ) : (
+                                    availableGenres && availableGenres.map((genre, index) => (
+                                        <SelectItem key={index} value={index}>{genre}</SelectItem>
+                                    ))
+                                )}
+                            </Select>
 
-                            <select
-                                className="py-2 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
-                                value={genres}
-                                onChange={e => setGenres(e.target.value)}
+                            <Select
+                                label="Published Within"
+                                placeholder="Select Time Period"
+                                className="max-w-xs"
+                                onChange={handleTimeSelection}
                             >
-                                <option>Genre</option>
-                                <option value="action">Action</option>
-                                <option value="adventure">Adventure</option>
-                                <option value="family">Family</option>
-                                <option value="history">History</option>
-                                <option value="music">Music</option>
-                            </select>
+                                <SelectItem value="Day">Today</SelectItem>
+                                <SelectItem value="Week">This Week</SelectItem>
+                                <SelectItem value="Month">This Month</SelectItem>
+                            </Select>
 
-                            <select
-                                className="py-2 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
-                                value={publishedWithin}
-                                onChange={e => setPublishedWithin(e.target.value)}
+                            <Select
+                                label="Rating"
+                                placeholder="Select Rating"
+                                className="max-w-xs"
+                                onChange={(e) => {
+                                    setRating(parseInt(e.target.value.split('.')[1]) + 1)
+                                }}
                             >
-                                <option>Publication</option>
-                                <option value="2024">This week</option>
-                                <option value="2023">Last week</option>
-                                <option value="2022">This Month</option>
-                                <option value="2021">Last Month</option>
-                            </select>
-
-                            <select
-                                className="py-2 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
-                                value={rating}
-                                onChange={e => setRating(parseInt(e.target.value))}
-                            >
-                                <option>Rating</option>
-                                <option value="5">5 Stars</option>
-                                <option value="4">4 Stars</option>
-                                <option value="3">3 Stars</option>
-                                <option value="2">2 Stars</option>
-                                <option value="1">1 Star</option>
-                            </select>
+                                <SelectItem value={1}>1 Star</SelectItem>
+                                <SelectItem value={3}>3 Stars</SelectItem>
+                                <SelectItem value={2}>2 Stars</SelectItem>
+                                <SelectItem value={4}>4 Stars</SelectItem>
+                                <SelectItem value={5}>5 Stars</SelectItem>
+                            </Select>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     );
-};
+}
