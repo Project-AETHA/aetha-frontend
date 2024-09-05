@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import { TERipple } from 'tw-elements-react';
 import { Button } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom';
@@ -7,17 +7,20 @@ export default function SearchBar() {
 
     const navigate = useNavigate()
 
-    const [text, setText] = useState("");
+    const [searchText, setSearchText] = useState("");
 
     // TODO - Add dropdown to support multiple genres selection
     const [genres, setGenres] = useState([]);
-    const [published, setPublished] = useState("");
+    const [publishedWithin, setPublishedWithin] = useState("");
     const [rating, setRating] = useState(0);
 
     function handleSubmit(e) {
         e.preventDefault();
-        localStorage.setItem("searchFilter", JSON.stringify({ text, genres, published, rating }));
-        console.log({ text, genres, published, rating })
+
+        //? Clearing previous search filters before performing the new search
+        localStorage.removeItem("searchFilter");
+        localStorage.setItem("searchFilter", JSON.stringify({ searchText, genres, publishedWithin, rating }));
+        console.log({ searchText, genres, publishedWithin, rating })
         navigate("/shop/search");
     }
 
@@ -35,8 +38,8 @@ export default function SearchBar() {
                                     type="text"
                                     placeholder="Search"
                                     className="my-5 w-full py-2 pl-4 pr-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
-                                    value={text}
-                                    onChange={e => setText(e.target.value)}
+                                    value={searchText}
+                                    onChange={e => setSearchText(e.target.value)}
                                 />
                             </TERipple>
                             <Button className="ml-2 px-10 rounded-md bg-accentText text-whiteText" onClick={handleSubmit}>
@@ -49,7 +52,7 @@ export default function SearchBar() {
                                 value={genres}
                                 onChange={e => setGenres(e.target.value)}
                             >
-                                <option value="">All</option>
+                                <option>All</option>
                                 <option value="thriller">Thriller</option>
                                 <option value="comedy">Comedy</option>
                                 <option value="new-arrivals">New Arrivals</option>
@@ -61,7 +64,7 @@ export default function SearchBar() {
                                 value={genres}
                                 onChange={e => setGenres(e.target.value)}
                             >
-                                <option value="">Genre</option>
+                                <option>Genre</option>
                                 <option value="action">Action</option>
                                 <option value="adventure">Adventure</option>
                                 <option value="family">Family</option>
@@ -71,10 +74,10 @@ export default function SearchBar() {
 
                             <select
                                 className="py-2 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
-                                value={published}
-                                onChange={e => setPublished(e.target.value)}
+                                value={publishedWithin}
+                                onChange={e => setPublishedWithin(e.target.value)}
                             >
-                                <option value="">Publication</option>
+                                <option>Publication</option>
                                 <option value="2024">This week</option>
                                 <option value="2023">Last week</option>
                                 <option value="2022">This Month</option>
@@ -86,7 +89,7 @@ export default function SearchBar() {
                                 value={rating}
                                 onChange={e => setRating(parseInt(e.target.value))}
                             >
-                                <option value="">Rating</option>
+                                <option>Rating</option>
                                 <option value="5">5 Stars</option>
                                 <option value="4">4 Stars</option>
                                 <option value="3">3 Stars</option>

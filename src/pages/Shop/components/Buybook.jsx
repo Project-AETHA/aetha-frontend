@@ -1,49 +1,13 @@
-import { useEffect, useState } from "react";
 import { Image, Button } from "@nextui-org/react";
-import { FaStar, FaHeart } from "react-icons/fa";
-import axios from "axios";
-import { toast } from "sonner";
-import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
+import { FaHeart } from "react-icons/fa";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import useFetch from "@/hooks/useFetch.jsx";
+import Rating from "@/components/common/Rating.jsx";
 
-function BuybookPage({ id }) {
-    const [ebook, setEbook] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+function BuyBookPage(props) {
 
-    async function getBookData() {
-        setIsLoading(true);
-
-        try {
-            const response = await axios.get("/api/ebooks/" + id);
-
-            if (response.status === 200) {
-                switch (response.data.code) {
-                    case ResponseCodes.SUCCESS:
-                        setEbook(response.data.content);
-                        toast.success(response.data.message);
-                        break;
-                    default:
-                        console.error(response.data);
-                        toast.error(response.data.message);
-                        break;
-                }
-            } else {
-                console.error(response);
-                toast.error("An error occurred while fetching the ebook", {
-                    description: response.data.message
-                });
-            }
-        } catch (error) {
-            console.error("Error fetching ebook data:", error);
-            toast.error("An unexpected error occurred");
-        } finally {
-            setIsLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        getBookData();
-    }, []);
+    // ? Used the useFetch custom hook to get the required ebook data
+    const { data: ebook, loading: isLoading } = useFetch(`/api/ebooks/${props.id}`);
 
     return (
         <div className="alt-container">
@@ -74,11 +38,7 @@ function BuybookPage({ id }) {
                                         </p>
                                         {/* star rating */}
                                         <div className="flex my-1">
-                                            <FaStar className="text-2xl text-yellow-400" />
-                                            <FaStar className="text-2xl text-yellow-400" />
-                                            <FaStar className="text-2xl text-yellow-400" />
-                                            <FaStar className="text-2xl text-yellow-400" />
-                                            <p className="text-2xl text-gray-500">4.5 (200)</p>
+                                            <Rating rating={ebook.rating} />
                                         </div>
                                         <p className="mt-4 text-4xl font-semibold text-secondaryText">
                                             LKR {ebook.price}.00
@@ -102,4 +62,4 @@ function BuybookPage({ id }) {
     );
 }
 
-export default BuybookPage;
+export default BuyBookPage;

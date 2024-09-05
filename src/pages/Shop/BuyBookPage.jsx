@@ -6,7 +6,6 @@ import {useParams} from 'react-router-dom';
 const BuybookPage = () => {
 
   const {bookId} = useParams();
-  // console.log(bookId)
 
   return (
     <div>

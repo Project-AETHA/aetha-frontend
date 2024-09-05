@@ -3,22 +3,22 @@ import SignupPage from "../pages/SignupPage.jsx";
 import SupportPage from "../pages/Support/SupportPage.jsx";
 import NovelLandingPage from "../pages/LandingPage/NovelLandingPage.jsx";
 import Reading from "../pages/Reading.jsx";
-import SearchResults from "../pages/Shop/SearchResults.jsx";
+import SearchResultsPage from "../pages/Shop/SearchResultsPage.jsx";
 import Poems from "../pages/Poems.jsx";
 import Chapterreading from "../pages/Chapterreading.jsx";
 import Chapters from "../pages/Chapter.jsx";
-import Shop from "../pages/Shop/Shop.jsx";
+import Shop from "../pages/Shop/ShopPage.jsx";
 import Subscribe from "../pages/Subscribe.jsx";
 import ShortStoriesReading from "../pages/ShortStoriesReading.jsx";
 import Shortstories from "../pages/Shortstories.jsx";
 import GeneralLandingPage from "../pages/LandingPage/GeneralLandingPage.jsx";
-import TestComponent from "../components/common/Tables/Temp.tsx";
+import TestComponent from "../components/common/Temp.tsx";
 import SettingPage from '../pages/Settings.jsx';
 import Forum from '../pages/Forum.jsx';
 import Forumselection from '../pages/Forumselection.jsx';
 import Buytiers from '../pages/Buytiers.jsx';
 import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
-import Buybook from '../pages/Shop/BuyBook.jsx';
+import Buybook from '../pages/Shop/BuyBookPage.jsx';
 
 export default function RoutesGeneral () {
     return [
@@ -27,7 +27,7 @@ export default function RoutesGeneral () {
         { path: '/signup', element: <SignupPage />, layout: "simple" },
         { path: '/support', element: <SupportPage />, layout: "simple" },
         { path: '/shop', element: <Shop />, layout: "default" },
-        { path: '/shop/search', element: <SearchResults />, layout: "default" },
+        { path: '/shop/search', element: <SearchResultsPage />, layout: "default" },
         { path: '/novel/:novelId', element: <Chapters />, layout: "default" },
         { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
         { path: '/reading', element: <Reading />, layout: "default" },

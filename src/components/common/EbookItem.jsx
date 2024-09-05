@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
+import Rating from "@/components/common/Rating.jsx";
 
+
+{/* TODO - Add an animation when hovering, make it more natural. Might need to add spacing between elements as well */}
 const EbookItem = ({ image, title, description, rating, price, id }) => {
     return (
         <div className="flex flex-col items-start rounded-md">
@@ -10,14 +12,14 @@ const EbookItem = ({ image, title, description, rating, price, id }) => {
                     alt={title}
                     width="150px"
                     height="250px"
-                    className="hover:scale-105"
+                    className="hover:scale-95 hover:border-4 border-secondary  duration-150 ease-in-out min-h-[200px] min-w-[150px] object-cover rounded-sm"
                 />
                 <p className="font-semibold text-sm text-primaryText">{title}</p>
                 <p className="text-xs text-secondaryText">{description}</p>
                 <p className="flex text-sm text-secondaryText">
-                    {rating} <FaStar className="text-yellow-500" />
+                    <Rating rating={rating} size={16} />
                 </p>
-                <p className="text-sm text-primaryText">{price}</p>
+                <p className="text-sm text-primaryText">LKR {price}</p>
             </Link>
         </div>
     );

@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom";
 import 'aos/dist/aos.css';
-import { FaStar, FaRegClock ,FaRegStar  } from "react-icons/fa";
+import { FaRegClock } from "react-icons/fa";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Rating from "@/components/common/Rating.jsx";
 import SearchItems from "@/pages/Shop/components/SearchItems.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import {toast} from "sonner";
 
 const FIELDS = {
     PRICE: "price",
@@ -17,30 +16,33 @@ const SORT_OPTIONS = {
     ASCENDING: "ASC",
     DESCENDING: "DESC",
 }
-const NovelSelection = () => {
 
+const NovelSelection = ({data}) => {
     const [booksData, setBooksData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    async function fetchEbooksSorted (field, order = SORT_OPTIONS.ASCENDING) {
+    async function fetchEbooksSorted () {
+        setIsLoading(true);
 
-        setIsLoading(true)
+        try {
+            const response = await axios.get(`/api/ebooks/all`);
 
-        console.log(`/api/ebooks/all/${field}/${order}`)
-        const response = await axios.get(`/api/ebooks/all/${field}/${order}`);
-        console.log("Sorted Data : ");
-        console.log(response.data);
-
-        if(response.status === 200) {
-            setBooksData(response.data.content);
+            if(response.status === 200) {
+                setBooksData(response.data.content);
+            }
+        } catch (error) {
+            toast.error("Failed to fetch ebooks.");
+        } finally {
+            setIsLoading(false);
         }
-
-        setIsLoading(false)
     }
-
     useEffect(() => {
-        fetchEbooksSorted(FIELDS.RATING, SORT_OPTIONS.ASCENDING);
-    }, []);
+        if(data && data.length > 0) {
+            setBooksData(data);
+        } else {
+            fetchEbooksSorted();
+        }
+    }, [data]);
 
     return (
         <>
