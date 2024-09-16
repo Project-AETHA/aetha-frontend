@@ -21,46 +21,34 @@ export default function ShopPage() {
         refetch
     } = useQuery({queryKey: ["shop_items"], queryFn: getAllEbooks, retry: 3, refetchOnWindowFocus: false})
 
-    isError && console.log(error)
-
-    // console.log(isPending ? "Fetching in progress" : isError ? "Error occurred" : "Data fetched successfully")
-    // console.log(data)
-
-    async function getAllEbooks () {
-
-        // setIsLoading(true)
-        // ! Throwing an error whenever an error is detected, this will be caught by the isError defined in tanstack query
-        await axios.get("/api/ebooks/all")
-            .then(response => {
-                if(response.status === 200) {
-
-                    switch (response.data.code) {
-                        case ResponseCodes.SUCCESS:
-                            return response.data.content;
-                        case ResponseCodes.NO_DATA_FOUND:
-                            throw new Error("No data found")
-                        case ResponseCodes.ERROR:
-                            throw new Error("Server error")
-                        default:
-                            throw new Error("Error occurred - " + response.data.message)
-                    }
-
-                } else {
-                    throw new Error("Error occurred - Code " + response.status + " - " + ResponseCodes[response.status])
+    async function getAllEbooks() {
+        try {
+            const response = await axios.get("/api/ebooks/alls");
+            if (response.status === 200) {
+                switch (response.data.code) {
+                    case ResponseCodes.SUCCESS:
+                        return response.data.content;  // Ensure you return the content
+                    case ResponseCodes.NO_DATA_FOUND:
+                        throw new Error("No data found");
+                    case ResponseCodes.ERROR:
+                        throw new Error("Server error");
+                    default:
+                        throw new Error(response.data.message);
                 }
-            })
-            .catch(error => {
-                throw new Error("Error occurred - " + error)
-            })
-
-        // setIsLoading(false)
+            } else {
+                throw new Error("Error occurred - Code " + response.data.message);
+            }
+        } catch (error) {
+            throw new Error("Error occurred - " + error.message);
+        }
     }
+
 
 
     //? UseEffect hook is called to show the error toast only once, if an error was detected
     //? instead of showing multiple error toasts for each error occurred
     useEffect(() => {
-        if (isError) {
+        if (isError && !isPending) {
             toast.error("Error occurred", {
                 action: {
 
@@ -78,8 +66,9 @@ export default function ShopPage() {
                     actionButton: "!bg-red-500"
                 },
             });
+            console.log(error)
         }
-    }, [isError]);
+    }, [isError,isPending]);
 
     return (
         <div className="rounded-lg mb-10 w-full h-full flex flex-col gap-10 shadow-xl bg-foreground-50 px-10">
