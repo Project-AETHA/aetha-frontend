@@ -30,7 +30,7 @@ export default function ShopPage() {
 
         // setIsLoading(true)
         // ! Throwing an error whenever an error is detected, this will be caught by the isError defined in tanstack query
-        await axios.get("/api/ebooks/ads")
+        await axios.get("/api/ebooks/all")
             .then(response => {
                 if(response.status === 200) {
 
