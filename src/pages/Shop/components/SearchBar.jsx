@@ -117,8 +117,8 @@ export default function SearchBar() {
                                 }}
                             >
                                 <SelectItem value={1}>1 Star</SelectItem>
-                                <SelectItem value={3}>3 Stars</SelectItem>
                                 <SelectItem value={2}>2 Stars</SelectItem>
+                                <SelectItem value={3}>3 Stars</SelectItem>
                                 <SelectItem value={4}>4 Stars</SelectItem>
                                 <SelectItem value={5}>5 Stars</SelectItem>
                             </Select>
