@@ -14,7 +14,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "lorem ipsum dolor sit amet",
-            image: "../../../public/images/books/4.png",
+            image: "/images/books/4.png",
         },
         {
             id: 1,
@@ -22,7 +22,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/2.png",
+            image: "/images/books/2.png",
         },
         {
             id: 1,
@@ -30,7 +30,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/3.png",
+            image: "/images/books/3.png",
         },
         {
             id: 1,
@@ -38,7 +38,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/1.png",
+            image: "/images/books/1.png",
         },
         {
             id: 1,
@@ -46,7 +46,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/5.png",
+            image: "/images/books/5.png",
         },
         {
             id: 1,
@@ -54,7 +54,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/6.png",
+            image: "/images/books/6.png",
         },
         {
             id: 1,
@@ -62,7 +62,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/7.png",
+            image: "/images/books/7.png",
         },
         {
             id: 1,
@@ -70,7 +70,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/8.png",
+            image: "/images/books/8.png",
         },
         {
             id: 1,
@@ -78,7 +78,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/books/9.png",
+            image: "/images/books/9.png",
         },
 
     ];
@@ -89,63 +89,63 @@ export default function GeneralLandingPage() {
             title: "The Butterfly",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/7.png",
+            image: "/images/poems/7.png",
         },
         {
             id: 1,
             title: "Fower",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/6.png",
+            image: "/images/poems/6.png",
         },
         {
             id: 1,
             title: "Hand",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/8.png",
+            image: "/images/poems/8.png",
         },
         {
             id: 1,
             title: "Alone",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/9.png",
+            image: "/images/poems/9.png",
         },
         {
             id: 1,
             title: "Flower",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/6.png",
+            image: "/images/poems/6.png",
         },
         {
             id: 1,
             title: "Hand",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/8.png",
+            image: "/images/poems/8.png",
         },
         {
             id: 1,
             title: "Alone",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/9.png",
+            image: "/images/poems/9.png",
         },
         {
             id: 1,
             title: "The Butterfly",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/7.png",
+            image: "/images/poems/7.png",
         },
         {
             id: 1,
             title: "Hand",
             type: "novel",
             rating: 4.6,
-            image: "../../../public/images/poems/8.png",
+            image: "/images/poems/8.png",
         },
 
     ];
@@ -157,7 +157,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "lorem ipsum dolor sit amet",
-            image: "../../../public/images/shortstories/11.png",
+            image: "/images/shortstories/11.png",
         },
         {
             id: 1,
@@ -165,7 +165,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/12.png",
+            image: "/images/shortstories/12.png",
         },
         {
             id: 1,
@@ -173,7 +173,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/13.png",
+            image: "/images/shortstories/13.png",
         },
         {
             id: 1,
@@ -181,7 +181,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/14.png",
+            image: "/images/shortstories/14.png",
         },
         {
             id: 1,
@@ -189,7 +189,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/11.png",
+            image: "/images/shortstories/11.png",
         },
         {
             id: 1,
@@ -197,7 +197,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/12.png",
+            image: "/images/shortstories/12.png",
         },
         {
             id: 1,
@@ -205,7 +205,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/14.png",
+            image: "/images/shortstories/14.png",
         },
         {
             id: 1,
@@ -213,7 +213,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/13.png",
+            image: "/images/shortstories/13.png",
         },
         {
             id: 1,
@@ -221,7 +221,7 @@ export default function GeneralLandingPage() {
             type: "novel",
             rating: 4.6,
             description: "Recommendation description",
-            image: "../../../public/images/shortstories/11.png",
+            image: "/images/shortstories/11.png",
         },
 
     ];

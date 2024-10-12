@@ -1,45 +1,111 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button, Input, Card, Tabs, Tab, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell,
-  Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Tooltip, Chip
+  Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Tooltip, Chip, Spinner
 } from '@nextui-org/react';
 import { Eye, Trash2, Pencil, Plus, BookOpen, DollarSign, Users } from 'lucide-react';
 import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip as ChartTooltip, Legend } from 'chart.js';
 
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
+import {toast} from "sonner";
+import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
+import Content_status from "@/components/predefined/ContentStatus.jsx";
+
+import {useQuery} from "@tanstack/react-query";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, ChartTooltip, Legend);
 
 const statusColorMap = {
-  Available: "success",
-  Unavailable: "danger",
+  PENDING: "warning",
+  APPROVED: "success",
+  REJECTED: "error",
+  DELETED: "error",
+  DRAFT: "default",
+  LISTED: "primary",
 };
 
 const Ebook = () => {
 
+  async function getAllBooks() {
+    return await axios.get("/api/ebooks/my-all")
+        .then(response => response.data.content)
+        .catch(error => console.log(error))
+  }
+
+  const ebookQuery = useQuery({
+    queryKey: ["ebooks"],
+    queryFn: getAllBooks
+  });
+
+  if(ebookQuery.isSuccess) console.log(ebookQuery.data);
+  if(ebookQuery.isError) console.log(ebookQuery.error);
+
   const navigate = useNavigate()
+
+  const [ebooks, setEbooks] = useState([])
+  const [ebooks_declined, setEbooksDeclined] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const [selectedTab, setSelectedTab] = useState('Listed');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(new Set(["all"]));
 
+  async function getAllEbooks () {
+
+    setIsLoading(true)
+
+    const response = await axios.get("/api/ebooks/my-all");
+
+    if (response.status === 200) {
+
+      switch (response.data.code) {
+        case ResponseCodes.SUCCESS:
+          toast.success("Fetched data successfully", {
+            description: response.data.message
+          });
+
+          // ? Settings the data to the states
+          setEbooks(response.data.content);
+          setEbooksDeclined(response.data.content.filter(ebook => ebook.status.toLowerCase() === Content_status.REJECTED));
+
+          console.log(response.data)
+          break;
+        case ResponseCodes.TOKEN_INVALID:
+          toast.error(response.data.message);
+          break;
+        case ResponseCodes.ERROR:
+          toast.error(response.data.message);
+          break;
+        case ResponseCodes.DUPLICATED:
+          toast.warning(response.data.message);
+          break;
+        default:
+          toast.error("Unknown Error", {
+            description: response.data.message
+          });
+          break;
+      }
+    } else {
+      console.log("Error: " + response.data);
+      toast.error("Server Error - Not Responding");
+    }
+
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    getAllEbooks();
+  }, []);
+
+
+  // ! Codes related to the Table
+
   const selectedCategoryValue = React.useMemo(
     () => Array.from(selectedCategory).join(", ").replaceAll("_", " "),
     [selectedCategory]
   );
-
-  const ebooks = [
-    { key: "1", title: 'E Book Title 1', status: 'Available', sales: '250', },
-    { key: "2", title: 'E Book Title 2', status: 'Unavailable', sales: '1250', },
-    { key: "3", title: 'E Book Title 3', status: 'Available', sales: '30', },
-  ];
-
-  const ebooks2 = [
-    { key: "1", title: 'E Book Title 1', comment: 'Needs revision', },
-    { key: "2", title: 'E Book Title 2', comment: 'Copyright issues', },
-    { key: "3", title: 'E Book Title 3', comment: 'Inappropriate content', },
-  ];
 
   const columns = [
     { key: "title", label: "Title" },
@@ -89,6 +155,8 @@ const Ebook = () => {
     }
   };
 
+
+  // ! Code for graphs and other data
   const salesData = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
@@ -111,6 +179,7 @@ const Ebook = () => {
       }
     ]
   };
+
 
   return (
     <div className="min-h-screen bg-foreground-100 p-2">
@@ -200,11 +269,16 @@ const Ebook = () => {
                 </div>
               </div>
 
-              <Table aria-label="Ebook Table">
+              <Table aria-label="Ebook Table" selectionMode={"single"}>
                 <TableHeader columns={columns}>
                   {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                 </TableHeader>
-                <TableBody items={ebooks}>
+                <TableBody
+                    items={ebooks}
+                    emptyContent={"No E-Books to display."}
+                    isLoading={isLoading}
+                    loadingContent={<Spinner label="Loading..." />}
+                >
                   {(item) => (
                     <TableRow key={item.key}>
                       {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
@@ -265,7 +339,7 @@ const Ebook = () => {
                 <TableHeader columns={columns2}>
                   {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                 </TableHeader>
-                <TableBody items={ebooks2}>
+                <TableBody items={ebooks_declined} emptyContent={"No E-Books to display."} isLoading={isLoading}>
                   {(item) => (
                     <TableRow key={item.key}>
                       {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

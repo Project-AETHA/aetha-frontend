@@ -20,7 +20,7 @@ function NovelLandingPage() {
       type: "novel",
       rating: 4.6,
       description: "lorem ipsum dolor sit amet",
-      image: "../../../public/images/books/4.png",
+      image: "/images/books/4.png",
     },
     {
       id: 1,
@@ -28,7 +28,7 @@ function NovelLandingPage() {
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "../../../public/images/books/2.png",
+      image: "/images/books/2.png",
     },
     {
       id: 1,
@@ -36,7 +36,7 @@ function NovelLandingPage() {
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "../../../public/images/books/3.png",
+      image: "/images/books/3.png",
     },
     {
       id: 1,
@@ -44,7 +44,7 @@ function NovelLandingPage() {
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "../../../public/images/books/1.png",
+      image: "/images/books/1.png",
     },
     {
       id: 1,
@@ -52,7 +52,7 @@ function NovelLandingPage() {
       type: "novel",
       rating: 4.6,
       description: "Recommendation description",
-      image: "../../../public/images/books/5.png",
+      image: "/images/books/5.png",
     },
   ];
 
@@ -90,28 +90,28 @@ function NovelLandingPage() {
       review_score: 4.8,
       rating: 4.5,
       description: "Something-01",
-      image: "../../../public/images/books/4.png",
+      image: "/images/books/4.png",
     },
     {
       title: "slide-02",
       review_score: 1.2,
       rating: 2.0,
       description: "Something-02",
-      image: "../../../public/images/books/2.png",
+      image: "/images/books/2.png",
     },
     {
       title: "slide-03",
       review_score: 5.0,
       rating: 3.5,
       description: "Something-03",
-      image: "../../../public/images/books/1.png",
+      image: "/images/books/1.png",
     },
     {
       title: "slide-04",
       review_score: 3.2,
       rating: 1.5,
       description: "Something-04",
-      image: "../../../public/images/books/5.png",
+      image: "/images/books/5.png",
     },
   ];
 

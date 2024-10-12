@@ -295,7 +295,7 @@ function LandingPage() {
                         <div>
                             {recommendations.map((recommendation, index) => (
                                 <div key={index}>
-                                    <img src="../../../public/images/user.png" alt="book" className="w-20 mx-auto" />
+                                    <img src="/images/user.png" alt="book" className="w-20 mx-auto" />
                                     <div className="p-4 rounded-md flex text-primaryText justify-center">
                                         
                                         <div className="font-bold inline-block"> Name : </div> <div className="inline-block ml-2"> {recommendation.author}</div>

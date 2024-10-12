@@ -23,6 +23,8 @@
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
+    "@tanstack/react-query": "^5.53.1",
+    "@tanstack/react-query-devtools": "^5.53.1",
     "@types/jest": "^29.5.12",
     "aos": "^2.3.4",
     "axios": "^1.7.2",
@@ -34,6 +36,7 @@
     "embla-carousel-autoplay": "^8.1.7",
     "embla-carousel-react": "^8.1.7",
     "framer-motion": "^11.2.12",
+    "imagekitio-react": "^4.2.0",
     "lucide-react": "^0.399.0",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",
@@ -41,6 +44,7 @@
     "react-dnd": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-drag-drop-files": "^2.3.10",
+    "react-hook-form": "^7.53.0",
     "react-icons": "^5.2.1",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.23.1",
@@ -52,6 +56,7 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.53.0",
     "@types/node": "^22.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -62,6 +67,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "postcss": "^8.4.40",
+    "prop-types": "^15.8.1",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.4.7",
     "vite": "^5.2.0"
