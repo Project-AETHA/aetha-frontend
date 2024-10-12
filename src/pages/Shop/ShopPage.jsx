@@ -23,7 +23,7 @@ export default function ShopPage() {
 
     async function getAllEbooks() {
         try {
-            const response = await axios.get("/api/ebooks/alls");
+            const response = await axios.get("/api/ebooks/all");
             if (response.status === 200) {
                 switch (response.data.code) {
                     case ResponseCodes.SUCCESS:
@@ -81,7 +81,7 @@ export default function ShopPage() {
             lg:px-60
             px-5
             py-20
-            bg-[url('/public/images/landing_cover.jpg')]
+            bg-[url('/images/landing_cover.jpg')]
             bg-cover
             w-full 
             rounded-lg

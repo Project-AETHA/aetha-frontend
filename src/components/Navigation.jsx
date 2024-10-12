@@ -21,7 +21,7 @@ import { ThemeSwitcher } from "./common/ThemeSwitcher";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "/public/images/logo.svg";
+import logo from "/images/logo.svg";
 
 function isLinkActive (link) {
     if (link === "/") {
@@ -167,7 +167,7 @@ export default function Navigation() {
                                     as="button"
                                     avatarProps={{
                                         isBordered: true,
-                                        src: "/public" + user.image,
+                                        src: user.image,
                                     }}
                                     className="transition-transform"
                                     description={"AKA " + user.displayName}
@@ -178,7 +178,7 @@ export default function Navigation() {
                             <div className="flex lg:hidden hover:cursor-pointer">
                                 <Avatar
                                     isBordered
-                                    src={"/public" + user.image}
+                                    src={user.image}
                                     name={user.firstname + " " + user.lastname}
                                 />
                             </div>

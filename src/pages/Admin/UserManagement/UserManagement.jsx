@@ -103,7 +103,7 @@ function UserManagement() {
         const response = await axios.get("/api/user/all-users")
 
         if (response.status === 200) {
-            //? DEBUG console.log(response);
+            console.log(response);
 
             if (response.data.code === "00") {
                 // Saving content to the users variable
