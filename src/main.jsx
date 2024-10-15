@@ -10,6 +10,7 @@ import '@fontsource/poppins/600.css'; // Weight 600.
 import '@fontsource/poppins/700.css'; // Weight 700.
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const queryClient = new QueryClient({
     defaultOptions: { queries: { retryDelay: 1000, retry: 5 }}
@@ -17,6 +18,7 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_OAUTH_CLIENT_ID}>
     <NextUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="light">
         <AuthContextProvider>
@@ -29,5 +31,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </AuthContextProvider>
       </NextThemesProvider>
     </NextUIProvider>
+  </GoogleOAuthProvider>
     // </React.StrictMode>
 );
