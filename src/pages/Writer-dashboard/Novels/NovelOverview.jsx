@@ -72,7 +72,7 @@ const Submissions = () => {
     const published = [];
     const drafts = [];
 
-    await axios.get("/api/novels/all")
+    await axios.get("/api/novels/my")
         .then(response => {
             if(response.status === 200) {
                 if(response.data.code === ResponseCodes.SUCCESS) {
