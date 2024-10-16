@@ -16,7 +16,7 @@ const NotificationsTab = ({visible, setVisible}) => {
         await axios.get('/api/notifications/getAll')
             .then(response => {
                 setNotifications(response.data.content)
-                console.log(response.data.content)
+                // console.log(response.data.content)
             })
             .catch(error => {
                 console.error(error)
