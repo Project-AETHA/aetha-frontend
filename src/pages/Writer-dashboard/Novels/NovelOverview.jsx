@@ -1,60 +1,14 @@
 import {useEffect, useState} from 'react';
-import { Card, Button, Tab, Tabs, CardBody, CardFooter, Image } from '@nextui-org/react';
+import { Card, Button, Tab, Tabs } from '@nextui-org/react';
 import { LibraryBig, NotepadTextDashed, } from "lucide-react";
 import { BsPencilFill } from "react-icons/bs";
-import Book1 from "/images/books/book8.png";
-import Book2 from "/images/books/book5.png";
-import Book3 from "/images/books/book6.png";
-import Book4 from "/images/books/book4.png";
-import Book5 from "/images/books/book9.png";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
 import {toast} from "sonner";
 import SingleNovel from "@/pages/Writer-dashboard/Novels/components/SingleNovel.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
-
-const booksData = [
-  {
-    id: 1,
-    coverImage: Book1,
-    title: "Skill Eater",
-    rating: 5.0,
-    author: "Someone",
-  },
-  {
-    id: 2,
-    coverImage: Book2,
-    title: "Dao of Cooking",
-    rating: 4.5,
-    author: "John",
-  },
-  {
-    id: 3,
-    coverImage: Book3,
-    title: "Worm Mage",
-    rating: 4.7,
-    author: "Lost Girl",
-  },
-
-  {
-    id: 4,
-    coverImage: Book4,
-    title: "Gun Soul",
-    rating: 4.7,
-    author: "Lost Girl",
-  },
-  // Add more book objects as needed...
-];
-
-const DraftsData = [
-  {
-    id: 1,
-    coverImage: Book5,
-    title: "Pale Lights",
-    author: "Someone",
-  },
-];
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 const Submissions = () => {
 
@@ -76,7 +30,6 @@ const Submissions = () => {
         .then(response => {
             if(response.status === 200) {
                 if(response.data.code === ResponseCodes.SUCCESS) {
-                  console.log(response.data.content)
                   response.data.content.map(novel => {
                     if(novel.status === "PENDING") {
                       pending.push(novel);
@@ -145,14 +98,14 @@ const Submissions = () => {
         </Card>
         <Card className="p-4 shadow-none" >
           <h3 className="text-xl font-semibold">Pending Submissions</h3>
-          <div className="mt-4">
+          <div className="mt-4 flex gap-4 flex-wrap">
             {/* List of pending submissions will go here */}
             {loading && <LoadingComponent />}
             {!loading && pendingNovels.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
-            {!loading && pendingNovels.length === 0 && <p>No Pending Novels</p>}
+            {!loading && pendingNovels.length === 0 && <NothingToDisplay />}
           </div>
           <div className="flex justify-end mt-4">
-            <Button auto className="bg-blue-500 text-white" onClick={() => navigate("/author/chapter/create")}>
+            <Button auto className="bg-blue-500 text-white" onClick={() => navigate("/author/novels/create")}>
               <BsPencilFill className="mr-1" />
               <p>Write a Novel</p>
             </Button>
@@ -171,10 +124,9 @@ const Submissions = () => {
             >
               <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
                 <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
-                <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-xl">
-                  {booksData.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
+                <div className="flex gap-4 flex-wrap">
                   {publishedNovels.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
-                  {!loading && publishedNovels.length === 0 && <p>No Published Novels</p>}
+                  {!loading && publishedNovels.length === 0 && <NothingToDisplay />}
                 </div>
               </div>
             </Tab>
@@ -189,30 +141,10 @@ const Submissions = () => {
             >
               <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
                 <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
-                <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-xl">
+                <div className="flex gap-4 flex-wrap">
                   {loading && <LoadingComponent />}
-                  {!loading && DraftsData.map(({ id, coverImage, title, rating }) => (
-                    <Card shadow="none" key={id} isPressable onClick={() => navigate(`/author/novels/${id}`)}>
-                      <CardBody className="p-0">
-                        <Image
-                          shadow="sm"
-                          radius="sm"
-                          width="100%"
-                          alt={title}
-                          className="w-[120px] object-cover h-[180px]"
-                          src={coverImage}
-                          href='/author/chapter'
-                        />
-                      </CardBody>
-                      <CardFooter className="flex flex-col items-start p-1">
-                        <h3 className="text-sm font-semibold text-left">{title}</h3>
-                        <div className="flex items-center mt-2">
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  ))}
                   {!loading && draftNovels.map((novel, index) => <SingleNovel key={index} novel={novel} />)}
-                  {!loading && draftNovels.length === 0 && <p>No Draft Novels</p>}
+                  {!loading && draftNovels.length === 0 && <NothingToDisplay />}
                 </div>
               </div>
             </Tab>

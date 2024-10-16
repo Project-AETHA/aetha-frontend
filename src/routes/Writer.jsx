@@ -4,7 +4,7 @@ import AuthorDashboard from "../pages/Writer-dashboard/AuthorDashboard.jsx";
 import PoemsPage from "../pages/Writer-dashboard/PoemsPage.jsx";
 import CreatePoem from "../pages/Writer-dashboard/CreatePoem.jsx";
 import ViewNote from "../pages/Writer-dashboard/ViewNote.jsx";
-import FirstChapter from "../pages/Writer-dashboard/FirstChapter.jsx";
+import CreateNovel from "../pages/Writer-dashboard/Novels/CreateNovel.jsx";
 import Chapters from "../pages/Writer-dashboard/Chapters.jsx";
 import Ebook from "../pages/Writer-dashboard/Ebook/Ebook.jsx";
 import NovelOverview from "../pages/Writer-dashboard/Novels/NovelOverview.jsx";
@@ -26,10 +26,10 @@ export default function RoutesWriter() {
         { path: '/author/notes', element: <NotesPage />, layout: "author_dashboard" },
         { path: '/author/notes/create', element: <CreateNote />, layout: "author_dashboard" },
         { path: '/author/notes/:noteId', element: <ViewNote />, layout: "author_dashboard" },
-        { path: '/author/chapter/create', element: <FirstChapter />, layout: "author_dashboard" },
         { path: '/author/chapter', element: <Chapters />, layout: "author_dashboard" },
         { path: '/author/novels', element: <NovelOverview />, layout: "author_dashboard" },
-        { path: '/author/novels/:novelId', element: <NovelDetails />, layout: "author_dashboard" },
+        { path: '/author/novels/create', element: <CreateNovel />, layout: "author_dashboard" },
+        { path: '/author/novels/details/:novelId', element: <NovelDetails />, layout: "author_dashboard" },
         { path: '/author/advertising', element: <Advertising />, layout: "author_dashboard" },
         { path: '/author/advertising/newcampaign', element: <NewCampaign />, layout: "author_dashboard" },
         { path: '/author/short-stories', element: <SstSubmitions />, layout: "author_dashboard" },

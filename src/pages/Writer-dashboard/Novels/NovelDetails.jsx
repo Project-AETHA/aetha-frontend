@@ -61,7 +61,7 @@ function NovelDetails () {
                 <p>Description: {novel.description}</p>
                 <p>Author: {novel.author.displayName}</p>
                 <p>Synopsis: {novel.synopsis}</p>
-                <p>Genres: {novel.genre.map((genre, index) => (
+                <p>Genres: {novel.genres.map((genre, index) => (
                     <span key={index}>{genre} </span>
                 ))}</p>
             </div>
