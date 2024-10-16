@@ -23,8 +23,8 @@ import Buybook from '../pages/Shop/BuyBookPage.jsx';
 export default function RoutesGeneral () {
     return [
         { path: '/', element: <GeneralLandingPage />, layout: "default" },
-        { path: '/login', element: <LoginPage />, layout: "simple" },
-        { path: '/signup', element: <SignupPage />, layout: "simple" },
+        { path: '/login', element: <LoginPage />, layout: "profile" },
+        { path: '/signup', element: <SignupPage />, layout: "profile" },
         { path: '/support', element: <SupportPage />, layout: "simple" },
         { path: '/shop', element: <Shop />, layout: "default" },
         { path: '/shop/search', element: <SearchResultsPage />, layout: "default" },
