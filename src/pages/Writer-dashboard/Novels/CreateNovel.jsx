@@ -35,6 +35,7 @@ const CreateNovel = () => {
     const tagOptions = ["Bestseller", "Award_Winner", "Popular", "New_Release", "Classic", "Recommended", "Must_Read", "Young_Adult", "Children",];
     const contentWarningOptions = ["Violence", "Sexual_Content", "Language", "Substance_Abuse", "Mental_Health"]
 
+    const tempFileName = Math.random().toString(36).substring(2, 15)
     const handleGenreChange = (genre) => {
         setGenres((prev) =>
             prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]
@@ -362,25 +363,17 @@ const CreateNovel = () => {
                     </div>
 
                     <div className="mb-4 flex flex-col">
-                        <ImageOnlineUpload setimage={setCoverImage} fileName={Math.random().toString(36).substring(2, 15)} />
                         <h3 className="text-default-700 text-small">Cover Image</h3>
-                        <input
-                            type="file"
-                            onChange={() => {
-                                setCoverImage("imageURL");
-                                setCoverImageError("");
-                            }}
-                        />
-                        {coverImageError && (
+                        <ImageOnlineUpload setimage={setCoverImage} fileName={tempFileName} />
+                        {!coverImage && coverImageError && (
                             <span className="text-red-500 text-sm">{coverImageError}</span>
                         )}
                     </div>
 
                     <div className="mb-4 flex flex-col">
-                        <Input
+                    <Input
                             type="text"
                             variant="bordered"
-                            isRequired
                             label="Manual Release Date and Time"
                             labelPlacement="outside"
                             placeholder="Replace with date picker and a time picker"

@@ -28,7 +28,7 @@ export default function RoutesGeneral () {
         { path: '/support', element: <SupportPage />, layout: "simple" },
         { path: '/shop', element: <Shop />, layout: "default" },
         { path: '/shop/search', element: <SearchResultsPage />, layout: "default" },
-        { path: '/novel/:novelId', element: <Chapters />, layout: "default" },
+        { path: '/novels/:novelId', element: <Chapters />, layout: "default" },
         { path: '/chapterreading', element: <Chapterreading />, layout: "default" },
         { path: '/reading', element: <Reading />, layout: "default" },
         { path: '/novels', element: <NovelLandingPage />, layout: "default" },

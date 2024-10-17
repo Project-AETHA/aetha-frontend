@@ -2,7 +2,7 @@ import {MutatingDots} from "react-loader-spinner";
 
 export default function LoadingComponent() {
   return (
-      <div className={"w-full flex justify-center items-center"}>
+      <div className={"w-full flex justify-center items-center select-none"}>
           <MutatingDots
               visible={true}
               height="100"
