@@ -1,4 +1,4 @@
-    import { Image } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import { FcBiomass, FcGallery, FcRating } from "react-icons/fc";
 import Item from "../../components/common/Item.jsx";
 import LatestUpdates from "./components/LatestUpdates.jsx";
@@ -10,52 +10,58 @@ import {
 } from "@/components/ui/carousel"
 
 import CarouselMain from "./components/CarouselMain";
+import {RiArrowGoBackFill} from "react-icons/ri";
+import {toast} from "sonner";
+import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
+import axios from "axios";
+import {useEffect, useState} from "react";
+import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 function NovelLandingPage() {
 
-  let recommendations = [
-    {
-      id: 1,
-      title: "The Great Gatsby",
-      type: "novel",
-      rating: 4.6,
-      description: "lorem ipsum dolor sit amet",
-      image: "/images/books/4.png",
-    },
-    {
-      id: 1,
-      title: "Walk in the Shadow",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "/images/books/2.png",
-    },
-    {
-      id: 1,
-      title: "Recommendation 1",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "/images/books/3.png",
-    },
-    {
-      id: 1,
-      title: "Alone",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "/images/books/1.png",
-    },
-    {
-      id: 1,
-      title: "Recommendation 1",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "/images/books/5.png",
-    },
-  ];
+    const [recommendations, setRecommendations] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    async function fetchAllNovels() {
+        setLoading(true);
+
+        await axios.get("/api/novels/all")
+            .then(response => {
+                if(response.status === 200) {
+                    if(response.data.code === ResponseCodes.SUCCESS) {
+                        setRecommendations(response.data.content);
+                    } else {
+                        throw new Error(response.data.message);
+                    }
+                } else {
+                    throw new Error("Error - Server not responding" + response.data.message);
+                }
+            })
+            .catch(error => {
+                toast.error("Error occurred", {
+                    description: error.message,
+                    action: {
+                        label: <div className="flex gap-1 items-center">
+                            <p>Go Back</p>
+                            <RiArrowGoBackFill size={18} />
+                        </div> ,
+                        // onClick: () => navigate("/author/novels")
+                    },
+                    classNames: {
+                        actionButton: "!bg-red-500"
+                    },
+                });
+            })
+
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        fetchAllNovels();
+    }, []);
+
+    //* Advertisements
     let ads = [
         {
             id: 1,
@@ -76,14 +82,16 @@ function NovelLandingPage() {
             image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
     ];
-    let latest_updates = recommendations.slice(0, 3);
-    let rising_stars = recommendations.slice(0, 3);
+    let latest_updates = recommendations.slice(0, 4);
+    let rising_stars = recommendations.slice(0, 4);
     let latest_updates_data = {
-        daily: recommendations.slice(0, 3),
-        weekly: recommendations.slice(0, 3),
-        monthly: recommendations.slice(0, 3),
+        daily: recommendations.slice(0, 4),
+        weekly: recommendations.slice(0, 4),
+        monthly: recommendations.slice(0, 4),
     };
 
+
+  //*   Content of the carousel slides
   const slides = [
     {
       title: "slide-01",
@@ -170,10 +178,15 @@ function NovelLandingPage() {
                         Personalized Recommendations
                     </p>
                     <div className="flex items-center flex-wrap gap-3">
-                        {recommendations &&
+                        {loading ? (
+                            <LoadingComponent />
+                        ) : recommendations.length > 0 ? (
                             recommendations.map((recommendation, index) => (
                                 <Item key={index} content={recommendation} />
-                            ))}
+                            ))
+                        ) : (
+                            <NothingToDisplay />
+                        )}
                     </div>
                 </div>
 
@@ -200,10 +213,15 @@ function NovelLandingPage() {
                         </p>
 
                         <div className="flex items-center flex-wrap gap-3">
-                            {latest_updates &&
+                            {loading ? (
+                                <LoadingComponent />
+                            ) : latest_updates.length > 0 ? (
                                 latest_updates.map((latest_update, index) => (
                                     <Item key={index} content={latest_update} />
-                                ))}
+                                ))
+                            ) : (
+                                <NothingToDisplay />
+                            )}
                         </div>
                     </div>
 
@@ -215,10 +233,15 @@ function NovelLandingPage() {
                         </p>
 
                         <div className="flex items-center flex-wrap gap-3">
-                            {rising_stars &&
+                            {loading ? (
+                                <LoadingComponent />
+                            ) : rising_stars.length > 0 ? (
                                 rising_stars.map((rising_star, index) => (
                                     <Item key={index} content={rising_star} />
-                                ))}
+                                ))
+                            ) : (
+                                <NothingToDisplay />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -227,7 +250,7 @@ function NovelLandingPage() {
                 <p className="text-foreground-900 font-semibold tracking-wide pl-2">Trending Content</p>
                 <hr className="pb-4" />
                 <div className="grow rounded p-1 flex">
-                    <LatestUpdates data={latest_updates_data} />
+                    <LatestUpdates data={latest_updates_data} loading={loading} />
                 </div>
             </div>
         </div>

@@ -1,8 +1,10 @@
 import {FaBell} from "react-icons/fa";
-import {IoMdClose} from "react-icons/io";
+import {IoMdClose, IoMdRefresh} from "react-icons/io";
 import SingleNotification from "@/components/common/Notifications/SingleNotification.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 const NotificationsTab = ({visible, setVisible}) => {
 
@@ -11,16 +13,20 @@ const NotificationsTab = ({visible, setVisible}) => {
     }
 
     const [notifications, setNotifications] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     async function fetchNotifications() {
+        setLoading(true)
         await axios.get('/api/notifications/getAll')
             .then(response => {
                 setNotifications(response.data.content)
-                console.log(response.data.content)
+                // console.log(response.data.content)
             })
             .catch(error => {
                 console.error(error)
             })
+
+        setLoading(false)
     }
 
     useEffect( () => {
@@ -53,18 +59,25 @@ const NotificationsTab = ({visible, setVisible}) => {
             `}
             >
                 <ul className="flex flex-col space-y-2 bg-foreground-0 rounded p-1">
-                    <li className="text-center">Notifications</li>
-                    <li className="mr-2 ml-auto hover:cursor-pointer" onClick={closeNotifications}><IoMdClose
-                        size={22}/></li>
-                    {notifications && notifications.length > 0 &&
-                        notifications.map(
+                    <li className="text-center select-none">Notifications</li>
+                    <div className="flex ml-auto items-center gap-2">
+                        <li className="mr-2 hover:cursor-pointer" onClick={fetchNotifications}>
+                            <IoMdRefresh size={22}/>
+                        </li>
+                        <li className="mr-2 hover:cursor-pointer" onClick={closeNotifications}>
+                            <IoMdClose size={22}/>
+                        </li>
+                    </div>
+                    {(notifications && notifications.length > 0 && !loading)
+                        ? notifications.map(
                             (notification, index) =>
                                 <SingleNotification key={index} notification={notification} closeNotificaions={closeNotifications} />
                         )
+                        : (!loading && !notifications)
+                            ? <NothingToDisplay retry={fetchNotifications} />
+                            : null
                     }
-
-                    {notifications && notifications.length <= 0 && <li className="text-center">No notifications</li>}
-                    {!notifications && <li className="text-center">Loading...</li>}
+                    {loading && <LoadingComponent />}
                 </ul>
             </div>
         </div>

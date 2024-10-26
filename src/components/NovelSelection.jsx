@@ -5,6 +5,7 @@ import axios from "axios";
 import SearchItems from "@/pages/Shop/components/SearchItems.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import {toast} from "sonner";
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 const FIELDS = {
     PRICE: "price",
@@ -62,9 +63,12 @@ const NovelSelection = ({data}) => {
                                     <LoadingComponent />
                                 </div>
                             ) : (
-                                booksData.map(book => (
+                                booksData.length > 0 ? booksData.map(book => (
                                     <SearchItems key={book.id} book={book} />
                                 ))
+                                    : <div className="col-span-2">
+                                        <NothingToDisplay retry={fetchEbooksSorted} />
+                                    </div>
                             )}
                         </div>
                     </div>

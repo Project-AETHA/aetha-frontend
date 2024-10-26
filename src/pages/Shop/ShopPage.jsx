@@ -2,13 +2,14 @@ import SearchBar from "./components/SearchBar.jsx";
 import { Link } from 'react-router-dom'
 import ViewBooks from "../../components/ViewBooks.jsx";
 import axios from 'axios';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import EbookItem from "@/components/common/EbookItem.jsx";
 import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
 import {toast} from "sonner";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import {useQuery} from "@tanstack/react-query";
 import { MdOutlineRefresh } from "react-icons/md";
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 export default function ShopPage() {
 
@@ -102,7 +103,7 @@ export default function ShopPage() {
                     {isPending ? (
                         <LoadingComponent />
                     ) : isError ? (
-                        <p>{"Error occurred"}</p>
+                        <NothingToDisplay retry={refetch} />
                     ) : (
                         data.map((item, index) => (
                             <EbookItem
@@ -131,7 +132,7 @@ export default function ShopPage() {
                     {isPending ? (
                         <LoadingComponent />
                     ) : isError ? (
-                        <p>{"Error occurred"}</p>
+                        <NothingToDisplay retry={refetch} />
                     ) : (
                         data.map((item, index) => (
                             <EbookItem
@@ -160,7 +161,7 @@ export default function ShopPage() {
                     {isPending ? (
                         <LoadingComponent />
                     ) : isError ? (
-                        <p>{"Error occurred"}</p>
+                        <NothingToDisplay retry={refetch} />
                     ) : (
                         data.map((item, index) => (
                             <EbookItem
