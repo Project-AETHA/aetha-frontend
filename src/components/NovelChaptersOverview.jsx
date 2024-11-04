@@ -2,15 +2,15 @@ import {useEffect, useState} from "react";
 import {Button} from "@nextui-org/react";
 import {useNavigate} from "react-router-dom";
 import {FcBiomass, FcGallery} from "react-icons/fc";
-import {FaBook, FaDonate, FaHeart, FaLock} from "react-icons/fa";
-import {MdAddAlert, MdOutlineReport} from "react-icons/md";
+import {FaBook, FaDonate, FaHeart, FaLock, FaYoutube} from "react-icons/fa";
+import {MdAddAlert, MdOutlineReport, MdWhatsapp, MdFacebook,  } from "react-icons/md";
 import axios from 'axios';
 import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
 import {toast} from "sonner";
 import ImageOnline from "@/components/common/ImageOnline.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 
-
+ 
 function NovelChapterOverview({id}) {
     const [novel, setNovel] = useState(null);
     const [chapters, setChapters] = useState([]);
@@ -80,7 +80,7 @@ function NovelChapterOverview({id}) {
                                 <div className="mb-4 md:mb-0 justify-center flex">
                                     <Button
                                         className="bg-accentText text-whiteText rounded"
-                                        onClick={() => navigate('/novels/chapter/1')}
+                                        onClick={() => navigate(`/novels/${novel.id}/1`)}
                                     >
                                         <FaBook/> Start Reading
                                     </Button>
@@ -139,7 +139,7 @@ function NovelChapterOverview({id}) {
                             : chapters && chapters.length > 0 ? chapters.map((chapter, index) => (
                                 <div
                                     key={index}
-                                    onClick={() => navigate(`/novels/chapter/${chapter.chapterNumber}`)}
+                                    onClick={() => navigate(`/novels/${id}/${chapter.chapterNumber}`)}
                                     className="h-10 items-center border-2 border-gray-200 rounded-xl p-3 w-full mx-2 flex select-none hover:shadow-sm hover:cursor-pointer hover:bg-chapterselect"
                                 >
                                     <div className="inline-block w-full md:w-8/12">
@@ -161,17 +161,23 @@ function NovelChapterOverview({id}) {
                 {/* Author Details */}
                 <div className="shadow-2xl bg-foreground-50 w-full md:w-3/12 rounded-md p-2 flex justify-stretch">
                     <div className="flex flex-col gap-2 w-full">
-                        <p className="flex gap-2 items-center font-semibold text-lg text-gray-500 mb-1 justify-center mt-2">
+                        <p className="flex gap-2 items-center select-none font-semibold text-lg text-gray-500 mb-1 justify-center mt-2">
                             {/*<FaUserEdit size="25px" />*/}
                             Author Details
                         </p>
                         {/* Placeholder for author details */}
                         {loading ? <LoadingComponent/>
-                            : novel && <div className="bg-red-500 w-full h-full flex flex-col items-center justify-center">
-                                <p>Author details</p>
-                                <ImageOnline path={novel.author.image} alt={novel.author.name}
-                                             className="rounded-full"/>
-                                <p className="text-lg">{novel.author.name}</p>
+                            : novel && <div className="w-full h-full flex flex-col items-center justify-center">
+                                <ImageOnline
+                                    path={novel.author.image} alt={novel.author.name}
+                                    className="rounded-full max-w-[100px] max-h-[100px] select-none"
+                                />
+                                <p className="text-foreground-900 font-semibold mt-2 select-none">{novel.author.displayName}</p>
+                                <div className="flex justify-center items-center gap-2">
+                                    <MdWhatsapp className="social-buttons" onClick={() => navigate(novel.author.whatsapp ?? '/#')} />
+                                    <FaYoutube className="social-buttons" onClick={() => navigate(novel.author.youtube ?? '/#')} />
+                                    <MdFacebook className="social-buttons" onClick={() => navigate(novel.author.facebook ?? '/#')} />
+                                </div>
                             </div>
                         }
                     </div>
