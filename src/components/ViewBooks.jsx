@@ -3,9 +3,16 @@ import Book1 from "../../public/images/books/book1.jpg";
 import Book2 from "../../public/images/books/book2.jpg";
 import Book3 from "../../public/images/books/book3.jpg";
 import { Link } from "react-router-dom";
-import 'aos/dist/aos.css';
+import "aos/dist/aos.css";
 import { FaStar } from "react-icons/fa";
 
+import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
+import EbookItem from "@/components/common/EbookItem.jsx";
+
+//* React Query Implementation Code
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const booksData = [
   {
@@ -109,50 +116,65 @@ const booksData = [
 ];
 
 const ViewBooks = () => {
+  const getAllEbooks = async () => {
+    const response = await axios.get("/api/ebooks/all");
+    console.log(response)
+    return response.data.content;
+  };
 
+  function onSuccess() {
+    console.log("Query Success");
+  }
 
+  function onError() {
+    console.log("Query Error");
+  }
 
+  const { 
+    isLoading, // * True when the query is in progress
+    data,      // * The data returned from the query
+    isError,   // * True if the query resulted in an
+    error,     // * The error object if the query resulted in an error
+    isFetching, // * True if the query is currently fetching (polling, background refetch)
+    refetch     // * Function to manually refetch the query
+  } = useQuery({
+    queryKey: ["ebooks2"],
+    queryFn: getAllEbooks,
+    // enabled: false,
+    // cacheTime: 5000,
+    staleTime: 30000,
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
+    refetchIntervalInBackground: true,
+    refetchInterval: 60000,
+    retry: 3,
+    onSuccess: onSuccess,
+    onError: onError,
+  });
 
   return (
-
     <>
-      <div className="alt-container">
-        <div className="bg-foreground-50">
-          {/* Body section */} 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-3 py-5">
-            {/* Card */}
+      {isLoading && <LoadingComponent />}
 
-            {booksData.map(({ id, img, title, rating, author }) => (
+      {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
 
-              <div key={id} className="div space-y-3 transform hover:scale-105 transition-transform duration-300 ease-in-out mb-4">
-
-                <Link to="/chapters" color="foreground">
-                  <img
-                    src={img}
-                    alt=""
-                    className="h-[220px] w-[150px] object-cover rounded-sm"
-                  />
-                </Link>
-                <div>
-                  <h3 className="font-semibold text-primaryText">{title}</h3>
-                  <p className="text-sm text-secondaryText">{author}</p>
-                  <div className="flex items-center gap-1">
-                    {/* <FaStar className="text-yellow-500" /> */}
-                    <span className="text-tertiaryText text-xs">
-                      <FaStar className="text-yellow-500 mr-1 inline-block" />
-                      {rating}</span>
-                  </div>
-                </div>
-              </div>
-
-            ))}
-
-          </div>
-
+      {!isLoading && !isError && data && data.length > 0 ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center gap-3 py-5">
+          {data.map((item, index) => (
+            <EbookItem
+              key={index}
+              title={item.title}
+              description={item.description}
+              rating={item.rating}
+              price={item.price}
+              image={item.cover_image}
+              id={item.id}
+            />
+          ))}
         </div>
-      </div>
-
-
+      ) : (
+        !isLoading && !isError && <NothingToDisplay />
+      )}
     </>
   );
 };
