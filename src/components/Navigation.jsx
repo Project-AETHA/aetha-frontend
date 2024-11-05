@@ -7,6 +7,7 @@ import {
     NavbarContent,
     NavbarItem,
     Button,
+    Avatar,
     Accordion,
     AccordionItem,
     Dropdown,
@@ -15,9 +16,6 @@ import {
     DropdownItem,
     User,
 } from "@nextui-org/react";
-
-import Avatar from "@nextui-org/avatar";
-
 import { ThemeSwitcher } from "./common/ThemeSwitcher";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
