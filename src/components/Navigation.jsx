@@ -16,6 +16,7 @@ import {
     DropdownItem,
     User,
 } from "@nextui-org/react";
+
 import { ThemeSwitcher } from "./common/ThemeSwitcher";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
