@@ -8,6 +8,12 @@ import {
     Button,
     Chip,
 } from "@nextui-org/react";
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import { FaArrowAltCircleDown } from "react-icons/fa";
+import { FaCommentDots } from "react-icons/fa6";
+import { RiShareForwardFill } from "react-icons/ri";
+import { FiHeart } from "react-icons/fi";
+
 
 const Poem = ({ user, duration, title, content, tags, followers }) => {
     const [isFollowed, setIsFollowed] = React.useState(false);
@@ -57,7 +63,7 @@ const Poem = ({ user, duration, title, content, tags, followers }) => {
                     <hr className="" />
                     <div className='flex gap-2  mt-1 mb-2'>
 
-                        {tags.map(tag => (
+                        {tags && tags.map(tag => (
                             <Chip radius="sm" variant='flat' size="sm" color={tag.color}>{tag.text}</Chip>
                         ))}
                     </div>
@@ -71,35 +77,31 @@ const Poem = ({ user, duration, title, content, tags, followers }) => {
                 </CardBody>
                 <hr className="mt-4 mx-4" />
                 <CardFooter className="gap-3 mx-1">
-                
-                    <div className="flex gap-2">
-                        <Chip
-                            // startContent={<CheckIcon size={18} />}
-                            variant="faded"
-                            radius='md'
-                        >
-                            Upvote
-                            
-                        </Chip>
-                       
-                        <Chip
-                            // startContent={<CheckIcon size={18} />}
-                            variant="faded"
-                            radius='md'
-                        >
-                            Comment
-                            
-                        </Chip>
 
-                        <Chip
-                            // startContent={<CheckIcon size={18} />}
-                            variant="faded"
-                            radius='md'
-                        >
-                            Share
-                            
-                        </Chip>
+                    <div className='flex justify-between w-full'>
+                        <div className="flex gap-6">
+
+                            <div className='flex gap-2'>
+                                <FaArrowAltCircleUp size={18} />
+                                <p className="text-default-400 text-small">18.2k</p>
+                                <FaArrowAltCircleDown size={18} />
+
+                            </div>
+
+                            <FiHeart size={18} />
+
+                            <div className='flex gap-2'>
+                                <FaCommentDots size={18} />
+                                <p className="text-default-400 text-small">172k</p>
+                            </div>
+                        </div>
+
+                        <div className='flex gap-1'>
+                            <RiShareForwardFill size={22} />
+                            <p className="text-default-400 text-small">Share</p>
+                        </div>
                     </div>
+
 
                 </CardFooter>
             </Card>
