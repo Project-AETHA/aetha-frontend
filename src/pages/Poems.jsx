@@ -1,27 +1,31 @@
-
-import React from 'react';
-import {
-  Accordion,
-  AccordionItem,
-  Card,
-  CardHeader,
-  CardBody,
-  Divider,
-
-} from "@nextui-org/react";
+import { useEffect } from 'react';
 import Poem from '../components/Poems/Poem';
-import { Button } from "@nextui-org/react";
-
-
+import axios from 'axios';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 const Poems = () => {
-  const itemClasses = {
-    base: "py-0 w-full",
-    title: "font-normal text-medium",
-    trigger: "px-2 py-0 data-[hover=true]:bg-default-100 rounded-lg h-14 flex items-center",
-    indicator: "text-medium",
-    content: "text-small px-2",
-  };
+
+  const [ poemList , setPoemList] = useState([]);
+
+  async function getAllPoems() {
+
+    const response = await axios.get("/api/poems/get-all-poems");
+
+    if(response.status == 200){
+
+      setPoemList(response.data.content)
+      toast.success("Success", { description : response.data.message })
+              
+    } else {
+      toast.error("Error", {description: response.data.message})
+    }
+  }
+
+  
+  useEffect(() => {
+    getAllPoems()
+  }, [])
 
   function formatFollowers(followers) {
     if (followers >= 1000) {
@@ -29,48 +33,6 @@ const Poems = () => {
     }
     return followers.toString();
   }
-
-  const poemList = [
-    {
-      id: 1,
-      user: { displayName: "Madhusha Hansini" },
-      duration: "3hr",
-      title: "Mathematical Science",
-      content: "hoidhsoaid sdhosad isdjao sdjaso doais doad oisa doasid ao dsoadij.finger review nearly start famous look crowd troops music appropriate produce instance where frozen similar unhappy try particular pocket four hundred save taught dangerous",
-      tags: [
-        { color: "danger", text: "Popular" },
-        { color: "success", text: "Happy" }
-      ],
-      followers: formatFollowers(41500)
-    },
-    {
-      id: 2,
-      user: { displayName: "Nipun Bhathiya" },
-      duration: "5hr",
-      title: "ReactJS",
-      content: "empty well peace beautiful sign essential cool according soon song brought grade find threw slowly heavy lady men combination eat depend needs person clock.children cowboy primitive noise four test story lose on price burst captured sell audience sick direction name body damage numeral nine gulf torn potatoes",
-      tags: [
-        { color: "primary", text: "Ongoing" },
-        { color: "secondary", text: "Sci-Fi" }
-      ],
-      followers: formatFollowers(21315)
-    },
-    {
-      id: 3,
-      user: { displayName: "dilmi siriwardhana" },
-      duration: "7hr",
-      title: "MongoDB",
-      content: "empty well peace beautiful sign essential cool according soon song brought grade find threw slowly heavy lady men combination eat depend needs person clock.children cowboy primitive noise four test story lose on price burst captured sell audience sick direction name body damage numeral nine gulf torn potatoes",
-      tags: [
-        { color: "success", text: "Ongoing" },
-        { color: "secondary", text: "Sci-Fi" }
-      ],
-      followers: formatFollowers(78315)
-    }
-  ]
-
-  const defaultContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 
   return (
     <>
@@ -82,7 +44,7 @@ const Poems = () => {
             poemList.map(poemItem => (
               <Poem
                 key={poemItem.id}
-                user={poemItem.user}
+                user={poemItem.author}
                 duration={poemItem.duration}
                 title={poemItem.title}
                 content={poemItem.content}
@@ -106,7 +68,7 @@ const Poems = () => {
             poemList.map(poemItem => (
               <Poem
                 key={poemItem.id}
-                user={poemItem.user}
+                user={poemItem.author}
                 duration={poemItem.duration}
                 title={poemItem.title}
                 content={poemItem.content}
