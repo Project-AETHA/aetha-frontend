@@ -1,10 +1,10 @@
 import { Book, BarChart2, Star, MessageCircleMore } from "lucide-react";
 import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab, Link, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, } from "@nextui-org/react";
+import {useNavigate} from 'react-router-dom'
 import Book1 from "/images/books/book8.png";
 import Book2 from "/images/books/book5.png";
 import Book3 from "/images/books/book6.png";
 import Book4 from "/images/books/book4.png";
-import Book5 from "/images/books/book9.png";
 
 const booksData = [
   {
@@ -54,6 +54,9 @@ const StatsCard = ({ title, value, Icon }) => {
 };
 
 const AuthorDashboard = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="flex h-screen">
       <div className="flex-grow p-5 authbackground">
@@ -67,9 +70,9 @@ const AuthorDashboard = () => {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu variant="faded" aria-label="Static Actions">
-                <DropdownItem key="novel" href="/author/chapter/create">Novel</DropdownItem>
-                <DropdownItem key="shortStory" href="/author/short-stories/create">Short Story</DropdownItem>
-                <DropdownItem key="poemnisadas" href="/author/poems/create">Poem & Nisadas</DropdownItem>
+                <DropdownItem key="novel" onClick={() => navigate("/author/novels/create")}>Novel</DropdownItem>
+                <DropdownItem key="shortStory" onClick={() => navigate("/author/short-stories/create")} >Short Story</DropdownItem>
+                <DropdownItem key="poemnisadas" onClick={() => navigate("/author/poems/create")} >Poem & Nisadas</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
