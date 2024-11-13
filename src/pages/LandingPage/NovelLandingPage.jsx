@@ -25,44 +25,6 @@ function NovelLandingPage() {
         refetch
     } = useGet({ url: "/api/novels/all", queryKey: "ebook2" });
 
-    // async function fetchAllNovels() {
-    //     setLoading(true);
-
-    //     await axios.get("/api/novels/all")
-    //         .then(response => {
-    //             if(response.status === 200) {
-    //                 if(response.data.code === ResponseCodes.SUCCESS) {
-    //                     setRecommendations(response.data.content);
-    //                 } else {
-    //                     throw new Error(response.data.message);
-    //                 }
-    //             } else {
-    //                 throw new Error("Error - Server not responding" + response.data.message);
-    //             }
-    //         })
-    //         .catch(error => {
-    //             toast.error("Error occurred", {
-    //                 description: error.message,
-    //                 action: {
-    //                     label: <div className="flex gap-1 items-center">
-    //                         <p>Go Back</p>
-    //                         <RiArrowGoBackFill size={18} />
-    //                     </div> ,
-    //                     // onClick: () => navigate("/author/novels")
-    //                 },
-    //                 classNames: {
-    //                     actionButton: "!bg-red-500"
-    //                 },
-    //             });
-    //         })
-
-    //     setLoading(false);
-    // }
-
-    // useEffect(() => {
-    //     fetchAllNovels();
-    // }, []);
-
     //* Advertisements
     let ads = [
         {
