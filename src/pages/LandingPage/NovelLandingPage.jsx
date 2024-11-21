@@ -4,62 +4,26 @@ import Item from "../../components/common/Item.jsx";
 import LatestUpdates from "./components/LatestUpdates.jsx";
 import Rating from "../../components/common/Rating";
 import OverallReview from "../../components/common/OverallReview";
+import useGet from "@/hooks/useGet";
 
 import {
     CarouselItem,
 } from "@/components/ui/carousel"
 
 import CarouselMain from "./components/CarouselMain";
-import {RiArrowGoBackFill} from "react-icons/ri";
-import {toast} from "sonner";
-import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
-import axios from "axios";
-import {useEffect, useState} from "react";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 function NovelLandingPage() {
 
-    const [recommendations, setRecommendations] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    async function fetchAllNovels() {
-        setLoading(true);
-
-        await axios.get("/api/novels/all")
-            .then(response => {
-                if(response.status === 200) {
-                    if(response.data.code === ResponseCodes.SUCCESS) {
-                        setRecommendations(response.data.content);
-                    } else {
-                        throw new Error(response.data.message);
-                    }
-                } else {
-                    throw new Error("Error - Server not responding" + response.data.message);
-                }
-            })
-            .catch(error => {
-                toast.error("Error occurred", {
-                    description: error.message,
-                    action: {
-                        label: <div className="flex gap-1 items-center">
-                            <p>Go Back</p>
-                            <RiArrowGoBackFill size={18} />
-                        </div> ,
-                        // onClick: () => navigate("/author/novels")
-                    },
-                    classNames: {
-                        actionButton: "!bg-red-500"
-                    },
-                });
-            })
-
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        fetchAllNovels();
-    }, []);
+    const { 
+        isLoading,
+        data,
+        isError,
+        error,
+        isFetching,
+        refetch
+    } = useGet({ url: "/api/novels/all", queryKey: "ebook2" });
 
     //* Advertisements
     let ads = [
@@ -82,12 +46,14 @@ function NovelLandingPage() {
             image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
     ];
-    let latest_updates = recommendations.slice(0, 4);
-    let rising_stars = recommendations.slice(0, 4);
+
+    let latest_updates = data && Array.isArray(data) ? data.slice(0, 4) : [];
+    let recommendations = data && Array.isArray(data) ? data.slice(0, 8) : [];
+    let rising_stars = data && Array.isArray(data) ? data.slice(0, 4) : [];
     let latest_updates_data = {
-        daily: recommendations.slice(0, 4),
-        weekly: recommendations.slice(0, 4),
-        monthly: recommendations.slice(0, 4),
+        daily: data && Array.isArray(data) ? data.slice(0, 8) : [],
+        weekly: data && Array.isArray(data) ? data.slice(0, 8) : [],
+        monthly: data && Array.isArray(data) ? data.slice(0, 8) : [],
     };
 
 
@@ -178,14 +144,18 @@ function NovelLandingPage() {
                         Personalized Recommendations
                     </p>
                     <div className="flex items-center flex-wrap gap-3">
-                        {loading ? (
-                            <LoadingComponent />
-                        ) : recommendations.length > 0 ? (
-                            recommendations.map((recommendation, index) => (
-                                <Item key={index} content={recommendation} />
-                            ))
+                        {isLoading && <LoadingComponent />}
+
+                        {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
+
+                        {!isLoading && !isError && recommendations && recommendations.length > 0 ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
+                            {recommendations.map((item, index) => (
+                                <Item key={index} content={item} />
+                            ))}
+                        </div>
                         ) : (
-                            <NothingToDisplay />
+                            !isLoading && !isError && <NothingToDisplay />
                         )}
                     </div>
                 </div>
@@ -213,7 +183,7 @@ function NovelLandingPage() {
                         </p>
 
                         <div className="flex items-center flex-wrap gap-3">
-                            {loading ? (
+                            {isLoading ? (
                                 <LoadingComponent />
                             ) : latest_updates.length > 0 ? (
                                 latest_updates.map((latest_update, index) => (
@@ -233,7 +203,7 @@ function NovelLandingPage() {
                         </p>
 
                         <div className="flex items-center flex-wrap gap-3">
-                            {loading ? (
+                            {isLoading ? (
                                 <LoadingComponent />
                             ) : rising_stars.length > 0 ? (
                                 rising_stars.map((rising_star, index) => (
@@ -250,7 +220,7 @@ function NovelLandingPage() {
                 <p className="text-foreground-900 font-semibold tracking-wide pl-2">Trending Content</p>
                 <hr className="pb-4" />
                 <div className="grow rounded p-1 flex">
-                    <LatestUpdates data={latest_updates_data} loading={loading} />
+                    <LatestUpdates data={latest_updates_data} isLoading={isLoading} />
                 </div>
             </div>
         </div>

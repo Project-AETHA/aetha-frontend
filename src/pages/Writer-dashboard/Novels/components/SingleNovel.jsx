@@ -1,5 +1,4 @@
-import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
-import {Star} from "lucide-react";
+import {Card, CardBody, CardFooter} from "@nextui-org/react";
 import {useNavigate} from "react-router-dom";
 import ImageOnline from "@/components/common/ImageOnline.jsx";
 import Rating from "@/components/common/Rating.jsx";

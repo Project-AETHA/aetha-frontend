@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
 import Rating from "@/components/common/Rating.jsx";
 
+//* Framer-motion Imports
+import { motion } from "framer-motion";
 
 {/* TODO - Add an animation when hovering, make it more natural. Might need to add spacing between elements as well */}
 const EbookItem = ({ image, title, description, rating, price, id }) => {
     return (
-        <div className="flex flex-col items-start rounded-md">
+        <motion.div
+            initial={{ rotate: '0deg', scale: 1 }}
+            whileHover={{ rotate: '1deg', scale: 0.95 }}
+            transition={{ type: 'backInOut', stiffness: 200 }}
+            exit={{ rotate: '0deg', scale: 1 }}
+            className="flex flex-col items-start rounded-md"
+        >
             <Link to={`/buybook/${id}`}>
                 <img
                     src={`http://localhost:8080${image}`}
@@ -16,12 +24,12 @@ const EbookItem = ({ image, title, description, rating, price, id }) => {
                 />
                 <p className="font-semibold text-sm text-primaryText">{title}</p>
                 <p className="text-xs text-secondaryText">{description}</p>
-                <p className="flex text-sm text-secondaryText">
+                <div className="flex text-sm text-secondaryText">
                     <Rating rating={rating} size={16} />
-                </p>
+                </div>
                 <p className="text-sm text-primaryText">LKR {price}</p>
             </Link>
-        </div>
+        </motion.div>
     );
 };
 

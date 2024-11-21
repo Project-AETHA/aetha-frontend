@@ -143,7 +143,11 @@ export default function Navigation() {
             </NavbarContent>
 
 
-            <NotificationsTab visible={notificationTab} setVisible={setNotificationTab} />
+            
+            {user && (
+                <NotificationsTab visible={notificationTab} setVisible={setNotificationTab} />
+            )}
+
             <ThemeSwitcher />
 
             {!user && (
@@ -171,7 +175,7 @@ export default function Navigation() {
                                     as="button"
                                     avatarProps={{
                                         isBordered: true,
-                                        src: user.image,
+                                        src: "https://ik.imagekit.io/aetha/" + user.image,
                                     }}
                                     className="transition-transform"
                                     description={"AKA " + user.displayName}
@@ -182,7 +186,7 @@ export default function Navigation() {
                             <div className="flex lg:hidden hover:cursor-pointer">
                                 <Avatar
                                     isBordered
-                                    src={user.image}
+                                    src={"https://ik.imagekit.io/aetha/" + user.image}
                                     name={user.firstname + " " + user.lastname}
                                 />
                             </div>

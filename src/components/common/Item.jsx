@@ -15,6 +15,7 @@ export default function Item ({ content }) {
                 height={150}
                 path={content.coverImage}
                 alt={content.title}
+                loading="lazy"
             />
             <p className="text-sm font-semibold text-foreground-700">{content.title}</p>
             <p className="text-xs text-foreground-500 line-clamp-1 text-wrap">{content.description}</p>

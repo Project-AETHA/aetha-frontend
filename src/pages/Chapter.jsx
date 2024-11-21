@@ -1,20 +1,19 @@
-import Chapters from '../components/Chapters';
+import ChaptersOverview from '../components/NovelChaptersOverview.jsx';
 import Books from '../components/Books';
-import Advertistment from '../components/Advertistment';
+import Advertisements from '../components/Advertistment';
 import Rating from './Shop/components/Rating.jsx';
-
-
-
+import {useParams} from "react-router-dom";
 
 const Chapter = () => {
+
+    const {novelId} = useParams()
 
   return (
     <div>
 
-      <Chapters />
-      <Advertistment />
+      <ChaptersOverview id={novelId} />
+      <Advertisements />
       <Rating />
-     
       <Books />
 
     </div>

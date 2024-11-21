@@ -245,3 +245,7 @@ label.sc-aXZVg {
         align-items: center;
     }
 }
+
+.social-buttons {
+    @apply rounded-md m-1 min-w-[20px] min-h-[20px] hover:cursor-pointer text-foreground-900;
+}
