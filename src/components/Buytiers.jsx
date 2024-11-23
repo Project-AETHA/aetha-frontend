@@ -1,123 +1,170 @@
-import React, { useState } from "react";
-import { Image, Card, CardHeader, CardBody, CardFooter, Divider, Button } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Card, Button } from "@nextui-org/react";
+import ImageOnline from "@/components/common/ImageOnline.jsx";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
+function Subscribe({ data }) {
 
+  const navigate = useNavigate();
 
-function Subscribe() {
-    let recommendations = [
-        {
-            title: "THE GREAT GASBY",
-            description: "Recommendation description",
-            image: "../../public/images/books/book1.jpg",
-            author: "James Wan",
-            badge1: "../../public/images/badge.png"
-        },
-    ];
+  async function handleSubcribe(tier, amount) {
+    console.log(tier)
 
-    const Tiers = [
-        {
-          name: 'Bronze',
-          benefits: ['Unlock 10 chapters', 'Bronze avatar frame', 'No advertising'],
-          monthlyCost: 5,
-          yearlyCost: 50,
-          color: 'secondary'
-        },
-        {
-          name: 'Silver',
-          benefits: ['Unlock 25 chapters', 'Silver avatar frame', 'VIP community access', 'No advertising'],
-          monthlyCost: 7,
-          yearlyCost: 70,
-          color: 'secondary'
-        },
-        {
-          name: 'Gold',
-          benefits: ['Unlock 50 chapters', 'Gold avatar frame', 'VIP community access', 'No advertising'],
-          monthlyCost: 9,
-          yearlyCost: 110,
-          color: 'secondary'
-        },
-      ];
+    if(confirm(`Are you sure you want to subscribe to this tier?`)) {
+      const response = await axios.post(`/api/subscription/create`, {
+        novelId: data.novel.id,
+        subscriptionTier: tier,
+        amount: amount
+      })
 
-    return (
-        <>
-{/* disaply recommendations as text */}
-<div className="shadow-xl pb-1 rounded-lg bg-foreground-50">
-   <div className="w-full rounded-md pt-5">
-        {recommendations && recommendations.map((recommendation, index) => (
-            <div className=" md:w-1/2 m-auto text-primaryText text-center" key={index}>
-                <div className="flex justify-center">
-                    <div className="inline-block">
-                    <Image
+      console.log(response)
 
-                        width="100px"
-                        height="160px"
-                        className="rounded-lg hover:scale-105 transition-transform duration-300 ease-in-out hover:cursor-pointer"
-                        alt="NextUI hero Image"
-                        src={recommendation.image}
-                    />
-                    </div>
+      if(response.status === 200) {
+        switch(response.data.code) {
+          case "00":
+            alert("Subscription successful")
+            navigate(`/novels/${data.novel.id}`)
+            break;
+          case "05":
+            alert("Error: " + response.data.message)
+            break;
+          default:
+            alert("An error occurred. Try Again")
+            break;
+        }
+      } else {
+        alert("An error occurred")
+      }
+    }
 
+  }
 
-                    </div>
+  return (
+    <>
+      {/* disaply recommendations as text */}
+      <div className="shadow-xl pb-1 rounded-lg bg-foreground-50">
+        <div className="w-full rounded-md pt-5">
+          <div className=" md:w-1/2 m-auto text-primaryText text-center">
+            <div className="flex justify-center">
+              <div className="inline-block">
+                <ImageOnline
+                  className="object-cover w-[120px] h-[150px] hover:scale-105 !rounded-sm transition-transform duration-300 ease-in-out hover:cursor-pointer"
+                  width={120}
+                  height={150}
+                  path={data.novel.coverImage}
+                  alt={data.novel.title}
+                  loading="lazy"
+                />
+              </div>
+            </div>
 
-                    <div className="inline-block justify-center">
-                        <h1 className="text-xl font-semibold">{recommendation.title}</h1>
-                        </div>
-                        <div className="flex justify-center">
-                            <h1 className="text-md text-secondaryText">{recommendation.author}</h1>
-                        </div>
-                    </div>
-                ))}
-   </div>
-        
+            <div className="inline-block justify-center">
+              <h1 className="text-xl font-semibold">{data.novel.title}</h1>
+            </div>
+            <div className="flex justify-center">
+              <h1 className="text-md text-secondaryText">
+                {data.novel.author.displayName}
+              </h1>
+            </div>
+          </div>
+        </div>
+
         <div className="md:flex justify-center md:gap-5 md:mx-0 m-5 pb-5">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Tiers.map((tier, index) => (
-              <Card 
-              key={index} 
-              className="p-6 bg-whiteText shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105"
-            >
-              <h3 className="text-2xl font-bold mb-4">{tier.name}</h3>
-              
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {/* Card ONE */}
+            <Card className="p-6 bg-whiteText shadow-lg transform transition-transform duration-300 min-w-[250px] ease-in-out hover:scale-105">
+              <h3 className="text-2xl font-bold mb-4">{data.tier1_name}</h3>
+
               <ul className="list-disc list-inside mb-6 h-28 overflow-y-auto">
-                {tier.benefits.map((benefit, i) => (
-                  <li key={i} className="text-gray-600">{benefit}</li>
+                {data.tier1_features.map((benefit, i) => (
+                  <li key={i} className="text-gray-600">
+                    {benefit}
+                  </li>
                 ))}
               </ul>
-              
+
               <div className="flex justify-between items-center mb-6">
                 <div>
-                  <p className="text-3xl font-bold">${tier.monthlyCost}</p>
+                  <p className="text-3xl font-bold">${data.tier1_price}</p>
                   <p className="text-sm text-gray-500">per month</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold">${tier.yearlyCost}</p>
-                  <p className="text-sm text-gray-500">per year</p>
-                </div>
               </div>
-              <Button 
-                auto 
-                color={tier.color} 
-                onPress={() => handleEditTier(tier)} 
+              <Button
+                auto
+                color="primary"
+                onPress={() => handleSubcribe(1, data.tier1_price)}
                 className="w-full"
                 variant={"flat"}
               >
                 SUBSCRIBE
               </Button>
             </Card>
-            
-            ))}
+
+            {/* Card TWO */}
+            <Card className="p-6 bg-whiteText shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105">
+              <h3 className="text-2xl font-bold mb-4">{data.tier2_name}</h3>
+
+              <ul className="list-disc list-inside mb-6 h-28 overflow-y-auto">
+                {data.tier2_features.map((benefit, i) => (
+                  <li key={i} className="text-gray-600">
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <p className="text-3xl font-bold">${data.tier2_price}</p>
+                  <p className="text-sm text-gray-500">per month</p>
+                </div>
+
+              </div>
+              <Button
+                auto
+                color="secondary"
+                onPress={() => handleSubcribe(2, data.tier2_price)}
+                className="w-full"
+                variant={"flat"}
+              >
+                SUBSCRIBE
+              </Button>
+            </Card>
+
+            {/* Card THREE */}
+            <Card className="p-6 bg-whiteText shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105">
+              <h3 className="text-2xl font-bold mb-4">{data.tier3_name}</h3>
+
+              <ul className="list-disc list-inside mb-6 h-28 overflow-y-auto">
+                {data.tier3_features.map((benefit, i) => (
+                  <li key={i} className="text-gray-600">
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <p className="text-3xl font-bold">${data.tier3_price}</p>
+                  <p className="text-sm text-gray-500">per month</p>
+                </div>
+              </div>
+              <Button
+                auto
+                color="primary"
+                onPress={() => handleSubcribe(3, data.tier3_price)}
+                className="w-full"
+                variant={"flat"}
+              >
+                SUBSCRIBE
+              </Button>
+            </Card>
           </div>
-
-
-
-
-            </div>
-
         </div>
-        </>
-    );
+      </div>
+    </>
+  );
 }
 
 export default Subscribe;
