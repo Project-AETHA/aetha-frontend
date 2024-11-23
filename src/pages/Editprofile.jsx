@@ -30,7 +30,7 @@ function EditProfile() {
   return (
     <div>
       <div className="details bg-background text-foreground">
-        <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
+        <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 py-8 m-2 rounded-xl relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
               <FaEnvelope size={50} className="text-white justify-middle" />
@@ -44,7 +44,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-2 h-auto border-1 border-t-white border-x-white flex items-center'>
+        <div className='p-2 mx-10 h-auto border-1 border-t-white border-x-white flex items-center'>
           <div className='w-1/3'>Avatar</div>
           <div className='w-2/3'>
             <img className="picture ml-2" src={profilepic} alt="profile-pic" />
@@ -54,7 +54,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Username</div>
           <div className='w-2/3'>
             <label className='ml-2 flex items-center'>
@@ -74,7 +74,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Birthday</div>
           <div className='w-2/3'>
             <label className='ml-2'>
@@ -85,7 +85,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Gender</div>
           <div className='w-2/3'>
             <label className='ml-2'>
@@ -103,7 +103,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Hide Gender</div>
           <div className='w-2/3'>
             <label className='ml-2'>
@@ -117,7 +117,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Location</div>
           <div className='w-2/3 flex items-center'>
             <FaMapMarkerAlt className='mr-2' />
@@ -131,7 +131,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Website</div>
           <div className='w-2/3 flex items-center'>
             <FaLink className='mr-2' />
@@ -145,7 +145,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Twitter</div>
           <div className='w-2/3 flex items-center'>
             <FaTwitter className='mr-2' />
@@ -159,7 +159,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Facebook</div>
           <div className='w-2/3 flex items-center'>
             <FaFacebook className='mr-2' />
@@ -173,7 +173,7 @@ function EditProfile() {
           </div>
         </div>
 
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 mx-10 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
           <div className='w-1/3'>Biography</div>
           <div className='w-2/3 flex items-center'>
             <FaPen className='mr-2' />
@@ -185,9 +185,9 @@ function EditProfile() {
             />
           </div>
         </div>
-        <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+        <div className='p-3 h-auto flex items-center'>
         <div className='w-1/3'></div>
-        <div className='p-3 w-2/3 h-auto border-1 border-t-gray-300 border-b-white border-x-white flex items-center justify-start'>
+        <div className='p-3 w-2/3 h-auto flex items-center justify-start'>
           <Button color="primary">
             Update Profile
           </Button>

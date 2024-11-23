@@ -10,10 +10,10 @@ function Settings() {
   return (
       <div>
           <div className="">
-          <div className="details text-foregrounddetails bg-background text-foreground">
-           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
-        <div className="max-w-2xl px-4 m-auto relative z-10 flex">
-          <div className="h-16 w-16">
+           <div className="details bg-background text-foreground">
+          <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 py-8 m-2 rounded-xl relative">
+            <div className="max-w-2xl px-4 m-auto relative z-10 flex">
+              <div className="h-16 w-16">
             <TbSettingsCog size={50} className="text-white justify-middle " />
           </div>
           <span>
@@ -25,8 +25,8 @@ function Settings() {
         </div>
       </div>
         
-          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center'><div className='w-1/3 font-bold'>General</div><div className='w-2/3'></div></div>
-         <div className='p-3 h-auto border-1  border-t-gray-300 border-x-white flex items-center'>
+          <div className='p-3 pb-0 h-auto flex items-center'><div className='w-1/3 font-bold'>General</div><div className='w-2/3'></div></div>
+         <div className='p-3 h-auto  flex items-center'>
          <CheckboxGroup  >
       <Checkbox value="pm">Users can send me Private Messages</Checkbox>
       <Checkbox value="hideme">Hide me from 'Reading this Chapter' from authors</Checkbox>
@@ -47,9 +47,9 @@ function Settings() {
           <div className='p-3 h-auto border-1 border-white border-x-white flex items-center justify-center'>
           Time Format
           </div> */}
-          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center'><div className='w-1/3 font-bold'>Reading</div><div className='w-2/3'></div></div>
+          <div className='p-3 pb-0 h-auto flex items-center'><div className='w-1/3 font-bold'>Reading</div><div className='w-2/3'></div></div>
          
-          <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+          <div className='p-3 h-autoflex items-center'>
          <CheckboxGroup  >
       <Checkbox value="chap">Enable chapter navigation via the keyboard Left and Right Keys - requires JavaScript</Checkbox>
       <Checkbox value="progress">Never show the Reading Progress backtracking box</Checkbox>
@@ -59,8 +59,8 @@ function Settings() {
       <Checkbox value="fullscreen">Enable fullscreen mode with double-tap on the chapter</Checkbox>
     </CheckboxGroup>
           </div>
-          <div className='p-3 pb-0 h-auto border-1 border-t-white border-x-white flex items-center'><div className='w-1/3 font-bold'>Forum</div><div className='w-2/3'></div></div>
-          <div className='p-3 h-auto border-1 border-t-gray-300 border-x-white flex items-center'>
+          <div className='p-3 pb-0 h-auto flex items-center'><div className='w-1/3 font-bold'>Forum</div><div className='w-2/3'></div></div>
+          <div className='p-3 h-auto flex items-center'>
          <CheckboxGroup>
          <Checkbox value="usersigns">Display users' signatures in their posts</Checkbox>
     </CheckboxGroup>
@@ -68,7 +68,7 @@ function Settings() {
           {/* <div className='p-3 h-auto border-1 border-t-white border-x-white flex items-center justify-center'>
           Default Forum subscription method
           </div> */}
-          <div className='p-3 h-auto border-1 border-t-gray-300 border-b-white border-x-white flex items-center justify-center'>
+          <div className='p-3 h-auto flex items-center justify-center'>
           <Button color="primary">
       Save Changes
     </Button>
