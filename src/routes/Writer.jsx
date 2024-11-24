@@ -8,6 +8,7 @@ import CreateNovel from "../pages/Writer-dashboard/Novels/CreateNovel.jsx";
 import Chapters from "../pages/Writer-dashboard/Chapters.jsx";
 import Ebook from "../pages/Writer-dashboard/Ebook/Ebook.jsx";
 import NovelOverview from "../pages/Writer-dashboard/Novels/NovelOverview.jsx";
+import StoryOverview from "../pages/Writer-dashboard/ShortStory/StoryOverview.jsx";
 import Advertising from "../pages/Writer-dashboard/Advertising.jsx";
 import NewCampaign from "../pages/Writer-dashboard/NewCampaign.jsx";
 import SstSubmitions from "../pages/Writer-dashboard/SstSubmitions.jsx";
