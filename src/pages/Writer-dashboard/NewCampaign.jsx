@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Button,
   Input,
@@ -12,16 +12,17 @@ import {
   Select,
   SelectItem,
   SelectSection,
-} from '@nextui-org/react';
-import axios from 'axios';
-import { toast } from 'sonner';
-import { useNavigate } from 'react-router-dom';
-import ImageOnlineUpload from '@/components/common/ImageOnlineUpload.jsx';
-import { CalendarDate } from '@internationalized/date';
+} from "@nextui-org/react";
+import axios from "axios";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import ImageOnlineUpload from "@/components/common/ImageOnlineUpload.jsx";
+import { CalendarDate } from "@internationalized/date";
 
 const NewCampaign = () => {
   const navigate = useNavigate();
-  const headingClasses = 'flex w-full sticky top-1 z-20 py-1.5 px-2 bg-default-100 shadow-small rounded-small';
+  const headingClasses =
+    "flex w-full sticky top-1 z-20 py-1.5 px-2 bg-default-100 shadow-small rounded-small";
 
   const tempFileName = Math.random().toString(36).substring(2, 15);
   const today = new Date();
@@ -30,62 +31,64 @@ const NewCampaign = () => {
     today.getMonth() + 1,
     today.getDate()
   );
+  
 
-  const [internalTitle, setInternalTitle] = useState('');
-  const [adType, setAdType] = useState('');
+  const [internalTitle, setInternalTitle] = useState("");
+  const [adType, setAdType] = useState("");
   const [backgroundImage, setBackgroundImage] = useState(null);
-  const [redirectLink, setRedirectLink] = useState('');
+  const [redirectLink, setRedirectLink] = useState("");
   const [startDate, setStartDate] = useState(initialCalendarDate);
-  const [selectedPlan, setSelectedPlan] = useState('');
+  const [selectedPlan, setSelectedPlan] = useState("");
 
-  const [titleError, setTitleError] = useState('');
-  const [adTypeError, setAdTypeError] = useState('');
-  const [backgroundError, setBackgroundError] = useState('');
-  const [linkError, setLinkError] = useState('');
-  const [dateError, setDateError] = useState('');
-  const [planError, setPlanError] = useState('');
+  const [titleError, setTitleError] = useState("");
+  const [adTypeError, setAdTypeError] = useState("");
+  const [backgroundError, setBackgroundError] = useState("");
+  const [linkError, setLinkError] = useState("");
+  const [dateError, setDateError] = useState("");
+  const [planError, setPlanError] = useState("");
 
   const validateForm = () => {
     let hasError = false;
 
     if (!internalTitle) {
-      setTitleError('Internal title is required');
+      setTitleError("Internal title is required");
       hasError = true;
     }
 
     if (!adType) {
-      setAdTypeError('Please select an ad type');
+      setAdTypeError("Please select an ad type");
       hasError = true;
     }
 
     if (!backgroundImage) {
-      setBackgroundError('Background image is required');
+      setBackgroundError("Background image is required");
       hasError = true;
     }
 
     if (!redirectLink) {
-      setLinkError('Redirect link is required');
+      setLinkError("Redirect link is required");
       hasError = true;
     }
 
     if (!startDate) {
-      setDateError('Start date is required');
+      setDateError("Start date is required");
       hasError = true;
     }
 
     if (!selectedPlan) {
-      setPlanError('Please select a plan');
+      setPlanError("Please select a plan");
       hasError = true;
     }
 
     return !hasError;
   };
+  const formattedDate = `${startDate.year}-${String(startDate.month).padStart(2, '0')}-${String(startDate.day).padStart(2, '0')}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
-      toast.error('Please fill in all required fields');
+      toast.error("Please fill in all required fields");
       return;
     }
 
@@ -95,32 +98,32 @@ const NewCampaign = () => {
         adType,
         backgroundImage,
         redirectLink,
-        startDate: startDate.toString(),
-        selectedPlan
+        startDate,
+        selectedPlan,
       });
 
-      const response = await axios.post('/api/ads/create', {
+      const response = await axios.post("/api/ads/create", {
         internalTitle,
         adType,
         backgroundImage,
         redirectLink,
-        startDate: startDate.toString(),
+        startDate: formattedDate,
         selectedPlan,
       });
 
       if (response.status === 200) {
         switch (response.data.code) {
-          case '00':
+          case "00":
             toast.success(response.data.message);
-            navigate('/campaigns');
+            navigate("/campaigns");
             break;
-          case '05':
+          case "05":
             toast.error(response.data.message);
             break;
-          case '06':
+          case "06":
             toast.warning(response.data.message);
             break;
-          case '07':
+          case "07":
             if (response.data.errors) {
               const errorSetters = {
                 internalTitle: setTitleError,
@@ -137,28 +140,30 @@ const NewCampaign = () => {
                 }
               });
             }
-            toast.error('Please correct the errors in the form');
+            toast.error("Please correct the errors in the form");
             break;
           default:
-            toast.error('An unexpected error occurred');
+            toast.error("An unexpected error occurred");
             break;
         }
       }
     } catch (error) {
-      console.error('Error creating campaign:', error);
-      toast.error('Failed to create campaign. Please try again later.');
+      console.error("Error creating campaign:", error);
+      toast.error("Failed to create campaign. Please try again later.");
     }
   };
 
   const handleCancel = () => {
-    navigate('/campaigns');
+    navigate("/campaigns");
   };
 
   const handleDateChange = (date) => {
     setStartDate(date);
-    setDateError('');
+    setDateError("");
     console.log("Date changed to:", date);
   };
+
+  
 
   return (
     <div className="min-h-screen flex flex-col items-center p-2">
@@ -173,7 +178,7 @@ const NewCampaign = () => {
               onChange={(e) => {
                 const value = e.target.value;
                 setInternalTitle(value);
-                setTitleError('');
+                setTitleError("");
                 console.log("Internal Title changed to:", value);
               }}
               isInvalid={!!titleError}
@@ -191,7 +196,7 @@ const NewCampaign = () => {
                 onChange={(event) => {
                   const value = event.target.value;
                   setAdType(value);
-                  setAdTypeError('');
+                  setAdTypeError("");
                   console.log("Ad Type selected:", value);
                 }}
                 errorMessage={adTypeError}
@@ -219,7 +224,10 @@ const NewCampaign = () => {
           </div>
 
           <div className="mb-4 flex flex-col">
-            <ImageOnlineUpload setimage={setBackgroundImage} fileName={tempFileName} />
+            <ImageOnlineUpload
+              setimage={setBackgroundImage}
+              fileName={tempFileName}
+            />
             {!backgroundImage && backgroundError && (
               <span className="text-red-500 text-sm">{backgroundError}</span>
             )}
@@ -232,7 +240,7 @@ const NewCampaign = () => {
             onChange={(e) => {
               const value = e.target.value;
               setRedirectLink(value);
-              setLinkError('');
+              setLinkError("");
               console.log("Redirect Link entered:", value);
             }}
             className="max-w-xl"
@@ -262,18 +270,24 @@ const NewCampaign = () => {
               onChange={(e) => {
                 const value = e.target.value;
                 setSelectedPlan(value);
-                setPlanError('');
+                setPlanError("");
                 console.log("Selected Plan:", value);
               }}
               errorMessage={planError}
             >
-              <SelectSection title="Aetha Content Discount" classNames={{ heading: headingClasses }}>
+              <SelectSection
+                title="Aetha Content Discount"
+                classNames={{ heading: headingClasses }}
+              >
                 <SelectItem key="1">Impressions: 280,500 Cost: $55</SelectItem>
                 <SelectItem key="2">Impressions: 527,000 Cost: $100</SelectItem>
                 <SelectItem key="3">3</SelectItem>
                 <SelectItem key="4">4</SelectItem>
               </SelectSection>
-              <SelectSection title="Other" classNames={{ heading: headingClasses }}>
+              <SelectSection
+                title="Other"
+                classNames={{ heading: headingClasses }}
+              >
                 <SelectItem key="5">Impressions: 140,250 Cost: $55</SelectItem>
                 <SelectItem key="6">Impressions: 263,500 Cost: $100</SelectItem>
                 <SelectItem key="7">3</SelectItem>
@@ -283,8 +297,12 @@ const NewCampaign = () => {
           </div>
 
           <div className="flex justify-between mr-8">
-            <Button shodow color="primary" type="submit">Create</Button>
-            <Button shadow color="danger" onClick={handleCancel}>Cancel</Button>
+            <Button shodow color="primary" type="submit">
+              Create
+            </Button>
+            <Button shadow color="danger" onClick={handleCancel}>
+              Cancel
+            </Button>
           </div>
         </form>
       </Card>
