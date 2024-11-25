@@ -24,7 +24,7 @@ const ImageOnlineUpload = (props) => {
 
     const onSuccess = (response) => {
         console.log('Upload successful:', response);
-        props.setImage(response.filePath)
+        props.setimage(response.filePath)
         toast.success('Image uploaded successfully');
     };
 

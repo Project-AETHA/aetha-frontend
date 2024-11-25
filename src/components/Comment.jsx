@@ -63,10 +63,10 @@ function Comment() {
 
                                     <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
 
-                                    <p className="inline-block text-secondaryText text-sm mr-5">
+                                    <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className=""> Lorem ipsum dolor dipisicing elit. </div>
-                                    </p>
+                                    </div>
 
                                 </div>
 
@@ -84,10 +84,10 @@ function Comment() {
                                 <div className="flex rounded-4xl md:py-0 py-3 align-middle md:pl-10 border-l-2 border-gray-400 ml-8">
 
                                     <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
-                                    <p className="inline-block text-secondaryText text-sm mr-5">
+                                    <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Writer </div>
                                         <div className=""> Obcaecati deserunt quam quisquam libero quidem tempora. </div>
-                                    </p>
+                                    </div>
                                 </div>
 
                                 <div className="flex justify-end border-l-2 border-gray-400 ml-8">
@@ -104,10 +104,10 @@ function Comment() {
                                 <div className="flex rounded-4xl">
 
                                     <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
-                                    <p className="inline-block text-secondaryText text-sm mr-5">
+                                    <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className=""> Lorem ipsum dolor </div>
-                                    </p>
+                                    </div>
                                 </div>
                                 <div className="flex justify-end border-l-2 border-gray-400 ml-8">
                                     <Button className="h-6 rounded-3xl text-xs text-accentText bg-transparant border border-accentText mx-2  hover:bg-accentText hover:text-whiteText">
@@ -122,10 +122,10 @@ function Comment() {
 
                                 <div className="flex rounded-4xl">
                                     <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
-                                    <p className="inline-block text-secondaryText text-sm mr-5">
+                                    <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className=""> Lorem ipsum dolor dipisicing elit. </div>
-                                    </p>
+                                    </div>
                                 </div>
                                 <div className="flex justify-end border-l-2 border-gray-400 ml-8">
                                     <Button className="h-6 rounded-3xl text-xs text-accentText bg-transparant border border-accentText mx-2  hover:bg-accentText hover:text-whiteText">
@@ -141,10 +141,10 @@ function Comment() {
                                 <div className="flex rounded-4xl md:py-0 py-3 align-middle md:pl-10 border-l-2 border-gray-400 ml-8">
 
                                     <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
-                                    <p className="inline-block text-secondaryText text-sm mr-5">
+                                    <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Reader </div>
                                         <div className=""> Obcaecati deserunt quam quisquam libero quidem tempora. </div>
-                                    </p>
+                                    </div>
                                 </div>
                                 <div className="flex justify-end border-l-2 border-gray-400 ml-8">
                                     <Button className="h-6 rounded-3xl text-xs text-accentText bg-transparant border border-accentText mx-2 hover:bg-accentText hover:text-whiteText">
@@ -160,10 +160,10 @@ function Comment() {
                                 <div className="flex rounded-4xl md:py-0 align-middle md:pl-10 border-l-2 border-gray-400 ml-8">
 
                                     <img src="../../public/images/user.png" alt="user" className="rounded-full w-12 h-12 m-2 inline-block" />
-                                    <p className="inline-block text-secondaryText text-sm mr-5">
+                                    <div className="inline-block text-secondaryText text-sm mr-5">
                                         <div className="text-primaryText font-bold pt-3"> Writer </div>
                                         <div className=""> deserunt quam quisquam libero quidem tempora. </div>
-                                    </p>
+                                    </div>
                                 </div>
                                 <div className="flex justify-end border-l-2 border-gray-400 ml-8">
                                     <Button className="h-6 rounded-3xl text-xs text-accentText bg-transparant border border-accentText mx-2 hover:bg-accentText hover:text-whiteText">
