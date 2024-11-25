@@ -1,9 +1,8 @@
 FROM node:20-alpine
-WORKDIR /app
-RUN npm i -g serve     
+WORKDIR /app    
 COPY package.json package-lock.json .
 RUN npm install
 COPY . .
 RUN npm run build
-EXPOSE 3000
-CMD [ "serve", "-s", "dist" ]
+EXPOSE 4173
+CMD [ "npm", "run", "preview"]
