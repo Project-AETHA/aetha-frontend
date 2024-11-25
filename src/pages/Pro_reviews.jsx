@@ -123,7 +123,7 @@ function Pro_reviews() {
       </div>
       <div className="flex">
         <Sidebar menus={menus} />
-        <div className="mx-16 mt-6 w-full bg-foreground-50 rounded-2xl">
+        <div className="mx-16 mt-6 w-full p-8 bg-foreground-50 rounded-2xl">
           <Table aria-label="Example static collection table">
             <TableHeader>
               <TableColumn>Picture</TableColumn>

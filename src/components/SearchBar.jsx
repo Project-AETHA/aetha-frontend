@@ -1,8 +1,5 @@
-import React from 'react';
 import { TERipple } from 'tw-elements-react';
-{/* import button from next ui */}
 import {Button} from "@nextui-org/react"
-import { FaSearch } from 'react-icons/fa';
 
 export default function SearchBar() {
     return (
@@ -35,7 +32,9 @@ export default function SearchBar() {
                       <option value="top-rated">Top Rated</option>
                   
                   </select>
-               
+
+                  {/* TODO - Has to be taken from the backend */}
+                  {/* ! can be cached using react-query as well, since this is used in many locations */}
                   <select className="py-2 pl-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out">
                     <option value="">Genre</option>
                     <option value="action"> Action </option>

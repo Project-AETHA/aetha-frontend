@@ -21,6 +21,7 @@ import RoutesWriter from "./routes/Writer.jsx";
 import RoutesGeneral from "./routes/General.jsx";
 import RoutesAdmin from "./routes/Admin.jsx";
 import RoutesProfile from './routes/Profile.jsx';
+import ScrollToTop from "@/components/utility/ScrollToTop.jsx";
 
 const routes = [
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
@@ -65,6 +66,7 @@ function App() {
 
     return (
         <Router>
+            <ScrollToTop />
             <Navigation />
             <div className="content">
                 <Routes>

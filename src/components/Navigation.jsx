@@ -21,7 +21,10 @@ import { ThemeSwitcher } from "./common/ThemeSwitcher";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "/public/images/logo.svg";
+import { useState } from 'react';
+import logo from "/images/logo.svg";
+
+import NotificationsTab from "./common/Notifications/NotificationsTab.jsx";
 
 function isLinkActive (link) {
     if (link === "/") {
@@ -36,6 +39,9 @@ export default function Navigation() {
     const { user } = useAuthContext();
     const { handleLogout } = useLogout();
 
+    const [notificationTab, setNotificationTab] = useState(false);
+
+    //* Navigation items
     const items = [
         {
             title: "Read",
@@ -136,23 +142,25 @@ export default function Navigation() {
                 </div>
             </NavbarContent>
 
+
+            
+            {user && (
+                <NotificationsTab visible={notificationTab} setVisible={setNotificationTab} />
+            )}
+
             <ThemeSwitcher />
 
             {!user && (
                 <NavbarContent justify="end">
                     <NavbarItem className="lg:flex">
-                        <Link to="/login">
-                            <Button color="primary" className="font-bold" variant="flat">
-                                Login
-                            </Button>
-                        </Link>
+                        <Button color="primary" className="font-bold" variant="flat" onClick={() => navigate("/login")}>
+                            Login
+                        </Button>
                     </NavbarItem>
                     <NavbarItem>
-                        <Link to="/signup">
-                            <Button color="secondary" variant="solid">
-                                Sign Up
-                            </Button>
-                        </Link>
+                        <Button color="secondary" variant="solid" onClick={() => navigate("/signup")}>
+                            Sign Up
+                        </Button>
                     </NavbarItem>
                 </NavbarContent>
             )}
@@ -167,7 +175,7 @@ export default function Navigation() {
                                     as="button"
                                     avatarProps={{
                                         isBordered: true,
-                                        src: "/public" + user.image,
+                                        src: "https://ik.imagekit.io/aetha/" + user.image,
                                     }}
                                     className="transition-transform"
                                     description={"AKA " + user.displayName}
@@ -178,7 +186,7 @@ export default function Navigation() {
                             <div className="flex lg:hidden hover:cursor-pointer">
                                 <Avatar
                                     isBordered
-                                    src={"/public" + user.image}
+                                    src={"https://ik.imagekit.io/aetha/" + user.image}
                                     name={user.firstname + " " + user.lastname}
                                 />
                             </div>

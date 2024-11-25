@@ -1,232 +1,31 @@
 import coverImg from "/images/landing_cover.jpg";
-import Item from "../../components/common/Item";
 import {Link} from 'react-router-dom'
+
+//? Importing the components
+import LoadingComponent from "@/components/utility/LoadingComponent";
+import NothingToDisplay from "@/components/utility/NothingToDisplay";
+import Item from "../../components/common/Item";
 
 import { Image, Input } from "@nextui-org/react";
 import {SearchIcon} from "@/components/common/icons/SearchIcon.jsx";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
+import useGet from "@/hooks/useGet";
+
 export default function GeneralLandingPage() {
-    let recommendations = [
-        {
-            id: 1,
-            title: "The Great Gatsby",
-            type: "novel",
-            rating: 4.6,
-            description: "lorem ipsum dolor sit amet",
-            image: "../../../public/images/books/4.png",
-        },
-        {
-            id: 1,
-            title: "Walk in Shadow",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/2.png",
-        },
-        {
-            id: 1,
-            title: "The catcher in RYE",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/3.png",
-        },
-        {
-            id: 1,
-            title: "Alone",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/1.png",
-        },
-        {
-            id: 1,
-            title: "Brave New World",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/5.png",
-        },
-        {
-            id: 1,
-            title: "Soul",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/6.png",
-        },
-        {
-            id: 1,
-            title: "New World",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/7.png",
-        },
-        {
-            id: 1,
-            title: "Magic Hour",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/8.png",
-        },
-        {
-            id: 1,
-            title: "Norse Mythology",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/books/9.png",
-        },
 
-    ];
+    const { 
+        isLoading,
+        data,
+        isError,
+        error,
+        isFetching,
+        refetch
+    } = useGet({ url: "/api/novels/all", queryKey: "ebook2" });
 
-    let poems = [
-        {
-            id: 1,
-            title: "The Butterfly",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/7.png",
-        },
-        {
-            id: 1,
-            title: "Fower",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/6.png",
-        },
-        {
-            id: 1,
-            title: "Hand",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/8.png",
-        },
-        {
-            id: 1,
-            title: "Alone",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/9.png",
-        },
-        {
-            id: 1,
-            title: "Flower",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/6.png",
-        },
-        {
-            id: 1,
-            title: "Hand",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/8.png",
-        },
-        {
-            id: 1,
-            title: "Alone",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/9.png",
-        },
-        {
-            id: 1,
-            title: "The Butterfly",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/7.png",
-        },
-        {
-            id: 1,
-            title: "Hand",
-            type: "novel",
-            rating: 4.6,
-            image: "../../../public/images/poems/8.png",
-        },
-
-    ];
-
-    let shortstories = [
-        {
-            id: 1,
-            title: "Who's There",
-            type: "novel",
-            rating: 4.6,
-            description: "lorem ipsum dolor sit amet",
-            image: "../../../public/images/shortstories/11.png",
-        },
-        {
-            id: 1,
-            title: "The Last Boys",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/12.png",
-        },
-        {
-            id: 1,
-            title: "Her Life",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/13.png",
-        },
-        {
-            id: 1,
-            title: "Alone",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/14.png",
-        },
-        {
-            id: 1,
-            title: "Who's There",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/11.png",
-        },
-        {
-            id: 1,
-            title: "The Last Boys",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/12.png",
-        },
-        {
-            id: 1,
-            title: "Alone",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/14.png",
-        },
-        {
-            id: 1,
-            title: "The catcher in RYE",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/13.png",
-        },
-        {
-            id: 1,
-            title: "Who's There",
-            type: "novel",
-            rating: 4.6,
-            description: "Recommendation description",
-            image: "../../../public/images/shortstories/11.png",
-        },
-
-    ];
-
-
+    let recommendations = data;
+    let poems = data;
+    let shortstories = data;
     let ads = [
         {
             id: 1,
@@ -260,12 +59,7 @@ export default function GeneralLandingPage() {
                     style={{filter: "blur(8px)"}}
                 />
 
-                {/*<div*/}
-                {/*    className="*/}
-                {/*        absolute left-1/2 top-1/2 z-50*/}
-                {/*        transform -translate-x-1/2 -translate-y-1/2*/}
-                {/*        w-full lg:w-1/2"*/}
-                {/*>*/}
+                {!isLoading && console.log(data.slice(0, 4))}
 
                 <div
                     className="absolute inset-0 rounded p-4 min-w-[500px] z-10 bg-trasparent flex flex-col gap-52 justify-center"
@@ -324,10 +118,20 @@ export default function GeneralLandingPage() {
                         <Link to="/novels">View All</Link>
                     </button>
                 </div>
-                <div className="flex gap-2 overflow-hidden flex-nowrap">
-                    {recommendations.map((recommendation, index) => (
-                        <Item key={index} content={recommendation} />
-                    ))}
+                <div className="flex gap-2 overflow-hidden flex-nowrap justify-center">
+                    {isLoading && <LoadingComponent />}
+
+                    {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
+
+                    {!isLoading && !isError && recommendations && recommendations.length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
+                        {recommendations.map((item, index) => (
+                            <Item key={index} content={item} />
+                        ))}
+                    </div>
+                    ) : (
+                        !isLoading && !isError && <NothingToDisplay />
+                    )}
                 </div>
             </div>
 
@@ -339,10 +143,19 @@ export default function GeneralLandingPage() {
                     </button>
                 </div>
                 <div className="flex gap-2 overflow-hidden flex-nowrap">
-                    {recommendations.map((recommendation, index) => (
-                        <Item key={index} content={recommendation}/>
+                    {isLoading && <LoadingComponent />}
 
-                    ))}
+                    {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
+
+                    {!isLoading && !isError && recommendations && recommendations.length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
+                        {recommendations.map((item, index) => (
+                            <Item key={index} content={item} />
+                        ))}
+                    </div>
+                    ) : (
+                        !isLoading && !isError && <NothingToDisplay />
+                    )}
                 </div>
             </div>
 
@@ -354,9 +167,19 @@ export default function GeneralLandingPage() {
                     </button>
                 </div>
                 <div className="flex gap-2 overflow-hidden flex-nowrap">
-                    {shortstories.map((shortstories, index) => (
-                        <Item key={index} content={shortstories} />
-                    ))}
+                    {isLoading && <LoadingComponent />}
+
+                    {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
+
+                    {!isLoading && !isError && shortstories && shortstories.length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
+                        {shortstories.map((item, index) => (
+                            <Item key={index} content={item} />
+                        ))}
+                    </div>
+                    ) : (
+                        !isLoading && !isError && <NothingToDisplay />
+                    )}
                 </div>
             </div>
 
@@ -368,9 +191,19 @@ export default function GeneralLandingPage() {
                     </button>
                 </div>
                 <div className="flex gap-2 overflow-hidden flex-nowrap">
-                    {poems.map((poems, index) => (
-                        <Item key={index} content={poems} />
-                    ))}
+                    {isLoading && <LoadingComponent />}
+
+                    {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
+
+                    {!isLoading && !isError && poems && poems.length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
+                        {poems.map((item, index) => (
+                            <Item key={index} content={item} />
+                        ))}
+                    </div>
+                    ) : (
+                        !isLoading && !isError && <NothingToDisplay />
+                    )}
                 </div>
             </div>
 

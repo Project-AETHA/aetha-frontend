@@ -1,61 +1,31 @@
-    import { Image } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import { FcBiomass, FcGallery, FcRating } from "react-icons/fc";
 import Item from "../../components/common/Item.jsx";
 import LatestUpdates from "./components/LatestUpdates.jsx";
 import Rating from "../../components/common/Rating";
 import OverallReview from "../../components/common/OverallReview";
+import useGet from "@/hooks/useGet";
 
 import {
     CarouselItem,
 } from "@/components/ui/carousel"
 
 import CarouselMain from "./components/CarouselMain";
+import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 function NovelLandingPage() {
 
-  let recommendations = [
-    {
-      id: 1,
-      title: "The Great Gatsby",
-      type: "novel",
-      rating: 4.6,
-      description: "lorem ipsum dolor sit amet",
-      image: "../../../public/images/books/4.png",
-    },
-    {
-      id: 1,
-      title: "Walk in the Shadow",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "../../../public/images/books/2.png",
-    },
-    {
-      id: 1,
-      title: "Recommendation 1",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "../../../public/images/books/3.png",
-    },
-    {
-      id: 1,
-      title: "Alone",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "../../../public/images/books/1.png",
-    },
-    {
-      id: 1,
-      title: "Recommendation 1",
-      type: "novel",
-      rating: 4.6,
-      description: "Recommendation description",
-      image: "../../../public/images/books/5.png",
-    },
-  ];
+    const { 
+        isLoading,
+        data,
+        isError,
+        error,
+        isFetching,
+        refetch
+    } = useGet({ url: "/api/novels/all", queryKey: "ebook2" });
 
+    //* Advertisements
     let ads = [
         {
             id: 1,
@@ -76,42 +46,46 @@ function NovelLandingPage() {
             image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
     ];
-    let latest_updates = recommendations.slice(0, 3);
-    let rising_stars = recommendations.slice(0, 3);
+
+    let latest_updates = data && Array.isArray(data) ? data.slice(0, 4) : [];
+    let recommendations = data && Array.isArray(data) ? data.slice(0, 8) : [];
+    let rising_stars = data && Array.isArray(data) ? data.slice(0, 4) : [];
     let latest_updates_data = {
-        daily: recommendations.slice(0, 3),
-        weekly: recommendations.slice(0, 3),
-        monthly: recommendations.slice(0, 3),
+        daily: data && Array.isArray(data) ? data.slice(0, 8) : [],
+        weekly: data && Array.isArray(data) ? data.slice(0, 8) : [],
+        monthly: data && Array.isArray(data) ? data.slice(0, 8) : [],
     };
 
+
+  //*   Content of the carousel slides
   const slides = [
     {
       title: "slide-01",
       review_score: 4.8,
       rating: 4.5,
       description: "Something-01",
-      image: "../../../public/images/books/4.png",
+      image: "/images/books/4.png",
     },
     {
       title: "slide-02",
       review_score: 1.2,
       rating: 2.0,
       description: "Something-02",
-      image: "../../../public/images/books/2.png",
+      image: "/images/books/2.png",
     },
     {
       title: "slide-03",
       review_score: 5.0,
       rating: 3.5,
       description: "Something-03",
-      image: "../../../public/images/books/1.png",
+      image: "/images/books/1.png",
     },
     {
       title: "slide-04",
       review_score: 3.2,
       rating: 1.5,
       description: "Something-04",
-      image: "../../../public/images/books/5.png",
+      image: "/images/books/5.png",
     },
   ];
 
@@ -170,10 +144,19 @@ function NovelLandingPage() {
                         Personalized Recommendations
                     </p>
                     <div className="flex items-center flex-wrap gap-3">
-                        {recommendations &&
-                            recommendations.map((recommendation, index) => (
-                                <Item key={index} content={recommendation} />
+                        {isLoading && <LoadingComponent />}
+
+                        {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
+
+                        {!isLoading && !isError && recommendations && recommendations.length > 0 ? (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
+                            {recommendations.map((item, index) => (
+                                <Item key={index} content={item} />
                             ))}
+                        </div>
+                        ) : (
+                            !isLoading && !isError && <NothingToDisplay />
+                        )}
                     </div>
                 </div>
 
@@ -200,10 +183,15 @@ function NovelLandingPage() {
                         </p>
 
                         <div className="flex items-center flex-wrap gap-3">
-                            {latest_updates &&
+                            {isLoading ? (
+                                <LoadingComponent />
+                            ) : latest_updates.length > 0 ? (
                                 latest_updates.map((latest_update, index) => (
                                     <Item key={index} content={latest_update} />
-                                ))}
+                                ))
+                            ) : (
+                                <NothingToDisplay />
+                            )}
                         </div>
                     </div>
 
@@ -215,10 +203,15 @@ function NovelLandingPage() {
                         </p>
 
                         <div className="flex items-center flex-wrap gap-3">
-                            {rising_stars &&
+                            {isLoading ? (
+                                <LoadingComponent />
+                            ) : rising_stars.length > 0 ? (
                                 rising_stars.map((rising_star, index) => (
                                     <Item key={index} content={rising_star} />
-                                ))}
+                                ))
+                            ) : (
+                                <NothingToDisplay />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -227,7 +220,7 @@ function NovelLandingPage() {
                 <p className="text-foreground-900 font-semibold tracking-wide pl-2">Trending Content</p>
                 <hr className="pb-4" />
                 <div className="grow rounded p-1 flex">
-                    <LatestUpdates data={latest_updates_data} />
+                    <LatestUpdates data={latest_updates_data} isLoading={isLoading} />
                 </div>
             </div>
         </div>
