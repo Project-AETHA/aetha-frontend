@@ -88,7 +88,7 @@ function NovelChapterOverview({id}) {
                                 <div className="ml-0 md:ml-10 justify-center flex">
                                     <Button
                                         className="border border-accentText text-accentText rounded-xl"
-                                        onClick={() => navigate('/buytiers')}
+                                        onClick={() => navigate('/buytiers/' + novel.id)}
                                         variant="bordered"
                                     >
                                         <MdAddAlert/> Subscribe

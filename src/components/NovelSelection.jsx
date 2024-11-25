@@ -53,7 +53,7 @@ const NovelSelection = ({data}) => {
                         <div className="p-5 text-primaryText">
                             <div className="flex items-center text-green-500">
                                 <FaRegClock />
-                                <h1 className="font-semibold text-lg ml-2">LATEST UPDATE </h1>
+                                <h1 className="font-semibold text-lg ml-2">Search Results</h1>
                             </div>
                             <hr className="border-1 border-gray-400 mt-5" />
                         </div>
