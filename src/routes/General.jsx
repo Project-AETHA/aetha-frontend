@@ -40,7 +40,7 @@ export default function RoutesGeneral () {
         { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" },
         { path: '/forum', element: <Forum />, layout: "default" },
         { path: '/forumselection', element: <Forumselection />, layout: "default" },
-        { path: '/buytiers', element: <Buytiers />, layout: "default" },
+        { path: '/buytiers/:novelId', element: <Buytiers />, layout: "default" },
         { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
         { path: '/buybook/:bookId', element: <Buybook />, layout: "default" },
     ]

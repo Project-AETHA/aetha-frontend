@@ -2,6 +2,7 @@ import {Card, CardBody, CardFooter} from "@nextui-org/react";
 import {useNavigate} from "react-router-dom";
 import ImageOnline from "@/components/common/ImageOnline.jsx";
 import Rating from "@/components/common/Rating.jsx";
+import axios from "axios";
 
 
 function SingleNovel({novel}) {
@@ -9,7 +10,13 @@ function SingleNovel({novel}) {
     const navigate = useNavigate();
 
     return (
-        <Card shadow="none" key={novel.id} isPressable onClick={() => navigate(`/author/novels/details/${novel.id}`)}>
+        <Card shadow="none" key={novel.id} isPressable onClick={() => {
+            if(localStorage.getItem("role") !== null) {
+                axios.get(`/api/data/clicked/${novel.id}`)
+            }
+
+            navigate(`/author/novels/details/${novel.id}`)
+        }}>
             <CardBody className="p-0 max-w-[150px] min-w-[150px] overflow-hidden">
                 <ImageOnline
                     path={novel.coverImage}
