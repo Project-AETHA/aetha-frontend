@@ -5,6 +5,7 @@ import Book1 from "/images/books/book8.png";
 import Book2 from "/images/books/book5.png";
 import Book3 from "/images/books/book6.png";
 import Book4 from "/images/books/book4.png";
+import { useEffect } from "react";
 
 const booksData = [
   {
@@ -57,6 +58,10 @@ const AuthorDashboard = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(JSON.parse(localStorage.getItem('user')).role !== 'WRITER') navigate('/upgrade-to-writer');
+  }, []);
+
   return (
     <div className="flex h-screen">
       <div className="flex-grow p-5 authbackground">
@@ -87,8 +92,8 @@ const AuthorDashboard = () => {
           <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
           <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-xl">
             {booksData.map(({ id, img, title, rating }) => (
-              <Link href="/author/chapter">
-                <Card shadow="none" key={id} isPressable>
+              <Link href="/author/chapter" key={id}>
+                <Card shadow="none" isPressable>
                   <CardBody className="p-0">
                     <Image
                       shadow="sm"

@@ -19,6 +19,7 @@ import Forumselection from '../pages/Forumselection.jsx';
 import Buytiers from '../pages/Buytiers.jsx';
 import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
 import Buybook from '../pages/Shop/BuyBookPage.jsx';
+import UpgradeToWriter from "../pages/UpgradeToWriter.jsx";
 
 export default function RoutesGeneral () {
     return [
@@ -28,6 +29,7 @@ export default function RoutesGeneral () {
         { path: '/support', element: <SupportPage />, layout: "simple" },
         { path: '/shop', element: <Shop />, layout: "default" },
         { path: '/shop/search', element: <SearchResultsPage />, layout: "default" },
+        { path: '/upgrade-to-writer', element: <UpgradeToWriter />, layout: "default" },
         { path: '/novels/:novelId/:chapterNumber', element: <Chapterreading />, layout: "default" },
         { path: '/reading', element: <Reading />, layout: "default" },
         { path: '/novels', element: <NovelLandingPage />, layout: "default" },

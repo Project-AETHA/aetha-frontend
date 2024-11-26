@@ -59,8 +59,6 @@ export default function GeneralLandingPage() {
                     style={{filter: "blur(8px)"}}
                 />
 
-                {!isLoading && console.log(data.slice(0, 4))}
-
                 <div
                     className="absolute inset-0 rounded p-4 min-w-[500px] z-10 bg-trasparent flex flex-col gap-52 justify-center"
                 >
