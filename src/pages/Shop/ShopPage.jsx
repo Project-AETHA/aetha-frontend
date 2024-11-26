@@ -10,6 +10,7 @@ import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import {useQuery} from "@tanstack/react-query";
 import { MdOutlineRefresh } from "react-icons/md";
 import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
+import useGet from "@/hooks/useGet.jsx";
 
 export default function ShopPage() {
 
@@ -20,30 +21,7 @@ export default function ShopPage() {
         error,
         isError,
         refetch
-    } = useQuery({queryKey: ["shop_items"], queryFn: getAllEbooks, retry: 3, refetchOnWindowFocus: false})
-
-    async function getAllEbooks() {
-        try {
-            const response = await axios.get("/api/ebooks/all");
-            if (response.status === 200) {
-                switch (response.data.code) {
-                    case ResponseCodes.SUCCESS:
-                        return response.data.content;  // Ensure you return the content
-                    case ResponseCodes.NO_DATA_FOUND:
-                        throw new Error("No data found");
-                    case ResponseCodes.ERROR:
-                        throw new Error("Server error");
-                    default:
-                        throw new Error(response.data.message);
-                }
-            } else {
-                throw new Error("Error occurred - Code " + response.data.message);
-            }
-        } catch (error) {
-            throw new Error("Error occurred - " + error.message);
-        }
-    }
-
+    } = useGet({queryKey: "shop_items", url: "/api/ebooks/all", params: {}})
 
 
     //? UseEffect hook is called to show the error toast only once, if an error was detected

@@ -8,6 +8,7 @@ import CreateNovel from "../pages/Writer-dashboard/Novels/CreateNovel.jsx";
 import Chapters from "../pages/Writer-dashboard/Chapters.jsx";
 import Ebook from "../pages/Writer-dashboard/Ebook/Ebook.jsx";
 import NovelOverview from "../pages/Writer-dashboard/Novels/NovelOverview.jsx";
+import StoryOverview from "../pages/Writer-dashboard/ShortStory/StoryOverview.jsx";
 import Advertising from "../pages/Writer-dashboard/Advertising.jsx";
 import NewCampaign from "../pages/Writer-dashboard/NewCampaign.jsx";
 import SstSubmitions from "../pages/Writer-dashboard/SstSubmitions.jsx";
@@ -16,6 +17,7 @@ import AddEbook from "../pages/Writer-dashboard/Ebook/AddEbook.jsx";
 import UpgradeToWriter from "../pages/Writer-dashboard/UpgradeToWriter.jsx";
 import AddShortStory from "../pages/Writer-dashboard/AddShortStory.jsx";
 import NovelDetails from "@/pages/Writer-dashboard/Novels/NovelDetails.jsx";
+import AddChapter from "../pages/Writer-dashboard/Novels/AddChapter.jsx";
 
 
 export default function RoutesWriter() {
@@ -30,15 +32,14 @@ export default function RoutesWriter() {
         { path: '/author/novels', element: <NovelOverview />, layout: "author_dashboard" },
         { path: '/author/novels/create', element: <CreateNovel />, layout: "author_dashboard" },
         { path: '/author/novels/details/:novelId', element: <NovelDetails />, layout: "author_dashboard" },
+        { path: '/author/novels/details/:novelId/addChapter', element: <AddChapter />, layout: "author_dashboard" },
         { path: '/author/advertising', element: <Advertising />, layout: "author_dashboard" },
         { path: '/author/advertising/newcampaign', element: <NewCampaign />, layout: "author_dashboard" },
-        { path: '/author/short-stories', element: <SstSubmitions />, layout: "author_dashboard" },
+        { path: '/author/short-stories', element: <StoryOverview />, layout: "author_dashboard" },
         { path: '/author/ebooks', element: <Ebook />, layout: "author_dashboard" },
         { path: '/author/ebooks/add', element: <AddEbook />, layout: "author_dashboard" },
         { path: '/author/revenue', element: <RevenuePage />, layout: "author_dashboard" },
         { path: '/author/upgrade', element: <UpgradeToWriter />, layout: "author_dashboard" },
         { path: '/author/short-stories/create', element: <AddShortStory />, layout: "author_dashboard" },
-
-
     ]
 }

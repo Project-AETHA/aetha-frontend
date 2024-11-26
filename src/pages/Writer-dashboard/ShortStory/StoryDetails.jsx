@@ -66,8 +66,6 @@ function NovelDetails () {
                 ))}</p>
             </div>
         )}
-
-        <button onClick={() => navigate("/author/novels/details/" + novelId + "/addChapter")}>Add Chapter</button>
     </div>
   )
 }
