@@ -8,6 +8,7 @@ import CreateNovel from "../pages/Writer-dashboard/Novels/CreateNovel.jsx";
 import Chapters from "../pages/Writer-dashboard/Chapters.jsx";
 import Ebook from "../pages/Writer-dashboard/Ebook/Ebook.jsx";
 import NovelOverview from "../pages/Writer-dashboard/Novels/NovelOverview.jsx";
+import StoryOverview from "../pages/Writer-dashboard/ShortStory/StoryOverview.jsx";
 import Advertising from "../pages/Writer-dashboard/Advertising.jsx";
 import NewCampaign from "../pages/Writer-dashboard/NewCampaign.jsx";
 import SstSubmitions from "../pages/Writer-dashboard/SstSubmitions.jsx";
@@ -34,7 +35,7 @@ export default function RoutesWriter() {
         { path: '/author/novels/details/:novelId/addChapter', element: <AddChapter />, layout: "author_dashboard" },
         { path: '/author/advertising', element: <Advertising />, layout: "author_dashboard" },
         { path: '/author/advertising/newcampaign', element: <NewCampaign />, layout: "author_dashboard" },
-        { path: '/author/short-stories', element: <SstSubmitions />, layout: "author_dashboard" },
+        { path: '/author/short-stories', element: <StoryOverview />, layout: "author_dashboard" },
         { path: '/author/ebooks', element: <Ebook />, layout: "author_dashboard" },
         { path: '/author/ebooks/add', element: <AddEbook />, layout: "author_dashboard" },
         { path: '/author/revenue', element: <RevenuePage />, layout: "author_dashboard" },
