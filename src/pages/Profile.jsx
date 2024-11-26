@@ -77,7 +77,7 @@ function Profile() {
 
   return (
     <>
-      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-gradient-to-r from-purple-400 to-blue-500">
+      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-gradient-to-b from-violet-500 to-fuchsia-500">
         <div className="main-detail">      
           <div className="profile-info">
             <h1 className="text-lg text-foreground-50">Follows</h1>
@@ -100,11 +100,11 @@ function Profile() {
         <div className="flex p-1 bg-foreground-50 items-center justify-between">
           <h2 className="font-semibold text-black text-center ml-56 flex-grow"> {userDetails.username} </h2>
           <div className="flex">
-            <button onClick={handleCommentsClick} className="ml-2 flex items-center border-2 rounded-xl border-purple-500 bg-purple-400 hover:bg-foreground-50 px-2">
-              <FaRegComments className="text-black m-1" />Messages
+            <button onClick={handleCommentsClick} className="ml-2 flex items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50">
+              <FaRegComments className="text-foreground-50 m-1" />Messages
             </button>
-            <button onClick={handleEditClick} className="ml-2 flex mr-5 items-center border-2 rounded-xl border-purple-500 bg-purple-400 hover:bg-foreground-50 px-2">
-              <FaUserEdit className="text-black m-1" />Edit
+            <button onClick={handleEditClick} className="ml-2 flex mr-5 items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50">
+              <FaUserEdit className="text-foreground-50 m-1" />Edit
             </button>
           </div>
         </div>
@@ -112,8 +112,9 @@ function Profile() {
       <div className="flex">
         <Sidebar menus={menus} />
         <div className="mx-16 mt-6 w-full bg-foreground-50 rounded-2xl pt-6">
+         <div className="text-xl mx-16 font-bold pb-2">Your Profile Details</div>
           <div className="details border-2 border-gray-300 px-8 dark:bg-background text-foreground">
-            <div className="topics rounded-lg text-foreground-50 ml-6 mr-6 mb-2">
+            <div className="topics rounded-lg text-foreground-50 ml-6 mr-6 mb-2 bg-gradient-to-r from-violet-500 to-white">
               <FaRegUserCircle className="inline m-3" />Personal Information
             </div>
             <div className="flex-col ml-10">
@@ -166,7 +167,7 @@ function Profile() {
   style={{ padding: '20px' }}
 >
   <div
-    className="topics rounded-lg text-foreground-50 ml-6 mr-6 mb-2"
+    className="topics rounded-lg text-foreground-50 ml-6 mr-6 mb-2 bg-gradient-to-r from-violet-500 to-white"
     style={{ fontWeight: 'bold', fontSize: '1.2rem' }}
   >
     <MdOutlineHistory className="inline m-3" />Activity
@@ -225,7 +226,7 @@ function Profile() {
   style={{ padding: '20px' }}
 >
   <div
-    className="topics rounded-lg text-foreground-50 ml-6 mr-6 mb-2"
+    className="topics rounded-lg text-foreground-50 ml-6 mr-6 mb-2 bg-gradient-to-r from-violet-500 to-white"
     style={{ fontWeight: 'bold', fontSize: '1.2rem' }}
   >
     <FaPen className="inline m-3" />Author Information
