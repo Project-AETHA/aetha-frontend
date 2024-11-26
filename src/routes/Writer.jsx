@@ -33,7 +33,7 @@ export default function RoutesWriter() {
         { path: '/author/novels/details/:novelId', element: <NovelDetails />, layout: "author_dashboard" },
         { path: '/author/advertising', element: <Advertising />, layout: "author_dashboard" },
         { path: '/author/advertising/newcampaign', element: <NewCampaign />, layout: "author_dashboard" },
-        { path: '/author/short-stories', element: <SstSubmitions />, layout: "author_dashboard" },
+        { path: '/author/short-stories', element: <StoryOverview />, layout: "author_dashboard" },
         { path: '/author/ebooks', element: <Ebook />, layout: "author_dashboard" },
         { path: '/author/ebooks/add', element: <AddEbook />, layout: "author_dashboard" },
         { path: '/author/revenue', element: <RevenuePage />, layout: "author_dashboard" },

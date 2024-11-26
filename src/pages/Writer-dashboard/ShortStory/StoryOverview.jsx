@@ -13,12 +13,12 @@ import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 const Submissions = () => {
 
   const navigate = useNavigate();
-  const [pendingStorys, setPendingStorys] = useState([]);
-  const [publishedStorys, setPublishedStorys] = useState([]);
-  const [draftStorys, setDraftStorys] = useState([]);
+  const [pendingShortStory, setPendingShortStory] = useState([]);
+  const [publishedShortStory, setPublishedShortStory] = useState([]);
+  const [draftShortStory, setDraftShortStory] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  async function getAllStorysByAuthor () {
+  async function getAllShortStoryByAuthor () {
 
     setLoading(true);
 
@@ -26,25 +26,26 @@ const Submissions = () => {
     const published = [];
     const drafts = [];
 
-    await axios.get("/api/storys/my")
+    await axios.get("/api/shortstory/my")
         .then(response => {
             if(response.status === 200) {
                 if(response.data.code === ResponseCodes.SUCCESS) {
-                  response.data.content.map(story => {
-                    if(story.status === "PENDING") {
-                      pending.push(story);
-                    } else if(story.status === "DRAFT") {
-                        drafts.push(story);
+                  response.data.content.map(ShortStory => {
+                    if(ShortStory.status === "PENDING") {
+                      pending.push(ShortStory);
+                    } else if(ShortStory.status === "DRAFT") {
+                        drafts.push(ShortStory);
                     } else {
-                      published.push(story);
+                      published.push(ShortStory);
                     }
                   })
 
                   // Update states once
-                  setPendingStorys(pending);
-                  setPublishedStorys(published);
-                  setDraftStorys(drafts);
-                  console.log(publishedStorys);
+                  setPendingShortStory(pending);
+                  setPublishedShortStory(published);
+                  setDraftShortStory(drafts);
+                  console.log(pendingShortStory);
+
 
                 } else {
                   throw new Error(response.data.message);
@@ -64,7 +65,7 @@ const Submissions = () => {
   }
 
   useEffect(() => {
-    getAllStorysByAuthor();
+    getAllShortStoryByAuthor();
   }, []);
 
   return (
@@ -72,11 +73,11 @@ const Submissions = () => {
       <div className="flex-1">
         <Card className="p-4 mb-4 shadow-none">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold dark:text-white mb-5">Storys</h1>
+            <h1 className="text-3xl font-bold dark:text-white mb-5">ShortStory</h1>
             <div className="flex justify-end">
-              <Button auto className="bg-blue-500 text-white" onClick={() => navigate("/author/storys/create")}>
+              <Button auto className="bg-blue-500 text-white" onClick={() => navigate("/author/short-stories/create")}>
                 <BsPencilFill className="mr-1"/>
-                <p>Write a Story</p>
+                <p>Write a Short Story</p>
               </Button>
             </div>
           </div>
@@ -109,26 +110,26 @@ const Submissions = () => {
           <div className="mt-4 flex gap-4 flex-wrap mb-6">
             {/* List of pending submissions will go here */}
             {loading && <LoadingComponent />}
-            {!loading && pendingStorys.map((story,index) => <SingleStory key={index} story={story} />)}
-            {!loading && pendingStorys.length === 0 && <NothingToDisplay />}
+            {!loading && pendingShortStory.map((ShortStory,index) => <SingleStory key={index} ShortStory={ShortStory} />)}
+            {!loading && pendingShortStory.length === 0 && <NothingToDisplay />}
           </div>
         </Card>
         <Card className="p-4 mb-4 shadow-none mt-4" >
           <Tabs aria-label="Recent Activities" color="default" variant="underlined" size="lg">
             <Tab
-              key="storys"
+              key="ShortStory"
               title={
                 <div className="flex items-center space-x-2">
                   <LibraryBig />
-                  <span>Storys</span>
+                  <span>ShortStory</span>
                 </div>
               }
             >
               <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
                 <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
                 <div className="flex gap-4 flex-wrap">
-                  {publishedStorys.map((story,index) => <SingleStory key={index} story={story} />)}
-                  {!loading && publishedStorys.length === 0 && <NothingToDisplay />}
+                  {publishedShortStory.map((ShortStory,index) => <SingleStory key={index} ShortStory={ShortStory} />)}
+                  {!loading && publishedShortStory.length === 0 && <NothingToDisplay />}
                 </div>
               </div>
             </Tab>
@@ -145,8 +146,8 @@ const Submissions = () => {
                 <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
                 <div className="flex gap-4 flex-wrap">
                   {loading && <LoadingComponent />}
-                  {!loading && draftStorys.map((story, index) => <SingleStory key={index} story={story} />)}
-                  {!loading && draftStorys.length === 0 && <NothingToDisplay />}
+                  {!loading && draftShortStory.map((ShortStory, index) => <SingleStory key={index} ShortStory={ShortStory} />)}
+                  {!loading && draftShortStory.length === 0 && <NothingToDisplay />}
                 </div>
               </div>
             </Tab>
