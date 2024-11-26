@@ -115,7 +115,7 @@ const NewCampaign = () => {
         switch (response.data.code) {
           case "00":
             toast.success(response.data.message);
-            navigate("/campaigns");
+            navigate("/author/advertising");
             break;
           case "05":
             toast.error(response.data.message);
@@ -154,7 +154,7 @@ const NewCampaign = () => {
   };
 
   const handleCancel = () => {
-    navigate("/campaigns");
+    navigate("/author/advertising");
   };
 
   const handleDateChange = (date) => {
