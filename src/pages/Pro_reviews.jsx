@@ -57,7 +57,8 @@ function Pro_reviews() {
       key: "1",
       picture: book1,
       title: "The Enchanted Forest",
-      content: "Chapter 3: The Hidden Village",
+      chapter: "Chapter 3: The Hidden Village",
+      content: "Wow, It's a nice story",
       rating: 4.5,
       date: "18 February 2023, 17:30",
     },
@@ -65,7 +66,8 @@ function Pro_reviews() {
       key: "2",
       picture: book2,
       title: "Galactic Adventures",
-      content: "Chapter 2: The Alien Encounter",
+      chapter: "Chapter 2: The Alien Encounter",
+      content: "It's a magical story",
       rating: 4.1,
       date: "08 April 2023, 19:30",
     },
@@ -73,7 +75,8 @@ function Pro_reviews() {
       key: "3",
       picture: book3,
       title: "Secrets of the Ancient Temple",
-      content: "Chapter 152: The Forbidden Scrolls",
+      chapter: "Chapter 152: The Forbidden Scrolls",
+      content: "Nice",
       rating: 3.5,
       date: "24 January 2024, 20:53",
     },
@@ -81,7 +84,8 @@ function Pro_reviews() {
       key: "4",
       picture: novelpic,
       title: "Chronicles of the Lost Kingdom",
-      content: "Chapter 54: The Battle for the Throne",
+      chapter: "Chapter 54: The Battle for the Throne",
+      content: "I like this chapter...",
       rating: 3.8,
       date: "14 February 2023, 07:10",
     },
@@ -89,7 +93,7 @@ function Pro_reviews() {
 
   return (
     <>
-      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-gradient-to-r from-purple-400 to-blue-500">
+      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-gradient-to-b from-violet-500 to-fuchsia-500">
         <div className="main-detail">      
           <div className="profile-info ">
             <h1 className="text-lg text-foreground-50 ">Follows</h1>
@@ -112,22 +116,24 @@ function Pro_reviews() {
         <div className="flex p-1 bg-white items-center justify-between">
           <h2 className="font-semibold text-black text-center ml-56 flex-grow">HANSINI BHAGYA</h2>
           <div className="flex">
-            <button onClick={handleCommentsClick} className="ml-2 flex items-center border-2 rounded-xl border-purple-500 bg-purple-400 hover:bg-foreground-50 px-2">
-              <FaRegComments className="text-black m-1" />Messages
+            <button onClick={handleCommentsClick} className="ml-2 flex items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50">
+              <FaRegComments className="text-foreground-50 m-1" />Messages
             </button>
-            <button onClick={handleEditClick} className="ml-2 flex mr-5 items-center border-2 rounded-xl border-purple-500 bg-purple-400 hover:bg-foreground-50 px-2">
-              <FaUserEdit className="text-black m-1" />Edit
+            <button onClick={handleEditClick} className="ml-2 flex mr-5 items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50">
+              <FaUserEdit className="text-foreground-50 m-1" />Edit
             </button>
           </div>
         </div>
       </div>
       <div className="flex">
         <Sidebar menus={menus} />
-        <div className="mx-16 mt-6 w-full p-8 bg-foreground-50 rounded-2xl">
+        <div className="mx-16 mt-6 w-full bg-foreground-50 rounded-2xl pt-6">
+         <div className="text-xl mx-16 font-bold pb-2">Your Reviews</div>
           <Table aria-label="Example static collection table">
             <TableHeader>
               <TableColumn>Picture</TableColumn>
               <TableColumn>Title</TableColumn>
+              <TableColumn>Chapter</TableColumn>
               <TableColumn>Content</TableColumn>
               <TableColumn>Rating</TableColumn>
               <TableColumn>Date</TableColumn>
@@ -139,13 +145,14 @@ function Pro_reviews() {
                     <img
                       src={review.picture}
                       alt={review.title}
-                      className="w-20 h-28 object-cover"
+                      className="w-20 h-28 rounded-md object-cover"
                     />
                   </TableCell>
-                  <TableCell>{review.content}</TableCell>
                   <TableCell className="text-foreground">
                     <div className="font-semibold">{review.title}</div>
                   </TableCell>
+                  <TableCell>{review.chapter}</TableCell>
+                  <TableCell>{review.content}</TableCell>
                   <TableCell>
                     <Rating rating={review.rating} size={15} />
                   </TableCell>

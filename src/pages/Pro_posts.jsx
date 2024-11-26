@@ -33,7 +33,7 @@ function Pro_posts() {
 
   return (
     <>
-      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-gradient-to-r from-purple-400 to-blue-500">
+      <div className="justify-evenly h-auto w-screen py-2 border-r-5 bg-gradient-to-r from-violet-500 to-fuchsia-500">
         <div className="main-detail">      
           <div className="profile-info ">
             <h1 className="text-lg text-foreground-50 ">Follows</h1>
@@ -56,20 +56,19 @@ function Pro_posts() {
         <div className="flex p-1 bg-white items-center justify-between">
           <h2 className="font-semibold text-black text-center ml-56 flex-grow">HANSINI BHAGYA</h2>
           <div className="flex">
-            <button onClick={handleCommentsClick} className="ml-2 flex items-center border-2 rounded-xl border-purple-500 bg-purple-400 hover:bg-foreground-50 px-2">
-              <FaRegComments className="text-black m-1" />Messages
+            <button onClick={handleCommentsClick} className="ml-2 flex items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50">
+              <FaRegComments className="text-foreground-50 m-1" />Messages
             </button>
-            <button onClick={handleEditClick} className="ml-2 flex mr-5 items-center border-2 rounded-xl border-purple-500 bg-purple-400 hover:bg-foreground-50 px-2">
-              <FaUserEdit className="text-black m-1" />Edit
+            <button onClick={handleEditClick} className="ml-2 flex mr-5 items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50">
+              <FaUserEdit className="text-foreground-50 m-1" />Edit
             </button>
           </div>
         </div>
       </div>
       <div className="flex">
         <Sidebar menus={menus} />
-        {/* <div className="flex"> */}
-        {/* <div className='m-4'> */}
-        <div className="m-16 mt-6 w-full bg-foreground-50 rounded-2xl">
+        <div className="m-16 mt-6 w-full bg-foreground-50 rounded-2xl pt-6">
+         <div className="text-xl mx-16 font-bold pb-2">Your Posts</div>
           <Table isStriped aria-label="Example static collection table">
             <TableHeader>
               <TableColumn>Posts</TableColumn>
@@ -86,9 +85,7 @@ function Pro_posts() {
                 <TableCell>2/18/2024, 3:07 AM</TableCell>
                 <TableCell>Last post by Stubby<div>
                   18 February 2023, 17:30</div></TableCell>
-
-
-              </TableRow>
+                  </TableRow>
               <TableRow key="2">
                 <TableCell className='text-primary-400'><IoChatbubbleOutline /></TableCell>
                 <TableCell className='text-foreground'>
@@ -97,8 +94,6 @@ function Pro_posts() {
                 <TableCell>2/17/2023, 9:30 PM</TableCell>
                 <TableCell>Last post by Screaming<div>08 April 2023, 19:30</div>
                 </TableCell>
-
-
               </TableRow>
               <TableRow key="3">
                 <TableCell className='text-primary-400'><IoChatbubbleOutline /></TableCell>
@@ -107,7 +102,6 @@ function Pro_posts() {
                   As a reader, I prefer hooky flap copy that tells me about the story's overall vibe and core conflict. In general, no more than two characters should be mentioned by name unless it's a multi-protagonist (...)</TableCell>
                 <TableCell>2/16/2023, 7:56 PM</TableCell>
                 <TableCell><div>Last post by Lack of Poochline</div><div>24 January 2024, 20:53</div></TableCell>
-
               </TableRow>
               <TableRow key="4">
                 <TableCell className='text-primary-400'><IoChatbubbleOutline /></TableCell>
@@ -116,8 +110,6 @@ function Pro_posts() {
                   Congratulations! And I agree with Second Law. Your cover is really fun!</TableCell>
                 <TableCell className='text-foreground'>2/13/2023, 8:52 PM</TableCell>
                 <TableCell><div>Last post by Flossindune</div><div>14 February 2023, 07:10</div></TableCell>
-
-
               </TableRow>
             </TableBody>
           </Table>
