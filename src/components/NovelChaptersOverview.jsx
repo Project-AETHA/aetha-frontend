@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Button} from "@nextui-org/react";
 import {useNavigate} from "react-router-dom";
 import {FcBiomass, FcGallery} from "react-icons/fc";
-import {FaBook, FaDonate, FaHeart, FaLock, FaYoutube} from "react-icons/fa";
+import {FaBook, FaDonate, FaHeart, FaLock, FaUnlock , FaYoutube} from "react-icons/fa";
 import {MdAddAlert, MdOutlineReport, MdWhatsapp, MdFacebook,  } from "react-icons/md";
 import axios from 'axios';
 import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
@@ -18,6 +18,10 @@ function NovelChapterOverview({id}) {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    async function checkSubscription(novelId) {
+        const response = await axios.get(`/api/subscription/check/${novelId}`);
+    }
 
     async function getNovelDetails() {
         setLoading(true);
@@ -139,12 +143,13 @@ function NovelChapterOverview({id}) {
                             : chapters && chapters.length > 0 ? chapters.map((chapter, index) => (
                                 <div
                                     key={index}
-                                    onClick={() => navigate(`/novels/${id}/${chapter.chapterNumber}`)}
+                                    onClick={() => (chapter.isPremium && checkSubscription(novel.id)) ? navigate(`/novels/${id}/${chapter.chapterNumber}`) : navigate(`/buytiers/${id}`) }
                                     className="h-10 items-center border-2 border-gray-200 rounded-xl p-3 w-full mx-2 flex select-none hover:shadow-sm hover:cursor-pointer hover:bg-chapterselect"
                                 >
                                     <div className="inline-block w-full md:w-8/12">
                                         <p className="text-primaryText text-xs">
-                                            {chapter.isPremium && <FaLock className="w-3 mx-2 inline-block"/>}
+                                            {chapter.isPremium && <FaLock className="text-danger w-3 mx-2 inline-block"/>}
+                                            {!chapter.isPremium && <FaUnlock className="text-primary w-3 mx-2 inline-block"/>}
                                             Chapter {chapter.chapterNumber} : {chapter.title}
                                         </p>
                                     </div>

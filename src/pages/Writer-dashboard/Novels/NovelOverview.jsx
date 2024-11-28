@@ -1,70 +1,21 @@
-import {useEffect, useState} from 'react';
 import { Card, Button, Tab, Tabs } from '@nextui-org/react';
 import { LibraryBig, NotepadTextDashed, } from "lucide-react";
 import { BsPencilFill } from "react-icons/bs";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
-import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
-import {toast} from "sonner";
 import SingleNovel from "@/pages/Writer-dashboard/Novels/components/SingleNovel.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
+import useGet from "@/hooks/useGet.jsx";
+
 
 const Submissions = () => {
 
   const navigate = useNavigate();
-  const [pendingNovels, setPendingNovels] = useState([]);
-  const [publishedNovels, setPublishedNovels] = useState([]);
-  const [draftNovels, setDraftNovels] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  async function getAllNovelsByAuthor () {
-
-    setLoading(true);
-
-    const pending = [];
-    const published = [];
-    const drafts = [];
-
-    await axios.get("/api/novels/my")
-        .then(response => {
-            if(response.status === 200) {
-                if(response.data.code === ResponseCodes.SUCCESS) {
-                  response.data.content.map(novel => {
-                    if(novel.status === "PENDING") {
-                      pending.push(novel);
-                    } else if(novel.status === "DRAFT") {
-                        drafts.push(novel);
-                    } else {
-                      published.push(novel);
-                    }
-                  })
-
-                  // Update states once
-                  setPendingNovels(pending);
-                  setPublishedNovels(published);
-                  setDraftNovels(drafts);
-
-                } else {
-                  throw new Error(response.data.message);
-                }
-            } else {
-                throw new Error("Error - Server not responding" + response.data.message);
-            }
-        })
-        .catch(error => {
-            toast.error("Error occurred", {
-                description: error.message
-            });
-            console.log(error);
-        })
-
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    getAllNovelsByAuthor();
-  }, []);
+  const { data, isLoading, isError, error } = useGet({
+    queryKey: "my-novels",
+    url: "/api/novels/my"
+  });
 
   return (
     <div className="flex h-screen p-2">
@@ -107,9 +58,9 @@ const Submissions = () => {
           <h3 className="text-xl font-semibold">Pending Submissions</h3>
           <div className="mt-4 flex gap-4 flex-wrap mb-6">
             {/* List of pending submissions will go here */}
-            {loading && <LoadingComponent />}
-            {!loading && pendingNovels.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
-            {!loading && pendingNovels.length === 0 && <NothingToDisplay />}
+            {isLoading && <LoadingComponent />}
+            {!isLoading && data.pending.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
+            {!isLoading && data.pending.length === 0 && <NothingToDisplay />}
           </div>
         </Card>
         <Card className="p-4 mb-4 shadow-none mt-4" >
@@ -126,8 +77,9 @@ const Submissions = () => {
               <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
                 <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
                 <div className="flex gap-4 flex-wrap">
-                  {publishedNovels.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
-                  {!loading && publishedNovels.length === 0 && <NothingToDisplay />}
+                  {isLoading && <LoadingComponent />}
+                  {!isLoading && data.published.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
+                  {!isLoading && data.published.length === 0 && <NothingToDisplay />}
                 </div>
               </div>
             </Tab>
@@ -143,9 +95,9 @@ const Submissions = () => {
               <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
                 <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
                 <div className="flex gap-4 flex-wrap">
-                  {loading && <LoadingComponent />}
-                  {!loading && draftNovels.map((novel, index) => <SingleNovel key={index} novel={novel} />)}
-                  {!loading && draftNovels.length === 0 && <NothingToDisplay />}
+                  {isLoading && <LoadingComponent />}
+                  {!isLoading && data.draft.map((novel, index) => <SingleNovel key={index} novel={novel} />)}
+                  {!isLoading && data.draft.length === 0 && <NothingToDisplay />}
                 </div>
               </div>
             </Tab>

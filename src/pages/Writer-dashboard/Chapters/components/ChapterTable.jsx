@@ -1,8 +1,9 @@
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Checkbox } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Spinner } from "@nextui-org/react";
 import useGet from "@/hooks/useGet";
 import { useNavigate } from "react-router-dom";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import AlertConfirmation from "../../../../components/common/alerts/AlertConfirmation";
+import LoadingComponent from "@/components/utility/LoadingComponent";
 
 export default function ChapterTable({novelId}) {
 
@@ -38,7 +39,7 @@ export default function ChapterTable({novelId}) {
         <TableColumn>CREATED ON</TableColumn>
         <TableColumn>ACTIONS</TableColumn>
       </TableHeader>
-      <TableBody items={data || []}>
+      <TableBody items={data || []} isLoading={isLoading} loadingContent={<LoadingComponent />}>
         {!isLoading && !isError && ((item, index) => (
             <TableRow key={index}>
                 <TableCell>{item.chapterNumber}</TableCell>
