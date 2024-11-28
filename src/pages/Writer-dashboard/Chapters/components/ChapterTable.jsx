@@ -1,25 +1,66 @@
-export default function ChapterTable() {
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Checkbox } from "@nextui-org/react";
+import useGet from "@/hooks/useGet";
+import { useNavigate } from "react-router-dom";
+import { MdDelete, MdModeEdit } from "react-icons/md";
+import AlertConfirmation from "../../../../components/common/alerts/AlertConfirmation";
 
-    const initialChapters = [
-        { id: 1, name: 'Chapter 1', status: 'Published', wordCount: 2000, scheduledDate: '2024-07-01' },
-        { id: 2, name: 'Chapter 2', status: 'Published', wordCount: 1800, scheduledDate: '2024-07-01' },
-        { id: 3, name: 'Chapter 3', status: 'Published', wordCount: 1200, scheduledDate: '2024-07-03' },
-        { id: 4, name: 'Chapter 4', status: 'Published', wordCount: 2200, scheduledDate: '2024-07-15' },
-        { id: 5, name: 'Chapter 5', status: 'Published', wordCount: 1900, scheduledDate: '2024-07-15' },
-        { id: 6, name: 'Chapter 6', status: 'Published', wordCount: 2100, scheduledDate: '2024-07-21' },
-        { id: 7, name: 'Chapter 7', status: 'Published', wordCount: 1700, scheduledDate: '2024-07-28' },
-        { id: 8, name: 'Chapter 8', status: 'Waiting', wordCount: 2300, scheduledDate: '2024-08-05' },
-        { id: 9, name: 'Chapter 9', status: 'Waiting', wordCount: 2000, scheduledDate: '2024-08-12' },
-        { id: 10, name: 'Chapter 10', status: 'Waiting', wordCount: 1800, scheduledDate: '2024-08-19' },
-    ];
+export default function ChapterTable({novelId}) {
+
+    const { data, isLoading, isError, error } = useGet({ queryKey: "chapters", url: `/api/chapters/all/${novelId}`, params: { novelId } });
+
+    const navigate = useNavigate();
 
     const statusColorMap = {
-        Published: "success",
-        Waiting: "warning",
-        Draft: "default",
+        PENDING: "warning",
+        APPROVED: "success",
+        REJECTED: "error",
+        DELETED: "default",
+        DRAFT: "default",
+        PUBLISHED: "success",
+        COMPLETED: "primary",
     };
 
-    return (
-        <div>Chapter Table</div>
-    );
+    function handleDelete(id) {
+        console.log({msg: "Delete", id: id});
+    }
+
+  return (
+    <Table
+        aria-label="Chapters Table"
+        className="mb-8"
+        selectionMode="single"
+    >
+      <TableHeader>
+        <TableColumn>NUMBER</TableColumn>
+        <TableColumn>PAID</TableColumn>
+        <TableColumn>TITLE</TableColumn>
+        <TableColumn>STATUS</TableColumn>
+        <TableColumn>CREATED ON</TableColumn>
+        <TableColumn>ACTIONS</TableColumn>
+      </TableHeader>
+      <TableBody items={data || []}>
+        {!isLoading && !isError && ((item, index) => (
+            <TableRow key={index}>
+                <TableCell>{item.chapterNumber}</TableCell>
+                <TableCell>{item.isPremium ? "YES" : "NO"}</TableCell>
+                <TableCell>{item.title}</TableCell>
+                <TableCell>
+                    <Chip variant="flat" radius="sm" color={statusColorMap[item.status]}>{item.status}</Chip>
+                </TableCell>
+                <TableCell>{item.createdAt}</TableCell>
+                <TableCell className="flex gap-2 items-center justify-center">
+                    <MdModeEdit className="text-blue-500 hover:cursor-pointer" onClick={() => navigate(`/author/novels/details/${item.id}/addChapter`)} size="20px" />
+                    <AlertConfirmation
+                        message="Continuing will delete the chapter permanently."
+                        callback={handleDelete}
+                        params={item.id}
+                    >
+                        <MdDelete className="text-red-500 hover:cursor-pointer" size="20px" />
+                    </AlertConfirmation>
+                </TableCell>
+            </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
 }

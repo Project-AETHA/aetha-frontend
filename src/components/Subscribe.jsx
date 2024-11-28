@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Image } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@nextui-org/react";

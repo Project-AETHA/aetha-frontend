@@ -1,30 +1,23 @@
-import {
-    Button,
-    Card,
-    Input,
-    Modal,
-    ModalBody,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    Textarea,
-    useDisclosure
-} from "@nextui-org/react";
+import { Button, Card, useDisclosure } from "@nextui-org/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useGet from "@/hooks/useGet.jsx"
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import EditChapterModel from "./EditChapterModel.jsx"
+
 import axios from "axios";
 import {toast} from "sonner";
-export default function SubscriptionTiers({ novelId }) {
+
+export default function SubscriptionTiers({novelId, editor = true}) {
 
     const {
         isLoading,
         data,
         isError,
-        error,
-        isFetching,
-        refetch
-    } = useGet({ url: `/api/subscription/get-tiers/${novelId}`, queryKey: "subTiers", params: { novelId } });
+        error
+    } = useGet({url: `/api/subscription/get-tiers/${novelId}`, queryKey: "subTiers", params: {novelId}});
+
+    const navigate = useNavigate();
 
     const handleEditTier = (tier) => {
         setData(tier)
@@ -49,7 +42,42 @@ export default function SubscriptionTiers({ novelId }) {
         });
     }
 
-    const { isOpen: isEditTierModalOpen, onOpen: onOpenEditTierModal, onClose: onCloseEditTierModal } = useDisclosure();
+    async function handleSubscribe(tier, amount) {
+        if (confirm(`Are you sure you want to subscribe to this tier?`)) {
+            const response = await axios.post(`/api/subscription/create`, {
+                novelId: data.novel.id,
+                subscriptionTier: tier,
+                amount: amount
+            })
+
+            if (response.status === 200) {
+                switch (response.data.code) {
+                    case "00":
+                        toast.success("Subscribed successfully")
+                        navigate(`/novels/${data.novel.id}`)
+                        break;
+                    case "05":
+                        toast.error("Subscribing failed", {
+                            description: response.data.content || response.data.message
+                        })
+                        break;
+                    default:
+                        toast.error("Error Occurred | Try Again", {
+                            description: response.data.content || response.data.message
+                        })
+                        break;
+                }
+            } else {
+                toast.error("Error Occurred | Try Again", {
+                    description: response.data.content || response.data.message
+                })
+            }
+        }
+
+    }
+
+    const {isOpen: isEditTierModalOpen, onOpen: onOpenEditTierModal, onClose: onCloseEditTierModal} = useDisclosure();
+
 
     const handleSaveTier = async () => {
         const prefix = `tier${formData.tier_number}_`;
@@ -61,8 +89,8 @@ export default function SubscriptionTiers({ novelId }) {
         onCloseEditTierModal();
 
         const response = await axios.put(`/api/subscription/edit-tiers/${novelId}`, data)
-        if(response.status === 200) {
-            if(response.data.code === "00") {
+        if (response.status === 200) {
+            if (response.data.code === "00") {
                 toast.success("Tier updated successfully")
             } else {
                 toast.error("Tier failed to update")
@@ -75,137 +103,75 @@ export default function SubscriptionTiers({ novelId }) {
     };
 
     return (
-        <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-4">Subscription Tiers</h2>
+        <div className="mb-8 flex w-full justify-center">
 
-            {isLoading && (<LoadingComponent />)}
+            {isLoading && (<LoadingComponent/>)}
             {!isLoading && isError && (<div>{error}</div>)}
             {!isLoading && !isError && (
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <Card
-                        className="p-6 max-w-[270px] shadow-lg transform hover:scale-105 transition-transform duration-300">
-                        <h3 className="text-2xl font-bold mb-4">{data.tier1_name}</h3>
-                        <p className="text-sm truncate max-w-full overflow-hidden whitespace-nowrap mb-2">🟣 {data.tier1_description}</p>
-                        <ul className="list-none list-inside mb-6">
-                            {data.tier1_features.slice(0, 3).map((feature, i) => (
-                                <li key={i} className="text-gray-600">✓ {feature}</li>
-                            ))}
-                        </ul>
-                        <div className="flex justify-between items-center mt-auto mb-2">
-                            <div>
-                                <p className="font-bold flex flex-col">
-                                    <span className="text-sm">LKR</span>
-                                    <span className="text-2xl">{(data.tier1_price).toFixed(2)}</span>
+                    {[1, 2, 3].map((tierIndex) => {
+                        const prefix = `tier${tierIndex}_`;
+                        return (
+                            <Card
+                                key={tierIndex}
+                                className="p-6 select-none max-w-[270px] shadow-lg transform hover:scale-105 transition-transform duration-300">
+                                <h3 className="text-2xl font-bold mb-4">{data[`${prefix}name`]}</h3>
+                                <p className="text-sm truncate max-w-full overflow-hidden whitespace-nowrap mb-2">
+                                    🟪 {data[`${prefix}description`]}
                                 </p>
-                                <p className="text-sm text-gray-500">per month</p>
-                            </div>
-                            <div>
-                                <p className="font-bold text-right flex flex-col">
-                                    <span className="text-sm">LKR</span>
-                                    <span className="text-2xl">{(data.tier1_price * 11).toFixed(2)}</span>
-                                </p>
-                                <p className="text-sm text-right text-gray-500">per year</p>
-                            </div>
-                        </div>
-                        <Button auto color="secondary" onPress={() => handleEditTier(1)} className="w-full mt-auto"
-                                variant="flat">Edit Tier</Button>
-                    </Card>
-
-                    <Card
-                        className="p-6 max-w-[270px] shadow-lg transform hover:scale-105 transition-transform duration-300">
-                        <h3 className="text-2xl font-bold mb-4">{data.tier2_name}</h3>
-                        <p className="text-sm truncate max-w-full overflow-hidden whitespace-nowrap mb-2">🟣 {data.tier2_description}</p>
-                        <ul className="list-none list-inside mb-6">
-                            {data.tier2_features.slice(0, 3).map((feature, i) => (
-                                <li key={i} className="text-gray-600">✓ {feature}</li>
-                            ))}
-                        </ul>
-                        <div className="flex justify-between items-center mt-auto mb-2">
-                            <div>
-                                <p className="font-bold flex flex-col">
-                                    <span className="text-sm">LKR</span>
-                                    <span className="text-2xl">{(data.tier2_price).toFixed(2)}</span>
-                                </p>
-                                <p className="text-sm text-gray-500">per month</p>
-                            </div>
-                            <div>
-                                <p className="font-bold text-right flex flex-col">
-                                    <span className="text-sm">LKR</span>
-                                    <span className="text-2xl">{(data.tier2_price * 11).toFixed(2)}</span>
-                                </p>
-                                <p className="text-sm text-right text-gray-500">per year</p>
-                            </div>
-                        </div>
-                        <Button auto color="secondary" onPress={() => handleEditTier(2)} className="w-full mt-auto"
-                                variant="flat">Edit Tier</Button>
-                    </Card>
-
-                    <Card
-                        className="p-6 max-w-[270px] shadow-lg transform hover:scale-105 transition-transform duration-300">
-                        <h3 className="text-2xl font-bold mb-4">{data.tier3_name}</h3>
-                        <p className="text-sm truncate max-w-full overflow-hidden whitespace-nowrap mb-2">🟣 {data.tier3_description}</p>
-                        <ul className="list-none list-inside mb-6">
-                            {data.tier3_features.slice(0,3).map((feature, i) => (
-                                <li key={i} className="text-gray-600">✓ {feature}</li>
-                            ))}
-                        </ul>
-                        <div className="flex justify-between items-center mt-auto mb-2 gap-2">
-                            <div>
-                                <p className="font-bold flex flex-col">
-                                    <span className="text-sm">LKR</span>
-                                    <span className="text-2xl">{(data.tier3_price).toFixed(2)}</span>
-                                </p>
-                                <p className="text-sm text-gray-500">per month</p>
-                            </div>
-                            <div>
-                                <p className="font-bold text-right flex flex-col">
-                                    <span className="text-sm">LKR</span>
-                                    <span className="text-2xl">{(data.tier3_price * 11).toFixed(2)}</span>
-                                </p>
-                                <p className="text-sm text-right text-gray-500">per year</p>
-                            </div>
-                        </div>
-                        <Button auto color="secondary" onPress={() => handleEditTier(3)} className="w-full mt-auto"
-                                variant="flat">Edit Tier</Button>
-                    </Card>
+                                <ul className="list-none list-inside mb-6 ml-2">
+                                    {data[`${prefix}features`].slice(0, 3).map((feature, i) => (
+                                        <li key={i} className="text-gray-600">✓ {feature}</li>
+                                    ))}
+                                </ul>
+                                <div className="flex justify-between items-center mt-auto mb-2">
+                                    <div>
+                                        <p className="font-bold flex flex-col">
+                                            <span className="text-sm">LKR</span>
+                                            <span className="text-2xl">{(data[`${prefix}price`]).toFixed(2)}</span>
+                                        </p>
+                                        <p className="text-sm text-gray-500">per month</p>
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-right flex flex-col">
+                                            <span className="text-sm">LKR</span>
+                                            <span className="text-2xl">{(data[`${prefix}price`] * 11).toFixed(2)}</span>
+                                        </p>
+                                        <p className="text-sm text-right text-gray-500">per year</p>
+                                    </div>
+                                </div>
+                                {editor ? (
+                                    <Button auto color="secondary"
+                                            onPress={() => handleEditTier(tierIndex)}
+                                            className="w-full mt-auto" variant="flat"
+                                    >
+                                        Edit Tier
+                                    </Button>
+                                ) : (
+                                    <Button auto color="secondary"
+                                            onPress={() => handleSubscribe(tierIndex, data[`${prefix}price`])}
+                                            className="w-full mt-auto" variant="flat"
+                                    >
+                                        Subscribe
+                                    </Button>
+                                )}
+                            </Card>
+                        );
+                    })
+                    }
                 </div>
             )}
 
-            <Modal isOpen={isEditTierModalOpen} onClose={onCloseEditTierModal}>
-                <ModalContent>
-                    <ModalHeader>Edit Tier: {formData.tier_name}</ModalHeader>
-                    <ModalBody>
-                        <Input
-                            label="Tier Name"
-                            value={formData.tier_name || ''}
-                            onChange={(e) => setFormData({...formData, tier_name: e.target.value})}
-                            className="mb-4"
-                        />
-                        <Textarea label="Description"
-                              value={formData.tier_description || ""}
-                              onChange={(e) => setFormData({...formData, tier_description: e.target.value})}
-                              className="mb-4"
-                        />
-                        <Input
-                            label="Monthly Cost"
-                            type="number"
-                            value={formData.tier_price || 0}
-                            onChange={(e) => setFormData({...formData, tier_price: parseFloat(e.target.value)})}
-                            className="mb-4"
-                        />
-                        <Textarea label="Features (each one on new line)"
-                               value={formData.tier_features || ""}
-                               onChange={(e) => setFormData({...formData, tier_features: e.target.value})}
-                               className="mb-4"
-                        />
-                        {/* Add inputs for benefits here */}
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="secondary" onPress={handleSaveTier}>Save Changes</Button>
-                        <Button color="warning" onPress={onCloseEditTierModal}>Cancel</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+            {editor && (
+                <EditChapterModel
+                    handleSaveTier={handleSaveTier}
+                    isEditTierModalOpen={isEditTierModalOpen}
+                    onCloseEditTierModal={onCloseEditTierModal}
+                    formData={formData}
+                    setFormData={setFormData}
+                />
+            )}
+
         </div>
     );
 }

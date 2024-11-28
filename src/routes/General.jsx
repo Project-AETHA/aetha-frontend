@@ -16,7 +16,7 @@ import TestComponent from "../components/common/Temp.tsx";
 import SettingPage from '../pages/Settings.jsx';
 import Forum from '../pages/Forum.jsx';
 import Forumselection from '../pages/Forumselection.jsx';
-import Buytiers from '../pages/Buytiers.jsx';
+import BuyTiers from '../pages/Buytiers.jsx';
 import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
 import Buybook from '../pages/Shop/BuyBookPage.jsx';
 import UpgradeToWriter from "../pages/UpgradeToWriter.jsx";
@@ -42,7 +42,7 @@ export default function RoutesGeneral () {
         { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" },
         { path: '/forum', element: <Forum />, layout: "default" },
         { path: '/forumselection', element: <Forumselection />, layout: "default" },
-        { path: '/buytiers/:novelId', element: <Buytiers />, layout: "default" },
+        { path: '/buytiers/:novelId', element: <BuyTiers />, layout: "default" },
         { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
         { path: '/buybook/:bookId', element: <Buybook />, layout: "default" },
     ]

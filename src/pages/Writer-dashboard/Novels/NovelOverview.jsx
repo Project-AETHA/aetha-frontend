@@ -44,7 +44,6 @@ const Submissions = () => {
                   setPendingNovels(pending);
                   setPublishedNovels(published);
                   setDraftNovels(drafts);
-                  console.log(publishedNovels);
 
                 } else {
                   throw new Error(response.data.message);

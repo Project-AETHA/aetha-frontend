@@ -16,7 +16,6 @@ import RevenuePage from "../pages/Writer-dashboard/Revenue.jsx";
 import AddEbook from "../pages/Writer-dashboard/Ebook/AddEbook.jsx";
 import UpgradeToWriter from "../pages/Writer-dashboard/UpgradeToWriter.jsx";
 import AddShortStory from "../pages/Writer-dashboard/AddShortStory.jsx";
-import NovelDetails from "@/pages/Writer-dashboard/Novels/NovelDetails.jsx"; //! TODO - REMOVE THIS LATER
 import AddChapter from "../pages/Writer-dashboard/Chapters/AddChapter.jsx";
 
 export default function RoutesWriter() {
