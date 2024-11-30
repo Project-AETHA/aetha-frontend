@@ -1,6 +1,6 @@
 import { Button, Checkbox, Input } from "@nextui-org/react";
 import { useState } from "react";
-import { useLogin } from "../hooks/useLogin";
+import { useLogin } from "../../hooks/useLogin.jsx";
 import { GoogleLogin } from "@react-oauth/google";
 
 function LoginPage() {

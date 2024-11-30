@@ -13,6 +13,10 @@ export default {
             fontFamily: {
                 sans: ['Poppins', 'sans-serif'], // Set Poppins as the default sans-serif font
             },
+            colors: {
+                'pinky-purple': '#E879F9',
+                'pinky-blue': '#818CF8',
+            }
         },
     },
     darkMode: "class",

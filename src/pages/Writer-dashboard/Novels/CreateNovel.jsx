@@ -18,7 +18,6 @@ const CreateNovel = () => {
     const [custom_tags, setCustom_tags] = useState([]);
     const [newCustomTag, setNewCustomTag] = useState("");
     const [coverImage, setCoverImage] = useState(null);
-    const [manualRelease, setManualRelease] = useState('');
     const [contentWarning, setContentWarning] = useState([]);
 
     // Error variables
@@ -28,7 +27,6 @@ const CreateNovel = () => {
     const [genresError, setGenresError] = useState("");
     const [tagsError, setTagsError] = useState("");
     const [coverImageError, setCoverImageError] = useState("");
-    const [manualReleaseError, setManualReleaseError] = useState("");
     const [contentWarningError, setContentWarningError] = useState("");
 
     const genreOptions = ["Fiction", "Mystery", "Thriller", "Horror", "Sci_Fi", "Fantasy", "Romance", "Historical", "Adventure", "Young_Adult", "New_Adult", "Crime", "Magical", "Satire", "Gothic",];
@@ -105,11 +103,6 @@ const CreateNovel = () => {
             hasError = true;
         }
 
-        if (!manualRelease) {
-            setManualReleaseError("Manual Release is required.");
-            hasError = true;
-        }
-
         if (contentWarning.length <= 0) {
             setContentWarningError("At least one content warning is required.");
             hasError = true;
@@ -127,7 +120,6 @@ const CreateNovel = () => {
                     tags,
                     custom_tags,
                     coverImage,
-                    manualRelease,
                     contentWarning
                 })
                 const response = await axios.post("/api/novels/create", {
@@ -138,7 +130,6 @@ const CreateNovel = () => {
                     tags,
                     custom_tags,
                     coverImage,
-                    manualRelease,
                     contentWarning
                 });
 
@@ -164,7 +155,6 @@ const CreateNovel = () => {
                                     genres: setGenresError,
                                     tags: setTagsError,
                                     coverImage: setCoverImageError,
-                                    manualRelease: setManualReleaseError,
                                     contentWarning: setContentWarningError,
                                 };
                                 Object.entries(response.data.errors).forEach(([key, value]) => {
@@ -370,26 +360,8 @@ const CreateNovel = () => {
                         )}
                     </div>
 
-                    <div className="mb-4 flex flex-col">
-                    <Input
-                            type="text"
-                            variant="bordered"
-                            label="Manual Release Date and Time"
-                            labelPlacement="outside"
-                            placeholder="Replace with date picker and a time picker"
-                            className="min-w-[290px] w-full lg:min-w-[820px] rounded-xl"
-                            onChange={(e) => {
-                                setManualRelease(e.target.value);
-                                setManualReleaseError("");
-                            }}
-                            value={manualRelease}
-                            isInvalid={!!manualReleaseError}
-                            errorMessage={manualReleaseError}
-                        />
-                    </div>
-
                     <Button color="secondary" type="submit" className="max-w-[160px] mx-auto">
-                        Add Ebook
+                        Create Novel
                     </Button>
                 </form>
             </Card>

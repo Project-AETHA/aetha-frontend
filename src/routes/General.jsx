@@ -1,5 +1,5 @@
-import LoginPage from "../pages/LoginPage.jsx";
-import SignupPage from "../pages/SignupPage.jsx";
+import LoginPage from "../pages/Auth/LoginPage.jsx";
+import SignupPage from "../pages/Auth/SignupPage.tsx";
 import SupportPage from "../pages/Support/SupportPage.jsx";
 import NovelLandingPage from "../pages/LandingPage/NovelLandingPage.jsx";
 import Reading from "../pages/Reading.jsx";
@@ -16,9 +16,10 @@ import TestComponent from "../components/common/Temp.tsx";
 import SettingPage from '../pages/Settings.jsx';
 import Forum from '../pages/Forum.jsx';
 import Forumselection from '../pages/Forumselection.jsx';
-import Buytiers from '../pages/Buytiers.jsx';
+import BuyTiers from '../pages/Buytiers.jsx';
 import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
 import Buybook from '../pages/Shop/BuyBookPage.jsx';
+import UpgradeToWriter from "../pages/UpgradeToWriter.jsx";
 
 export default function RoutesGeneral () {
     return [
@@ -28,6 +29,7 @@ export default function RoutesGeneral () {
         { path: '/support', element: <SupportPage />, layout: "simple" },
         { path: '/shop', element: <Shop />, layout: "default" },
         { path: '/shop/search', element: <SearchResultsPage />, layout: "default" },
+        { path: '/upgrade-to-writer', element: <UpgradeToWriter />, layout: "default" },
         { path: '/novels/:novelId/:chapterNumber', element: <Chapterreading />, layout: "default" },
         { path: '/reading', element: <Reading />, layout: "default" },
         { path: '/novels', element: <NovelLandingPage />, layout: "default" },
@@ -40,7 +42,7 @@ export default function RoutesGeneral () {
         { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" },
         { path: '/forum', element: <Forum />, layout: "default" },
         { path: '/forumselection', element: <Forumselection />, layout: "default" },
-        { path: '/buytiers/:novelId', element: <Buytiers />, layout: "default" },
+        { path: '/buytiers/:novelId', element: <BuyTiers />, layout: "default" },
         { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
         { path: '/buybook/:bookId', element: <Buybook />, layout: "default" },
     ]
