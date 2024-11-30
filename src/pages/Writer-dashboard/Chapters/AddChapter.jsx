@@ -48,7 +48,7 @@ const AddChapter = () => {
 
   return (
     <div className='bg-foreground-50 p-4 m-4 rounded h-full shadow-lg flex flex-col gap-6'>
-      <h1 className='font-semibold text-lg'>AddChapter</h1>
+      <h1 className='font-semibold text-lg'>Create Chapter</h1>
 
       <form className='flex flex-col gap-6'>
         <div className="flex gap-4">

@@ -7,7 +7,7 @@ import LoadingComponent from "@/components/utility/LoadingComponent";
 
 export default function ChapterTable({novelId}) {
 
-    const { data, isLoading, isError, error } = useGet({ queryKey: "chapters", url: `/api/chapters/all/${novelId}`, params: { novelId } });
+    const { data, isLoading, isError, error } = useGet({ queryKey: "chapters", url: `/api/chapters/all/author/${novelId}`, params: { novelId } });
 
     const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ export default function ChapterTable({novelId}) {
                 </TableCell>
                 <TableCell>{item.createdAt}</TableCell>
                 <TableCell className="flex gap-2 items-center justify-center">
-                    <MdModeEdit className="text-blue-500 hover:cursor-pointer" onClick={() => navigate(`/author/novels/details/${item.id}/addChapter`)} size="20px" />
+                    <MdModeEdit className="text-blue-500 hover:cursor-pointer" onClick={() => navigate(`/author/novels/details/${item.id}/editChapter`)} size="20px" />
                     <AlertConfirmation
                         message="Continuing will delete the chapter permanently."
                         callback={handleDelete}
