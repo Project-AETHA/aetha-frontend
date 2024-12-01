@@ -1,4 +1,4 @@
-import ProfilePage from "../pages/Profile.jsx";
+import ProfilePage from "../pages/Profile/Profile.jsx";
 import EditProfilePage from "../pages/Editprofile.jsx";
 import ComposePage from '../pages/Compose.jsx';
 import InboxPage from '../pages/Inbox.jsx';
