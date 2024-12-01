@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import Editprofilesidebar from '../components/Editprofilesidebar';
 import { FaEnvelope } from "react-icons/fa";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { Button } from "@nextui-org/react";
+import { Button, Textarea } from "@nextui-org/react";
 
 function Compose() {
   const [value, setValue] = useState('');
@@ -51,7 +48,7 @@ function Compose() {
             <div className='w-full flex justify-center items-center mb-2'>
 
               <div className="mx-2 bg-foreground-50 border-none rounded-xl w-full">
-                <ReactQuill className="text-editor" theme="snow" value={value} onChange={setValue} />
+                <Textarea className="text-editor" theme="snow" value={value} onChange={setValue} />
               </div>
             </div>
           </div>

@@ -1,7 +1,5 @@
-import { Input, Button } from "@nextui-org/react";
+import { Input, Button, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -62,7 +60,7 @@ export default function CreateNote() {
 
                 <div className="w-full min-h-[300px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
-                    <ReactQuill className="text-editor" theme="snow" value={content} onChange={setContent} />
+                    <Textarea className="text-editor" theme="snow" value={content} onChange={setContent} />
                 </div>
 
                 <div className="w-full flex justify-center gap-2">
