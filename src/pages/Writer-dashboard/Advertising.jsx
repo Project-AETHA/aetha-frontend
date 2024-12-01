@@ -68,21 +68,21 @@ const Advertising = () => {
       id: 1,
       name: 'Path of a Hero',
       status: 'Active',
-      budget: '$500',
+      AddPlan: '1',
       startDate: '2024-06-01',
     },
     {
       id: 2,
       name: 'Solo Leveling',
       status: 'Pending',
-      budget: '$1000',
-      startDate: '2024-07-15',
+      AddPlan: '3',
+      startDate: '2024-11-27',
     },
     {
       id: 3,
       name: 'The Beginning After the End',
       status: 'Draft',
-      budget: '$750',
+      AddPlan: '2',
       startDate: '2024-11-01',
     }
   ]);
@@ -153,7 +153,7 @@ const Advertising = () => {
             <TableHeader>
               <TableColumn>CAMPAIGN NAME</TableColumn>
               <TableColumn>STATUS</TableColumn>
-              <TableColumn>BUDGET</TableColumn>
+              <TableColumn>ADD PlAN</TableColumn>
               <TableColumn>START DATE</TableColumn>
               <TableColumn>ACTIONS</TableColumn>
             </TableHeader>
@@ -170,7 +170,7 @@ const Advertising = () => {
                       {campaign.status}
                     </span>
                   </TableCell>
-                  <TableCell>{campaign.budget}</TableCell>
+                  <TableCell>{campaign.AddPlan}</TableCell>
                   <TableCell>{campaign.startDate}</TableCell>
                   <TableCell>
                     <Button 
