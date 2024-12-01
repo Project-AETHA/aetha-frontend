@@ -22,6 +22,7 @@ import RoutesGeneral from "./routes/General.jsx";
 import RoutesAdmin from "./routes/Admin.jsx";
 import RoutesProfile from './routes/Profile.jsx';
 import ScrollToTop from "@/components/utility/ScrollToTop.jsx";
+import ProfileLayout2 from './layouts/ProfileLayout2.jsx';
 
 const routes = [
     { path: '/pro-subscriptions', element: <ProSubscription />, layout: "default" },
@@ -37,7 +38,8 @@ const layoutComponents = {
     author_dashboard: AuthorDashboardLayout,
     simple: SimpleLayout,
     profile_dashboard: ProfileDashboardLayout,
-    profile: ProfileLayout
+    profile: ProfileLayout,
+    profile2: ProfileLayout2
 
 };
 

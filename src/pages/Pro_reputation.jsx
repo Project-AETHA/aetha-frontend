@@ -4,7 +4,7 @@ import { FaRegComments, FaUserEdit, FaRegUserCircle, FaPen, FaTrophy, FaBook, Fa
 import { MdOutlineHistory } from "react-icons/md";
 import profilepic from '../../public/images/profilepic.jpg'; 
 import "../components/Profile.css";
-import Sidebar from "../components/Sidebar/Sidebar.jsx"; 
+import Sidebar from "./Profile/components/Sidebar/Sidebar.jsx";
 import { BiSolidCertification } from "react-icons/bi";
 
 function Pro_reputation() {
