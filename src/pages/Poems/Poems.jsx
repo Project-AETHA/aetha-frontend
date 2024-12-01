@@ -1,31 +1,14 @@
-import { useEffect } from 'react';
-import Poem from '../components/Poems/Poem';
-import axios from 'axios';
-import { useState } from 'react';
-import { toast } from 'sonner';
+import useGet from "@/hooks/useGet";
+import LoadingComponent from "@/components/utility/LoadingComponent";
+import Poem from "./components/Poem";
+
 
 const Poems = () => {
 
-  const [ poemList , setPoemList] = useState([]);
-
-  async function getAllPoems() {
-
-    const response = await axios.get("/api/poems/get-all-poems");
-
-    if(response.status == 200){
-
-      setPoemList(response.data.content)
-      toast.success("Success", { description : response.data.message })
-              
-    } else {
-      toast.error("Error", {description: response.data.message})
-    }
-  }
-
-  
-  useEffect(() => {
-    getAllPoems()
-  }, [])
+  const { data, isLoading, isError, error } = useGet({
+    queryKey: "all-poems",
+    url: "/api/poems/get-all-poems"
+  });
 
   function formatFollowers(followers) {
     if (followers >= 1000) {
@@ -39,9 +22,10 @@ const Poems = () => {
 
       <div className='grid grid-cols-12 gap-2'>
 
-        <div className="col-span-9 h-[calc(100vh-4rem)] overflow-y-auto scrollbar-hide">
-          {
-            poemList.map(poemItem => (
+        <div className="col-span-12 lg:col-span-8 h-[calc(100vh-4rem)] overflow-y-auto scrollbar-hide">
+          {isLoading && <LoadingComponent />}
+          {!isLoading && isError && <div>{error}</div>}
+          {!isLoading && !isError && data.map(poemItem => (
               <Poem
                 key={poemItem.id}
                 user={poemItem.author}
@@ -50,12 +34,11 @@ const Poems = () => {
                 content={poemItem.content}
                 tags={poemItem.tags}
                 followers={poemItem.followers}
-
               />
             ))
           }
         </div>
-        <div className="col-span-3 mt-1 mr-1 h-[calc(100vh-4rem)] overflow-y-auto scrollbar-hide">
+        <div className="hidden lg:block lg:col-span-4 mt-1 mr-1 h-[calc(100vh-4rem)] overflow-y-auto scrollbar-hide">
 
           <div className="flex gap-2 items-center bg-foreground-50 p-4 rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 40 40">
@@ -64,8 +47,9 @@ const Poems = () => {
             <p className="text-md font-bold text-red-500">Popular ths week</p>
           </div>
 
-          {
-            poemList.map(poemItem => (
+          {isLoading && <LoadingComponent />}
+          {!isLoading && isError && <div>{error}</div>}
+          {!isLoading && !isError && data.map(poemItem => (
               <Poem
                 key={poemItem.id}
                 user={poemItem.author}
@@ -74,7 +58,6 @@ const Poems = () => {
                 content={poemItem.content}
                 tags={poemItem.tags}
                 followers={poemItem.followers}
-
               />
             ))
           }

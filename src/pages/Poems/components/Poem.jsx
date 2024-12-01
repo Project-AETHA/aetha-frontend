@@ -18,21 +18,22 @@ import { FiHeart } from "react-icons/fi";
 const Poem = ({ user, duration, title, content, tags, followers }) => {
     const [isFollowed, setIsFollowed] = React.useState(false);
 
+    console.log(user)
+
     return (
         <>
-
             <Card className="my-1" key={title}>
                 <CardHeader className="justify-between px-4">
                     <div>
                         <div className='flex gap-5'>
-                            <Avatar isBordered radius="full" size="sm" src="https://nextui.org/avatars/avatar-1.png" />
+                            <Avatar isBordered radius="full" size="sm" src={`https://ik.imagekit.io/aetha/${user.image}`} />
                             <div className="flex-col  gap-4 items-start justify-center">
                                 <div className='flex gap-4'>
                                     <h4 className="text-small font-semibold text-default-600">{user.displayName}</h4>
                                     <h5 className="text-small tracking-tight text-default-400">{duration}</h5>
                                 </div>
-                                <div className='flex'>
-                                    <p className="font-semibold text-default-400 text-small">{followers}</p>
+                                <div className='flex gap-1'>
+                                    <p className="font-semibold text-default-400 text-small">{followers || 10}</p>
                                     <p className="text-default-400 text-small">Followers</p>
                                 </div>
                             </div>

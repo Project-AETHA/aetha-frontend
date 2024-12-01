@@ -4,7 +4,7 @@ import SupportPage from "../pages/Support/SupportPage.jsx";
 import NovelLandingPage from "../pages/LandingPage/NovelLandingPage.jsx";
 import Reading from "../pages/Reading.jsx";
 import SearchResultsPage from "../pages/Shop/SearchResultsPage.jsx";
-import Poems from "../pages/Poems.jsx";
+import Poems from "../pages/Poems/Poems.jsx";
 import Chapterreading from "../pages/Chapterreading.jsx";
 import Chapters from "../pages/Chapter.jsx";
 import Shop from "../pages/Shop/ShopPage.jsx";
