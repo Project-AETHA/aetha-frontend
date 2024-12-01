@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { Card, Input, Checkbox, Button, Spacer } from "@nextui-org/react";
+import { Card, Input, Checkbox, Button, Spacer, Textarea } from "@nextui-org/react";
 import { Plus, X } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import ImageOnlineUpload from "@/components/common/ImageOnlineUpload.jsx";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 
 const CreateShortStory = () => {
     const navigate = useNavigate();
@@ -320,7 +318,7 @@ const CreateShortStory = () => {
 
                             <div className="mb-4 flex flex-col gap-2">
                                 <h3 className="text-default-700 text-small">Story Content</h3>
-                                <ReactQuill
+                                <Textarea
                                     value={content}
                                     onChange={(value) => {
                                         setContent(value);
