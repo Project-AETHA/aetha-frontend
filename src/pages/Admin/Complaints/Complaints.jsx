@@ -16,6 +16,7 @@ import {
     Pagination,
     Tooltip,
     useDisclosure,
+    Spinner
 } from "@nextui-org/react";
 import { LiaUserSlashSolid } from "react-icons/lia";
 import { SearchIcon } from "@/components/common/icons/SearchIcon.jsx";
@@ -92,6 +93,7 @@ export default function Complaints() {
     const { isOpen: isAddNewOpen, onOpen: onAddNewOpen, onOpenChange: onAddNewOpenChange } = useDisclosure();
 
     async function getAllComplaints() {
+        setLoading(true)
 
         const response = await axios.get("/api/support/get_all_tickets")
 
@@ -103,13 +105,14 @@ export default function Complaints() {
                 setComplaints(response.data.content)
             }
         }
-
+        setLoading(false)
     }
 
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => setIsVisible(!isVisible);
 
+    const [loading, setLoading] = useState([])
     const [complaints, setComplaints] = useState([])
     const [filterValue, setFilterValue] = useState("");
     const [selectedKeys, setSelectedKeys] = useState(new Set([]));
@@ -442,7 +445,7 @@ export default function Complaints() {
                             </TableColumn>
                         )}
                     </TableHeader>
-                    <TableBody emptyContent={"No complaints found"} className="" items={sortedItems}>
+                    <TableBody emptyContent={"No complaints found"} className="" items={sortedItems} isLoading={loading} loadingContent={<div className="flex items-center h-full w-full justify-center gap-2"><Spinner color="secondary" />Loading ...</div>}>
                         {(item) => (
                             <TableRow key={item.id}  >
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}

@@ -54,6 +54,7 @@ function capitalize(str) {
 
 function ReportedContent() {
   const [filterValue, setFilterValue] = React.useState("");
+  const [loading, setLoading] = React.useState("");
   const [dateFilterValue, setDateFilterValue] = React.useState("");
   const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
   const [rowsPerPage, setRowsPerPage] = React.useState(8);
@@ -234,6 +235,7 @@ function ReportedContent() {
   }, [filterValue, dateFilterValue, visibleColumns, onRowsPerPageChange, reportedContents.length, onSearchChange, onClear]);
 
   const bottomContent = React.useMemo(() => {
+    
     return (
       <div className="py-2 px-2 flex justify-center items-center">
         <div className="hidden sm:flex w-[30%] justify-end gap-12">

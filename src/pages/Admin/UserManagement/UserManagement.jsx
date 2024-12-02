@@ -9,10 +9,8 @@ import { ChevronDownIcon } from "../../../components/common/icons/ChevronDownIco
 import React, { useEffect, useState } from "react";
 import { EditIcon } from "@/components/common/icons/EditIcon";
 import { useNavigate } from 'react-router-dom'
-
 import AddUserModel from "./components/AddUserModel";
 import EditUserModel from "./components/EditUserModel";
-
 import axios from 'axios'
 
 const columns = [
@@ -68,7 +66,7 @@ function UserManagement() {
     const { isOpen: isAddNewOpen, onOpen: onAddNewOpen, onOpenChange: onAddNewOpenChange } = useDisclosure();
 
     async function getAllUsers() {
-
+        setLoading(true)
         const response = await axios.get("/api/user/all-users")
 
         if (response.status === 200) {
@@ -77,9 +75,12 @@ function UserManagement() {
                 setUsers(response.data.content)
             }
         }
-
+        setLoading(false)
     }
 
+    const [loading, setLoading] = useState(false)
+    const [isVisible, setIsVisible] = React.useState(false);
+    const toggleVisibility = () => setIsVisible(!isVisible);
     const [selectedUser, setSelectedUser] = useState(null);
     const [users, setUsers] = useState([])
     const [filterValue, setFilterValue] = React.useState("");
@@ -403,7 +404,7 @@ function UserManagement() {
                             </TableColumn>
                         )}
                     </TableHeader>
-                    <TableBody emptyContent={"No users found"} className="" items={sortedItems}>
+                    <TableBody emptyContent={"No users found"} className="" items={sortedItems} isLoading={loading} loadingContent={<div className="flex items-center h-full w-full justify-center gap-2"><Spinner color="secondary" />Loading ...</div>}>
                         {(item) => (
                             <TableRow key={item.id}  >
                                 {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
