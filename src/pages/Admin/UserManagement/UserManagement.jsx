@@ -1,32 +1,5 @@
-import {
-    Table,
-    TableHeader,
-    TableColumn,
-    TableBody,
-    TableRow,
-    TableCell,
-    Input,
-    Button,
-    DropdownTrigger,
-    Dropdown,
-    DropdownMenu,
-    DropdownItem,
-    Chip,
-    User,
-    Pagination,
-    Tooltip,
-    Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-    useDisclosure,
-    Textarea,
-    DatePicker,
-    Select,
-    SelectItem,
-    Radio,
-    RadioGroup
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button, DropdownTrigger, Dropdown, DropdownMenu,
+    DropdownItem, Chip, User, Pagination, Tooltip, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Textarea,
 } from "@nextui-org/react";
 import { LiaUserSlashSolid } from "react-icons/lia";
 import { PlusIcon } from "../../../components/common/icons/PlusIcon";
@@ -34,13 +7,11 @@ import { SearchIcon } from "../../../components/common/icons/SearchIcon";
 import { EyeIcon } from "../../../components/common/icons/EyeIcon";
 import { ChevronDownIcon } from "../../../components/common/icons/ChevronDownIcon";
 import React, { useEffect, useState } from "react";
-import { EditIcon } from "../../../components/common/icons/EditIcon";
-import { DeleteIcon } from "../../../components/common/icons/DeleteIcon";
+import { EditIcon } from "@/components/common/icons/EditIcon";
 import { useNavigate } from 'react-router-dom'
-import { EyeFilledIcon } from "../../../components/common/icons/EyeFilledIcon";
-import { EyeSlashFilledIcon } from "../../../components/common/icons/EyeSlashFilledIcon";
 
-
+import AddUserModel from "./components/AddUserModel";
+import EditUserModel from "./components/EditUserModel";
 
 import axios from 'axios'
 
@@ -48,9 +19,7 @@ const columns = [
     { name: "ID", uid: "id", sortable: false },
     { name: "EMAIL", uid: "email", sortable: true },
     { name: "NAME", uid: "name", sortable: true },
-    { name: "DISPLAY NAME", uid: "displayname", sortable: true },
     { name: "GENDER", uid: "gender", sortable: true },
-    { name: "BIRTHDATE", uid: "birthday", sortable: false },
     { name: "ROLE", uid: "role", sortable: true },
     { name: "STATUS", uid: "status", sortable: true },
     { name: "ACTIONS", uid: "actions" },
@@ -103,8 +72,6 @@ function UserManagement() {
         const response = await axios.get("/api/user/all-users")
 
         if (response.status === 200) {
-            console.log(response);
-
             if (response.data.code === "00") {
                 // Saving content to the users variable
                 setUsers(response.data.content)
@@ -113,11 +80,7 @@ function UserManagement() {
 
     }
 
-
-    const [isVisible, setIsVisible] = React.useState(false);
-
-    const toggleVisibility = () => setIsVisible(!isVisible);
-
+    const [selectedUser, setSelectedUser] = useState(null);
     const [users, setUsers] = useState([])
     const [filterValue, setFilterValue] = React.useState("");
     const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
@@ -194,12 +157,18 @@ function UserManagement() {
             case "name":
                 return (
                     <User
-                        avatarProps={{ radius: "lg", src: user.image }}
+                        avatarProps={{ radius: "lg", src: (user.image !== null && user.image.startsWith("/images")) ? user.image : `https://ik.imagekit.io/aetha/${user.image}` }}
                         description={user.email}
                         name={cellValue}
                     >
                         {user.email}
                     </User>
+                );
+            case "displayName":
+                return (
+                    <div className="flex flex-col">
+                        <p className="text-bold text-small capitalize">{cellValue}</p>
+                    </div>
                 );
             case "role":
                 return (
@@ -213,26 +182,36 @@ function UserManagement() {
                         {cellValue}
                     </Chip>
                 );
-            case "actions":
-                return (
-                    <div className="relative flex justify-center items-center gap-2">
-                        <Tooltip key="view" color="secondary" content="view" >
-                            <Button isIconOnly variant="flat" color="secondary" className="capitalize" size="sm" onPress={() => navigate(`/admin/users/${user.id}`)}>
-                                <EyeIcon />
-                            </Button>
-                        </Tooltip>
-                        <Tooltip key="edit" color="success" content="edit" >
-                            <Button isIconOnly variant="flat" color="success" className="capitalize" size="sm" onPress={onEditOpen}>
-                                <EditIcon />
-                            </Button>
-                        </Tooltip>
-                        <Tooltip key="disable" color="danger" content="disable">
-                            <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm" onPress={onDisableOpen}>
-                                <LiaUserSlashSolid size="18px" />
-                            </Button>
-                        </Tooltip>
-                    </div>
-                );
+                case "actions":
+                    return (
+                        <div className="relative flex justify-center items-center gap-2">
+                            <Tooltip key="view" color="secondary" content="view" >
+                                <Button isIconOnly variant="flat" color="secondary" className="capitalize" size="sm" onPress={() => navigate(`/admin/users/${user.id}`)}>
+                                    <EyeIcon />
+                                </Button>
+                            </Tooltip>
+                            <Tooltip key="edit" color="success" content="edit" >
+                                <Button 
+                                    isIconOnly 
+                                    variant="flat" 
+                                    color="success" 
+                                    className="capitalize" 
+                                    size="sm" 
+                                    onPress={() => {
+                                        setSelectedUser(user); // Save the user object or ID
+                                        onEditOpen();         // Open the edit modal
+                                    }}
+                                >
+                                    <EditIcon />
+                                </Button>
+                            </Tooltip>
+                            <Tooltip key="disable" color="danger" content="disable">
+                                <Button isIconOnly variant="flat" color="danger" className="capitalize" size="sm" onPress={onDisableOpen}>
+                                    <LiaUserSlashSolid size="18px" />
+                                </Button>
+                            </Tooltip>
+                        </div>
+                    );                
             default:
                 return cellValue;
         }
@@ -288,30 +267,6 @@ function UserManagement() {
                     />
 
                     <div className="flex gap-3">
-                        <Dropdown>
-                            <DropdownTrigger className="hidden sm:flex">
-                                <Button
-                                    endContent={<ChevronDownIcon className="text-small" />}
-                                    variant="ghost"
-                                    
-                                >
-                                    Role
-                                </Button>
-                            </DropdownTrigger>
-                            <DropdownMenu
-                                aria-label="Select role"
-                                closeOnSelect={false}
-                                disallowEmptySelection
-                                selectedKeys={roleFilter}
-                                selectionMode="multiple"
-                                onSelectionChange={(keys) => setRoleFilter(keys)}
-                            >
-                                {roleOptions.map((item) => (
-                                    <DropdownItem key={item.uid}>{item.name}</DropdownItem>
-                                ))}
-                            </DropdownMenu>
-
-                        </Dropdown>
                         <Dropdown>
                             <DropdownTrigger className="hidden sm:flex">
                                 <Button endContent={<ChevronDownIcon className="text-small" />} variant="ghost" >
@@ -458,207 +413,10 @@ function UserManagement() {
                 </Table>
 
 
-                <Modal
-                    isOpen={isAddNewOpen}
-                    onOpenChange={onAddNewOpenChange}
-                    backdrop="blur"
-                    classNames={{
-                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
-                    }}
-                >
-                    <ModalContent>
-                        {(onClose) => (
-                            <>
-                                <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white w-full">Add New User</div>
+                <AddUserModel isAddNewOpen={isAddNewOpen} onAddNewOpen={onAddNewOpen} onAddNewOpenChange={onAddNewOpenChange} />
+                <EditUserModel isEditOpen={isEditOpen} onEditOpen={onEditOpen} onEditOpenChange={onEditOpenChange} user={selectedUser} />
 
-                                    </div>
-                                </ModalHeader>
-                                <ModalBody>
-                                    <div className="flex gap-3">
-                                        <Input type="text" variant="faded" label="First Name" placeholder="Madhusha" labelPlacement="outside" color="primary" />
-                                        <Input type="text" variant="faded" label="Last Name" placeholder="Hansini" labelPlacement="outside" color="primary"  />
-                                    </div>
-                                    <Input type="email" variant="faded" label="Email" placeholder="hansi@gmail.com" labelPlacement="outside" color="primary" />
-                                    <div className="flex gap-3">
-                                        <Input
-                                            label="Password"
-                                            variant="faded"
-                                            placeholder="Enter password"
-                                            labelPlacement="outside"
-                                            endContent={
-                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility" color="primary" >
-                                                    {isVisible ? (
-                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    ) : (
-                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    )}
-                                                </button>
-                                            }
-                                            type={isVisible ? "text" : "password"}
-                                            className="max-w-xs"
-                                        />
-                                        <Input
-                                            label="Confirm Password"
-                                            variant="faded"
-                                            placeholder="Enter password"
-                                            labelPlacement="outside"
-                                            color="primary" 
-                                            endContent={
-                                                <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
-                                                    {isVisible ? (
-                                                        <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    ) : (
-                                                        <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                                                    )}
-                                                </button>
-                                            }
-                                            type={isVisible ? "text" : "password"}
-                                            className="max-w-xs"
-                                        />
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <DatePicker
-                                            label={"Birth date"}
-                                            className="max-w-[284px]"
-                                            labelPlacement="outside"
-                                            variant="faded"
-                                            color="primary" 
-                                        />
-                                        <Select
-                                            variant="faded"
-                                            label="Gender"
-                                            placeholder="Select your gender"
-                                            className=""
-                                            labelPlacement="outside"
-                                            color="primary" 
-                                        >
-                                            {genderOptions.map((option) => (
-                                                <SelectItem
-                                                    key={option.key}
-                                                    value={option.key}
-                                                    color="primary"
-                                                >
-                                                    {option.label}
-                                                </SelectItem>
-                                            ))}
-                                        </Select>
-                                    </div>
-                                    <div className="">
-                                        <label className="text-sm ">
-                                            Register as
-                                        </label>
-                                        <RadioGroup color="primary">
-                                            <div className="flex gap-5 w-full justify-around items-center my-4">
-                                                <Tooltip
-                                                    content="Can only read content"
-                                                    placement="bottom"
-                                                    className="bg-gray-300"
-                                                    offset={-4}
-                                                >
-                                                    <Radio value="reader" color="primary">
-                                                        Reader
-                                                    </Radio>
-                                                </Tooltip>
-                                                <Tooltip
-                                                    content="Can read and write content"
-                                                    placement="bottom"
-                                                    className="bg-gray-300"
-                                                    offset={-4}
-                                                >
-                                                    <Radio value="writer" color="primary">
-                                                        Writer
-                                                    </Radio>
-                                                </Tooltip>
-                                            </div>
-                                        </RadioGroup>
-                                    </div>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <Button color="primary" onPress={onClose}>
-                                        Add User
-                                    </Button>
-                                    <Button color="secondary" onPress={onClose}>
-                                        Cancel
-                                    </Button>
-                                </ModalFooter>
-                            </>
-                        )}
-                    </ModalContent>
-                </Modal>
-
-
-                {/* Edit modal */}
-                <Modal
-                    isOpen={isEditOpen}
-                    onOpenChange={onEditOpenChange}
-                    backdrop="blur"
-                    classNames={{
-                        backdrop: "bg-neutral-900/50 backdrop-blur-sm",
-                    }}
-                >
-                    <ModalContent>
-                        {(onClose) => (
-                            <>
-                                <ModalHeader className="flex flex-col gap-4 items-center">
-                                    <div className="flex flex-col items-center text-center w-full">
-                                        <div className="text-lg font-semibold bg-blue-500 w-full m-5 p-1 text-white">Edit User Details</div>
-                                        <img
-                                            className="w-24 h-24 rounded-full border-4 border-white dark:border-gray-800 "
-                                            src="/images/users/male_01.jpg"
-                                            alt="User Avatar"
-                                        />
-                                    </div>
-                                </ModalHeader>
-                                <ModalBody>
-                                    <Input type="text" variant="faded" label="Username" placeholder="RaviAshen" labelPlacement="outside" color="primary" />
-                                    <Input type="email" variant="faded" label="Email" placeholder="ravindu@gmail.com" labelPlacement="outside" color="primary" />
-                                    <div className="flex gap-3">
-                                        <Input type="text" variant="faded" label="First Name" placeholder="Ravindu" labelPlacement="outside" color="primary"/>
-                                        <Input type="text" variant="faded" label="Last Name" placeholder="Ashen" labelPlacement="outside" color="primary" />
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <DatePicker
-                                            label={"Birth date"}
-                                            className="max-w-[284px]"
-                                            labelPlacement="outside"
-                                            variant="faded"
-                                            color="primary"
-                                        />
-                                        <Select
-                                            variant="faded"
-                                            label="Gender"
-                                            placeholder="Select your gender"
-                                            className=""
-                                            labelPlacement="outside"
-                                            color="primary"
-                                        >
-                                            {genderOptions.map((option) => (
-                                                <SelectItem
-                                                    key={option.key}
-                                                    value={option.key}
-                                                    color="primary"
-                                                >
-                                                    {option.label}
-                                                </SelectItem>
-                                            ))}
-                                        </Select>
-                                    </div>
-                                </ModalBody>
-                                <ModalFooter>
-                                    <Button color="primary" onPress={onClose}>
-                                        Save
-                                    </Button>
-                                    <Button color="secondary" onPress={onClose}>
-                                        Discard
-                                    </Button>
-                                </ModalFooter>
-                            </>
-                        )}
-                    </ModalContent>
-                </Modal>
-
+                
                 {/* Disable Modal */}
                 <Modal
                     isOpen={isDisableOpen}
