@@ -58,7 +58,7 @@ export default function SearchBar() {
 
   return (
     <div className="alt-container">
-      <div className="bg-gray-300 to-blue-500 relative">
+      <div className="bg-gradient-to-b  from-fuchsia-300 relative">
         <div className="m-auto relative">
           <h1 className="text-2xl font-semibold mb-4 text-center text-primaryText">
             Discover Your Next Read
@@ -69,19 +69,19 @@ export default function SearchBar() {
                 <input
                   type="text"
                   placeholder="Search"
-                  className="my-5 w-full py-2 pl-4 pr-4 text-gray-700 border border-gray-300 rounded-md shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
+                  className="my-5 w-full py-2 pl-4 pr-4 text-gray-700 border border-gray-300 rounded-lg shadow-sm outline-none bg-gray-200 focus:border-gray-50 focus:ring-2 transition duration-300 ease-in-out"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                 />
               </TERipple>
               <Button
-                className="ml-2 px-10 rounded-md bg-accentText text-whiteText"
+                className="ml-2 px-10 rounded-md bg-accentText text-whiteText bg-fuchsia-800"
                 type="submit"
               >
                 Search
               </Button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {/* <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
               <Select
                 label="Genres"
                 placeholder="Select genres"
@@ -134,7 +134,7 @@ export default function SearchBar() {
                 <SelectItem value={4}>4 Stars</SelectItem>
                 <SelectItem value={5}>5 Stars</SelectItem>
               </Select>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

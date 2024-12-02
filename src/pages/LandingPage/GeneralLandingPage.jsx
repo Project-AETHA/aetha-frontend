@@ -1,4 +1,6 @@
-import coverImg from "/images/landing_cover.jpg";
+import coverImg from "/images/openbook.jpg";
+//import coverImg from "/images/heartbook.jpg";
+
 import {Link} from 'react-router-dom'
 
 //? Importing the components
@@ -56,19 +58,19 @@ export default function GeneralLandingPage() {
                     src={coverImg}
                     radius="none"
                     className="max-h-[600px] rounded"
-                    style={{filter: "blur(8px)"}}
+                    style={{filter: "blur(2px)"}}
                 />
 
                 <div
                     className="absolute inset-0 rounded p-4 min-w-[500px] z-10 bg-trasparent flex flex-col gap-52 justify-center"
                 >
                     <div className="flex flex-col gap-2 w-full items-center">
-                        <p className="text-3xl font-bold tracking-wider" style={{fontSize: "50px"}}>Looking for a new
+                        <p className="text-3xl  font-bold tracking-wider" style={{fontSize: "50px"}}>Looking for a new
                             adventure ?</p>
                         <p className="font-bold" style={{fontSize: "35px"}}>Or a romantic journey ?</p>
                     </div>
-                    <div className="w-1/2 self-center flex flex-col items-center gap-4">
-                        <Input
+                    <div className="w-1/2 self-center flex flex-col items-center gap-2">
+                        {/* <Input
                             label="Search"
                             isClearable
                             radius="lg"
@@ -97,7 +99,7 @@ export default function GeneralLandingPage() {
                                 <SearchIcon
                                     className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0"/>
                             }
-                        />
+                        /> */}
                         <div className="flex flex-col gap-2 items-center justify-center hover:cursor-pointer" onClick={(e) => {
                             e.preventDefault();
                             document.getElementById('start_reading').scrollIntoView({ behavior: 'smooth' });
