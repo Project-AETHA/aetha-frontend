@@ -14,6 +14,7 @@ import {
   Legend,
   ArcElement,
 } from 'chart.js';
+import useGet from "@/hooks/useGet";
 
 ChartJS.register(
   ArcElement,
@@ -243,6 +244,11 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
+  const { data: statData, isLoading, isError, error } = useGet({
+    queryKey: "admin-dashboard",
+    url: "/api/stats/admin-dashboard"
+  })
+
   function BoxWrapper({ children, link }) {
     return <div className="bg-white rounded-md p-4 hover:cursor-pointer hover:scale-105 duration-300 ease-in-out flex-1 border border-gray-200 flex items-center" onClick={() => navigate(link)}>{children}</div>
   }
@@ -257,7 +263,7 @@ function Dashboard() {
           <div className="pl-4">
             <span className="text-sm text-gray-500 font-light">Total Users</span>
             <div className="flex items-center">
-              <strong className="text-xl text-gray-700 font-semibold">54232</strong>
+              <strong className="text-xl text-gray-700 font-semibold">{statData ? statData.totalUsers : 0}</strong>
             </div>
           </div>
         </BoxWrapper>
@@ -268,7 +274,7 @@ function Dashboard() {
           <div className="pl-4">
             <span className="text-sm text-gray-500 font-light">Total Complaints</span>
             <div className="flex items-center">
-              <strong className="text-xl text-gray-700 font-semibold">423</strong>
+              <strong className="text-xl text-gray-700 font-semibold">{statData ? statData.totalComplaints : 0}</strong>
             </div>
           </div>
         </BoxWrapper>
@@ -279,7 +285,7 @@ function Dashboard() {
           <div className="pl-4">
             <span className="text-sm text-gray-500 font-light">Pending Approvals</span>
             <div className="flex items-center">
-              <strong className="text-xl text-gray-700 font-semibold">13</strong>
+              <strong className="text-xl text-gray-700 font-semibold">{statData ? statData.pendingNovelApprovals : 0}</strong>
             </div>
           </div>
         </BoxWrapper>

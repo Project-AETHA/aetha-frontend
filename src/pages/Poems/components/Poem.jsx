@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Card,
     CardHeader,
     CardBody,
     CardFooter,
     Avatar,
-    Button,
     Chip,
 } from "@nextui-org/react";
 import { FaArrowAltCircleUp } from "react-icons/fa";
@@ -13,12 +12,94 @@ import { FaArrowAltCircleDown } from "react-icons/fa";
 import { FaCommentDots } from "react-icons/fa6";
 import { RiShareForwardFill } from "react-icons/ri";
 import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
+import axios from 'axios';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button } from "@nextui-org/react";
 
 
-const Poem = ({ user, duration, title, content, tags, followers }) => {
-    const [isFollowed, setIsFollowed] = React.useState(false);
 
-    console.log(user)
+
+
+const Poem = ({ user, duration, title, content, tags, followers, upVote, downVote, poemId }) => {
+    const [isFollowed, setIsFollowed] = useState(false);
+    const [upVoting, setUpVoting] = useState(false)
+    const [downVoting, setDownVoting] = useState(false)
+    const [Fav, setFav] = useState(false)
+
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const [upvoteCount, setUpvoteCount] = useState(upVote)
+    const [downvoteCount, setDownvoteCount] = useState(downVote)
+
+    async function handleUpvote() {
+        try {
+            if (!downVoting) {
+                let response;
+
+                if (!upVoting) {
+                    // Increment upvote
+                    response = await axios.put(`/api/poems/update/upvote/${poemId}?increment=true`);
+                    if (response.status === 200 && response.data.code === "00") {
+                        setUpvoteCount((prev) => prev + 1);
+                    }
+                } else {
+                    // Decrement upvote
+                    response = await axios.put(`/api/poems/update/upvote/${poemId}?increment=false`);
+                    if (response.status === 200 && response.data.code === "00") {
+                        setUpvoteCount((prev) => prev - 1);
+                    }
+                }
+
+                // Toggle the upvote state
+                setUpVoting(!upVoting);
+            }
+        } catch (error) {
+            console.error("Failed to update upvote:", error);
+        }
+    }
+
+    async function handleDownvote() {
+        try {
+            if (!upVoting) {
+                let response;
+
+                if (!downVoting) {
+                    // Increment downvote
+                    response = await axios.put(`/api/poems/update/downvote/${poemId}?increment=true`);
+                    if (response.status === 200 && response.data.code === "00") {
+                        setDownvoteCount((prev) => prev + 1);
+                    }
+                } else {
+                    // Decrement downvote
+                    response = await axios.put(`/api/poems/update/downvote/${poemId}?increment=false`);
+                    if (response.status === 200 && response.data.code === "00") {
+                        setDownvoteCount((prev) => prev - 1);
+                    }
+                }
+
+                // Toggle the downvote state
+                setDownVoting(!downVoting);
+            }
+        } catch (error) {
+            console.error("Failed to update downvote:", error);
+        }
+    }
+
+    async function handleFavourites() {
+        try {
+            let response;
+            if (!Fav) {  // Use Fav instead of fav
+                response = await axios.post(`/api/fav/poem/${poemId}?setFav=true`);
+            } else {
+                response = await axios.post(`/api/fav/poem/${poemId}?setFav=false`);
+            }
+            setFav(!Fav);  // Toggle Fav state
+    
+        } catch (error) {
+            console.error("Failed to add favourites:", error);
+        }
+    }
+    
+
 
     return (
         <>
@@ -39,23 +120,6 @@ const Poem = ({ user, duration, title, content, tags, followers }) => {
                             </div>
                         </div>
                     </div>
-
-
-                    <div className="flex gap-2 items-center">
-
-
-                        <Button
-                            className={isFollowed ? "bg-transparent text-foreground border-default-200" : ""}
-                            color="primary"
-                            radius="full"
-                            size="sm"
-                            variant={isFollowed ? "bordered" : "solid"}
-                            onPress={() => setIsFollowed(!isFollowed)}
-                        >
-                            {isFollowed ? "Unfollow" : "Follow"}
-                        </Button>
-                    </div>
-
 
 
                 </CardHeader>
@@ -82,14 +146,20 @@ const Poem = ({ user, duration, title, content, tags, followers }) => {
                     <div className='flex justify-between w-full'>
                         <div className="flex gap-6">
 
-                            <div className='flex gap-2'>
-                                <FaArrowAltCircleUp size={18} />
-                                <p className="text-default-400 text-small">18.2k</p>
-                                <FaArrowAltCircleDown size={18} />
-
+                            <div className='flex gap-2 select-none'>
+                                <FaArrowAltCircleUp className={`${upVoting ? "text-green-400" : ""} hover:cursor-pointer`} onClick={handleUpvote} size={18} />
+                                <p className="text-default-400 text-small">{upvoteCount}</p>
+                                <FaArrowAltCircleDown className={`${downVoting ? "text-red-400" : ""} hover:cursor-pointer`} onClick={handleDownvote} size={18} />
                             </div>
 
-                            <FiHeart size={18} />
+                            <div className="hover:cursor-pointer" onClick={handleFavourites}>
+                                {Fav ? (
+                                    <FaHeart className="text-pink-500" size={18} />
+                                ) : (
+                                    <FiHeart size={18} />
+                                )}
+                            </div>
+
 
                             <div className='flex gap-2'>
                                 <FaCommentDots size={18} />
@@ -97,7 +167,7 @@ const Poem = ({ user, duration, title, content, tags, followers }) => {
                             </div>
                         </div>
 
-                        <div className='flex gap-1'>
+                        <div className='flex gap-1 hover:cursor-pointer' onClick={onOpen}>
                             <RiShareForwardFill size={22} />
                             <p className="text-default-400 text-small">Share</p>
                         </div>
@@ -106,6 +176,27 @@ const Poem = ({ user, duration, title, content, tags, followers }) => {
 
                 </CardFooter>
             </Card>
+
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
+                <ModalContent>
+                    {(onClose) => (
+                        <>
+                            <ModalHeader className="flex flex-col gap-1">Share Poem</ModalHeader>
+                            <ModalBody>
+                                <p>{window.location.href}</p>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="danger" variant="light" onPress={onClose}>
+                                    Close
+                                </Button>
+                                <Button color="primary" onPress={() => navigator.clipboard.writeText(window.location.href)} >
+                                    Copylink
+                                </Button>
+                            </ModalFooter>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
         </>
     )
 }

@@ -34,6 +34,9 @@ const Poems = () => {
                 content={poemItem.content}
                 tags={poemItem.tags}
                 followers={poemItem.followers}
+                upVote={poemItem.upvotes}
+                downVote={poemItem.downvotes}
+                poemId={poemItem.id}
               />
             ))
           }
