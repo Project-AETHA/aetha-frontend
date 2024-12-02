@@ -47,9 +47,6 @@ function BuyBookPage(props) {
                                             <Button className="bg-accentText text-whiteText px-8 hover:scale-105">
                                                 Buy Now
                                             </Button>
-                                            <Button auto variant="bordered" color="secondary">
-                                                <FaHeart /> Add to Wishlist
-                                            </Button>
                                         </div>
                                     </div>
                                 </>

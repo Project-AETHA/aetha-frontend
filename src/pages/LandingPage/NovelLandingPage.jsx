@@ -6,6 +6,8 @@ import Rating from "../../components/common/Rating";
 import OverallReview from "../../components/common/OverallReview";
 import useGet from "@/hooks/useGet";
 
+import { useNavigate } from "react-router-dom";
+
 import {
     CarouselItem,
 } from "@/components/ui/carousel"
@@ -15,6 +17,8 @@ import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 
 function NovelLandingPage() {
+
+    const navigate = useNavigate();
 
     const { 
         isLoading,
@@ -60,32 +64,36 @@ function NovelLandingPage() {
   //*   Content of the carousel slides
   const slides = [
     {
-      title: "slide-01",
+      title: "The Great Gutsby",
       review_score: 4.8,
       rating: 4.5,
       description: "Something-01",
       image: "/images/books/4.png",
+      link: "/novels/6710bf1fe406d7576630d570"
     },
     {
-      title: "slide-02",
+      title: "Walk into the shadow",
       review_score: 1.2,
       rating: 2.0,
       description: "Something-02",
       image: "/images/books/2.png",
+      link: "/novels/6710bf4ae406d7576630d571"
     },
     {
-      title: "slide-03",
+      title: "Alone",
       review_score: 5.0,
       rating: 3.5,
       description: "Something-03",
       image: "/images/books/1.png",
+      link: "/novels/6710c031e406d7576630d573"
     },
     {
-      title: "slide-04",
+      title: "Brave New World",
       review_score: 3.2,
       rating: 1.5,
       description: "Something-04",
       image: "/images/books/5.png",
+      link: "/novels/6710c062e406d7576630d574"
     },
   ];
 
@@ -95,13 +103,14 @@ function NovelLandingPage() {
                 <div className="flex w-full items-center justify-center !p-0">
                     <CarouselMain>
                         {slides.map((slide, index) => (
-                            <CarouselItem className="z-1 relative !pl-0" key={index}
-                                          style={{
-                                              backgroundImage: `url('${slide.image}')`,
-                                              backgroundSize: 'cover',
-                                              backgroundPosition: 'center',
-                                              // filter: 'blur(8px)',
-                                          }}
+                            <CarouselItem className="z-1 relative !pl-0 hover:cursor-pointer" key={index}
+                                style={{
+                                    backgroundImage: `url('${slide.image}')`,
+                                    backgroundSize: 'cover',
+                                    backgroundPosition: 'center',
+                                    // filter: 'blur(8px)',
+                                }}
+                                onClick={() => navigate(slide.link)}
                             >
                                 <div className={`z-2 absolute p-2 inset-2 flex gap-2 bg-foreground-50/95 rounded items-center flex-col sm:flex-row sm:items-start justify-stretch`}>
                                     <img
@@ -120,16 +129,7 @@ function NovelLandingPage() {
                                         <OverallReview review_score={slide.review_score} font_size="text-sm"/>
                                         <p className="text-small capitalize text-foreground-900 line-clamp-4 sm:line-clamp-3 md:line-clamp-4">
                                             {slide.description}
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid at distinctio earum eum
-                                            quibusdam rem repellat tempore veniam! Aut
-                                            beatae consectetur
-                                            culpa dolore doloremque doloribus eligendi enim error esse hic inventore iste laborum libero
-                                            , maxime nam neque nobis optio
-                                            perferendis possimus quae quaerat quia q
-                                            uis ratione, sed soluta. Reiciendis, vero.
                                         </p>
-                                        <div className="bg-red-500">Buttons like add to reading list</div>
                                     </div>
                                 </div>
                             </CarouselItem>
