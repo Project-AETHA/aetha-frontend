@@ -23,7 +23,6 @@ function SingleNovel({novel}) {
                 <ImageOnline
                     path={novel.coverImage}
                     alt={novel.title}
-                    lazy={true}
                     className="max-w-[150px] h-[180px] object-cover"
                 />
             </CardBody>

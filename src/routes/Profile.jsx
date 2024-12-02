@@ -1,7 +1,7 @@
-import ProfilePage from "../pages/Profile.jsx";
-import EditProfilePage from "../pages/Editprofile.jsx";
-import ComposePage from '../pages/Compose.jsx';
-import InboxPage from '../pages/Inbox.jsx';
+import ProfilePage from "@/pages/Profile/Profile.jsx";
+import EditProfilePage from "@/pages/Editprofile.jsx";
+import ComposePage from '@/pages/Compose.jsx';
+import InboxPage from '@/pages/Inbox.jsx';
 import SentitemsPage from '../pages/Sentitems.jsx';
 import DraftsPage from '../pages/Drafts.jsx';
 import TrashcanPage from '../pages/Trashcan.jsx';
@@ -31,17 +31,15 @@ import MycommentsPage from '../pages/Mycomments.jsx';
 import MyblockedusersPage from '../pages/Myblockedusers.jsx';
 
 import Pro_fictionsPage from '../pages/Pro_fictions.jsx';
-import Pro_reviewsPage from '../pages/Pro_reviews.jsx';
-import Pro_favoritesPage from '../pages/Pro_favorites.jsx';
-import Pro_threadsPage from '../pages/Pro_threads.jsx';
-import Pro_postsPage from '../pages/Pro_posts.jsx';
-import Pro_achievementsPage from '../pages/Pro_achievements.jsx';
+import Pro_reviewsPage from '@/pages/Profile/Pro_reviews.jsx';
+import Pro_favoritesPage from '../pages/Profile/Pro_favorites.jsx';
+import Pro_achievementsPage from '../pages/Profile/Pro_achievements';
 import Pro_reputationPage from '../pages/Pro_reputation.jsx';
 import EditusernamePage from '../pages/Editusername.jsx';
 
 export default function RoutesProfile () {
     return [
-        { path: '/profile', element: <ProfilePage />, layout: "profile"},
+        { path: '/profile', element: <ProfilePage />, layout: "profile2"},
         { path: '/profile/edit', element: <EditProfilePage />, layout: "profile_dashboard"},
         { path: '/profile/edit/compose', element: <ComposePage />, layout: "profile_dashboard"},
         { path: "/profile/edit/inbox" , element: <InboxPage />, layout: "profile_dashboard"},
@@ -73,13 +71,11 @@ export default function RoutesProfile () {
         { path:  "/profile/edit/mycomments" , element: <MycommentsPage />, layout: "profile_dashboard"},
         { path:  "/profile/edit/myblockedusers" , element: <MyblockedusersPage />, layout: "profile_dashboard"},
         
-        { path:  "/author" , element: <Pro_fictionsPage />, layout: "profile"},
-        { path:  "/profile/reviews" , element: <Pro_reviewsPage />, layout: "profile"},
-        { path:  "/profile/favorites" , element: <Pro_favoritesPage />, layout: "profile"},
-        { path:  "/profile/threads" , element: <Pro_threadsPage />, layout: "profile"},
-        { path:  "/profile/posts" , element: <Pro_postsPage />, layout: "profile"},
-        { path:  "/profile/achievements" , element: <Pro_achievementsPage />, layout: "profile"},
-        { path:  "/profile/reputation" , element: <Pro_reputationPage />, layout: "profile"},
+        { path:  "/author" , element: <Pro_fictionsPage />, layout: "profile2"},
+        { path:  "/profile/reviews" , element: <Pro_reviewsPage />, layout: "profile2"},
+        { path:  "/profile/favorites" , element: <Pro_favoritesPage />, layout: "profile2"},
+        { path:  "/profile/achievements" , element: <Pro_achievementsPage />, layout: "profile2"},
+        { path:  "/profile/reputation" , element: <Pro_reputationPage />, layout: "profile2"},
         { path:  "/profile/editusername" , element: <EditusernamePage />, layout: "profile_dashboard"},
 
         
