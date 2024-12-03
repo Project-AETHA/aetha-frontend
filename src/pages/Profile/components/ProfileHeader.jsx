@@ -33,9 +33,9 @@ export default function ProfileHeader({ user, isLoading, isError }) {
             </div>
             {user && (
               <ImageOnline
-                width={120}
-                height={150}
-                className="picture"
+                width={50}
+                height={50}
+                className="picture max-w-[76px] max-h-[76px] rounded-full"
                 path={user.image}
                 alt={user.displayName}
                 loading="lazy"
