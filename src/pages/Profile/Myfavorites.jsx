@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import "../components/Profile.css";
-import Editprofilesidebar from '../components/Editprofilesidebar';
+import "../../components/Profile.css";
+import Editprofilesidebar from '../../components/Editprofilesidebar';
 import { FaEnvelope } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { MdOutlineFavorite } from 'react-icons/md';
-import novelpic from '../../public/images/novel.jpg';
-import book1 from '../../public/images/books/book1.jpg';
-import book2 from '../../public/images/books/book2.jpg';
-import book3 from '../../public/images/books/book3.jpg';
-import book4 from '../../public/images/books/book4.jpg';
+import novelpic from '../../../public/images/novel.jpg';
+import book1 from '../../../public/images/books/book1.jpg';
+import book2 from '../../../public/images/books/book2.jpg';
+import book3 from '../../../public/images/books/book3.jpg';
+import book4 from '../../../public/images/books/book4.jpg';
 import { Button } from "@nextui-org/react";
 
 function Myfavorites() {

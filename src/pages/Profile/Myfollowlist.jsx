@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../components/Profile.css";
+import "@/components/Profile.css";
 import { IoBookmark } from 'react-icons/io5';
 import { FaBookOpenReader } from 'react-icons/fa6';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
@@ -7,11 +7,11 @@ import { IoIosNotifications } from 'react-icons/io';
 import { MdNotificationsActive, MdNotificationsOff } from 'react-icons/md';
 import { BsFillEnvelopeFill, BsFillEnvelopeXFill } from 'react-icons/bs';
 import { GoCircleSlash } from 'react-icons/go';
-import novelpic from '../../public/images/novel.jpg';
-import book1 from '../../public/images/books/book1.jpg';
-import book2 from '../../public/images/books/book2.jpg';
-import book3 from '../../public/images/books/book3.jpg';
-import book4 from '../../public/images/books/book4.jpg';
+import novelpic from '../../../public/images/novel.jpg';
+import book1 from '../../../public/images/books/book1.jpg';
+import book2 from '../../../public/images/books/book2.jpg';
+import book3 from '../../../public/images/books/book3.jpg';
+import book4 from '../../../public/images/books/book4.jpg';
 
 const books = [
   { title: "Soul", author: "Olivia Wilson", image: novelpic, chapter: "Awakening", updateTime: "3 hours ago" },

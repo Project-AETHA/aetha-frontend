@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import "../components/Profile.css";
-import profilepic from '../../public/images/profilepic.jpg';
+import "@/components/Profile.css";
+import profilepic from '../../../public/images/profilepic.jpg';
 import { DatePicker } from "@nextui-org/react";
 import { FaEnvelope, FaMapMarkerAlt, FaLink, FaTwitter, FaFacebook, FaPen } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
