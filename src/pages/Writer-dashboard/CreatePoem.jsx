@@ -2,6 +2,7 @@ import { Input, Button, Checkbox, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
 import axios from 'axios'
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 // TODO - Take dynamically from the backend
 const genreOptions = [
@@ -24,6 +25,7 @@ const genreOptions = [
 
 function CreatePoem() {
 
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [genres, setGenres] = useState([]);
@@ -45,13 +47,10 @@ function CreatePoem() {
 
         if (response.status === 200) {
             toast.success("Poem created successfully")
+            navigate("/author/poems")
         } else {
             toast.error("Error", { description: response.data.message })
         }
-
-        console.log(response)
-
-        console.log({ title, content, genres })
     }
 
     return (
@@ -99,7 +98,7 @@ function CreatePoem() {
 
                 <div className="w-full min-h-[400px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
-                    <Textarea className="text-editor" theme="snow" value={content} onChange={setContent} />
+                    <Textarea className="text-editor" theme="snow" value={content} onChange={e => setContent(e.target.value)} />
                 </div>
 
                 <div className="w-full  flex justify-center gap-2">

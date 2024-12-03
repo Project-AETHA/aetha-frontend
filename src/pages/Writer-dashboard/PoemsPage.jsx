@@ -1,4 +1,3 @@
-import { Tabs, Tab } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 
 export default function PublishesPage() {
@@ -10,7 +9,8 @@ export default function PublishesPage() {
             Poems & Nisadas
           </p>
           <p className="text-small w-full flex justify-center">
-            Pen your verses and let your soul speak, for poetry is the heart's language, waiting to be heard.
+            Pen your verses and let your soul speak, for poetry is the heart's
+            language, waiting to be heard.
           </p>
         </div>
         <div className="bg-foreground-100 rounded-lg flex justify-between items-center p-2">
@@ -23,18 +23,12 @@ export default function PublishesPage() {
         </div>
 
         <div className="flex w-full flex-col h-full">
-          <Tabs aria-label="Options">
-            <Tab key="listed" title="Listed">
-              <div className="bg-foreground-50 p-2 rounded h-full flex flex-col gap-4">
-                <div className="border-2 rounded-lg flex justify-between items-center p-2">
-                  <p>All Publishes</p>
-                </div>
-              </div>
-            </Tab>
-            <Tab key="draft_poems" title="Drafts">
-              <div className="bg-blue-500 p-2 rounded h-full">Draft Poems</div>
-            </Tab>
-          </Tabs>
+          <div className="bg-foreground-50 p-2 rounded h-full flex flex-col gap-4">
+            <div className="border-2 rounded-lg flex justify-between items-center p-2">
+              <p>All Publishes</p>
+              // TODO - Print all the poems
+            </div>
+          </div>
         </div>
       </div>
     </div>

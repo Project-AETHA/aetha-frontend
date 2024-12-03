@@ -25,10 +25,6 @@ const Chapters = () => {
           </Button>
         </div>
 
-        <Card className="p-6 mb-8  shadow">
-          <LineChart/>
-        </Card>
-
         <ChapterTable novelId={novelId}/>
 
         <h2 className="text-2xl font-bold mb-4">Subscription Tiers</h2>

@@ -9,11 +9,9 @@ import axios from 'axios';
 
 function Reading({ data, setData, loading, setLoading }) {
   const navigate = useNavigate();
-
-  console.log(data)
-
   async function checkSubscription(novelId) {
     const response = await axios.get(`/api/subscription/check/${novelId}`);
+    return response.data.content ?? false;
   }
 
   let recommendations = [
@@ -32,12 +30,13 @@ function Reading({ data, setData, loading, setLoading }) {
   });
 
   async function handleNext() {
+    console.log(data)
 
-    if (chapter.isPremium) {
+    if (data.chapter.isPremium) {
       try {
         const response = await checkSubscription(novel.id);
-        if (response?.data?.hasAccess) {
-          navigate(`/novels/${id}/${chapter.chapterNumber}`);
+        if (response) {
+          navigate(`/novels/${id}/${data.chapter.chapterNumber}`);
         } else {
           toast.error("Access Denied", {
             description: "Subscribe to unlock this chapter.",
@@ -52,21 +51,20 @@ function Reading({ data, setData, loading, setLoading }) {
         });
       }
     } else {
-      navigate(`/novels/${id}/${chapter.chapterNumber}`);
-    }
-
-    if(data.chapter.totalChapterCount === data.chapter.chapterNumber) {
+      if(data.chapter.totalChapterCount === data.chapter.chapterNumber) {
         setDisabled({...disabled, next: true})
-    } else {
+      } else {
         navigate(`/novels/${data.novel.id}/${data.chapter.chapterNumber+1}`)
+      }
     }
   }
 
   function handlePrev() {
     if(data.chapter.chapterNumber === 1) {
-        setDisabled({...disabled, prev: true})
+      setDisabled({...disabled, prev: true})
     } else {
-        navigate(`/novels/${data.novel.id}/${data.chapter.chapterNumber-1}`)
+      setDisabled({next: false, prev: false})
+      navigate(`/novels/${data.novel.id}/${data.chapter.chapterNumber-1}`)
     }
   }
 
