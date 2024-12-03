@@ -59,7 +59,9 @@ const AuthorDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(JSON.parse(localStorage.getItem('user')).role !== 'WRITER') navigate('/upgrade-to-writer');
+    if(localStorage.getItem("user") !== null) {
+      if(JSON.parse(localStorage.getItem('user')).role !== 'WRITER') navigate('/upgrade-to-writer');
+    }
   }, []);
 
   return (

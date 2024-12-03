@@ -1,13 +1,28 @@
 import { Image, Button } from "@nextui-org/react";
-import { FaHeart } from "react-icons/fa";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import useFetch from "@/hooks/useFetch.jsx";
 import Rating from "@/components/common/Rating.jsx";
+import axios from 'axios';
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 function BuyBookPage(props) {
 
+    const navigate = useNavigate();
+
     // ? Used the useFetch custom hook to get the required ebook data
     const { data: ebook, loading: isLoading } = useFetch(`/api/ebooks/${props.id}`);
+
+    async function handleBuying() {
+        const response = await axios.post(`/api/ebooks/buy/${props.id}`);
+
+        if (response.status === 200 && response.data.code === "00") {
+            toast.success(response.data.message);
+            navigate("/library");
+        } else {
+            toast.error(response.data.message);
+        }
+    }
 
     return (
         <div className="alt-container">
@@ -44,7 +59,7 @@ function BuyBookPage(props) {
                                             LKR {ebook.price}.00
                                         </p>
                                         <div className="flex items-center gap-4 mt-4 md:justify-start justify-center">
-                                            <Button className="bg-accentText text-whiteText px-8 hover:scale-105">
+                                            <Button className="bg-accentText text-whiteText px-8 hover:scale-105" onClick={handleBuying}>
                                                 Buy Now
                                             </Button>
                                         </div>
