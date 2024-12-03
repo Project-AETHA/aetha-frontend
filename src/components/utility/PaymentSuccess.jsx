@@ -3,6 +3,7 @@ import { Card, CardHeader, CardBody, Button } from "@nextui-org/react";
 import { CheckCircle2 } from 'lucide-react';
 import axios from 'axios';
 import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 
 export const PaymentSuccessPage = () => {
   const [searchParams] = useSearchParams();
@@ -11,8 +12,8 @@ export const PaymentSuccessPage = () => {
   useEffect(() => {
     const handlePaymentSuccess = async () => {
       const sessionId = searchParams.get("sessionId"); // Retrieve `sessionId` from URL query parameters
-      const adId = session.metadata.adId;; // Retrieve `adId` from metadata
-      console.log(sessionId, adId);
+      const adId = searchParams.get("adId")// Retrieve `adId` from metadata
+      console.log("AD Id", adId);
 
       if (sessionId && adId) {
         try {
@@ -24,7 +25,7 @@ export const PaymentSuccessPage = () => {
             window.location.href = response.headers.location || "/dashboard";
           }
         } catch (error) {
-          console.error("Payment confirmation failed", error);
+          toast.error("Payment confirmation failed", error);
           alert("An error occurred while confirming payment.");
         }
       } else {
