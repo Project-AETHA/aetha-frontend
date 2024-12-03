@@ -35,7 +35,7 @@ import Pro_reviewsPage from '@/pages/Profile/Pro_reviews.jsx';
 import Pro_favoritesPage from '../pages/Profile/Pro_favorites.jsx';
 import Pro_achievementsPage from '../pages/Profile/Pro_achievements';
 import Pro_reputationPage from '../pages/Pro_reputation.jsx';
-import EditusernamePage from '../pages/Editusername.jsx';
+import EditusernamePage from '../pages/Profile/Editusername.jsx';
 
 
 export default function RoutesProfile () {
@@ -73,7 +73,8 @@ export default function RoutesProfile () {
         // { path:  "/profile/edit/myreviews" , element: <MyreviewsPage />, layout: "profile_dashboard"},
         // { path:  "/profile/edit/mycomments" , element: <MycommentsPage />, layout: "profile_dashboard"},
         // { path:  "/profile/edit/myblockedusers" , element: <MyblockedusersPage />, layout: "profile_dashboard"},
-    
+
+        { path:  "/profile/edit/username" , element: <EditusernamePage />, layout: "profile2"},
         { path:  "/author" , element: <Pro_fictionsPage />, layout: "profile2"},
         { path:  "/profile/reviews" , element: <Pro_reviewsPage />, layout: "profile2"},
         { path:  "/profile/favorites" , element: <MyfavoritesPage />, layout: "profile2"},

@@ -5,6 +5,7 @@ import { DatePicker } from "@nextui-org/react";
 import { FaEnvelope, FaMapMarkerAlt, FaLink, FaTwitter, FaFacebook, FaPen } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
 import { LuPaperclip } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
 
 function EditProfile() {
   const [gender, setGender] = useState('');
@@ -23,8 +24,10 @@ function EditProfile() {
     setHideGender(event.target.checked);
   };
 
+  const navigate = useNavigate();
+
   const handleEditClick = () => {
-    navigate('/profile/editusername');
+    navigate('/profile/edit/username');
   };
 
   return (
