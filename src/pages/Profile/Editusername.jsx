@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import "../components/Profile.css";
-import Editprofilesidebar from '../components/Editprofilesidebar';
+import "../../components/Profile.css";
+// import Editprofilesidebar from '../../components/Editprofilesidebar';
 import { Link } from 'react-router-dom';
 import { FaUserAltSlash } from "react-icons/fa";
+import { Button } from "@nextui-org/react";
 
 function Editusername() {
   return (
     <div>
       <div className="">
-        <div className="details bg-background text-foreground">
-          <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
+       <div className="details bg-background text-foreground">
+          <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 py-8 m-2 rounded-xl relative">
             <div className="max-w-2xl px-4 m-auto relative z-10 flex">
               <div className="h-16 w-16">
                 <FaUserAltSlash size={50} className="text-white justify-middle " />
@@ -47,6 +48,14 @@ function Editusername() {
                     placeholder='Confirm new username'
                   />
                 </div>
+                <div className='p-3 h-auto flex items-center'>
+        <div className='w-1/3'></div>
+        <div className='p-3 w-2/3 h-auto flex items-center justify-start'>
+          <Button color="primary">
+            Update Username
+          </Button>
+        </div>
+      </div>
               </div>
             </div>
           </div>

@@ -22,6 +22,7 @@ import BuyTiers from '../pages/Buytiers.jsx';
 import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
 import Buybook from '../pages/Shop/BuyBookPage.jsx';
 import UpgradeToWriter from "../pages/UpgradeToWriter.jsx";
+import Editusername from "../pages/Profile/Editusername.jsx";
 import MyLibrary from "../pages/Ebooks/MyLibrary.jsx";
 
 export default function RoutesGeneral () {
@@ -44,6 +45,7 @@ export default function RoutesGeneral () {
         { path: '/test', element: <TestComponent message="Hellow World" />, layout: "default" },
         { path: '/profile/settings', element: <SettingPage />, layout: "profile2" },
         { path: '/profile/edit', element: <EditProfilePage />, layout: "profile2" },
+        { path: '/profile/edit/username', element: <Editusername />, layout: "profile2" },
         { path: '/profile', element: <ProfilePage />, layout: "profile2" },
         { path: '/forum', element: <Forum />, layout: "default" },
         { path: '/forumselection', element: <Forumselection />, layout: "default" },
