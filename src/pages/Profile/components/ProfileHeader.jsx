@@ -1,13 +1,14 @@
 import ImageOnline from "@/components/common/ImageOnline.jsx";
 import { FaRegComments, FaUserEdit } from "react-icons/fa";
+import { TbSettingsCog } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfileHeader({ user, isLoading, isError }) {
   const navigate = useNavigate();
 
-  const handleCommentsClick = () => {
-    navigate("/profile/edit/inbox");
-  };
+  // const handleSettingsClick = () => {
+  //   navigate("/profile/settings");
+  // };
 
   const handleEditClick = () => {
     navigate("/profile/edit");
@@ -53,18 +54,18 @@ export default function ProfileHeader({ user, isLoading, isError }) {
             <h2 className="font-semibold text-black text-center ml-56 flex-grow">{`${user.firstname} ${user.lastname}`}</h2>
             <div className="flex">
               <button
-                onClick={handleCommentsClick}
+               // onClick={handleSettingssClick}
                 className="ml-2 flex items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50"
               >
-                <FaRegComments className="text-foreground-50 m-1" />
-                Messages
+                <TbSettingsCog className="text-foreground-50 m-1" />
+                Settings
               </button>
               <button
                 onClick={handleEditClick}
                 className="ml-2 flex mr-5 items-center border-2 rounded-xl border-violet-500 bg-violet-500 hover:bg-black px-2 text-foreground-50"
               >
                 <FaUserEdit className="text-foreground-50 m-1" />
-                Edit
+                Edit Profile
               </button>
             </div>
           </div>

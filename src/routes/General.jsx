@@ -13,7 +13,9 @@ import ShortStoriesReading from "../pages/ShortStoriesReading.jsx";
 import Shortstories from "../pages/Shortstories.jsx";
 import GeneralLandingPage from "../pages/LandingPage/GeneralLandingPage.jsx";
 import TestComponent from "../components/common/Temp.tsx";
-import SettingPage from '../pages/Settings.jsx';
+import SettingPage from '../pages/Profile/Settings.jsx';
+import ProfilePage from '../pages/Profile/Profile.jsx';
+import EditProfilePage from '../pages/Profile/Editprofile.jsx';
 import Forum from '../pages/Forum.jsx';
 import Forumselection from '../pages/Forumselection.jsx';
 import BuyTiers from '../pages/Buytiers.jsx';
@@ -39,7 +41,9 @@ export default function RoutesGeneral () {
         { path: '/shortstoriesreading', element: <ShortStoriesReading />, layout: "default" },
         { path: '/shortstories', element: <Shortstories />, layout: "default" },
         { path: '/test', element: <TestComponent message="Hellow World" />, layout: "default" },
-        { path: '/settings', element: <SettingPage />, layout: "profile_dashboard" },
+        { path: '/profile/settings', element: <SettingPage />, layout: "profile2" },
+        { path: '/profile/edit', element: <EditProfilePage />, layout: "profile2" },
+        { path: '/profile', element: <ProfilePage />, layout: "profile2" },
         { path: '/forum', element: <Forum />, layout: "default" },
         { path: '/forumselection', element: <Forumselection />, layout: "default" },
         { path: '/buytiers/:novelId', element: <BuyTiers />, layout: "default" },

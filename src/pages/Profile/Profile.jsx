@@ -1,7 +1,6 @@
 import { FaRegUserCircle, FaPen } from "react-icons/fa";
 import { MdOutlineHistory } from "react-icons/md";
-import "@/components/Profile.css";
-
+import "../../components/Profile.css";
 import useGet from "@/hooks/useGet.jsx";
 
 function Profile() {

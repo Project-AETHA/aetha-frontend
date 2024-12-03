@@ -1,8 +1,7 @@
 import React from 'react'
-import "../components/Profile.css";
-import Editprofilesidebar from '../components/Editprofilesidebar';
+import "@/components/Profile.css";
+import Editprofilesidebar from '../../components/Editprofilesidebar';
 import { FaBookReader, FaComments } from "react-icons/fa";
-import novelpic from '../../public/images/novel.jpg';
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 
 
