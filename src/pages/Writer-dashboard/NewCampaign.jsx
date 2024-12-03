@@ -31,21 +31,45 @@ const NewCampaign = () => {
     today.getMonth() + 1,
     today.getDate()
   );
-  
 
   const [internalTitle, setInternalTitle] = useState("");
   const [adType, setAdType] = useState("");
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [redirectLink, setRedirectLink] = useState("");
   const [startDate, setStartDate] = useState(initialCalendarDate);
-  const [selectedPlan, setSelectedPlan] = useState("");
+  const [endDate, setEndDate] = useState(initialCalendarDate);
+  const [calculatedPrice, setCalculatedPrice] = useState(0);
 
   const [titleError, setTitleError] = useState("");
   const [adTypeError, setAdTypeError] = useState("");
   const [backgroundError, setBackgroundError] = useState("");
   const [linkError, setLinkError] = useState("");
   const [dateError, setDateError] = useState("");
-  const [planError, setPlanError] = useState("");
+  const [priceError, setPriceError] = useState("");
+
+  const calculatePrice = (adType, startDate, endDate) => {
+    if (!adType || !startDate || !endDate) return 0;
+
+    const costPerDay = adType === "Leaderboard" ? 500 : 300;
+    const duration =
+      (new Date(endDate.year, endDate.month - 1, endDate.day) -
+        new Date(startDate.year, startDate.month - 1, startDate.day)) /
+      (1000 * 60 * 60 * 24);
+
+    if (duration < 1) return 0;
+
+    let price = duration * costPerDay;
+
+    // Apply discounts
+    if (duration > 7 && duration <= 14) {
+      price *= 0.9; // 10% discount
+    } else if (duration > 14) {
+      price *= 0.8; // 20% discount
+    }
+
+    // Convert to cents (long format)
+    return Math.round(price * 100);
+  };
 
   const validateForm = () => {
     let hasError = false;
@@ -75,14 +99,18 @@ const NewCampaign = () => {
       hasError = true;
     }
 
-    if (!selectedPlan) {
-      setPlanError("Please select a plan");
+    if (!endDate) {
+      setDateError("End date is required");
+      hasError = true;
+    }
+
+    if (!calculatedPrice || calculatedPrice <= 0) {
+      setPriceError("Price is required and must be valid");
       hasError = true;
     }
 
     return !hasError;
   };
-  const formattedDate = `${startDate.year}-${String(startDate.month).padStart(2, '0')}-${String(startDate.day).padStart(2, '0')}`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,13 +121,22 @@ const NewCampaign = () => {
     }
 
     try {
+      const formattedStartDate = `${startDate.year}-${String(
+        startDate.month
+      ).padStart(2, "0")}-${String(startDate.day).padStart(2, "0")}`;
+
+      const formattedEndDate = `${endDate.year}-${String(
+        endDate.month
+      ).padStart(2, "0")}-${String(endDate.day).padStart(2, "0")}`;
+
       console.log("Submitting form with values:", {
         internalTitle,
         adType,
         backgroundImage,
         redirectLink,
-        startDate,
-        selectedPlan,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+        calculatePrice: calculatedPrice,
       });
 
       const response = await axios.post("/api/ads/create", {
@@ -107,15 +144,30 @@ const NewCampaign = () => {
         adType,
         backgroundImage,
         redirectLink,
-        startDate: formattedDate,
-        selectedPlan,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+        calculatedPrice: calculatedPrice,
       });
 
       if (response.status === 200) {
         switch (response.data.code) {
           case "00":
             toast.success(response.data.message);
-            navigate("/author/advertising");
+            const adId = response.data.content.id; // Assuming the response includes the new ad's ID
+
+            // Initiate Stripe payment
+            const paymentResponse = await axios.post("/api/payment/checkout", {
+              name: internalTitle,
+              amount: calculatedPrice, // in cents
+              quantity: 1,
+              currency: "LKR",
+              adId: adId,
+            });
+
+            if (paymentResponse.status === 200) {
+              // Redirect to Stripe checkout
+              window.location.href = paymentResponse.data.sessionUrl;
+            }
             break;
           case "05":
             toast.error(response.data.message);
@@ -131,8 +183,14 @@ const NewCampaign = () => {
                 backgroundImage: setBackgroundError,
                 redirectLink: setLinkError,
                 startDate: setDateError,
-                selectedPlan: setPlanError,
+                endDate: setDateError,
+                calculatedPrice: setPriceError,
               };
+
+              // Show a more detailed toast
+              toast.error(
+                `Please correct the following errors:\n${response.data.errors}`
+              );
 
               Object.entries(response.data.errors).forEach(([key, value]) => {
                 if (errorSetters[key]) {
@@ -157,13 +215,17 @@ const NewCampaign = () => {
     navigate("/author/advertising");
   };
 
-  const handleDateChange = (date) => {
+  const handleStartDateChange = (date) => {
     setStartDate(date);
     setDateError("");
-    console.log("Date changed to:", date);
+    setCalculatedPrice(calculatePrice(adType, date, endDate));
   };
 
-  
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+    setDateError("");
+    setCalculatedPrice(calculatePrice(adType, startDate, date));
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center p-2">
@@ -248,52 +310,30 @@ const NewCampaign = () => {
             errorMessage={linkError}
           />
 
-          <div className="w-full max-w-xl flex flex-row gap-4">
+          <div className="flex gap-4">
             <DatePicker
               label="Start Date"
-              variant="bordered"
-              showMonthAndYearPickers
               value={startDate}
-              onChange={handleDateChange}
-              isInvalid={!!dateError}
-              errorMessage={dateError}
-              minDate={new Date()}
+              onChange={handleStartDateChange}
+              minDate={today}
+            />
+            <DatePicker
+              label="End Date"
+              value={endDate}
+              onChange={handleEndDateChange}
+              minDate={startDate}
             />
           </div>
-
+          {dateError && (
+            <span className="text-red-500 text-sm">{dateError}</span>
+          )}
           <div>
-            <Select
-              label="Price"
-              placeholder="Select a preferred plan"
-              className="w-full max-w-xl"
-              value={selectedPlan}
-              onChange={(e) => {
-                const value = e.target.value;
-                setSelectedPlan(value);
-                setPlanError("");
-                console.log("Selected Plan:", value);
-              }}
-              errorMessage={planError}
-            >
-              <SelectSection
-                title="Aetha Content Discount"
-                classNames={{ heading: headingClasses }}
-              >
-                <SelectItem key="1">Impressions: 280,500 Cost: $55</SelectItem>
-                <SelectItem key="2">Impressions: 527,000 Cost: $100</SelectItem>
-                <SelectItem key="3">3</SelectItem>
-                <SelectItem key="4">4</SelectItem>
-              </SelectSection>
-              <SelectSection
-                title="Other"
-                classNames={{ heading: headingClasses }}
-              >
-                <SelectItem key="5">Impressions: 140,250 Cost: $55</SelectItem>
-                <SelectItem key="6">Impressions: 263,500 Cost: $100</SelectItem>
-                <SelectItem key="7">3</SelectItem>
-                <SelectItem key="8">4</SelectItem>
-              </SelectSection>
-            </Select>
+            <span className="text-lg font-semibold">
+              Price: LKR {(calculatedPrice / 100).toFixed(2)}
+            </span>
+            {priceError && (
+              <span className="text-red-500 text-sm block">{priceError}</span>
+            )}
           </div>
 
           <div className="flex justify-between mr-8">

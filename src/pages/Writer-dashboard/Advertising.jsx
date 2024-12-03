@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Dropdown, Link, DropdownTrigger, DropdownMenu, Button, DropdownItem, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from '@nextui-org/react';
 import { CirclePlus, TrendingUp, DollarSign, Users, MousePointer, Eye } from 'lucide-react';
 import { Bar, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { useNavigate } from 'react-router-dom';
+import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import axios from 'axios';
+import { toast } from 'sonner';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
@@ -63,29 +67,35 @@ const adClicksData = {
 };
 
 const Advertising = () => {
-  const [campaigns, setCampaigns] = useState([
-    {
-      id: 1,
-      name: 'Path of a Hero',
-      status: 'Active',
-      budget: '$500',
-      startDate: '2024-06-01',
-    },
-    {
-      id: 2,
-      name: 'Solo Leveling',
-      status: 'Pending',
-      budget: '$1000',
-      startDate: '2024-07-15',
-    },
-    {
-      id: 3,
-      name: 'The Beginning After the End',
-      status: 'Draft',
-      budget: '$750',
-      startDate: '2024-11-01',
+  const navigate = useNavigate();
+  const [campaigns, setCampaigns] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Fetch ads from the backend
+  const fetchCampaigns = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get('/api/ads/my-ads');
+      if (response.status === 200 && response.data.code === '00') {
+        setCampaigns(response.data.content);
+      } else {
+        throw new Error(response.data.message || 'Failed to fetch campaigns');
+      }
+    } catch (error) {
+      toast.error('Error fetching campaigns', {
+        description: error.message,
+      });
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
+  console.log('campaigns:',campaigns);
+
+  useEffect(() => {
+    fetchCampaigns();
+  }, []);
+
   return (
     <div className="p-2 min-h-screen bg-foreground-100 text-gray-900 dark:text-gray-100">
       <Card className="mx-auto p-8 shadow-sm">
@@ -146,55 +156,30 @@ const Advertising = () => {
 
         <Card className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl">
           <h2 className="text-2xl font-semibold mb-4">Your Campaigns</h2>
-          {campaigns.length === 0 ? (
-          <div className="text-gray-600 dark:text-gray-400 mb-4">- You have no campaigns -</div>
-        ) : (
-          <Table aria-label="Campaigns table">
-            <TableHeader>
-              <TableColumn>CAMPAIGN NAME</TableColumn>
-              <TableColumn>STATUS</TableColumn>
-              <TableColumn>BUDGET</TableColumn>
-              <TableColumn>START DATE</TableColumn>
-              <TableColumn>ACTIONS</TableColumn>
-            </TableHeader>
-            <TableBody>
-              {campaigns.map((campaign) => (
-                <TableRow key={campaign.id}>
-                  <TableCell>{campaign.name}</TableCell>
-                  <TableCell>
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                      campaign.status === 'Active' ? 'bg-green-100 text-green-800' :
-                      campaign.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-gray-100 text-gray-800'
-                    }`}>
-                      {campaign.status}
-                    </span>
-                  </TableCell>
-                  <TableCell>{campaign.budget}</TableCell>
-                  <TableCell>{campaign.startDate}</TableCell>
-                  <TableCell>
-                    <Button 
-                      isIconOnly 
-                      size="sm" 
-                      variant="light" 
-                      color="primary"
-                      onClick={() => {/* Add view details logic */}}
-                    >
-                      <Eye size={16} />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
-        <div className="flex justify-end mt-4">
-          <Link href="/author/advertising/newcampaign">
-            <Button auto shadow color="primary" icon={<CirclePlus />}>
-              New Campaign
-            </Button>
-          </Link>
-        </div>
+          {loading ? (
+            <LoadingComponent />
+          ) : campaigns.length > 0 ? (
+            <Table aria-label="Campaigns table">
+              <TableHeader>
+                <TableColumn>CAMPAIGN NAME</TableColumn>
+                <TableColumn>PLAN</TableColumn>
+                <TableColumn>AD TYPE</TableColumn>
+                <TableColumn>START DATE</TableColumn>
+              </TableHeader>
+              <TableBody>
+                {campaigns.map((campaign) => (
+                  <TableRow key={campaign.id}>
+                    <TableCell>{campaign.internalTitle}</TableCell>
+                    <TableCell>{campaign.selectedPlan}</TableCell>
+                    <TableCell>{campaign.adType}</TableCell>
+                    <TableCell>{campaign.startDate}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          ) : (
+            <div className="text-gray-600 dark:text-gray-400 mb-4">- You have no campaigns -</div>
+          )}
         </Card>
       </Card>
     </div>
