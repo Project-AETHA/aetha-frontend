@@ -19,6 +19,8 @@ import Forumselection from '../pages/Forumselection.jsx';
 import Buytiers from '../pages/Buytiers.jsx';
 import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
 import Buybook from '../pages/Shop/BuyBookPage.jsx';
+import PaymentSuccessPage from "../components/utility/PaymentSuccess.jsx";
+import PaymentFailurePage from "../components/utility/PaymentFail.jsx";
 
 export default function RoutesGeneral () {
     return [
@@ -43,5 +45,7 @@ export default function RoutesGeneral () {
         { path: '/buytiers/:novelId', element: <Buytiers />, layout: "default" },
         { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
         { path: '/buybook/:bookId', element: <Buybook />, layout: "default" },
+        { path: '/success', element: <PaymentSuccessPage />, layout: "simple" },
+        { path: '/cancel', element: <PaymentFailurePage />, layout: "simple" },
     ]
 }

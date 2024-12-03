@@ -153,7 +153,21 @@ const NewCampaign = () => {
         switch (response.data.code) {
           case "00":
             toast.success(response.data.message);
-            navigate("/author/advertising");
+            const adId = response.data.content.id; // Assuming the response includes the new ad's ID
+
+            // Initiate Stripe payment
+            const paymentResponse = await axios.post("/api/payment/checkout", {
+              name: internalTitle,
+              amount: calculatedPrice, // in cents
+              quantity: 1,
+              currency: "LKR",
+              adId: adId,
+            });
+
+            if (paymentResponse.status === 200) {
+              // Redirect to Stripe checkout
+              window.location.href = paymentResponse.data.sessionUrl;
+            }
             break;
           case "05":
             toast.error(response.data.message);
@@ -173,10 +187,9 @@ const NewCampaign = () => {
                 calculatedPrice: setPriceError,
               };
 
-
               // Show a more detailed toast
               toast.error(
-                `Please correct the following errors:\n${errorMessages}`
+                `Please correct the following errors:\n${response.data.errors}`
               );
 
               Object.entries(response.data.errors).forEach(([key, value]) => {
