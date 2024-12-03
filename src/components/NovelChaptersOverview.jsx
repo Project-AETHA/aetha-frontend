@@ -18,8 +18,38 @@ function NovelChapterOverview({ id }) {
 
   const navigate = useNavigate();
 
+  const [Fav, setFav] = useState(false);
+
+  async function checkFavStatus() {
+    try {
+        const response = await axios.get(`/api/fav/novel/${id}`);
+        if (response.status === 200) {
+            if (response.data.code === ResponseCodes.SUCCESS) {
+                setFav(response.data.content);
+            } else {
+                toast.error(response.data.message, {
+                    description: response.data.content,
+                });
+            }
+        }
+    } catch (error) {
+        console.error("Failed to check fav status:", error);
+    }
+  }
+
   async function handleFav() {
-    // TODO - Handle favourite
+    try {
+        let response;
+        if (!Fav) {
+            response = await axios.post(`/api/fav/novel/${id}?setFav=true`);
+        } else {
+            response = await axios.post(`/api/fav/novel/${id}?setFav=false`);
+        }
+        setFav(!Fav);
+
+    } catch (error) {
+        console.error("Failed to add favourites:", error);
+    }
   }
 
   const {isOpen, onOpen, onClose} = useDisclosure();
@@ -54,6 +84,7 @@ function NovelChapterOverview({ id }) {
 
   useEffect(() => {
     getNovelDetails();
+    checkFavStatus();
   }, [id]);
 
   return (
@@ -118,9 +149,13 @@ function NovelChapterOverview({ id }) {
         {/* Actions */}
         <div className="bg-foreground-50 w-full md:w-3/12 rounded-md h-[300px] pl-5 flex justify-center md:pr-10 md:items-center">
           <div className="flex flex-col gap-2">
-            <Button onClick={handleFav} className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-blue-500 hover:text-foreground-50 hover:border-foreground-50">
+            <Button onClick={handleFav}
+              className={`bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center 
+                justify-start space-x-2 hover:bg-blue-500 hover:text-foreground-50 hover:border-foreground-50
+                ${Fav ? "bg-pink-500 text-foreground-50 border-foreground-50" : ""}`}
+            >
               <FaHeart />
-              <p>Favourite</p>
+              <p>{Fav ? "My Favorite" : "Favorite"}</p>
             </Button>
             <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-blue-500 hover:text-foreground-50 hover:border-foreground-50">
               <FaDonate />
