@@ -1,26 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button } from "@nextui-org/react";
+import { Button,useDisclosure } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { FcBiomass, FcGallery } from "react-icons/fc";
-import {
-  FaBook,
-  FaDonate,
-  FaHeart,
-  FaLock,
-  FaUnlock,
-  FaYoutube,
-} from "react-icons/fa";
-import {
-  MdAddAlert,
-  MdOutlineReport,
-  MdWhatsapp,
-  MdFacebook,
-} from "react-icons/md";
+import { FaBook, FaDonate, FaHeart, FaLock, FaUnlock, FaYoutube } from "react-icons/fa";
+import { MdAddAlert, MdBugReport, MdWhatsapp, MdFacebook, MdReport } from "react-icons/md";
 import axios from "axios";
 import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
-import { toast } from "sonner";
 import ImageOnline from "@/components/common/ImageOnline.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import NovelReportModal from "./Novels/NovelReportModal";
 
 function NovelChapterOverview({ id }) {
   const [novel, setNovel] = useState(null);
@@ -29,6 +17,42 @@ function NovelChapterOverview({ id }) {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const [Fav, setFav] = useState(false);
+
+  async function checkFavStatus() {
+    try {
+        const response = await axios.get(`/api/fav/novel/${id}`);
+        if (response.status === 200) {
+            if (response.data.code === ResponseCodes.SUCCESS) {
+                setFav(response.data.content);
+            } else {
+                toast.error(response.data.message, {
+                    description: response.data.content,
+                });
+            }
+        }
+    } catch (error) {
+        console.error("Failed to check fav status:", error);
+    }
+  }
+
+  async function handleFav() {
+    try {
+        let response;
+        if (!Fav) {
+            response = await axios.post(`/api/fav/novel/${id}?setFav=true`);
+        } else {
+            response = await axios.post(`/api/fav/novel/${id}?setFav=false`);
+        }
+        setFav(!Fav);
+
+    } catch (error) {
+        console.error("Failed to add favourites:", error);
+    }
+  }
+
+  const {isOpen, onOpen, onClose} = useDisclosure();
 
   async function checkSubscription(novelId) {
     const response = await axios.get(`/api/subscription/check/${novelId}`);
@@ -60,10 +84,12 @@ function NovelChapterOverview({ id }) {
 
   useEffect(() => {
     getNovelDetails();
+    checkFavStatus();
   }, [id]);
 
   return (
     <div className="alt-container">
+      <NovelReportModal isOpen={isOpen} onClose={onClose} onOpen={onOpen} novelId={novel?.id} />
       <div className="flex flex-col md:flex-row gap-4 !p-0 bg-foreground-50 shadow-2xl">
         {/* Novel Details */}
         {loading ? (
@@ -107,7 +133,7 @@ function NovelChapterOverview({ id }) {
                   </div>
                   <div className="ml-0 md:ml-10 justify-center flex">
                     <Button
-                      className="border border-accentText text-accentText rounded-xl"
+                      className="border border-accentText text-accentText rounded-xl hover:bg-blue-500 hover:text-foreground-50"
                       onClick={() => navigate("/buytiers/" + novel.id)}
                       variant="bordered"
                     >
@@ -123,20 +149,24 @@ function NovelChapterOverview({ id }) {
         {/* Actions */}
         <div className="bg-foreground-50 w-full md:w-3/12 rounded-md h-[300px] pl-5 flex justify-center md:pr-10 md:items-center">
           <div className="flex flex-col gap-2">
-            <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
+            <Button onClick={handleFav}
+              className={`bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center 
+                justify-start space-x-2 hover:bg-blue-500 hover:text-foreground-50 hover:border-foreground-50
+                ${Fav ? "bg-pink-500 text-foreground-50 border-foreground-50" : ""}`}
+            >
               <FaHeart />
-              <p>Favourite</p>
+              <p>{Fav ? "My Favorite" : "Favorite"}</p>
             </Button>
-            <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-green-400">
+            <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-blue-500 hover:text-foreground-50 hover:border-foreground-50">
               <FaDonate />
               <p>Donate</p>
             </Button>
-            <Button className="bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center justify-start space-x-2 hover:bg-red-600">
-              <MdOutlineReport />
+            <Button onClick={() => navigate("/support")} className="bg-foreground-50 text-amber-600 border border-amber-600 w-40 flex items-center justify-start space-x-2 hover:bg-amber-600 hover:border-foreground-50 hover:text-foreground-50">
+              <MdBugReport size={18} />
               <p>Complaint</p>
             </Button>
-            <Button className="bg-red-300 text-black border border-red-800 w-40 flex items-center justify-start space-x-2">
-              <MdOutlineReport />
+            <Button className="bg-foreground-50 border border-red-500 text-red-700 hover:bg-red-600 hover:border-foreground-50 hover:text-foreground-50 w-40 items-center justify-start flex space-x-2" onClick={onOpen}>
+              <MdReport size={18} />
               <p>Report</p>
             </Button>
           </div>

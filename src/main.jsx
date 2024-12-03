@@ -11,7 +11,7 @@ import '@fontsource/poppins/700.css'; // Weight 700.
 import {QueryClientProvider, QueryClient} from "@tanstack/react-query";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Preloader from "./components/common/Preloader/Preloader.jsx";
+// import Preloader from "./components/common/Preloader/Preloader.jsx";
 
 const queryClient = new QueryClient({
     defaultOptions: { queries: { retryDelay: 1000, retry: 5 }}
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <AuthContextProvider>
             <QueryClientProvider client={queryClient}>
                 <main className="text-foreground bg-background">
-                    <Preloader />
+                    {/* <Preloader /> */}
                     <App/>
                 </main>
                 <ReactQueryDevtools initialIsOpen={false} />

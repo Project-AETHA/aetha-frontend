@@ -25,7 +25,7 @@ export default function RoutesAdmin () {
         { path: '/admin/contents/novels', element: <ContentList/>, layout: "admin_dashboard" },
         { path: '/admin/complaints', element: <Complaints/>, layout:"admin_dashboard"},
         { path: '/admin/complaints/:complaintId', element: <ComplaintDetails/>, layout:"admin_dashboard"},
-        { path: '/admin/contents/approve', element: <ApproveNovel/>, layout:"admin_dashboard"},
+        { path: '/admin/contents/approve/:novelId', element: <ApproveNovel/>, layout:"admin_dashboard"},
         { path: '/admin/payments', element: <Transactions/>, layout:"admin_dashboard"},
         { path: '/admin/transactions', element: <Transactions/>, layout:"admin_dashboard"},
         { path: '/admin/reported-content', element: <ReportedContent/>, layout:"admin_dashboard"},

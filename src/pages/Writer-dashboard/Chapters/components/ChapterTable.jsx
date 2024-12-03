@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import AlertConfirmation from "../../../../components/common/alerts/AlertConfirmation";
 import LoadingComponent from "@/components/utility/LoadingComponent";
+import { useEffect } from "react";
 
 export default function ChapterTable({novelId}) {
 
-    const { data, isLoading, isError, error } = useGet({ queryKey: "chapters", url: `/api/chapters/all/author/${novelId}`, params: { novelId } });
+    const { data, isLoading, isError, error, refetch } = useGet({ queryKey: "chapters", url: `/api/chapters/all/author/${novelId}`, params: { novelId } });
 
     const navigate = useNavigate();
 
@@ -24,6 +25,10 @@ export default function ChapterTable({novelId}) {
     function handleDelete(id) {
         console.log({msg: "Delete", id: id});
     }
+
+    useEffect(() => {
+      refetch();
+    }, []);
 
   return (
     <Table
