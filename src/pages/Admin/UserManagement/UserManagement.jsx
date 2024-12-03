@@ -13,6 +13,7 @@ import AddUserModel from "./components/AddUserModel";
 import EditUserModel from "./components/EditUserModel";
 import axios from 'axios'
 
+
 const columns = [
     { name: "ID", uid: "id", sortable: false },
     { name: "EMAIL", uid: "email", sortable: true },
@@ -112,9 +113,9 @@ function UserManagement() {
 
         if (hasSearchFilter) {
             filteredUsers = filteredUsers.filter((user) =>
-                user.email.toLowerCase().includes(filterValue.toLowerCase())
-                || user.firstname.toLowerCase().includes(filterValue.toLowerCase())
+                user.firstname.toLowerCase().includes(filterValue.toLowerCase())
                 || user.lastname.toLowerCase().includes(filterValue.toLowerCase())
+                || user.email.toLowerCase().includes(filterValue.toLowerCase())
             );
         }
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {

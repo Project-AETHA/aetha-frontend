@@ -23,6 +23,7 @@ import ComplaintDetails from '../pages/Support/ComplaintDetails.jsx';
 import Buybook from '../pages/Shop/BuyBookPage.jsx';
 import UpgradeToWriter from "../pages/UpgradeToWriter.jsx";
 import Editusername from "../pages/Profile/Editusername.jsx";
+import MyLibrary from "../pages/Ebooks/MyLibrary.jsx";
 
 export default function RoutesGeneral () {
     return [
@@ -51,5 +52,6 @@ export default function RoutesGeneral () {
         { path: '/buytiers/:novelId', element: <BuyTiers />, layout: "default" },
         { path: '/support/:complaintId', element: <ComplaintDetails />, layout: "simple" },
         { path: '/buybook/:bookId', element: <Buybook />, layout: "default" },
+        { path: '/library', element: <MyLibrary />, layout: "default" },
     ]
 }
