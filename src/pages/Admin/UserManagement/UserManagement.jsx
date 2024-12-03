@@ -1,5 +1,5 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button, DropdownTrigger, Dropdown, DropdownMenu,
-    DropdownItem, Chip, User, Pagination, Tooltip, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Textarea,
+    DropdownItem, Chip, User, Pagination, Tooltip, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Textarea, Spinner
 } from "@nextui-org/react";
 import { LiaUserSlashSolid } from "react-icons/lia";
 import { PlusIcon } from "../../../components/common/icons/PlusIcon";
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import AddUserModel from "./components/AddUserModel";
 import EditUserModel from "./components/EditUserModel";
 import axios from 'axios'
+
 
 const columns = [
     { name: "ID", uid: "id", sortable: false },
@@ -112,7 +113,9 @@ function UserManagement() {
 
         if (hasSearchFilter) {
             filteredUsers = filteredUsers.filter((user) =>
-                user.name.toLowerCase().includes(filterValue.toLowerCase()),
+                user.firstname.toLowerCase().includes(filterValue.toLowerCase())
+                || user.lastname.toLowerCase().includes(filterValue.toLowerCase())
+                || user.email.toLowerCase().includes(filterValue.toLowerCase())
             );
         }
         if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
