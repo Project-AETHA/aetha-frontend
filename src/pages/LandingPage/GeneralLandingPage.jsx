@@ -33,19 +33,19 @@ export default function GeneralLandingPage() {
             id: 1,
             title: "Advertisement 1",
             content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            // image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
         {
             id: 2,
             title: "Advertisement 2",
             content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            // image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
         {
             id: 3,
             title: "Advertisement 3",
             content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            // image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
     ];
 

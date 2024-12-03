@@ -6,6 +6,7 @@ import Book2 from "/images/books/book5.png";
 import Book3 from "/images/books/book6.png";
 import Book4 from "/images/books/book4.png";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const booksData = [
   {
@@ -60,7 +61,13 @@ const AuthorDashboard = () => {
 
   useEffect(() => {
     if(localStorage.getItem("user") !== null) {
-      if(JSON.parse(localStorage.getItem('user')).role !== 'WRITER') navigate('/upgrade-to-writer');
+      if(JSON.parse(localStorage.getItem('user')).role !== 'WRITER') {
+        toast.warning("Please upgrade to continue");
+        navigate('/upgrade-to-writer');
+      }
+    } else {
+      toast.warning("Please login to continue");
+      navigate('/login');
     }
   }, []);
 

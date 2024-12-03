@@ -56,6 +56,8 @@ function NovelChapterOverview({ id }) {
 
   async function checkSubscription(novelId) {
     const response = await axios.get(`/api/subscription/check/${novelId}`);
+    
+    return response.data.content ?? false;
   }
 
   async function getNovelDetails() {
@@ -191,7 +193,7 @@ function NovelChapterOverview({ id }) {
                     if (chapter.isPremium) {
                       try {
                         const response = await checkSubscription(novel.id);
-                        if (response?.data?.hasAccess) {
+                        if (response) {
                           navigate(`/novels/${id}/${chapter.chapterNumber}`);
                         } else {
                           toast.error("Access Denied", {
