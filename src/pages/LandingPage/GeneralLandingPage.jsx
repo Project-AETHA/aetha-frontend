@@ -57,17 +57,17 @@ export default function GeneralLandingPage() {
                     alt="Cover Image"
                     src={coverImg}
                     radius="none"
-                    className="max-h-[600px] rounded"
+                    className="max-h-[600px] rounded mt-5"
                     style={{filter: "blur(2px)"}}
                 />
 
                 <div
                     className="absolute inset-0 rounded p-4 min-w-[500px] z-10 bg-trasparent flex flex-col gap-52 justify-center"
                 >
-                    <div className="flex flex-col gap-2 w-full items-center">
-                        <p className="text-3xl  font-bold tracking-wider" style={{fontSize: "50px"}}>Looking for a new
+                    <div className="flex flex-col gap-2 w-full text-foreground-50">
+                        <p className="text-3xl  font-bold tracking-wider ml-20" style={{fontSize: "50px"}}>Looking for a new
                             adventure ?</p>
-                        <p className="font-bold" style={{fontSize: "35px"}}>Or a romantic journey ?</p>
+                        <p className="font-bold text-right mr-20" style={{fontSize: "35px"}}>Or a romantic journey ?</p>
                     </div>
                     <div className="w-1/2 self-center flex flex-col items-center gap-2">
                         {/* <Input
@@ -100,7 +100,7 @@ export default function GeneralLandingPage() {
                                     className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0"/>
                             }
                         /> */}
-                        <div className="flex flex-col gap-2 items-center justify-center hover:cursor-pointer" onClick={(e) => {
+                        <div className="flex flex-col gap-2 items-center justify-center hover:cursor-pointer text-foreground-50" onClick={(e) => {
                             e.preventDefault();
                             document.getElementById('start_reading').scrollIntoView({ behavior: 'smooth' });
                         }}>
