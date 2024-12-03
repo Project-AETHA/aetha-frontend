@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import "../components/Profile.css";
+import "@/components/Profile.css";
 import { MdWatchLater } from 'react-icons/md';
-import book1 from '../../public/images/books/book1.jpg';
-import book2 from '../../public/images/books/book2.jpg';
-import book3 from '../../public/images/books/book3.jpg';
+import book1 from '../../../public/images/books/book1.jpg';
+import book2 from '../../../public/images/books/book2.jpg';
+import book3 from '../../../public/images/books/book3.jpg';
 import { Button } from "@nextui-org/react";
 
 function Myreadlater() {

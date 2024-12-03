@@ -2,6 +2,7 @@ import { Button, Checkbox, Input } from "@nextui-org/react";
 import { useState } from "react";
 import { useLogin } from "../../hooks/useLogin.jsx";
 import { GoogleLogin } from "@react-oauth/google";
+import booksmore from '../../../public/images/booksmore.jpg';
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -16,13 +17,24 @@ function LoginPage() {
 
   return (
     <>
+    {/* <div className="bg-gradient-to-b from-violet-500 to-fuchsia-500" */}
+    <div
+        style={{
+          backgroundImage: `url(${booksmore})`, // Dynamic image import
+          backgroundSize: "cover", // Ensures the image covers the entire div
+          backgroundRepeat: "no-repeat", // Prevents repeating
+          backgroundPosition: "center", // Centers the image
+          minHeight: "100vh", // Full screen height
+          display: "flex", // Flexbox for centering content
+        }}
+      >
       <form
-        className="min-h-screen flex items-center justify-center"
+        className="min-h-screen flex items-center justify-start ml-52"
         onSubmit={handleSubmit}
       >
-        <div className="bg-blue-100 dark:bg-gray-800 flex rounded-lg  max-w-3xl p-5 items-center">
+        <div className="bg-gradient-to-b from-violet-300 to-fuchsia-300 dark:bg-gray-800 flex rounded-lg  max-w-3xl p-5 items-center">
           <div className="px-8 lg:w-full">
-            <h2 className="font-bold text-3xl text-blue-500 text-center">
+            <h2 className="font-bold text-3xl text-black text-center">
               Login
             </h2>
 
@@ -37,7 +49,7 @@ function LoginPage() {
                 }}
               />
               
-              <button className="bg-blue-200 dark:bg-gray-600 border-none rounded-lg w-full dark:text-white py-2 flex justify-center ju items-center text-sm hover:scale-105 duration-300">
+              <button className="bg-violet-400 dark:bg-gray-600 border-none rounded-lg w-full dark:text-white py-2 flex justify-center ju items-center text-sm hover:scale-105 duration-300">
                 <svg
                   className="mr-2"
                   xmlns="http://www.w3.org/2000/svg"
@@ -71,10 +83,10 @@ function LoginPage() {
               </button>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
-              <hr className="border-gray-400"></hr>
+            <div className="mt-6 grid grid-cols-3 items-center text-violet-600">
+              <hr className="border-violet-600"></hr>
               <p className="text-center text-sm">OR</p>
-              <hr className="border-gray-400"></hr>
+              <hr className="border-violet-600"></hr>
             </div>
 
             <div className="flex-col mt-3">
@@ -125,12 +137,12 @@ function LoginPage() {
               Login
             </Button>
 
-            <p className="mt-5 text-sm border-b py-4 border-gray-400 text-blue-500">
+            <p className="mt-5 text-sm border-b py-4 border-fuchsia-600 text-fuchsia-800">
               Forgot your password?
             </p>
 
             <div className="mt-5 text-small flex justify-between items-center gap-3">
-              <p className="text-blue-500">Create a new account?</p>
+              <p className="text-fuchsia-800">Create a new account?</p>
               <Button color="primary" size="sm" variant="bordered">
                 Signup
               </Button>
@@ -138,6 +150,7 @@ function LoginPage() {
           </div>
         </div>
       </form>
+      </div>
     </>
   );
 }

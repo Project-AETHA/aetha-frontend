@@ -1,9 +1,9 @@
 import React from 'react'
-import Editprofilesidebar from '../components/Editprofilesidebar';
 import { Link } from 'react-router-dom';
 import { TbSettingsCog } from "react-icons/tb";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
 import {Button} from "@nextui-org/react";
+import "../../components/Profile.css";
 
 
 function Settings() {
