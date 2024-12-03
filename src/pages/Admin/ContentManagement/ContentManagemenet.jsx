@@ -1,77 +1,43 @@
-import React from 'react'
-import {
-    Card,
-    CardBody,
-    Table,
-    TableHeader,
-    TableColumn,
-    TableBody,
-    TableRow,
-    TableCell,
-    getKeyValue,
-    Chip,
-    Image,
-    Button,
-    User,
-    Link
-} from "@nextui-org/react";
+import React, { useEffect } from 'react'
+import { Table, TableHeader, TableColumn, TableBody, Tooltip, TableRow, TableCell, getKeyValue, Chip, Button, User } from "@nextui-org/react";
 import { useNavigate } from 'react-router-dom'
-import { IoPeople, IoMenu, IoLogoUsd } from 'react-icons/io5'
 import { FaBookOpen } from "react-icons/fa";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { BsMusicNoteList } from "react-icons/bs";
+import useGet from "@/hooks/useGet";
+import ImageOnline from "@/components/common/ImageOnline";
+import LoadingComponent from "@/components/utility/LoadingComponent";
+import axios from "axios";
+import { EyeIcon } from "@/components/common/icons/EyeIcon.jsx";
 
 const contentColumns = [
     { key: 'coverImage', label: 'Cover Image' },
     { key: 'title', label: 'Title' },
-    { key: 'contentType', label: 'Category' },
     { key: 'author', label: 'Author' },
     { key: 'createdDate', label: 'Date Created' },
     { key: 'status', label: 'Status' },
-    { key: 'view', label: 'Actions' }, // New column for the "View" button
+    { key: 'view', label: 'Actions' },
 ];
-
-const recentContent = [
-    {
-        key: '1',
-        coverImage: 'https://via.placeholder.com/150',
-        title: 'The Alone',
-        contentType: 'Novel',
-        author: 'Jane Doe',
-        createdDate: '2024-07-20T10:30:00Z',
-        status: 'Pending',
-    },
-    {
-        key: '2',
-        coverImage: 'https://via.placeholder.com/150',
-        title: 'Walk into the shadows',
-        contentType: 'Novel',
-        author: 'John Smith',
-        createdDate: '2024-07-21T14:45:00Z',
-        status: 'Pending',
-    },
-    {
-        key: '3',
-        coverImage: 'https://via.placeholder.com/150',
-        title: 'The Catcher in the Rye',
-        contentType: 'Novel',
-        author: 'Emily Johnson',
-        createdDate: '2024-07-22T09:15:00Z',
-        status: 'Pending',
-    },
-    {
-        key: '4',
-        coverImage: 'https://via.placeholder.com/150',
-        title: 'The Great Gatsby',
-        contentType: 'Novel',
-        author: 'Michael Brown',
-        createdDate: '2024-07-23T12:00:00Z',
-        status: 'Pending',
-    },
-];
-
 
 function ContentManagemenet() {
+
+    const { data, isLoading, isError, error, refetch } = useGet({
+        queryKey: "content-management",
+        url: "/api/novels/all/pendingapprove",
+        params: {
+            status: "pending"
+        }
+    })
+
+    const [meta, setMeta] = React.useState({});
+
+    async function getMetaData() {
+        const response = await axios.get("/api/stats/admin-contentmanagement");
+        console.log(response.data.content);
+        if(response.status === 200 && response.data.code === "00") {
+            setMeta(response.data.content);
+        }
+    }
 
     const navigate = useNavigate();
 
@@ -79,6 +45,10 @@ function ContentManagemenet() {
         return <div className="bg-white rounded-md p-4 hover:cursor-pointer hover:scale-105 duration-300 ease-in-out flex-1 border border-gray-200 flex items-center" onClick={()=>navigate(link)}>{children}</div>
     }
     
+    useEffect(() => {
+        refetch()
+        getMetaData()
+    }, [])
 
     return (
         <div className='min-h-screen flex justify-center'>
@@ -87,12 +57,11 @@ function ContentManagemenet() {
                     <BoxWrapper link="/admin/contents/novels">
                         <div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
                             <FaBookOpen className="text-2xl text-white" />
-
                         </div>
                         <div className="pl-4">
                             <span className="text-sm text-gray-500 font-light">Novels</span>
                             <div className="flex items-center">
-                                <strong className="text-xl text-gray-700 font-semibold">232</strong>
+                                <strong className="text-xl text-gray-700 font-semibold">{meta && meta.novels || 0}</strong>
                             </div>
                         </div>
                     </BoxWrapper>
@@ -103,7 +72,7 @@ function ContentManagemenet() {
                         <div className="pl-4">
                             <span className="text-sm text-gray-500 font-light">Short Stories</span>
                             <div className="flex items-center">
-                                <strong className="text-xl text-gray-700 font-semibold">423</strong>
+                                <strong className="text-xl text-gray-700 font-semibold">{meta && meta.shortstories || 0}</strong>
                             </div>
                         </div>
                     </BoxWrapper>
@@ -114,7 +83,7 @@ function ContentManagemenet() {
                         <div className="pl-4">
                             <span className="text-sm text-gray-500 font-light">Poems & Nisadas</span>
                             <div className="flex items-center">
-                                <strong className="text-xl text-gray-700 font-semibold">613</strong>
+                                <strong className="text-xl text-gray-700 font-semibold">{meta && meta.poems || 0}</strong>
                             </div>
                         </div>
                     </BoxWrapper>
@@ -128,23 +97,26 @@ function ContentManagemenet() {
                 </div>
 
                 <div className='p-4'>
-                    <Table aria-label="Recent Content Details" className='text-foreground-900' radius='md' selectionMode='single'>
+                    {isLoading && <LoadingComponent />}
+                    {!isLoading && isError && <div>{error.message}</div>}
+                    {!isLoading && !isError && (
+                        <Table aria-label="Recent Content Details" className='text-foreground-900' radius='md' selectionMode='single' color='secondary'>
                         <TableHeader columns={contentColumns} >
                             {(column) => <TableColumn key={column.key} className='  '>{column.label}</TableColumn>}
                         </TableHeader>
-                        <TableBody items={recentContent} >
+                        <TableBody items={data} >
                             {(item) => (
                                 <TableRow key={item.key} className='bg-white'>
                                     {(columnKey) => {
                                         if (columnKey === 'coverImage') {
                                             return (
                                                 <TableCell>
-                                                    <Image
+                                                    <ImageOnline
                                                         width={80}
                                                         height={80}
                                                         alt="NextUI Fruit Image with Zoom"
-                                                        src={`/images/books/${item.key}.png`}
-                                                        radius='none'
+                                                        path={item.coverImage}
+                                                        className="rounded-md"
                                                     />
                                                 </TableCell>
                                             );
@@ -158,20 +130,16 @@ function ContentManagemenet() {
                                             );
 
                                         } else if (columnKey === 'createdDate') {
-                                            return <TableCell >{new Date(item.createdDate).toLocaleDateString()}</TableCell>;
+                                            return <TableCell >{item.createdAt}</TableCell>;
                                         } else if (columnKey === "title") {
                                             return <TableCell  >{getKeyValue(item, columnKey)}</TableCell>;
                                         } else if (columnKey === 'author') {
                                             return <TableCell>
                                                 <User
-                                                    name="Junior Garcia"
-                                                    description={(
-                                                        <Link href="https://twitter.com/jrgarciadev" size="sm" isExternal>
-                                                            @jrgarciadev
-                                                        </Link>
-                                                    )}
+                                                    name={item.author.displayName}
+                                                    description={item.author.email}
                                                     avatarProps={{
-                                                        src: "https://avatars.githubusercontent.com/u/30373425?v=4"
+                                                        src: item.author.image.startsWith("/images") ? item.author.image : "https://ik.imagekit.io/aetha/" + item.author.image
                                                     }}
                                                 />
 
@@ -180,9 +148,11 @@ function ContentManagemenet() {
                                         else if (columnKey === 'view') {
                                             return (
                                                 <TableCell>
-                                                    <Button size='sm' color='primary' className="text-white " onClick={() => { navigate(`/admin/contents/approve`); }}>
-                                                        View
-                                                    </Button>
+                                                    <Tooltip key="view" color="secondary" content="view" >
+                                                        <Button isIconOnly variant="flat" color="secondary" className="capitalize" size="sm" onClick={() => { navigate(`/admin/contents/approve/${item.id}`); }}>
+                                                            <EyeIcon />
+                                                        </Button>
+                                                    </Tooltip>
                                                 </TableCell>
                                             );
                                         }
@@ -192,6 +162,7 @@ function ContentManagemenet() {
                             )}
                         </TableBody>
                     </Table>
+                    )}
                 </div>
             </div>
         </div>

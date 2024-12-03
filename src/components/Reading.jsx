@@ -5,9 +5,16 @@ import { MdOutlineSettings } from "react-icons/md";
 import ImageOnline from "@/components/common/ImageOnline.jsx";
 import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import axios from 'axios';
 
 function Reading({ data, setData, loading, setLoading }) {
   const navigate = useNavigate();
+
+  console.log(data)
+
+  async function checkSubscription(novelId) {
+    const response = await axios.get(`/api/subscription/check/${novelId}`);
+  }
 
   let recommendations = [
     {
@@ -24,7 +31,30 @@ function Reading({ data, setData, loading, setLoading }) {
     next: false
   });
 
-  function handleNext() {
+  async function handleNext() {
+
+    if (chapter.isPremium) {
+      try {
+        const response = await checkSubscription(novel.id);
+        if (response?.data?.hasAccess) {
+          navigate(`/novels/${id}/${chapter.chapterNumber}`);
+        } else {
+          toast.error("Access Denied", {
+            description: "Subscribe to unlock this chapter.",
+          });
+          navigate(`/buytiers/${id}`);
+        }
+      } catch (e) {
+        console.error(e);
+        toast.error("Error", {
+          description:
+            e.message || "An unexpected error occurred",
+        });
+      }
+    } else {
+      navigate(`/novels/${id}/${chapter.chapterNumber}`);
+    }
+
     if(data.chapter.totalChapterCount === data.chapter.chapterNumber) {
         setDisabled({...disabled, next: true})
     } else {
@@ -92,14 +122,6 @@ function Reading({ data, setData, loading, setLoading }) {
       <div className="flex flex-col md:flex-row gap-4 !p-0">
         {/* Latest Updates */}
         <div className="shadow-2xl bg-foreground-50 w-full rounded-md py-5 p-2">
-          {/* reader preference butotn on right side */}
-          <div className="flex items-right justify-end mb-5 md:mx-5">
-            <Button className="bg-red-900 text-white border shadow-md h-[25px]">
-              <MdOutlineSettings />
-              Reader Preference
-            </Button>
-          </div>
-
           {/* previous chapter button and next chapter button */}
           <div className="flex justify-between items-center md:mx-5">
             <Button 
