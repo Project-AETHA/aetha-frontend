@@ -135,6 +135,7 @@ header {
     @apply
     bg-gray-300
     flex
+    flex-wrap
     md:flex-wrap
     justify-evenly
     gap-2;

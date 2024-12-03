@@ -11,13 +11,13 @@ import {Input} from "@nextui-org/react";
 
 function Sentitems() {
   return (
-    <div>
+    
       <div className="">
        
-        <div className="details">
-          <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
-            <div className="max-w-2xl px-4 m-auto relative z-10 flex">
-              <div className="h-16 w-16">
+        <div className="details bg-background text-foreground">
+        <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 py-8 m-2 rounded-xl relative">
+          <div className="max-w-2xl px-4 m-auto relative z-10 flex">
+            <div className="h-16 w-16">
                 <FaEnvelope size={50} className="text-white justify-middle " />
               </div>
               <span>
@@ -122,7 +122,7 @@ function Sentitems() {
             </Button>
           </div>
         </div>
-      </div>
+      
       {/* <div className="footer"></div> */}
     </div>
   )

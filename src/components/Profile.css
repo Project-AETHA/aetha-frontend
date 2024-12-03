@@ -35,6 +35,10 @@
     color: black;
     /* background-color: white; */
     text-decoration:none;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    align-items: center;
     padding:3px 16px ;  
 }
 

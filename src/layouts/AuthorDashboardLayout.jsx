@@ -1,4 +1,4 @@
-import Sidebar from "../components/Sidebar/Sidebar.jsx"
+import Sidebar from "../pages/Profile/components/Sidebar/Sidebar.jsx"
 // import BreadCrumbs from "../components/common/BreadCrumb.jsx";
 
 

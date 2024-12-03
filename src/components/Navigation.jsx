@@ -202,6 +202,9 @@ export default function Navigation() {
                         <DropdownItem key="profile">
                             <Link to="/profile">Profile</Link>
                         </DropdownItem>
+                        <DropdownItem key="mylibrary">
+                            <Link to="/library">My Library</Link>
+                        </DropdownItem>
                         <DropdownItem key="settings">
                             <Link to="/settings">Settings</Link>
                         </DropdownItem>

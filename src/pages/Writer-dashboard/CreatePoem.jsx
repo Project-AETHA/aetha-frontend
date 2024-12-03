@@ -1,7 +1,5 @@
-import { Input, Button, Checkbox } from "@nextui-org/react";
+import { Input, Button, Checkbox, Textarea } from "@nextui-org/react";
 import { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
 import { toast } from "sonner";
 
@@ -101,7 +99,7 @@ function CreatePoem() {
 
                 <div className="w-full min-h-[400px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
-                    <ReactQuill className="text-editor" theme="snow" value={content} onChange={setContent} />
+                    <Textarea className="text-editor" theme="snow" value={content} onChange={setContent} />
                 </div>
 
                 <div className="w-full  flex justify-center gap-2">
