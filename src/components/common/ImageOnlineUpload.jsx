@@ -48,7 +48,7 @@ const ImageOnlineUpload = (props) => {
     };
 
     return (
-        <Card css={{ p: "$6", mw: "400px" }}>
+        <Card className='rounded-none bg-transparent'>
             <IKUpload
                 urlEndpoint={ImageKitVariables.IMAGEKIT_URL}
                 publicKey={ImageKitVariables.IMAGEKIT_PUBLIC_KEY}
@@ -59,6 +59,7 @@ const ImageOnlineUpload = (props) => {
                     setIsUploading(true);
                     onUploadProgress(event);
                 }}
+                className='border-none bg-transparent'
                 {...props}
             />
             {isUploading && (

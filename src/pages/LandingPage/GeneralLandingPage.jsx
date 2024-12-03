@@ -1,7 +1,7 @@
 import coverImg from "/images/openbook.jpg";
 //import coverImg from "/images/heartbook.jpg";
 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 //? Importing the components
 import LoadingComponent from "@/components/utility/LoadingComponent";
@@ -9,12 +9,13 @@ import NothingToDisplay from "@/components/utility/NothingToDisplay";
 import Item from "../../components/common/Item";
 
 import { Image, Input } from "@nextui-org/react";
-import {SearchIcon} from "@/components/common/icons/SearchIcon.jsx";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
 import useGet from "@/hooks/useGet";
 
 export default function GeneralLandingPage() {
+
+    const navigate = useNavigate();
 
     const { 
         isLoading,
@@ -23,11 +24,19 @@ export default function GeneralLandingPage() {
         error,
         isFetching,
         refetch
-    } = useGet({ url: "/api/novels/all", queryKey: "ebook2" });
+    } = useGet({ url: "/api/novels/all", queryKey: "ebook" });
+
+    const { data: shortstories, isLoading: loading2, isError: error2 } = useGet({
+        queryKey: "shortstories",
+        url: "/api/shortstory/all"
+    })
+
+    const { data: poems, isLoading: loading3, isError: error3 } = useGet({
+        queryKey: "poems",
+        url: "/api/poems/get-all-poems"
+    })
 
     let recommendations = data;
-    let poems = data;
-    let shortstories = data;
     let ads = [
         {
             id: 1,
@@ -70,36 +79,6 @@ export default function GeneralLandingPage() {
                         <p className="font-bold text-right mr-20" style={{fontSize: "35px"}}>Or a romantic journey ?</p>
                     </div>
                     <div className="w-1/2 self-center flex flex-col items-center gap-2">
-                        {/* <Input
-                            label="Search"
-                            isClearable
-                            radius="lg"
-                            classNames={{
-                                label: "text-black/50 dark:text-white/90",
-                                input: [
-                                    "bg-transparent",
-                                    "text-black/90 dark:text-white/90",
-                                    "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                                ],
-                                innerWrapper: "bg-transparent",
-                                inputWrapper: [
-                                    "shadow-xl",
-                                    "bg-foreground-200",
-                                    "backdrop-blur-xl",
-                                    "backdrop-saturate-200",
-                                    "hover:bg-default-200/70",
-                                    "dark:hover:bg-default/70",
-                                    "group-data-[focus=true]:bg-default-200/50",
-                                    "dark:group-data-[focus=true]:bg-default/60",
-                                    "!cursor-text",
-                                ],
-                            }}
-                            placeholder="Type to search..."
-                            startContent={
-                                <SearchIcon
-                                    className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0"/>
-                            }
-                        /> */}
                         <div className="flex flex-col gap-2 items-center justify-center hover:cursor-pointer text-foreground-50" onClick={(e) => {
                             e.preventDefault();
                             document.getElementById('start_reading').scrollIntoView({ behavior: 'smooth' });
@@ -171,7 +150,7 @@ export default function GeneralLandingPage() {
 
                     {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
 
-                    {!isLoading && !isError && shortstories && shortstories.length > 0 ? (
+                    {!loading2 && !error2 && shortstories && shortstories.length > 0 ? (
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
                         {shortstories.map((item, index) => (
                             <Item key={index} content={item} />
@@ -191,15 +170,17 @@ export default function GeneralLandingPage() {
                     </button>
                 </div>
                 <div className="flex gap-2 overflow-hidden flex-nowrap">
-                    {isLoading && <LoadingComponent />}
+                    {loading3 && <LoadingComponent />}
 
-                    {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
+                    {error3 && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
 
-                    {!isLoading && !isError && poems && poems.length > 0 ? (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
-                        {poems.map((item, index) => (
-                            <Item key={index} content={item} />
-                        ))}
+                    {!loading3 && !error3 && poems && poems.length > 0 ? (
+                    <div onClick={() => navigate("/poems-nisades")} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
+                        <ul className="grid grid-cols-2 gap-4">
+                            {poems.map((item, index) => (
+                                <li className="text-black" key={index}>🟣 {item.title}</li>
+                            ))}
+                        </ul>
                     </div>
                     ) : (
                         !isLoading && !isError && <NothingToDisplay />

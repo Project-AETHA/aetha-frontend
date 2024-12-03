@@ -1,45 +1,12 @@
 import { Book, BarChart2, Star, MessageCircleMore } from "lucide-react";
 import { Card, CardBody, CardFooter, Image, Button, Tabs, Tab, Link, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, } from "@nextui-org/react";
 import {useNavigate} from 'react-router-dom'
-import Book1 from "/images/books/book8.png";
-import Book2 from "/images/books/book5.png";
-import Book3 from "/images/books/book6.png";
-import Book4 from "/images/books/book4.png";
 import { useEffect } from "react";
 import { toast } from "sonner";
-
-const booksData = [
-  {
-    id: 1,
-    img: Book1,
-    title: "Skill Eater",
-    rating: 5.0,
-    author: "Someone",
-  },
-  {
-    id: 2,
-    img: Book2,
-    title: "Dao of Cooking",
-    rating: 4.5,
-    author: "John",
-  },
-  {
-    id: 3,
-    img: Book3,
-    title: "Worm Mage",
-    rating: 4.7,
-    author: "Lost Girl",
-  },
-
-  {
-    id: 4,
-    img: Book4,
-    title: "Gun Soul",
-    rating: 4.7,
-    author: "Lost Girl",
-  },
-  // Add more book objects as needed...
-];
+import useGet from "@/hooks/useGet.jsx";
+import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
+import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
+import SingleNovel from "@/pages/Writer-dashboard/Novels/components/SingleNovel.jsx";
 
 const StatsCard = ({ title, value, Icon }) => {
   return (
@@ -71,6 +38,11 @@ const AuthorDashboard = () => {
     }
   }, []);
 
+  const { data, isLoading, isError, error } = useGet({
+    queryKey: "my-novels",
+    url: "/api/novels/my"
+  });
+
   return (
     <div className="flex h-screen">
       <div className="flex-grow p-5 authbackground">
@@ -93,73 +65,24 @@ const AuthorDashboard = () => {
         </Card>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
-          <StatsCard title="Total Chapters" value="4" Icon={Book} />
-          <StatsCard title="Total Words" value="34896" Icon={BarChart2} />
-          <StatsCard title="Reviews Received" value="218" Icon={Star} />
+          {isLoading && <LoadingComponent />}
+          {!isLoading && !isError && (
+            <>
+              <StatsCard title="Published Novels" value={data.published.length} Icon={Book} />
+              <StatsCard title="Pendgin Novels" value={data.pending.length} Icon={BarChart2} />
+              <StatsCard title="Draft Novels" value={data.draft.length} Icon={Star} />
+            </>
+          )}
+          {!isLoading && data.published.length === 0 && <NothingToDisplay />}
         </div>
         <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
           <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
           <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-xl">
-            {booksData.map(({ id, img, title, rating }) => (
-              <Link href="/author/chapter" key={id}>
-                <Card shadow="none" isPressable>
-                  <CardBody className="p-0">
-                    <Image
-                      shadow="sm"
-                      radius="sm"
-                      width="100%"
-                      alt={title}
-                      className="w-[120px] object-cover h-[180px]"
-                      src={img}
-                      href='/author/chapter'
-                    />
-                  </CardBody>
-                  <CardFooter className="flex flex-col items-start p-1">
-                    <h3 className="text-sm font-semibold">{title}</h3>
-                    <div className="flex items-center mt-2">
-                      <Star className="w-4 h-4 text-yellow-400 mr-1" />
-                      <span className="text-xs font-medium">{rating}</span>
-                    </div>
-                  </CardFooter>
-                </Card>
-              </Link>
-            ))}
+            {isLoading && <LoadingComponent />}
+            {!isLoading && data.published.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
+            {!isLoading && data.published.length === 0 && <NothingToDisplay />}
           </div>
         </div>
-        <Tabs aria-label="Recent Activities" color="default" variant="underlined" size="lg">
-          <Tab
-            key="comments"
-            title={
-              <div className="flex items-center space-x-2">
-                <MessageCircleMore />
-                <span>Recent Comments</span>
-              </div>
-            }
-          >
-            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-sm mb-5">
-              <h2 className="text-xl font-semibold mb-3 dark:text-white">Recent Comments</h2>
-              <p className="text-gray-500 dark:text-gray-400 mb-1">Commenter's Name</p>
-              <p className="text-gray-500 dark:text-gray-400 mb-1">Comment Content</p>
-              <Button color="primary" auto size="sm">
-                Go to Comment
-              </Button>
-            </div>
-          </Tab>
-          <Tab
-            key="reviews"
-            title={
-              <div className="flex items-center space-x-2">
-                <Star />
-                <span>Recent Reviews</span>
-              </div>
-            }
-          >
-            <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-sm mb-5">
-              <h2 className="text-xl font-semibold mb-3 dark:text-white">Recent Reviews</h2>
-              <p className="text-gray-500 dark:text-gray-400">No Reviews Yet</p>
-            </div>
-          </Tab>
-        </Tabs>
       </div>
     </div>
   );

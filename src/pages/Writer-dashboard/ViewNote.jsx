@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Input, Textarea } from "@nextui-org/react";
+import { toast } from 'sonner';
 
 export default function ViewNote() {
     const { noteId } = useParams()
@@ -23,17 +24,17 @@ export default function ViewNote() {
 
             if (response.status === 200) {
                 if (response.data.code === "00") {
-                    console.log("Note created successfully");
-                    alert("Note Updated Successfully");
+                    toast.success("Note updated successfully")
                 } else {
-                    console.log("Error updating note");
-                    console.log(response)
+                    toast.error("Error updating note")
                 }
             } else {
-                console.log("Error : Server Error");
+                toast.error("Error updating note")
             }
         } catch (error) {
-            console.log("Error:", error.message);
+            toast.error("Error updating note", {
+                description: error.message
+            })
         }
     }
 
@@ -73,7 +74,7 @@ export default function ViewNote() {
 
                 <div className="w-full min-h-[300px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
-                    <Textarea className="text-editor" theme="snow" value={content} onChange={setContent} />
+                    <Textarea className="text-editor" theme="snow" value={content} onChange={e => setContent(e.target.value)} />
                 </div>
 
                 <div className="w-full flex justify-center gap-2">
