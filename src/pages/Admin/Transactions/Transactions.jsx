@@ -1,8 +1,4 @@
 import React from 'react';
-
-import { GrTransaction } from 'react-icons/gr';
-import { TiTickOutline } from 'react-icons/ti';
-import { ImCross } from 'react-icons/im';
 import TransactionTable from './Transactiontable';
 
 
