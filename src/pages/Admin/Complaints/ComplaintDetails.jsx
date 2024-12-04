@@ -7,26 +7,11 @@ import {
     Chip,
     Image,
     Button,
-    Select,
-    SelectItem,
     Textarea
 } from "@nextui-org/react";
 import { ImEnlarge2 } from "react-icons/im";
-import { RiEditFill } from "react-icons/ri";
-import { IoIosSave } from "react-icons/io";
-import { MdDeleteForever, MdError } from "react-icons/md";
+import { MdError } from "react-icons/md";
 import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import {
     FaTimesCircle,
     FaCheckCircle,
@@ -34,7 +19,7 @@ import {
     FaInfoCircle,
 } from "react-icons/fa";
 import Popup from "@/components/common/Popup";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 export default function ComplaintDetails() {
     const [loading, setLoading] = useState(false);
@@ -50,8 +35,8 @@ export default function ComplaintDetails() {
     const [errorCategory, setErrorCategory] = useState(false);
     const [errorDescription, setErrorDescription] = useState(false);
     const [createdAt, setCreatedAt] = useState(null);
+    const [comment, setComment] = useState("");
 
-    const { toast } = useToast();
     const navigate = useNavigate()
 
     function createAlert(title, description) {
@@ -154,8 +139,7 @@ export default function ComplaintDetails() {
         );
 
         if (response.status === 200) {
-            const { id, title, category, description, attachments, status } =
-                response.data.content;
+            const { id, title, category, description, attachments, status, adminResponse } = response.data.content;
             setId(id);
             setTitle(title);
             setCategory(category);
@@ -163,6 +147,8 @@ export default function ComplaintDetails() {
             setImages(attachments);
             setStatus(status);
             setCreatedAt(createdAt);
+            setComment(adminResponse);
+            console.log(response.data.content)
         }
 
         setLoading(false);
@@ -175,6 +161,29 @@ export default function ComplaintDetails() {
     const handleClosePopup = () => {
         setOpenImageIndex(null);
     };
+
+    const handleSolved = async () => {
+        console.log(`/api/support/update-solved/${complaintId}`)
+        const response = await axios.put(`/api/support/update-solved/${complaintId}`, { comment });
+
+        if(response.status === 200 && response.data.code === "00") {
+            toast.success("Ticket marked as solved");
+            navigate("/admin/complaints");
+        } else {
+            toast.error("Failed to mark ticket as solved");
+        }
+    }
+
+    const handleDeclined = async () => {
+        const response = await axios.put(`/api/support/update-unsolved/${complaintId}`, { comment });
+
+        if(response.status === 200 && response.data.code === "00") {
+            toast.success("Ticket marked as solved");
+            navigate("/admin/complaints");
+        } else {
+            toast.error("Failed to mark ticket as solved");
+        }
+    }
 
     return (
         <form
@@ -281,6 +290,8 @@ export default function ComplaintDetails() {
                                 labelPlacement="outside"
                                 placeholder="Enter a comment"
                                 className="min-w-[290px] w-full rounded-xl p-2"
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
                             />
                         </div>
 
@@ -289,13 +300,14 @@ export default function ComplaintDetails() {
                                 <Button
                                     color="success"
                                     variant="flat"
-                                    onClick={() => navigate("/admin/complaints")}
+                                    onClick={handleSolved}
                                 >
                                     Solved
                                 </Button>
                                 <Button
                                     color="danger"
                                     variant="flat"
+                                    onClick={handleDeclined}
                                 >
                                     Declined
                                 </Button>

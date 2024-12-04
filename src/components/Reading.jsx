@@ -6,12 +6,28 @@ import ImageOnline from "@/components/common/ImageOnline.jsx";
 import NothingToDisplay from "@/components/utility/NothingToDisplay.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import axios from 'axios';
+import { useAuthContext } from "../hooks/useAuthContext";
+import { toast } from "sonner";
 
 function Reading({ data, setData, loading, setLoading }) {
+
+  const { user } = useAuthContext();
+
   const navigate = useNavigate();
   async function checkSubscription(novelId) {
-    const response = await axios.get(`/api/subscription/check/${novelId}`);
-    return response.data.content ?? false;
+    console.log(user)
+    if(user) {
+      const response = await axios.get(`/api/subscription/check/${novelId}`);
+      
+      if(response.data.code === "00") {
+        return response.data.content ?? false;
+      } else {
+        return false;
+      }
+
+    } else {
+      return false;
+    }
   }
 
   let recommendations = [

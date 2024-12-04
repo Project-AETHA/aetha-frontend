@@ -199,6 +199,13 @@ export default function Navigation() {
                         disableAnimation={true}
                         className="navbar_dropdown"
                     >
+                        {user.role === "ADMIN" && (
+                            <DropdownItem key="admin">
+                                <Link to="/admin">Admin Dashboard</Link>
+                            </DropdownItem>
+                        )
+
+                        }
                         <DropdownItem key="profile">
                             <Link to="/profile">Profile</Link>
                         </DropdownItem>

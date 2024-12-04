@@ -7,7 +7,7 @@ import { ImProfile } from 'react-icons/im';
 import { TbSettingsCog } from 'react-icons/tb';
 import { MdDrafts, MdNotificationImportant, MdOutlineFavorite, MdWatchLater } from 'react-icons/md';
 import { BsStarHalf } from 'react-icons/bs';
-import { LuClipboardSignature } from 'react-icons/lu';
+import { LuClipboardPenLine  } from 'react-icons/lu';
 import { RiFolderReceivedFill, RiFolderSharedFill } from 'react-icons/ri';
 import { PiUserSquareFill } from 'react-icons/pi';
 import { GoStar } from 'react-icons/go';
@@ -52,7 +52,7 @@ function Editprofilesidebar() {
       <div className="mb-4">
         <div className="bg-sky-600 p-2">Forum</div>
         <div className="w-[300px] h-[20px] border-[25px] border-white text-black flex items-center transition-all duration-300 ease-in-out"><Link to="/profile/edit/usercp" className="flex items-start py-2 px-4 "><FaHome className="mr-2" /> UserCP</Link></div>
-        <div className="w-[300px] h-[20px] border-[25px] border-white text-black flex items-center transition-all duration-300 ease-in-out"><Link to="/profile/edit/editsign" className="flex items-start py-2 px-4 "><LuClipboardSignature className="mr-2" /> Edit Signature</Link></div>
+        <div className="w-[300px] h-[20px] border-[25px] border-white text-black flex items-center transition-all duration-300 ease-in-out"><Link to="/profile/edit/editsign" className="flex items-start py-2 px-4 "><LuClipboardPenLine className="mr-2" /> Edit Signature</Link></div>
       </div>
       <div className="mb-4">
         <div className="bg-sky-600 p-2">My</div>
