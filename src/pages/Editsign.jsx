@@ -1,7 +1,7 @@
 import React from 'react'
 import "../components/Profile.css";
 import Editprofilesidebar from '../components/Editprofilesidebar';
-import { LuClipboardSignature } from 'react-icons/lu';
+import { LuClipboardPenLine } from 'react-icons/lu';
 
 function Editsign() {
   return (
@@ -11,7 +11,7 @@ function Editsign() {
           <div className="bg-gradient-to-r from-purple-400 to-blue-500 py-8 relative">
           <div className="max-w-2xl px-4 m-auto relative z-10 flex">
             <div className="h-16 w-16">
-              <LuClipboardSignature size={50} className="text-white justify-middle " />
+              <LuClipboardPenLine size={50} className="text-white justify-middle " />
             </div>
             <span>
               <h1 className="text-3xl font-semibold text-left bg-clip-text text-transparent bg-gradient-to-r from-slate-100 via-purple- to-blue-100">

@@ -9,8 +9,13 @@ import ResponseCodes from "@/components/predefined/ResponseCodes.jsx";
 import ImageOnline from "@/components/common/ImageOnline.jsx";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
 import NovelReportModal from "./Novels/NovelReportModal";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import { toast } from "sonner";
 
 function NovelChapterOverview({ id }) {
+
+  const { user } = useAuthContext();
+
   const [novel, setNovel] = useState(null);
   const [chapters, setChapters] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -55,9 +60,19 @@ function NovelChapterOverview({ id }) {
   const {isOpen, onOpen, onClose} = useDisclosure();
 
   async function checkSubscription(novelId) {
-    const response = await axios.get(`/api/subscription/check/${novelId}`);
-    
-    return response.data.content ?? false;
+    console.log(user)
+    if(user) {
+      const response = await axios.get(`/api/subscription/check/${novelId}`);
+      
+      if(response.data.code === "00") {
+        return response.data.content ?? false;
+      } else {
+        return false;
+      }
+
+    } else {
+      return false;
+    }
   }
 
   async function getNovelDetails() {
@@ -133,15 +148,17 @@ function NovelChapterOverview({ id }) {
                       <FaBook /> Start Reading
                     </Button>
                   </div>
-                  <div className="ml-0 md:ml-10 justify-center flex">
-                    <Button
-                      className="border border-accentText text-accentText rounded-xl hover:bg-blue-500 hover:text-foreground-50"
-                      onClick={() => navigate("/buytiers/" + novel.id)}
-                      variant="bordered"
-                    >
-                      <MdAddAlert /> Subscribe
-                    </Button>
+                  {user && (
+                    <div className="ml-0 md:ml-10 justify-center flex">
+                      <Button
+                        className="border border-accentText text-accentText rounded-xl hover:bg-blue-500 hover:text-foreground-50"
+                        onClick={() => navigate("/buytiers/" + novel.id)}
+                        variant="bordered"
+                      >
+                        <MdAddAlert /> Subscribe
+                      </Button>
                   </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -149,7 +166,8 @@ function NovelChapterOverview({ id }) {
         )}
 
         {/* Actions */}
-        <div className="bg-foreground-50 w-full md:w-3/12 rounded-md h-[300px] pl-5 flex justify-center md:pr-10 md:items-center">
+        {user && (
+          <div className="bg-foreground-50 w-full md:w-3/12 rounded-md h-[300px] pl-5 flex justify-center md:pr-10 md:items-center">
           <div className="flex flex-col gap-2">
             <Button onClick={handleFav}
               className={`bg-foreground-50 text-primaryText border border-primaryText w-40 flex items-center 
@@ -173,6 +191,7 @@ function NovelChapterOverview({ id }) {
             </Button>
           </div>
         </div>
+        )}
       </div>
 
       {/* Chapters */}
@@ -196,10 +215,14 @@ function NovelChapterOverview({ id }) {
                         if (response) {
                           navigate(`/novels/${id}/${chapter.chapterNumber}`);
                         } else {
-                          toast.error("Access Denied", {
-                            description: "Subscribe to unlock this chapter.",
-                          });
-                          navigate(`/buytiers/${id}`);
+                          if(user) {
+                            toast.info("Access Denied", {
+                              description: "Subscribe to unlock this chapter.",
+                            });
+                            navigate(`/buytiers/${id}`);
+                          } else {
+                            toast.info("Login and subscribe to unlock this chapter");
+                          }
                         }
                       } catch (e) {
                         console.error(e);
