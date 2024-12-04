@@ -38,13 +38,13 @@ function Mycomments() {
             </TableHeader>
             <TableBody>
               <TableRow key="1">
-                <TableCell className='text-primary-400'>Chasing Sunlight</TableCell>
-                <TableCell className='text-primary-400'>Not a Chapter - New Story Announcement!</TableCell>
+                <TableCell className='text-primary-400'>Good Book that i had ever read</TableCell>
+                <TableCell className='text-primary-400'>The Great Gatsby</TableCell>
                 <TableCell>1 month ago</TableCell>
               </TableRow>
               <TableRow key="2">
-                <TableCell className='text-primary-400'>Riftwalker</TableCell>
-                <TableCell className='text-primary-400'>R: Chapter 1: Kei Nakamura</TableCell>
+                <TableCell className='text-primary-400'>this is good book</TableCell>
+                <TableCell className='text-primary-400'>Chapter 2 - The Great Gatsby</TableCell>
                 <TableCell>1 month ago</TableCell>
               </TableRow>
               <TableRow key="3">

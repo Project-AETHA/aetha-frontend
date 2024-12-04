@@ -69,7 +69,7 @@ const AuthorDashboard = () => {
           {!isLoading && !isError && (
             <>
               <StatsCard title="Published Novels" value={data.published.length} Icon={Book} />
-              <StatsCard title="Pendgin Novels" value={data.pending.length} Icon={BarChart2} />
+              <StatsCard title="Pending Novels" value={data.pending.length} Icon={BarChart2} />
               <StatsCard title="Draft Novels" value={data.draft.length} Icon={Star} />
             </>
           )}
