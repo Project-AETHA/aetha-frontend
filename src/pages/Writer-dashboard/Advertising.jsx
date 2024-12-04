@@ -1,32 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Dropdown, Link, DropdownTrigger, DropdownMenu, Button, DropdownItem, Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from '@nextui-org/react';
-import { CirclePlus, TrendingUp, DollarSign, Users, MousePointer, Eye } from 'lucide-react';
-import { Bar, Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  Dropdown,
+  Link,
+  DropdownTrigger,
+  DropdownMenu,
+  Button,
+  DropdownItem,
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@nextui-org/react";
+import {
+  CirclePlus,
+  TrendingUp,
+  DollarSign,
+  Users,
+  MousePointer,
+  Eye,
+} from "lucide-react";
+import { Bar, Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { useNavigate } from "react-router-dom";
 import LoadingComponent from "@/components/utility/LoadingComponent.jsx";
-import axios from 'axios';
-import { toast } from 'sonner';
+import axios from "axios";
+import { toast } from "sonner";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const data = [
-  { month: 'Jan', reach: 400, clicks: 50 },
-  { month: 'Feb', reach: 800, clicks: 100 },
-  { month: 'Mar', reach: 1200, clicks: 150 },
-  { month: 'Apr', reach: 1500, clicks: 180 },
-  { month: 'May', reach: 1700, clicks: 200 },
-  { month: 'Jun', reach: 2000, clicks: 180 },
-  { month: 'Jul', reach: 1500, clicks: 150 },
-  { month: 'Aug', reach: 1300, clicks: 130 },
-  { month: 'Sep', reach: 900, clicks: 110 },
+  { month: "Jan", reach: 400, clicks: 50 },
+  { month: "Feb", reach: 800, clicks: 100 },
+  { month: "Mar", reach: 1200, clicks: 150 },
+  { month: "Apr", reach: 1500, clicks: 180 },
+  { month: "May", reach: 1700, clicks: 200 },
+  { month: "Jun", reach: 2000, clicks: 180 },
+  { month: "Jul", reach: 1500, clicks: 150 },
+  { month: "Aug", reach: 1300, clicks: 130 },
+  { month: "Sep", reach: 900, clicks: 110 },
 ];
 
 const chartOptions = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      position: "top",
     },
     title: {
       display: true,
@@ -43,24 +88,24 @@ const chartOptions = {
 };
 
 const adReachData = {
-  labels: data.map(item => item.month),
+  labels: data.map((item) => item.month),
   datasets: [
     {
-      label: 'Ad Reach',
-      data: data.map(item => item.reach),
-      backgroundColor: 'rgba(75, 192, 192, 0.6)',
+      label: "Ad Reach",
+      data: data.map((item) => item.reach),
+      backgroundColor: "rgba(75, 192, 192, 0.6)",
     },
   ],
 };
 
 const adClicksData = {
-  labels: data.map(item => item.month),
+  labels: data.map((item) => item.month),
   datasets: [
     {
-      label: 'Ad Clicks',
-      data: data.map(item => item.clicks),
-      borderColor: 'rgba(255, 99, 132, 1)',
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      label: "Ad Clicks",
+      data: data.map((item) => item.clicks),
+      borderColor: "rgba(255, 99, 132, 1)",
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
       tension: 0.1,
     },
   ],
@@ -70,19 +115,22 @@ const Advertising = () => {
   const navigate = useNavigate();
   const [campaigns, setCampaigns] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  
 
   // Fetch ads from the backend
   const fetchCampaigns = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('/api/ads/my-ads');
-      if (response.status === 200 && response.data.code === '00') {
+      const response = await axios.get("/api/ads/my-ads");
+      if (response.status === 200 && response.data.code === "00") {
         setCampaigns(response.data.content);
       } else {
-        throw new Error(response.data.message || 'Failed to fetch campaigns');
+        throw new Error(response.data.message || "Failed to fetch campaigns");
       }
     } catch (error) {
-      toast.error('Error fetching campaigns', {
+      toast.error("Error fetching campaigns", {
         description: error.message,
       });
       console.error(error);
@@ -90,11 +138,20 @@ const Advertising = () => {
       setLoading(false);
     }
   };
-  console.log('campaigns:',campaigns);
+  console.log("campaigns:", campaigns);
 
   useEffect(() => {
     fetchCampaigns();
   }, []);
+
+  const handleViewDetails = (campaign) => {
+    setSelectedCampaign(campaign);
+    setIsDetailsModalOpen(true);
+  };
+
+  const formatDate = (date) => {
+    return date ? new Date(date).toLocaleDateString() : 'N/A';
+  };
 
   return (
     <div className="p-2 min-h-screen bg-foreground-100 text-gray-900 dark:text-gray-100">
@@ -111,7 +168,9 @@ const Advertising = () => {
         <div className="flex flex-wrap gap-4 mb-8">
           <Dropdown>
             <DropdownTrigger>
-              <Button flat color="secondary">Auto date range</Button>
+              <Button flat color="secondary">
+                Auto date range
+              </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Date Range">
               <DropdownItem key="this-month">This Month</DropdownItem>
@@ -120,7 +179,9 @@ const Advertising = () => {
           </Dropdown>
           <Dropdown>
             <DropdownTrigger>
-              <Button flat color="secondary">Services</Button>
+              <Button flat color="secondary">
+                Services
+              </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Services">
               <DropdownItem key="all">All</DropdownItem>
@@ -129,7 +190,9 @@ const Advertising = () => {
           </Dropdown>
           <Dropdown>
             <DropdownTrigger>
-              <Button flat color="secondary">Posts</Button>
+              <Button flat color="secondary">
+                Posts
+              </Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Posts">
               <DropdownItem key="all">All</DropdownItem>
@@ -139,10 +202,30 @@ const Advertising = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatCard title="Ad Spend" value="$65.37" change="170%" icon={<DollarSign />} />
-          <StatCard title="Cost per Thousand (CPM)" value="$3.94" change="0.45" icon={<Users />} />
-          <StatCard title="Cost per Click (CPC)" value="$0.15" change="$0.02" icon={<MousePointer />} />
-          <StatCard title="Click-Through Rate (CTR)" value="2.89%" change="7%" icon={<TrendingUp />} />
+          <StatCard
+            title="Ad Spend"
+            value="$65.37"
+            change="170%"
+            icon={<DollarSign />}
+          />
+          <StatCard
+            title="Cost per Thousand (CPM)"
+            value="$3.94"
+            change="0.45"
+            icon={<Users />}
+          />
+          <StatCard
+            title="Cost per Click (CPC)"
+            value="$0.15"
+            change="$0.02"
+            icon={<MousePointer />}
+          />
+          <StatCard
+            title="Click-Through Rate (CTR)"
+            value="2.89%"
+            change="7%"
+            icon={<TrendingUp />}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -162,26 +245,92 @@ const Advertising = () => {
             <Table aria-label="Campaigns table">
               <TableHeader>
                 <TableColumn>CAMPAIGN NAME</TableColumn>
-                <TableColumn>PLAN</TableColumn>
+                <TableColumn>PRICE</TableColumn>
                 <TableColumn>AD TYPE</TableColumn>
                 <TableColumn>START DATE</TableColumn>
+                <TableColumn>ACTIONS</TableColumn>
               </TableHeader>
               <TableBody>
                 {campaigns.map((campaign) => (
                   <TableRow key={campaign.id}>
                     <TableCell>{campaign.internalTitle}</TableCell>
-                    <TableCell>{campaign.selectedPlan}</TableCell>
+                    <TableCell>{campaign.calculatedPrice}</TableCell>
                     <TableCell>{campaign.adType}</TableCell>
-                    <TableCell>{campaign.startDate}</TableCell>
+                    <TableCell>{formatDate(campaign.startDate)}</TableCell>
+                    <TableCell>
+                      <Button
+                        isIconOnly
+                        variant="light"
+                        color="primary"
+                        onClick={() => handleViewDetails(campaign)}
+                      >
+                        <Eye />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           ) : (
-            <div className="text-gray-600 dark:text-gray-400 mb-4">- You have no campaigns -</div>
+            <div className="text-gray-600 dark:text-gray-400 mb-4">
+              - You have no campaigns -
+            </div>
           )}
         </Card>
       </Card>
+      {/* Campaign Details Modal */}
+      <Modal
+        isOpen={isDetailsModalOpen}
+        onOpenChange={setIsDetailsModalOpen}
+        size="md"
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Campaign Details
+              </ModalHeader>
+              <ModalBody>
+                {selectedCampaign && (
+                  <div className="space-y-4">
+                    <div>
+                      <p className="font-semibold">Internal Title:</p>
+                      <p>{selectedCampaign.internalTitle}</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Ad Type:</p>
+                      <p>{selectedCampaign.adType}</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Redirect Link:</p>
+                      <p>{selectedCampaign.redirectLink || "N/A"}</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Start Date:</p>
+                      <p>{formatDate(selectedCampaign.startDate)}</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">End Date:</p>
+                      <p>{formatDate(selectedCampaign.endDate)}</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Calculated Price:</p>
+                      <p>
+                        ${selectedCampaign.calculatedPrice?.toFixed(2) || "N/A"}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 };
@@ -189,8 +338,12 @@ const Advertising = () => {
 const StatCard = ({ title, value, change, icon }) => (
   <Card className="p-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl">
     <div className="flex items-center justify-between mb-4">
-      <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full text-blue-600 dark:text-blue-300">{icon}</div>
-      <span className="text-green-600 dark:text-green-400 text-sm font-semibold">{change}</span>
+      <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full text-blue-600 dark:text-blue-300">
+        {icon}
+      </div>
+      <span className="text-green-600 dark:text-green-400 text-sm font-semibold">
+        {change}
+      </span>
     </div>
     <h3 className="text-xl font-bold mb-1">{value}</h3>
     <p className="text-sm text-gray-600 dark:text-gray-400">{title}</p>
