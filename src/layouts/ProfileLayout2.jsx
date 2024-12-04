@@ -11,11 +11,11 @@ import { IoBookmark } from "react-icons/io5";
 export default function ProfileLayout2(props) {
   const menus = [
     { name: "Overview", link: "/profile", icon: FaRegUserCircle },
-    { name: "Reviews", link: "/profile/reviews", icon: FaEye },
-    { name: "Follows", link: "/profile/follows", icon: IoBookmark },
+    // { name: "Reviews", link: "/profile/reviews", icon: FaEye },
+    // { name: "Follows", link: "/profile/follows", icon: IoBookmark },
     { name: "Favorites", link: "/profile/favorites", icon: MdOutlineFavorite },
     { name: "Comments", link: "/profile/comments", icon: FaComments },
-    { name: "Read Later", link: "/profile/readlater", icon: MdWatchLater },
+    // { name: "Read Later", link: "/profile/readlater", icon: MdWatchLater },
     { name: "Reading History", link: "/profile/readinghistory", icon: FaHistory },
     { name: "Publishes", link: "/author", icon: FaBook },
   ];

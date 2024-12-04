@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "@/components/Profile.css";
-import profilepic from '../../../public/images/profilepic.jpg';
+import profilepic from '../../../public/images/users/male_01.jpg';
 import { DatePicker } from "@nextui-org/react";
 import { FaEnvelope, FaMapMarkerAlt, FaLink, FaTwitter, FaFacebook, FaPen } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
@@ -62,7 +62,7 @@ function EditProfile() {
           <div className='w-2/3'>
             <label className='ml-2 flex items-center'>
               <div className='w-full align-middle p-2 bg-input border-2 rounded-l-xl'>
-                Hansini Bhagya
+                Ravindu Ashen
               </div>
               {/* <button className='bg-primary h-10 py-3 rounded-r-xl'>
       <Link to="./Editusername" className="flex items-center">
