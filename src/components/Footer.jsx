@@ -9,20 +9,27 @@ import {
 
 const sections = [
   {
-    title: "Solutions",
-    items: ["Marketing", "Analytics", "Commerce", "Data", "Cloud"],
+    title: "Supported Links",
+    items: [
+      { name: "Novels", link: "/novels" },
+      { name: "Shorts", link: "/shortstories" },
+      { name: "Poems", link: "/poems-nisadas" },
+    ],
   },
   {
-    title: "Support",
-    items: ["Pricing", "Documentation", "Guides", "API Status"],
-  },
-  {
-    title: "Company",
-    items: ["About", "Blog", "Jobs", "Press", "Partners"],
+    title: "Other Links",
+    items: [
+      { name: "Community", link: "/forumselection" },
+      { name: "Shop", link: "/shop" },
+    ],
   },
   {
     title: "Legal",
-    items: ["Claims", "Privacy", "Terms", "Policies", "Conditions"],
+    items: [
+      { name: "Terms", link: "/terms" },
+      { name: "Privacy", link: "/privacy" },
+      { name: "Cookies", link: "/cookies" },
+    ],
   },
 ];
 
@@ -36,7 +43,7 @@ const items = [
 
 const Footer = () => {
   return (
-    <div className="w-full bg-gray-300 text-primaryText py-y px-2">
+    <div className="w-full bg-gray-300 text-primaryText py-8 px-2">
       <div className="max-w-[1240px] mx-auto grid grid-cols-2 md:grid-cols-6 border-b-2 border-gray-600 py-8">
         {sections.map((section, index) => (
           <div key={index}>
@@ -44,7 +51,7 @@ const Footer = () => {
             <ul>
               {section.items.map((item, i) => (
                 <li key={i} className="py-1 text-primaryText hover:text-white">
-                  {item}
+                  <a href={item.link}>{item.name}</a>
                 </li>
               ))}
             </ul>
@@ -62,17 +69,23 @@ const Footer = () => {
               type="email"
               placeholder="Enter email.."
             />
-            <button className="p-2 mb-4 border border-primaryText rounded-md hover:scale-105 hover:shadow-sm"> Subscribe </button>
+            <button className="p-2 mb-4 border border-primaryText rounded-md hover:scale-105 hover:shadow-sm">
+              Subscribe
+            </button>
           </form>
         </div>
       </div>
 
       <div className="flex flex-col max-w-[1240px] px-2 py-4 mx-auto justify-between sm:flex-row text-center text-gray-100">
-        <p className="py-4 text-primaryText">2024 Aetha (PVT) Ltd. All rights reserved</p>
+        <p className="py-4 text-primaryText">
+          2024 Aetha (PVT) Ltd. All rights reserved
+        </p>
         <div className="flex justify-between sm:w-[300px] pt-4 text-2xl">
-          {items.map((x, index) => {
-            return <x.icon key={index} className="text-primaryText" />;
-          })}
+          {items.map((x, index) => (
+            <a href={x.link} key={index} target="_blank" rel="noopener noreferrer">
+              <x.icon className="text-primaryText hover:text-white" />
+            </a>
+          ))}
         </div>
       </div>
     </div>
