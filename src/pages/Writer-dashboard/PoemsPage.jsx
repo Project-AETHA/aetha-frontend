@@ -26,7 +26,6 @@ export default function PublishesPage() {
           <div className="bg-foreground-50 p-2 rounded h-full flex flex-col gap-4">
             <div className="border-2 rounded-lg flex justify-between items-center p-2">
               <p>All Publishes</p>
-              // TODO - Print all the poems
             </div>
           </div>
         </div>

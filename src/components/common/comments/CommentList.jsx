@@ -24,7 +24,7 @@ export default function CommentList() {
 
     return (
         <div className="bg-transparant pb-5 px-3 rounded-md mt-10">
-            {!isLoading && !isError && comments && comments.slice(0, visibleCount).map((comment, index) => (
+            {!isLoading && !isError && comments && comments?.slice(0, visibleCount).map((comment, index) => (
                 <div key={index}>
                     <div className="flex rounded-4xl">
                         <ImageOnline
