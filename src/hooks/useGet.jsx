@@ -26,13 +26,13 @@ const useGet = ({ queryKey, url, params = {}, onSuccess, onError }) => {
             if (response.status === 200) {
                 switch (response.data.code) {
                     case ResponseCodes.SUCCESS:
-                        toast.success(response.data.message);
+                        // toast.success(response.data.message);
                         return response.data.content;
                     case ResponseCodes.ERROR:
-                        toast.error(response.data.message);
+                        // toast.error(response.data.message);
                         return response.data;
                     case ResponseCodes.DUPLICATED:
-                        toast.warning(response.data.message);
+                        // toast.warning(response.data.message);
                         return response.data;
                     case ResponseCodes.VALIDATION_FAILED:
                         if (response.data.errors !== null) {
@@ -54,6 +54,7 @@ const useGet = ({ queryKey, url, params = {}, onSuccess, onError }) => {
                 });
                 return response.data;
             }
+            console.log(response);
         },
         onSuccess: onSuccess || defaultOnSuccess,
         onError: onError || defaultOnError,

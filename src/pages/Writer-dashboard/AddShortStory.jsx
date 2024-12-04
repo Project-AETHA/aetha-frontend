@@ -320,8 +320,8 @@ const CreateShortStory = () => {
                                 <h3 className="text-default-700 text-small">Story Content</h3>
                                 <Textarea
                                     value={content}
-                                    onChange={(value) => {
-                                        setContent(value);
+                                    onChange={(e) => {
+                                        setContent(e.target.value);
                                         setContentError("");
                                     }}
                                     theme="snow"

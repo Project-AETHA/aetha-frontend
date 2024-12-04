@@ -198,7 +198,7 @@ const Ebook = () => {
               <BookOpen className="w-8 h-8 text-blue-500 dark:text-blue-300 mr-2" />
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total Ebooks</p>
-                <p className="text-xl font-bold text-gray-800 dark:text-white">120</p>
+                <p className="text-xl font-bold text-gray-800 dark:text-white">3</p>
               </div>
             </div>
           </Card>
@@ -207,7 +207,7 @@ const Ebook = () => {
               <DollarSign className="w-8 h-8 text-green-500 dark:text-green-300 mr-2" />
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total Sales</p>
-                <p className="text-xl font-bold text-gray-800 dark:text-white">$15,240</p>
+                <p className="text-xl font-bold text-gray-800 dark:text-white">LKR 4800</p>
               </div>
             </div>
           </Card>
@@ -216,26 +216,13 @@ const Ebook = () => {
               <Users className="w-8 h-8 text-purple-500 dark:text-purple-300 mr-2" />
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total Readers</p>
-                <p className="text-xl font-bold text-gray-800 dark:text-white">5,420</p>
+                <p className="text-xl font-bold text-gray-800 dark:text-white">3</p>
               </div>
             </div>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <Card className="p-4 bg-white dark:bg-gray-800">
-            <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Monthly Sales</h2>
-            <Line data={salesData} />
-          </Card>
-          <Card className="p-4 bg-white dark:bg-gray-800">
-            <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Readers per Ebook</h2>
-            <Bar data={readerData} />
-          </Card>
-        </div>
-
-        <Tabs aria-label="Ebook Tabs" value={selectedTab} onValueChange={setSelectedTab}>
-          <Tab key="Listed" title="Listed">
-            <Card className="px-6 py-4 bg-white dark:bg-gray-800 shadow-sm">
+        <Card className="px-6 py-4 bg-white dark:bg-gray-800 shadow-sm">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">E Books on sale</h2>
                 <div className="flex items-center">
@@ -287,69 +274,6 @@ const Ebook = () => {
                 </TableBody>
               </Table>
             </Card>
-          </Tab>
-          <Tab key="Pending" title="Pending">
-            <Card className="px-6 py-4 bg-white dark:bg-gray-800 shadow-sm">
-              <Table aria-label="Pending Ebooks Table">
-                <TableHeader>
-                  <TableColumn>Title</TableColumn>
-                  <TableColumn>Date</TableColumn>
-                  <TableColumn>Actions</TableColumn>
-                </TableHeader>
-                <TableBody emptyContent={"No pending ebooks."}>{[]}</TableBody>
-              </Table>
-            </Card>
-          </Tab>
-          <Tab key="Declined" title="Declined">
-            <Card className="px-6 py-4 bg-white dark:bg-gray-800 shadow-sm">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Declined E Books</h2>
-                <div className="flex items-center">
-                  <Input
-                    clearable
-                    placeholder="Search"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-64 mr-2"
-                  />
-                  <Dropdown>
-                    <DropdownTrigger>
-                      <Button variant="bordered" className="capitalize">
-                        {selectedCategoryValue}
-                      </Button>
-                    </DropdownTrigger>
-                    <DropdownMenu
-                      aria-label="Category selection"
-                      variant="flat"
-                      disallowEmptySelection
-                      selectionMode="single"
-                      selectedKeys={selectedCategory}
-                      onSelectionChange={setSelectedCategory}
-                    >
-                      <DropdownItem key="all">All</DropdownItem>
-                      <DropdownItem key="Novel">Novel</DropdownItem>
-                      <DropdownItem key="Short Story">Short Story</DropdownItem>
-                      <DropdownItem key="Poem & Nisadas">Poem & Nisadas</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                </div>
-              </div>
-
-              <Table aria-label="Declined Ebook Table">
-                <TableHeader columns={columns2}>
-                  {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
-                </TableHeader>
-                <TableBody items={ebooks_declined} emptyContent={"No E-Books to display."} isLoading={isLoading}>
-                  {(item) => (
-                    <TableRow key={item.key}>
-                      {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </Card>
-          </Tab>
-        </Tabs>
       </Card>
     </div>
   );

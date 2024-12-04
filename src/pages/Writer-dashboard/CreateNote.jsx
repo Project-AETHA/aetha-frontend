@@ -60,7 +60,7 @@ export default function CreateNote() {
 
                 <div className="w-full min-h-[300px] flex flex-col justify-center grow gap-2">
                     <p className="text-sm text-foreground-900">Content</p>
-                    <Textarea className="text-editor" theme="snow" value={content} onChange={setContent} />
+                    <Textarea className="text-editor h-full" value={content} onChange={e => setContent(e.target.value)} />
                 </div>
 
                 <div className="w-full flex justify-center gap-2">

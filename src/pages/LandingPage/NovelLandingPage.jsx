@@ -27,7 +27,7 @@ function NovelLandingPage() {
         error,
         isFetching,
         refetch
-    } = useGet({ url: "/api/novels/all", queryKey: "ebook2" });
+    } = useGet({ url: "/api/novels/all", queryKey: "ebook" });
 
     //* Advertisements
     let ads = [
@@ -35,29 +35,28 @@ function NovelLandingPage() {
             id: 1,
             title: "Advertisement 1",
             content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            // image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
         {
             id: 2,
             title: "Advertisement 2",
             content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            // image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
         {
             id: 3,
             title: "Advertisement 3",
             content: "Advertise your product here!",
-            image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
+            // image: "https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg",
         },
     ];
 
-    let latest_updates = data && Array.isArray(data) ? data.slice(0, 4) : [];
-    let recommendations = data && Array.isArray(data) ? data.slice(0, 8) : [];
-    let rising_stars = data && Array.isArray(data) ? data.slice(0, 4) : [];
+    let latest_updates = data && Array.isArray(data) ? data.slice(0, 8) : [];
+    let rising_stars = data && Array.isArray(data) ? data.slice(8, 15) : [];
     let latest_updates_data = {
-        daily: data && Array.isArray(data) ? data.slice(0, 8) : [],
-        weekly: data && Array.isArray(data) ? data.slice(0, 8) : [],
-        monthly: data && Array.isArray(data) ? data.slice(0, 8) : [],
+        daily: data && Array.isArray(data) ? data.slice(0, 4) : [],
+        weekly: data && Array.isArray(data) ? data.slice(5, 8) : [],
+        monthly: data && Array.isArray(data) ? data.slice(0, 4) : [],
     };
 
 
@@ -135,43 +134,6 @@ function NovelLandingPage() {
                             </CarouselItem>
                         ))}
                     </CarouselMain>
-                </div>
-
-                {/* Personalized Recommendations */}
-                <div className="bg-foreground-100/75">
-                    <p className="flex gap-2 items-center font-bold text-lg text-green-700 mb-4">
-                        <FcBiomass size="25px" />
-                        Personalized Recommendations
-                    </p>
-                    <div className="flex items-center flex-wrap gap-3">
-                        {isLoading && <LoadingComponent />}
-
-                        {isError && <div className="text-black text-center">{error.message || "An error occurred"}</div>}
-
-                        {!isLoading && !isError && recommendations && recommendations.length > 0 ? (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-none lg:flex lg:flex-wrap place-items-center gap-3 py-5">
-                            {recommendations.map((item, index) => (
-                                <Item key={index} content={item} />
-                            ))}
-                        </div>
-                        ) : (
-                            !isLoading && !isError && <NothingToDisplay />
-                        )}
-                    </div>
-                </div>
-
-                {/* Advertisements */}
-                <div className="ad-container !bg-foreground-100/75">
-                    {ads &&
-                        ads.map((ad, index) => (
-                            <div className="" key={ad.id}>
-                                <Image width="300px" alt="NextUI hero Image" src={ad.image} />
-                                <h2>
-                                    {ad.title} {index}
-                                </h2>
-                                <p>{ad.content}</p>
-                            </div>
-                        ))}
                 </div>
 
                 <div className="flex gap-4 !p-0">
