@@ -148,14 +148,12 @@ const NewCampaign = () => {
         endDate: formattedEndDate,
         calculatedPrice: calculatedPrice,
       });
-
+      
       if (response.status === 200) {
         switch (response.data.code) {
           case "00":
             toast.success(response.data.message);
-            const adId = response.data.content.id;
-            console.log("Ad ID:", adId);
-            
+    
 
             // Initiate Stripe payment
             const paymentResponse = await axios.post("/api/payment/checkout", {
@@ -163,7 +161,7 @@ const NewCampaign = () => {
               amount: calculatedPrice, // in cents
               quantity: 1,
               currency: "LKR",
-              adId: adId,
+              adId: response.data.content,
             });
 
             if (paymentResponse.status === 200) {
