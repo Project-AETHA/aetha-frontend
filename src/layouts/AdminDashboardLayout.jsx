@@ -16,10 +16,10 @@ export default function AdminDashboardLayout (props) {
         { name: "User Management", link: "/admin/users", icon: AiOutlineUser },
         { name: "Content Management", link: "/admin/contents", icon: BsPen },
         { name: "Complaints", link: "/admin/complaints", icon: TbReportAnalytics },
-        { name: "Transactions", link: "/admin/transactions", icon: GrTransaction },
         { name: "Reported Content", link: "/admin/reported-content", icon: MdOutlineReportProblem },
-        { name: "Finance", link: "/admin/finance", icon: ImCoinDollar },
-        { name: "Report Generation", link: "/admin/report-generation", icon: TbReportAnalytics },
+        { name: "Transactions", link: "/admin/transactions", icon: GrTransaction }
+       
+        
     ];
 
     return (
