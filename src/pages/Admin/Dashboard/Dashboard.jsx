@@ -68,33 +68,7 @@ const options5 = {
   }
 };
 
-const data3 = {
-  labels: ['Handled Complaints', 'Pending Complaints'],
-  datasets: [
-    {
-      label: 'Complaints',
-      data: [120, 30], // Example data
-      backgroundColor: [
-        '#4caf50', // Green for handled complaints
-        '#f44336', // Red for pending complaints
-      ],
-      hoverBackgroundColor: [
-        '#66bb6a', // Light green for hover
-        '#e57373', // Light red for hover
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
 
-const options3 = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-  },
-};
 
 const labels2 = ['January', 'February', 'March', 'April', 'May', 'June', 'July']; // Example for 7 months
 
@@ -248,6 +222,37 @@ function Dashboard() {
     queryKey: "admin-dashboard",
     url: "/api/stats/admin-dashboard"
   })
+
+  const data3 = {
+    labels: ['Handled Complaints', 'Pending Complaints'],
+    datasets: [
+      {
+        label: 'Complaints',
+        data: [
+          statData ? statData.completedComplaints : 0, 
+          statData ? statData.pendingComplaints : 0
+        ], // Example data
+        backgroundColor: [
+          '#4caf50', // Green for handled complaints
+          '#f44336', // Red for pending complaints
+        ],
+        hoverBackgroundColor: [
+          '#66bb6a', // Light green for hover
+          '#e57373', // Light red for hover
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+  
+  const options3 = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+    },
+  };
 
   function BoxWrapper({ children, link }) {
     return <div className="bg-white rounded-md p-4 hover:cursor-pointer hover:scale-105 duration-300 ease-in-out flex-1 border border-gray-200 flex items-center" onClick={() => navigate(link)}>{children}</div>
