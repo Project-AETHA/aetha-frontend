@@ -3,6 +3,7 @@ import { Card, CardHeader, CardBody, Button } from "@nextui-org/react";
 import { CheckCircle2 } from 'lucide-react';
 import axios from 'axios';
 import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 
 export const PaymentSuccessPage = () => {
   const [searchParams] = useSearchParams();
@@ -10,27 +11,33 @@ export const PaymentSuccessPage = () => {
 
   useEffect(() => {
     const handlePaymentSuccess = async () => {
-      const sessionId = searchParams.get("sessionId"); // Retrieve `sessionId` from URL query parameters
-      const adId = session.metadata.adId;; // Retrieve `adId` from metadata
-      console.log(sessionId, adId);
-
-      if (sessionId && adId) {
-        try {
-          const response = await axios.get("/api/ads/success", {
-            params: { sessionId, adId },
-          });
-
-          if (response.status === 302) {
-            window.location.href = response.headers.location || "/dashboard";
+        const sessionId = searchParams.get("sessionId");
+        const adId = searchParams.get("adId");
+        console.log("AD Id:", adId);
+      
+        if (sessionId && adId) {
+          try {
+            const response = await axios.put("/api/ads/success", null, {
+              params: { sessionId, adId },
+            });
+      
+            if (response.data?.code === "00") {
+              toast.success("Payment confirmed successfully");
+            } else {
+              toast.error(response.data?.message || "Payment confirmation failed");
+            }
+          } catch (error) {
+            console.error("Payment confirmation failed:", error.response || error.message);
+            toast.error(
+              error.response?.data?.message || "An unexpected error occurred."
+            );
+            alert(error.response?.data?.message || "An error occurred while confirming payment.");
           }
-        } catch (error) {
-          console.error("Payment confirmation failed", error);
-          alert("An error occurred while confirming payment.");
+        } else {
+          console.warn("Session ID or Ad ID is missing");
         }
-      } else {
-        console.warn("Session ID or Ad ID is missing");
-      }
-    };
+      };
+      
 
     handlePaymentSuccess();
   }, [searchParams]);
