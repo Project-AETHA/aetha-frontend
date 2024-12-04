@@ -60,7 +60,7 @@ function NovelChapterOverview({ id }) {
   const {isOpen, onOpen, onClose} = useDisclosure();
 
   async function checkSubscription(novelId) {
-    console.log(user)
+    // console.log(user)
     if(user) {
       const response = await axios.get(`/api/subscription/check/${novelId}`);
       
@@ -101,8 +101,15 @@ function NovelChapterOverview({ id }) {
 
   useEffect(() => {
     getNovelDetails();
-    checkFavStatus();
+    // checkFavStatus();
+    return () => {}
   }, [id]);
+
+  useEffect(() => {
+    getNovelDetails();
+    checkFavStatus();
+    return () => {}
+  }, []);
 
   return (
     <div className="alt-container">
