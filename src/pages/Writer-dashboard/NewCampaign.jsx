@@ -153,7 +153,7 @@ const NewCampaign = () => {
         switch (response.data.code) {
           case "00":
             toast.success(response.data.message);
-            const adId = response.data.content.id; // Assuming the response includes the new ad's 
+            const adId = response.data.content.id;
             console.log("Ad ID:", adId);
             
 
