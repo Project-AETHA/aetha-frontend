@@ -24,12 +24,7 @@ function Myreadinghistory() {
           </div>
         </div>
 
-
-        <div class="bg-white border-2 border-black m-4 h-20 p-4 text-black">
-          Advertisement
-        </div>
         <div className='m-4'>
-
           <Table isStriped aria-label="Example static collection table">
             <TableHeader>
               <TableColumn>History</TableColumn>

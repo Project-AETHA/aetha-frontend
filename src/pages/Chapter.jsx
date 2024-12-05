@@ -15,11 +15,7 @@ const Chapter = () => {
     // console.log(response)
   }
 
-    //? Adding to the history
-    useEffect(async () => {
-      addHistory();
-      return () => {}
-    }, [])
+  addHistory();
 
   return (
     <div>

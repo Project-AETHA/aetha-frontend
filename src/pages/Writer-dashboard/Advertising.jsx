@@ -158,11 +158,9 @@ const Advertising = () => {
       <Card className="mx-auto p-8 shadow-sm">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">Marketing Dashboard</h1>
-          <Link href="/author/advertising/newcampaign">
-            <Button auto shadow color="primary" icon={<CirclePlus />}>
+            <Button auto shadow color="primary" onClick={() => navigate("/author/advertising/newcampaign")} icon={<CirclePlus />}>
               New Campaign
             </Button>
-          </Link>
         </div>
 
         <div className="flex flex-wrap gap-4 mb-8">

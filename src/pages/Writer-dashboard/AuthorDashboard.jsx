@@ -69,7 +69,7 @@ const AuthorDashboard = () => {
           {!isLoading && !isError && (
             <>
               <StatsCard title="Published Novels" value={data.published.length} Icon={Book} />
-              <StatsCard title="Pendgin Novels" value={data.pending.length} Icon={BarChart2} />
+              <StatsCard title="Pending Novels" value={data.pending.length} Icon={BarChart2} />
               <StatsCard title="Draft Novels" value={data.draft.length} Icon={Star} />
             </>
           )}
@@ -77,7 +77,7 @@ const AuthorDashboard = () => {
         </div>
         <div className="bg-white dark:bg-gray-800 p-5 rounded shadow-none mb-5">
           <h2 className="text-xl font-semibold mb-3 dark:text-white">Publishes</h2>
-          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-xl">
+          <div className="flex flex-wrap gap-4">
             {isLoading && <LoadingComponent />}
             {!isLoading && data.published.map((novel,index) => <SingleNovel key={index} novel={novel} />)}
             {!isLoading && data.published.length === 0 && <NothingToDisplay />}

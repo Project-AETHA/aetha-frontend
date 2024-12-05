@@ -18,7 +18,7 @@ function Rate() {
     // Calculate the ratings for the current page
     const indexOfLastRating = currentPage * ratingsPerPage;
     const indexOfFirstRating = indexOfLastRating - ratingsPerPage;
-    const currentRatings = ratings.slice(indexOfFirstRating, indexOfLastRating);
+    const currentRatings = ratings?.slice(indexOfFirstRating, indexOfLastRating);
 
     const totalPages = Math.ceil(ratings.length / ratingsPerPage);
 
